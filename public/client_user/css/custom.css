@@ -1,0 +1,130 @@
+
+.card-content > .card {
+  margin: 1%;
+  background: #1a92b7;
+  border-radius: 7px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 80px;
+  padding: 10px 0;
+  float: left;
+  color: #fff;
+  transition: .5s;
+  -webkit-transition: .5s;
+  cursor: pointer;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.11);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.11);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.11);
+}
+
+
+.card-header-title {
+  background: #f4f4f4;
+}
+
+.card-element-title {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 33px;
+  color: #7f7f7f;
+}
+
+li button.btn_logi {
+
+  border: 1px solid #999;
+  color: black;
+  background-color: white;
+  text-align: center;
+  outline: none;
+  padding: 7px 15px;
+  border-radius: 3px;
+}
+
+@media (max-width: 767px) {
+li button.btn_logi {
+    padding: 7px 10px;
+  }
+}
+li button.btn_logi:hover {
+  background-color: #FF3A65;
+  border-color: #FF3A65;
+  color: white;
+}
+
+#select-login-modal .row span {
+  font-size: 50px;
+  margin-top: 100px;
+  color: #e4e4e4;
+  align-content: center;
+  width: 100%;
+}
+
+#select-login-modal .modal-header span {
+  font-size: 30px;
+  font-weight: bolder;
+  color: darkolivegreen;
+}
+
+#select-login-modal .card {
+  height: 300px;
+  width: 100%;
+  border: #887ef2;
+  border-radius: 30px;
+  background-color: #887ef2;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  outline: none;
+}
+
+#select-login-modal .modal-body{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#select-login-modal{
+  margin-top: 40px;
+}
+
+#select-login-modal .card:hover {
+  background-color: #887ef2;opacity: 90%;
+}
+
+#user-login-modal {
+  margin-top: 40px;
+}
+
+
+#user-login-modal .form-group input.form-control {
+  padding-left: 40px;
+}
+
+#user-login-modal .form-group > i.icon_lock_alt {
+  top: 35px;
+}
+
+#user-login-modal .form-group > i {
+  font-size: 18px;
+  position: absolute;
+  left: 12px;
+  top: 33px;
+  color: #ccc;
+  width: 25px;
+  height: 25px;
+  display: block;
+  font-weight: 400 !important;
+}
+
+#captcha_register {
+  padding-left: 15px !important;
+}
+
+#User-register .icon_pencil-edit {
+  margin-left: 10px !important;
+}
+
+a#forgot:hover, a#forgot:focus {
+  color: #111;
+  text-decoration: none;
+  outline: none;
+}
+

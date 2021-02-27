@@ -1,0 +1,77 @@
+{
+  "menu": [
+    {
+      "url": "admin-dashboard",
+      "name": "Dashboard",
+      "slug": "dashboard",
+      "icon": "feather icon-home"
+    },
+    {
+      "url": "service-catalog",
+      "name": "Service Catalog",
+      "icon": "feather icon-grid"
+    },
+    {
+      "url": "localization",
+      "name": "Localization",
+      "icon": "feather icon-map-pin"
+    },
+    {
+      "url": "price-rules",
+      "name": "Price Rules",
+      "icon": "fa fa-rub"
+    },
+    {
+      "url": "",
+      "name": "People",
+      "icon": "feather icon-users",
+      "submenu": [
+        {
+          "url": [
+            "client-manage",
+            "client-view"
+          ],
+          "name": "Client Manage",
+          "icon": "fa fa-chevron-right",
+          "badge": "",
+          "badgeClass": "badge badge-warning badge-pill  float-right"
+        },
+        {
+          "url": [
+            "user-manage",
+            "user-view"
+          ],
+          "name": "User Manage",
+          "icon": "fa fa-chevron-right"
+        }
+      ]
+    },
+    {
+      "url": "booking-schedule",
+      "name": "Booking Schedule",
+      "icon": "feather icon-calendar"
+    },
+    {
+      "url": "review-order",
+      "name": "Review Order",
+      "icon": "feather icon-tag"
+    },
+    {
+      "url": "",
+      "name": "Other Parameter",
+      "icon": "feather icon-layers",
+      "submenu": [
+        {
+          "url": ["discount-promo"],
+          "name": "Discount&PromoCode",
+          "icon": "fa fa-chevron-right"
+        },
+        {
+          "url": ["#"],
+          "name": "News & Blog",
+          "icon": "fa fa-chevron-right"
+        }
+      ]
+    }
+  ]
+}

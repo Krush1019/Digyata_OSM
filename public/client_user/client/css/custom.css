@@ -1,0 +1,172 @@
+label.error {
+  color: #e3464c !important;
+}
+
+/*Password strength */
+#pass-info {
+  width: 100%;
+  margin-bottom: 15px;
+  color: #555;
+  text-align: center;
+  font-size: 12px;
+  font-size: 0.75rem;
+  padding: 5px 3px 3px 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+}
+#pass-info.weakpass {
+  border: 1px solid #FF9191;
+  background: #FFC7C7;
+  color: #94546E;
+}
+#pass-info.stillweakpass {
+  border: 1px solid #FBB;
+  background: #FDD;
+  color: #945870;
+}
+#pass-info.goodpass {
+  border: 1px solid #C4EEC8;
+  background: #E4FFE4;
+  color: #51926E;
+}
+#pass-info.strongpass {
+  border: 1px solid #6ED66E;
+  background: #79F079;
+  color: #348F34;
+}
+#pass-info.vrystrongpass {
+  border: 1px solid #379137;
+  background: #48B448;
+  color: #CDFFCD;
+}
+
+/* Show hide password */
+.my-toggle {
+  background: transparent;
+  border: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  color: #888;
+  cursor: pointer;
+  font-size: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  margin-right: 5px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  text-transform: uppercase;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  z-index: 10;
+  position: relative;
+}
+.my-toggle:hover, .my-toggle:focus {
+  background-color: #eee;
+  color: #555;
+  outline: transparent;
+}
+
+.hideShowPassword-wrapper {
+  width: 100% !important;
+}
+
+/* Forms loader */
+.loader {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #999;
+  font-size: 18px;
+  font-size: 1.125rem;
+  -webkit-animation: rotation 2s infinite linear;
+  animation: rotation 2s infinite linear;
+}
+.loader.newsletter {
+  right: -22px;
+}
+.loader.register {
+  color: #444;
+}
+
+/*lock icon*/
+/*#changepasswdform .fa-lock {*/
+/*  font-size: 18px;*/
+/*  position: relative;*/
+/*  left: 12px;*/
+/*  top: -28px;*/
+/*  color: #ccc;*/
+/*  width: 25px;*/
+/*  height: 25px;*/
+/*  display: block;*/
+/*  padding-right: 40px;*/
+/*  font-weight: 400 !important;*/
+/*}*/
+
+.btn_1 {
+  outline: none !important;
+}
+.btn_1:hover , .btn_1:focus {
+  background-color: #0f1642;
+}
+
+.approved {
+  position: inherit;
+}
+
+.box {
+  height: 400px !important;
+  vertical-align: center;
+  background-color: #7d8fa1;
+}
+
+.font-large-30 {
+  font-size: 30px!important;
+}
+
+.font-large-17 {
+  font-size: 17px!important;
+}
+.font-large-20 {
+  font-size: 20px!important;
+}
+
+.add-btn {
+  position: fixed;
+  left: 240px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  color: white;
+  /*background: rgba(52, 58, 64, 0.5);*/
+  line-height: 45px;
+  font-size: 20px;
+
+}
+
+.styled-select {
+  appearance: none;
+  color: #7d8fa1;
+}
+
+.custom-modal span {
+  font-size: medium;
+}
+
+.custom-modal .row {
+  padding-bottom: 10px;
+}
+
+.custom-modal label {
+  margin-right: 5px;
+}
+
+.text-pink {
+  color: #FF3A65!important;
+}
