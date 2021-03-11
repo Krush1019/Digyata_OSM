@@ -7,7 +7,7 @@
         <div class="collapse dont-collapse-sm links" id="collapse_1">
           <ul>
             <li><a href="{{route('client-register')}}">Join Us</a></li>
-            <li><a data-toggle="modal" href="#select-login-modal">Login</a></li>
+            <li><a data-toggle="modal" href="#user-login-modal">Login</a></li>
             <li><a href="{{route('blog')}}">Blog</a></li>
             <li><a href="{{route('contacts')}}">Contacts</a></li>
           </ul>
@@ -17,10 +17,10 @@
         <h3 data-target="#collapse_2">Categories</h3>
         <div class="collapse dont-collapse-sm links" id="collapse_2">
           <ul>
-            <li><a href="grid-listing-1.html">Top Categories</a></li>
-            <li><a href="grid-listing-2.html">Best Rated</a></li>
-            <li><a href="grid-listing-3.html">Best Price</a></li>
-            <li><a href="grid-listing-1.html">Latest Submissions</a></li>
+            <li><a href="{{route('client-listing')}}">Top Categories</a></li>
+            <li><a href="{{route('client-listing')}}">Best Rated</a></li>
+            <li><a href="{{route('client-listing')}}">Best Price</a></li>
+            <li><a href="{{route('client-listing')}}">Latest Submissions</a></li>
           </ul>
         </div>
       </div>

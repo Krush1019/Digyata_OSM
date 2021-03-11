@@ -20,7 +20,7 @@ $(".content_more").hide();
 // Time and people select
 $('.radio_select input[type="radio"]').on("click", function () {
     var value = $("input[name='time']:checked").val();
-    $('#selected_time').text(value);
+    $('#selected_time').val(value);
 });
 
 $('.radio_select input[type="radio"]').on("click", function (){

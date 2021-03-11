@@ -10,12 +10,7 @@
   <link href="{{asset('client_user/css/custom.css')}}" rel="stylesheet">
 @endsection
 
-@section('top_menu_content')
-  <ul id="top_menu">
-    <li><a id="sign-in" class="btn_access" data-toggle="modal" href="#select-login-modal">Log In</a></li>
-    <li><a href="/client-register" class="btn_access green">Join Free</a></li>
-  </ul>
-@endsection
+@section('header-class', 'header clearfix element_to_stick')
 
 @section('content')
   <main>

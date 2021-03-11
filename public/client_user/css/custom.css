@@ -128,3 +128,28 @@ a#forgot:hover, a#forgot:focus {
   outline: none;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
+.text-pink {
+  color: #FF3A65;
+}
+
+.running {
+  background-color: #1a92b7;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-size: 0.75rem;
+  color: #fff;
+  font-style: normal;
+  padding: 3px 12px 2px 12px;
+  margin-left: 3px;
+  position: relative;
+  top: -3px;
+  line-height: 1;
+}
+

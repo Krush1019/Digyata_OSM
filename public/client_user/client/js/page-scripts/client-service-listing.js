@@ -27,7 +27,7 @@ $(document).ready(function () {
 })   
 
   //status change
-  $(document).on('click', '.s_status', function (e) {
+  $(document).on('click', '.s_status', function () {
     var status = $(this).text();
     if(status === "Active")
       status = "Blocked"

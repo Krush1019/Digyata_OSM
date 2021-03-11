@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\LanguageController;
 
 
@@ -134,9 +134,24 @@ Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('
     USER
     * *****************/
 
-    //user -- Dashboard
-    Route::get('/user-dashboard', 'client_user\UserDashboardController@index');
+    //user -- Profile
+    Route::get('/user-profile', 'client_user\user\UserProfileController@index')->name('user-profile');
 
+    //user -- My orders
+    Route::get('/my-orders', 'client_user\user\MyOrdersController@index')->name('my-orders');
+
+
+    //client -- detail
+    Route::get('/client-detail', 'client_user\user\ClientDetailController@index')->name('client-detail');
+
+    //client -- listing
+    Route::get('/client-listing', 'client_user\user\ClientListingController@index')->name('client-listing');
+
+    //confirm -- order
+    Route::get('/confirm-order', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
+
+    //user -- review
+    Route::get('/user-review', 'client_user\user\UserReviewController@index')->name('user-review');
 
 /*
  * *****************

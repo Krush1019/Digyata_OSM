@@ -10,12 +10,7 @@
   <link href="{{asset('client_user/css/custom.css')}}" rel="stylesheet">
 @endsection
 
-@section('top_menu_content')
-  <ul id="top_menu">
-    <li><a id="sign-in" class="btn_access" data-toggle="modal" href="#user-login-modal">Log In</a></li>
-    <li><a href="{{route('client-register')}}" class="btn_access green">Join Free</a></li>
-  </ul>
-@endsection
+@section('header-class', 'header clearfix element_to_stick')
 
 @section('content')
 <main>
@@ -31,7 +26,7 @@
                   <p class="owl-slide-animated owl-slide-subtitle">
                     Book a Consultation by Appointment or Chat
                   </p>
-                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="grid-listing-1.html" role="button">Read more</a></div>
+                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client-listing')}}" role="button">Read more</a></div>
                 </div>
               </div>
             </div>
@@ -49,7 +44,7 @@
                   <p class="owl-slide-animated owl-slide-subtitle">
                     More than +1,000 trusted professionals listed
                   </p>
-                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="grid-listing-1.html" role="button">Read more</a></div>
+                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client-listing')}}" role="button">Read more</a></div>
                 </div>
               </div>
             </div>
@@ -91,9 +86,9 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a href="#0" class="wish_bt"><i class="icon_heart"></i></a>
+              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/elecrician-person.jpg')}}" data-src="{{asset('client_user/img/elecrician-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="detail-page.html" class="strip_info">
+              <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
                   <h3>Ramesh Patel</h3>
                   <small>Electician</small>
@@ -113,9 +108,9 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a href="#0" class="wish_bt"><i class="icon_heart"></i></a>
+              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/plumber-person.jpg')}}" data-src="{{asset('client_user/img/plumber-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="detail-page.html" class="strip_info">
+              <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
                   <h3>Kapil Satavara</h3>
                   <small>Plumber</small>
@@ -135,9 +130,9 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a href="#0" class="wish_bt"><i class="icon_heart"></i></a>
+              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/painter-person.jpg')}}" data-src="{{asset('client_user/img/painter-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="detail-page.html" class="strip_info">
+              <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
                   <h3>Ankit Modi</h3>
                   <small>Painter</small>
@@ -146,8 +141,7 @@
             </figure>
             <ul>
               <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Video Call"><i class="icon-videocam"></i></a></li>
-              <li>
+              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
                 <div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.4</strong></div>
               </li>
             </ul>
@@ -157,9 +151,9 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a href="#0" class="wish_bt"><i class="icon_heart"></i></a>
+              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/cleaner-person.jpg')}}" data-src="{{asset('client_user/img/cleaner-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="detail-page.html" class="strip_info">
+              <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
                   <h3>Manubhai Khoja</h3>
                   <small>Cleaner</small>
@@ -167,8 +161,8 @@
               </a>
             </figure>
             <ul>
+              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-users"></i></a></li>
               <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Video Call"><i class="icon-videocam"></i></a></li>
               <li>
                 <div class="score"><span>Superb<em>300 Reviews</em></span><strong>4.1</strong></div>
               </li>
@@ -179,9 +173,9 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a href="#0" class="wish_bt"><i class="icon_heart"></i></a>
+              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/pest_controller-person.jpg')}}" data-src="{{asset('client_user/img/pest_controller-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="detail-page.html" class="strip_info">
+              <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
                   <h3>Umang Panchal</h3>
                   <small>Pest Controller, Fumigators</small>
@@ -189,8 +183,8 @@
               </a>
             </figure>
             <ul>
+              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-users"></i></a></li>
               <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Video Call"><i class="icon-videocam"></i></a></li>
               <li>
                 <div class="score"><span>Superb<em>140 Reviews</em></span><strong>4.2</strong></div>
               </li>
@@ -201,9 +195,9 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a href="#0" class="wish_bt"><i class="icon_heart"></i></a>
+              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/carpenter-person.jpg')}}" data-src="{{asset('client_user/img/carpenter-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="detail-page.html" class="strip_info">
+              <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
                   <h3>paresh Mistri</h3>
                   <small>Carpenter</small>
@@ -222,7 +216,7 @@
         <!-- /strip grid -->
       </div>
       <!-- /row -->
-      <p class="text-center add_top_30"><a href="grid-listing-1.html" class="btn_1 medium">Start Searching</a></p>
+      <p class="text-center add_top_30"><a href="{{route('client-listing')}}" class="btn_1 medium">Start Searching</a></p>
     </div>
     <!-- /container -->
   </div>
@@ -236,7 +230,7 @@
     <!-- /main_title -->
     <div class="owl-carousel owl-theme categories_carousel add_bottom_45">
       <div class="item_version_2">
-        <a href="grid-listing-1.html">
+        <a href="{{route('client-listing')}}">
           <figure>
             <span>50</span>
             <img src="{{asset('client_user/img/electrician.jpg')}}" data-src="{{asset('client_user/img/electrician.jpg')}}" alt="" class="owl-lazy">
@@ -248,7 +242,7 @@
         </a>
       </div>
       <div class="item_version_2">
-        <a href="grid-listing-1.html">
+        <a href="{{route('client-listing')}}">
           <figure>
             <span>20</span>
             <img src="{{asset('client_user/img/plumber.jpg')}}" data-src="{{asset('client_user/img/plumber.jpg')}}" alt="" class="owl-lazy">
@@ -260,7 +254,7 @@
         </a>
       </div>
       <div class="item_version_2">
-        <a href="grid-listing-1.html">
+        <a href="{{route('client-listing')}}">
           <figure>
             <span>10</span>
             <img src="{{asset('client_user/img/painter.jpg')}}" data-src="{{asset('client_user/img/painter.jpg')}}" alt="" class="owl-lazy">
@@ -272,7 +266,7 @@
         </a>
       </div>
       <div class="item_version_2">
-        <a href="grid-listing-1.html">
+        <a href="{{route('client-listing')}}">
           <figure>
             <span>40</span>
             <img src="{{asset('client_user/img/cleaner.jpg')}}" data-src="{{asset('client_user/img/cleaner.jpg')}}" alt="" class="owl-lazy">
@@ -284,7 +278,7 @@
         </a>
       </div>
       <div class="item_version_2">
-        <a href="grid-listing-1.html">
+        <a href="{{route('client-listing')}}">
           <figure>
             <span>7</span>
             <img src="{{asset('client_user/img/pest_controller.jpg')}}" data-src="{{asset('client_user/img/pest_controller.jpg')}}" alt="" class="owl-lazy">
@@ -296,7 +290,7 @@
         </a>
       </div>
       <div class="item_version_2">
-        <a href="grid-listing-1.html">
+        <a href="{{route('client-listing')}}">
           <figure>
             <span>20</span>
             <img src="{{asset('client_user/img/carpenter.jpg')}}" data-src="{{asset('client_user/img/carpenter.jpg')}}" alt="" class="owl-lazy">
@@ -322,7 +316,7 @@
         <div class="list_home">
           <ul>
             <li>
-              <a href="detail-page.html">
+              <a href="{{route('client-detail')}}">
                 <figure>
                   <img src="{{asset('client_user/img/professional_list_placeholder.png')}}" data-src="{{asset('client_user/img/professional_list_1.jpg')}}" alt="" class="lazy">
                 </figure>
@@ -337,7 +331,7 @@
               </a>
             </li>
             <li>
-              <a href="detail-page.html">
+              <a href="{{route('client-detail')}}">
                 <figure>
                   <img src="{{asset('client_user/img/professional_list_placeholder.png')}}" data-src="{{asset('client_user/img/professional_list_2.jpg')}}" alt="" class="lazy">
                 </figure>
@@ -358,7 +352,7 @@
         <div class="list_home">
           <ul>
             <li>
-              <a href="detail-page.html">
+              <a href="{{route('client-detail')}}">
                 <figure>
                   <img src="{{asset('client_user/img/professional_list_placeholder.png')}}" data-src="{{asset('client_user/img/professional_list_3.jpg')}}" alt="" class="lazy">
                 </figure>
@@ -373,7 +367,7 @@
               </a>
             </li>
             <li>
-              <a href="detail-page.html">
+              <a href="{{route('client-detail')}}">
                 <figure>
                   <img src="{{asset('client_user/img/professional_list_placeholder.png')}}" data-src="{{asset('client_user/img/professional_list_4.jpg')}}" alt="" class="lazy">
                 </figure>
@@ -423,7 +417,7 @@
               <p>Connect with your professional booking an appointment via chat!</p>
             </li>
           </ul>
-          <p class="add_top_30"><a href="grid-listing-1.html" class="btn_1">Start Searching</a></p>
+          <p class="add_top_30"><a href="{{route('client-listing')}}" class="btn_1">Start Searching</a></p>
         </div>
         <!-- /row -->
       </div>

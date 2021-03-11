@@ -10,7 +10,7 @@
   <link href="{{asset('client_user/css/custom.css')}}" rel="stylesheet">
 @endsection
 
-@section('header-class', 'header_in shadow')
+@section('header-class', 'header header_in shadow element_to_stick clearfix')
 
 @section('content')
   <main class="bg_color">
@@ -241,3 +241,5 @@
   </main>
   <!-- /main -->
 @endsection
+
+

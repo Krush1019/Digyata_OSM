@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\client_user;
+namespace App\Http\Controllers\client_user\user;
 
-use App\client_user\UserDashboard;
+use App\client_user\user\MyOrders;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserDashboardController extends Controller
+class MyOrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class UserDashboardController extends Controller
      */
     public function index()
     {
-      return view('/pages/client_user/user-dashboard');
+        return view('/pages/client_user/user/my-order');
     }
 
     /**
@@ -42,10 +42,10 @@ class UserDashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\client_user\UserDashboard  $userDashboard
+     * @param  \App\client_user\user\MyOrders  $myOrders
      * @return \Illuminate\Http\Response
      */
-    public function show(UserDashboard $userDashboard)
+    public function show(MyOrders $myOrders)
     {
         //
     }
@@ -53,10 +53,10 @@ class UserDashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\client_user\UserDashboard  $userDashboard
+     * @param  \App\client_user\user\MyOrders  $myOrders
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserDashboard $userDashboard)
+    public function edit(MyOrders $myOrders)
     {
         //
     }
@@ -65,10 +65,10 @@ class UserDashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\client_user\UserDashboard  $userDashboard
+     * @param  \App\client_user\user\MyOrders  $myOrders
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserDashboard $userDashboard)
+    public function update(Request $request, MyOrders $myOrders)
     {
         //
     }
@@ -76,10 +76,10 @@ class UserDashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\client_user\UserDashboard  $userDashboard
+     * @param  \App\client_user\user\MyOrders  $myOrders
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserDashboard $userDashboard)
+    public function destroy(MyOrders $myOrders)
     {
         //
     }

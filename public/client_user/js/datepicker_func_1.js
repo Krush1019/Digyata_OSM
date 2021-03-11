@@ -1,5 +1,5 @@
 // An array of highlighting dates ( 'mm-dd-yyyy' )
-var highlight_dates = ['4-12-2020','4-15-2020','4-16-2020','4-17-2020', '5-12-2020','5-15-2020','5-16-2020','5-17-2020','6-12-2020','6-15-2020','6-16-2020','6-17-2020'];
+var highlight_dates = [];
  
  $(function() {
  // Initialize datepicker
