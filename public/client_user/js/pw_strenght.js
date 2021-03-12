@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  var password1 = $('#nwpasswd'); //id of first password field
-  var password2 = $('#cnfnewpasswd'); //id of second password field
+  var password1 = $('.new-password'); //id of first password field
+  var password2 = $('.cnfm-new-password'); //id of second password field
   var passwordsInfo = $('#pass-info'); //id of indicator element
 
   passwordStrengthCheck(password1, password2, passwordsInfo); //call password check function

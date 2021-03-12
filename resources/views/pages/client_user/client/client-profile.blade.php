@@ -97,11 +97,12 @@
       </div>
     </div>
   </div>
+
   <div class="modal fade" id="changepasswdmodel" tabindex="-1" role="dialog" aria-labelledby="changepasswdModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title"><i class="fa fa-lock"></i>Change password</h2>
+          <h2 class="modal-title"><i class="fa fa-lock mr-3"></i>Change password</h2>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -109,7 +110,7 @@
         <div class="modal-body">
           <div class="container-fluid">
             <form id="changepasswdform">
-              <div class="input-container">
+              <div class="form-group">
                 <label>Old password</label>
                 <i class="fa fa-lock"></i>
                 <input class="form-control" type="password" name="odpasswd" placeholder="Old password" id="odpasswd">
@@ -117,12 +118,12 @@
               <div class="form-group">
                 <label>New password</label>
                 <i class="fa fa-lock"></i>
-                <input class="form-control" type="password" name="nwpasswd" placeholder="New password" id="nwpasswd">
+                <input class="form-control new-password" type="password" name="nwpasswd" placeholder="New password" id="nwpasswd">
                 <button type="button" id="btn1" class="my-toggle hideShowPassword-toggle-show" hidden="hidden">show</button>
               </div>
               <div class="form-group">
                 <label>Confirm new password</label>
-                <input class="form-control" type="password" name="cnfnewpasswd" placeholder="Confirm new password" id="cnfnewpasswd">
+                <input class="form-control cnfm-new-password" type="password" name="cnfnewpasswd" placeholder="Confirm new password" id="cnfnewpasswd">
               </div>
               <div id="pass-info" class="clearfix"></div>
               <div>
