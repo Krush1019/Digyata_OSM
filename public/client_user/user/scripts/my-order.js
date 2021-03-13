@@ -11,7 +11,6 @@ $(document).ready(function () {
           if (e.keyCode === 27 ){
             $('#viewordermodal').modal('hide');
           }
-      })   
-    
+      });
+
     })
-    

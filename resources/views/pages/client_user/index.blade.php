@@ -143,7 +143,6 @@
               <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
               <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
                 <div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.4</strong></div>
-              </li>
             </ul>
           </div>
         </div>
@@ -444,5 +443,5 @@
 @endsection
 
 @section('page-script')
-<script src="{{asset('client_user/js/UI/index.js')}}"></script>    
+<script src="{{asset('client_user/js/UI/index.js')}}"></script>
 @endsection

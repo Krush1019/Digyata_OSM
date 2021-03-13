@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group">
                   <textarea class="form-control" style="height: 150px;" placeholder="Message" id="message_contact" name="message_contact"></textarea>
-                </div>x`
+                </div>
                 <div class="form-group">
                   <input class="btn_1 full-width" type="submit" value="Submit" id="submit-contact">
                 </div>

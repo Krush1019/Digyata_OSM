@@ -16,13 +16,13 @@
 			<li>
 				<div class="dropdown user clearfix">
 				    <a href="#" data-toggle="dropdown">
-				        <figure><img src="img/avatar1.jpg" alt=""></figure>Jhon Doe
+				        <figure><img src="{{asset('client_user/img/avatar1.jpg')}}" alt=""></figure>Jhon Doe
 				    </a>
 				    <div class="dropdown-menu">
 				        <div class="dropdown-menu-content">
 				            <ul>
-				            	<li><a href=""><i class="icon_cog"></i>Profile</a></li>
-				            	<li><a href="#0"><i class="icon_document"></i>Bookings</a></li>
+				            	<li><a href="{{route('user-profile')}}"><i class="icon_cog"></i>Profile</a></li>
+				            	<li><a href="{{route('my-orders')}}"><i class="icon_document"></i>Bookings</a></li>
 
                       {{-- Comming Soon in Update --}}
 				            	{{-- <li><a href="#0"><i class="icon_mail"></i>Messages</a></li> --}}

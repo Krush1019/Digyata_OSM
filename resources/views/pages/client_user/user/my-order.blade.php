@@ -244,11 +244,11 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
         </div>
       </div>
-    </div>  
+    </div>
   </div>
 @endsection
 
 @section('page-script')
-        <script src="{{asset('client_user/client/js/page-scripts/my-order.js')}}"></script>
+        <script src="{{asset('client_user/user/js/page-scripts/my-order.js')}}"></script>
         <script src="{{ asset('js/scripts/extensions/sweetalert2.js')}}"></script>
 @endsection

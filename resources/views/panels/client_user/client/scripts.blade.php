@@ -6,7 +6,7 @@
 <script src="{{asset('client_user/client/jquery-easing/jquery.easing.min.js')}}"></script>
 <!-- Page level plugin JavaScript-->
 
-<script src="{{asset('vendors/js/charts/Chart.min.js')}}"></script>
+<script src="{{asset("vendors/js/charts/Chart.min.js")}}"></script>
 <script src="{{asset('client_user/client/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('client_user/client/datatables/dataTables.bootstrap4.js')}}"></script>
 <script src="{{asset('client_user/client/js/jquery.selectbox-0.2.js')}}"></script>
