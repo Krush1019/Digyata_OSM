@@ -222,3 +222,8 @@
   </main>
   <!-- /main -->
 @endsection
+
+@section('page-script')
+  <script src="{{asset('client_user/js/UI/client-register.js')}}"></script>
+@endsection
+

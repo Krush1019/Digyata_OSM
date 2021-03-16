@@ -225,4 +225,10 @@ var lazyLoadInstance = new LazyLoad({
     });
   });
 
+  //Active Manu List Item
+  $(document).ready(function () {
+    var activeurl = window.location;
+    $('a[href="' + activeurl + '"]').parent('li').addClass('active');
+  });
+
 })(window.jQuery);

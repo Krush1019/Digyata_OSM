@@ -94,13 +94,16 @@ Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('
     Route::get('/client-register','client_user\ClientRegisterController@index')->name('client-register');
 
     //user-register
-    Route::get('/user-register','client_user\UserRegisterController@index')->name('user-register');
+    Route::get('/user/register','client_user\UserRegisterController@index')->name('user-register');
+
+    //user-login
+    Route::get('/user/login','client_user\UserLoginController@index')->name('user-login');
 
     //blog
-    Route::get('/blog','client_user\BlogController@index')->name('blog');
+    Route::get('/about-us','client_user\AboutUsController@index')->name('about-us');
 
     //contacts
-    Route::get('/contacts','client_user\ContactsController@index')->name('contacts');
+    Route::get('/contact','client_user\ContactsController@index')->name('contacts');
 
     //captcha
     Route::get('/contact-form', 'client_user\CaptchaController@index');
@@ -117,7 +120,7 @@ Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('
 
     //client -- profile
     Route::get('/client-profile', 'client_user\client\ClientProfileController@index')->name('client-profile');
-    
+
     //client -- service listing
     Route::get('/add-service-listing', 'client_user\client\ServiceListController@index')->name('add-service-listing');
     Route::get('/service-listing', 'client_user\client\ServiceListController@service_listing')->name('service-listing');
@@ -152,6 +155,9 @@ Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('
 
     //user -- review
     Route::get('/user-review', 'client_user\user\UserReviewController@index')->name('user-review');
+
+    //user -- invoice
+    Route::view('/invoice', 'pages/client_user/user/invoice')->name('invoice');
 
 /*
  * *****************

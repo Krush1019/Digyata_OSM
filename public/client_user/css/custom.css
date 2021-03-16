@@ -153,3 +153,35 @@ a#forgot:hover, a#forgot:focus {
   line-height: 1;
 }
 
+/*
+invoice page
+*/
+
+.invoice-page {
+  padding: 2.2rem;
+}
+/*-------*/
+
+
+.rate-mr-3_75 {
+  margin-right: 1.25rem;
+}
+
+.rich-text {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.font-large-50 {
+  font-size: 50px;
+  font-weight: 300;
+}
+
+.hovering-zoom {
+  transition: transform 0.1s ease;
+  /*box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);*/
+}
+
+.hovering-zoom:hover {
+  transform: scale(1.03);
+}

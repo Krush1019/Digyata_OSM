@@ -1,6 +1,6 @@
 @extends('layouts.client_user.fullLayoutMaster')
 
-@section('title', 'login')
+@section('title', 'Register')
 
 @section('specific-style')
   <link href="{{asset('client_user/css/account.css')}}" rel="stylesheet">
@@ -17,14 +17,12 @@
 
   <div id="login">
     <aside>
-      <figure>
-        <a href="/index"><img src="{{asset('client_user/img/logo.png')}}" width="250" height="80" alt=""
-                              class="logo_sticky"></a>
+      <figure class="px-0">
+        <a href="{{route('index-page')}}"><img src="{{asset('client_user/img/logo.png')}}" width="250" height="80" alt="" class="logo_sticky"></a>
       </figure>
       <div class="access_social">
-        <ul><a href="#0" class="social_bt facebook">Register with Facebook</a>
-          <a href="#0" class="social_bt google">Register with Google</a>
-        </ul>
+        <a href="#0" class="social_bt facebook">Register with Facebook</a>
+        <a href="#0" class="social_bt google">Register with Google</a>
       </div>
       <div class="divider"><span>Or</span></div>
       <form autocomplete="off" id="User-register">
@@ -64,13 +62,15 @@
           <i class="icon_lock_alt"></i>
         </div>
         <div class="form-group">
-          <input class="form-control" type="password" id="User_cnf_password" name="User_cnf_password" placeholder="Confirm Password">
+          <input class="form-control" type="password" id="User_cnf_password" name="User_cnf_password"
+                 placeholder="Confirm Password">
           <i class="icon_lock_alt"></i>
         </div>
         <div class="row">
           <div class="col-sm-5 ">
             <div class="form-group">
-              <input type="text" id="captcha_register" class="form-control" placeholder="Enter Captcha" name="User_captcha" id="User_captcha">
+              <input type="text" id="captcha_register" class="form-control" placeholder="Enter Captcha"
+                     name="User_captcha" id="User_captcha">
             </div>
           </div>
           <div class="captcha col-sm-7">
@@ -90,5 +90,6 @@
 @endsection
 
 @section('specific-script')
+  <script src="{{asset('client_user/js/UI/user-register.js')}}"></script>
   <script src="{{asset('client_user/js/pw_strenght.js')}}"></script>
 @endsection

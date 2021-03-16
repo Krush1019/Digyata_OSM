@@ -24,7 +24,7 @@
                 <div class="slide-text text-center white">
                   <h2 class="owl-slide-animated owl-slide-title">Find a Professional</h2>
                   <p class="owl-slide-animated owl-slide-subtitle">
-                    Book a Consultation by Appointment or Chat
+                    Book a Consultation
                   </p>
                   <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client-listing')}}" role="button">Read more</a></div>
                 </div>
@@ -86,7 +86,6 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/elecrician-person.jpg')}}" data-src="{{asset('client_user/img/elecrician-person.jpg')}}" class="img-fluid lazy" alt="">
               <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
@@ -96,8 +95,8 @@
               </a>
             </figure>
             <ul>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
               <li>
                 <div class="score"><span>Superb<em>150 Reviews</em></span><strong>4.3</strong></div>
               </li>
@@ -108,7 +107,6 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/plumber-person.jpg')}}" data-src="{{asset('client_user/img/plumber-person.jpg')}}" class="img-fluid lazy" alt="">
               <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
@@ -118,8 +116,8 @@
               </a>
             </figure>
             <ul>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
               <li>
                 <div class="score"><span>Superb<em>172 Reviews</em></span><strong>4.2</strong></div>
               </li>
@@ -130,7 +128,6 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/painter-person.jpg')}}" data-src="{{asset('client_user/img/painter-person.jpg')}}" class="img-fluid lazy" alt="">
               <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
@@ -140,9 +137,9 @@
               </a>
             </figure>
             <ul>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
-                <div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.4</strong></div>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
+              <li><div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.4</strong></div></li>
             </ul>
           </div>
         </div>
@@ -150,7 +147,6 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/cleaner-person.jpg')}}" data-src="{{asset('client_user/img/cleaner-person.jpg')}}" class="img-fluid lazy" alt="">
               <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
@@ -160,8 +156,8 @@
               </a>
             </figure>
             <ul>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-users"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-users"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
               <li>
                 <div class="score"><span>Superb<em>300 Reviews</em></span><strong>4.1</strong></div>
               </li>
@@ -172,7 +168,6 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/pest_controller-person.jpg')}}" data-src="{{asset('client_user/img/pest_controller-person.jpg')}}" class="img-fluid lazy" alt="">
               <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
@@ -182,8 +177,8 @@
               </a>
             </figure>
             <ul>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-users"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-users"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
               <li>
                 <div class="score"><span>Superb<em>140 Reviews</em></span><strong>4.2</strong></div>
               </li>
@@ -194,7 +189,6 @@
         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <a class="wish_bt"><i class="icon_heart"></i></a>
               <img src="{{asset('client_user/img/carpenter-person.jpg')}}" data-src="{{asset('client_user/img/carpenter-person.jpg')}}" class="img-fluid lazy" alt="">
               <a href="{{route('client-detail')}}" class="strip_info">
                 <div class="item_title">
@@ -204,8 +198,8 @@
               </a>
             </figure>
             <ul>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
               <li>
                 <div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.3</strong></div>
               </li>
@@ -302,88 +296,7 @@
       </div>
     </div>
     <!-- /carousel -->
-    <div class="row">
-      <div class="col-12">
-        <div class="main_title version_2">
-          <span><em></em></span>
-          <h2>Weekly Rate Offer</h2>
-          <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
-          <a href="#0">View All</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="list_home">
-          <ul>
-            <li>
-              <a href="{{route('client-detail')}}">
-                <figure>
-                  <img src="{{asset('client_user/img/professional_list_placeholder.png')}}" data-src="{{asset('client_user/img/professional_list_1.jpg')}}" alt="" class="lazy">
-                </figure>
-                <div class="score"><strong>9.5</strong></div>
-                <em>Lawyer</em>
-                <h3>Laura Marting</h3>
-                <small>8 Patriot Square E2 9NF</small>
-                <ul>
-                  <li><span class="ribbon off">-30%</span></li>
-                  <li>Average price $35</li>
-                </ul>
-              </a>
-            </li>
-            <li>
-              <a href="{{route('client-detail')}}">
-                <figure>
-                  <img src="{{asset('client_user/img/professional_list_placeholder.png')}}" data-src="{{asset('client_user/img/professional_list_2.jpg')}}" alt="" class="lazy">
-                </figure>
-                <div class="score"><strong>8.0</strong></div>
-                <em>Teacher</em>
-                <h3>Anna Smith</h3>
-                <small>27 Old Gloucester St, 4563</small>
-                <ul>
-                  <li><span class="ribbon off">-40%</span></li>
-                  <li>Average price $30</li>
-                </ul>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="list_home">
-          <ul>
-            <li>
-              <a href="{{route('client-detail')}}">
-                <figure>
-                  <img src="{{asset('client_user/img/professional_list_placeholder.png')}}" data-src="{{asset('client_user/img/professional_list_3.jpg')}}" alt="" class="lazy">
-                </figure>
-                <div class="score"><strong>9.5</strong></div>
-                <em>Pediatrician</em>
-                <h3>Dr. Stefany Lens</h3>
-                <small>27 Old Gloucester St, 4563</small>
-                <ul>
-                  <li><span class="ribbon off">-30%</span></li>
-                  <li>Average price $20</li>
-                </ul>
-              </a>
-            </li>
-            <li>
-              <a href="{{route('client-detail')}}">
-                <figure>
-                  <img src="{{asset('client_user/img/professional_list_placeholder.png')}}" data-src="{{asset('client_user/img/professional_list_4.jpg')}}" alt="" class="lazy">
-                </figure>
-                <div class="score"><strong>8.0</strong></div>
-                <em>Yoga Trainer</em>
-                <h3>Lucy Clarks</h3>
-                <small>22 Hertsmere Rd E14 4ED</small>
-                <ul>
-                  <li><span class="ribbon off">-50%</span></li>
-                  <li>Average price $35</li>
-                </ul>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
   </div>
   <!-- /container -->
 
@@ -392,7 +305,6 @@
       <div class="main_title center add_bottom_10">
         <span><em></em></span>
         <h2>How does it works?</h2>
-{{--        <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>--}}
       </div>
       <div class="row justify-content-md-center how_2">
         <div class="col-lg-5 text-center">
@@ -425,7 +337,7 @@
   </div>
   <!-- /bg_gray -->
 
-  <div class="call_section version_2 lazy" data-bg="url(img/bg_call_section.jpg)">
+  <div class="call_section version_2 lazy" data-bg="url({{asset('client_user/img/bg_call_section.jpg')}})">
     <div class="container clearfix">
       <div class="col-lg-5 col-md-6 float-right wow">
         <div class="box_1">

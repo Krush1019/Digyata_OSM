@@ -147,7 +147,7 @@
                                 <p>We will reply shortly to confirm the order.</p>
                             </div>
                             <div class="footer-btn text-center">
-                                <a href="#0" class="underline " target="blank">Print receipt</a>
+                                <a href="{{route('invoice')}}" class="underline " target="blank">Print receipt</a>
                             </div>
                         </div>
 

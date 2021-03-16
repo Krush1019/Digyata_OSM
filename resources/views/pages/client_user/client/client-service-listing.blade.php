@@ -5,7 +5,7 @@
 @section('custom-style')
 <link href="{{asset('client_user/client/css/custom.css')}}" rel="stylesheet">
 @endsection
-
+P
 @section('content')
 <div class="box_general">
   <div class="header_box">
@@ -14,7 +14,7 @@
     </a>
     <h2 class="d-inline-block ">Service Listings</h2>
     <div class="filter">
-      <select name="orderby" class="selectbox">
+      <select name="orderby" class="selectbox w-auto">
         <option value="All">All</option>
         <option value="Panding">Panding</option>
         <option value="Active">Active</option>
@@ -171,7 +171,7 @@
 									<div class="social mt-15">
 										<a href="google.com"  target="_blank" class='social-icon globe'>
 												<i class="fa fa-google fa-2x"></i>
-											</a> 
+											</a>
 										<a href='google.com'  target='_blank' class='social-icon facebook'>
 												<i class='fa fa-facebook-f fa-2x'></i>
 											</a>

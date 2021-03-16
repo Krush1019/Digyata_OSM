@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JSHintConfiguration" version="2.11.1" use-config-file="false">
+  <component name="JSHintConfiguration" version="2.11.1" use-config-file="true" custom-config-file-path="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/languageService/jshint/js.jshintrc">
     <option asi="false" />
     <option bitwise="true" />
     <option boss="false" />
@@ -10,10 +10,10 @@
     <option couch="false" />
     <option curly="true" />
     <option debug="false" />
-    <option devel="false" />
+    <option devel="true" />
     <option dojo="false" />
     <option elision="false" />
-    <option enforceall="true" />
+    <option enforceall="false" />
     <option eqeqeq="true" />
     <option eqnull="false" />
     <option es3="true" />
@@ -30,7 +30,7 @@
     <option immed="true" />
     <option iterator="true" />
     <option jasmine="false" />
-    <option jquery="false" />
+    <option jquery="true" />
     <option lastsemic="false" />
     <option latedef="false" />
     <option laxbreak="false" />
