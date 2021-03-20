@@ -5,6 +5,7 @@ namespace App\Http\Controllers\client_user\user;
 use App\client_user\user\MyOrders;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 
 class MyOrdersController extends Controller
 {
@@ -13,9 +14,16 @@ class MyOrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function __construct() {
+        $this->middleware("auth:customer");
+    }
+    
+    public function index(Request $request)
     {
-        return view('/pages/client_user/user/my-order');
+        $data = MyOrders::where('uID', Auth::guard('customer')->user()->id)->get();
+        // return $data;
+        return view('/pages/client_user/user/my-order', ['data' => $data]);
     }
 
     /**

@@ -10,6 +10,7 @@ class DashboardController extends Controller
     {
       $this->middleware("auth");
     }
+    
     // Dashboard - Analytics
     public function dashboardAnalytics(){
         $pageConfigs = [

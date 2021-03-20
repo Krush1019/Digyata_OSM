@@ -13,15 +13,17 @@ class CreateUserManagesTable extends Migration {
      */
     public function up() {
         Schema::create($this->tbl_name, function (Blueprint $table) {
-            $table->id('uID');
-            $table->string('sUserID');
+            $table->bigIncrements('id');
+            $table->string('sUserID')->nullable();
             $table->string('sUserName');
-            $table->string('sUserImgURL');
-            $table->string('sUserPhone');
-            $table->string('sUserEmail');
-            $table->string('sUserLoc');
+            $table->string('sUserEmail')->unique();
+            $table->string('sUserMobile');
+            $table->string('sUserGender');
+            $table->string('password');
+            $table->string('sUserImgURL')->nullable();
+            $table->string('sUserAddress')->nullable();
             $table->boolean('bUserStatus')->default(1);
-
+            $table->rememberToken();
             $table->timestamps();
         });
     }

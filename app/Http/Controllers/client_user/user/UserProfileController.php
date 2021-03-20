@@ -13,6 +13,12 @@ class UserProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct() {
+        $this->middleware("auth:customer");
+    }
+
+
     public function index()
     {
         return view('/pages/client_user/user/user-profile');

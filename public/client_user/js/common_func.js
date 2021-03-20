@@ -196,7 +196,7 @@ var lazyLoadInstance = new LazyLoad({
 	});*/
 
 	// Show hide password
-	$('#password, #password_sign, #password1, #password2').hidePassword('focus', {
+	$('.new-password, .cnfm-new-password, .password').hidePassword('focus', {
 		toggle: {
 			className: 'my-toggle'
 		}
@@ -214,11 +214,10 @@ var lazyLoadInstance = new LazyLoad({
     }, 1500);
 
   //Reload Captcha
-  $(".captcha span img").addClass('border border-black');
   $('#reload').click(function () {
     $.ajax({
       type: 'GET',
-      url: 'reload-captcha',
+      url: '/reload-captcha',
       success: function (data) {
         $(".captcha span").html(data.captcha);
       }

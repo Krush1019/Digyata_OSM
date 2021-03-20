@@ -620,6 +620,7 @@ class ComposerStaticInitbf7b459f1a9f3448f72bd15a820d4716
         'App\\Http\\Controllers\\client_user\\user\\ClientDetailController' => __DIR__ . '/../..' . '/app/Http/Controllers/client_user/user/ClientDetailController.php',
         'App\\Http\\Controllers\\client_user\\user\\ClientListingController' => __DIR__ . '/../..' . '/app/Http/Controllers/client_user/user/ClientListingController.php',
         'App\\Http\\Controllers\\client_user\\user\\ConfirmOrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/client_user/user/ConfirmOrderController.php',
+        'App\\Http\\Controllers\\client_user\\user\\MyOrdersController' => __DIR__ . '/../..' . '/app/Http/Controllers/client_user/user/MyOrdersController.php',
         'App\\Http\\Controllers\\client_user\\user\\UserProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/client_user/user/UserProfileController.php',
         'App\\Http\\Controllers\\client_user\\user\\UserReviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/client_user/user/UserReviewController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

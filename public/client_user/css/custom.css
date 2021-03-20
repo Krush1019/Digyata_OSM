@@ -118,8 +118,9 @@ li button.btn_logi:hover {
   padding-left: 15px !important;
 }
 
-#User-register .icon_pencil-edit {
-  margin-left: 10px !important;
+.captcha span img {
+  border: #111;
+  border-width: 10px;
 }
 
 a#forgot:hover, a#forgot:focus {
@@ -184,4 +185,13 @@ invoice page
 
 .hovering-zoom:hover {
   transform: scale(1.03);
+}
+
+.min-width-100px {
+  min-width: 100px;
+}
+
+.width-max-content {
+  width: max-content !important;
+  float: right;
 }

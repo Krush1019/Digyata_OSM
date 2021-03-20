@@ -81,6 +81,6 @@ class ClientRegisterController extends Controller
      */
     public function destroy(ClientRegister $clientRegister)
     {
-
+        //
     }
 }

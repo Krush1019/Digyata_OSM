@@ -18,8 +18,12 @@ class CreateServicelistsTable extends Migration {
     public function up() {
         Schema::create($this->tbl_name, function (Blueprint $table) {
             $table->id('ser_id');
-            $table->unsignedBigInteger('uID');
-            $table->foreign('uID')->references('uID')->on("tbl_user_manage");
+            $table->unsignedBigInteger('cl_id');
+            $table->foreign('cl_id')->references('id')->on("tbl_client_manage");
+
+            $table->unsignedBigInteger('ser_cat_id');
+            $table->foreign('ser_cat_id')->references('id')->on('tbl_service_catalogs');
+
             $table->string('ser_pro_name');
             $table->string('user_ser_exp');
 
@@ -46,8 +50,8 @@ class CreateServicelistsTable extends Migration {
             $table->id('item_id');
             $table->unsignedBigInteger('ser_id');
             $table->foreign('ser_id')->references('ser_id')->on($this->tbl_name);
-            $table->unsignedBigInteger('uID');
-            $table->foreign('uID')->references('uID')->on("tbl_user_manage");
+            $table->unsignedBigInteger('cl_id');
+            $table->foreign('cl_id')->references('id')->on("tbl_client_manage");
             $table->string('item_name');
             $table->string('item_des');
             $table->string('item_price');

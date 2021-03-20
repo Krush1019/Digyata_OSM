@@ -11,6 +11,11 @@ class PriceRuleController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+      $this->middleware("auth");
+    }
+    
     public function index() {
         $breadcrumbs = [['link' => "admin-dashboard", 'name' => "Home"], ['name' => "Price Rules"]];
         return view('/pages/price-rules', [

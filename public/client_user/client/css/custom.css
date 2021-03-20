@@ -267,25 +267,3 @@ label.error {
 .text-pink {
   color: #ff3a65 !important;
 }
-
-.display-hidden {
-  display: none !important;
-} 
-
-.mt-25 {
-  margin-top: 25px;
-}
-
-.mx-15 {
-  margin-left: 9rem;
-  margin-right: 9rem;
-}
-
-@media (min-width: 768px){
-  .mx-md-15 {
-    margin-left: 9rem;
-    margin-right: 9rem;
-  }
-}
-
-

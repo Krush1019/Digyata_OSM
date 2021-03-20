@@ -62,7 +62,7 @@
                   <p class="owl-slide-animated owl-slide-subtitle">
                     Join to Digyata for Free and get more visibility
                   </p>
-                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client-register')}}" role="button">Read more</a></div>
+                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client.register')}}" role="button">Read more</a></div>
                 </div>
               </div>
             </div>
@@ -344,7 +344,7 @@
           <div class="ribbon_promo"><span>Free</span></div>
           <h3>Are you a Professional?</h3>
           <p>Join Us to increase your online visibility. You'll have access to even more customers who are looking to professional service or consultation.</p>
-          <a href="{{route('client-register')}}" class="btn_1">Read more</a>
+          <a href="{{route('client.register')}}" class="btn_1">Read more</a>
         </div>
       </div>
     </div>

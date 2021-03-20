@@ -10,7 +10,7 @@
   <div class="box_general">
     <div class="header_box">
       <h2 class="d-inline-block">My Orders</h2>
-      <div class="filter">
+      <!-- <div class="filter">
         <select name="orderby" class="selectbox">
           <option value="Any status">Any status</option>
           <option value="Completed">Completed</option>
@@ -18,10 +18,11 @@
           <option value="Pending">Pending</option>
           <option value="Cancelled">Cancelled</option>
         </select>
-      </div>
+      </div> -->
     </div>
     <div class="list_general">
-      {{--<div class="box_general box padding_bottom text-center">
+      @if (! empty($data))
+        <div class="box_general box padding_bottom text-center">
           <div class="row h-100">
             <div class="col-sm-12 my-auto">
               <div class="mx-auto">
@@ -31,76 +32,34 @@
               </div>
             </div>
           </div>
-        </div>--}}
-      <ul>
-        <li>
-          <figure><img src="{{asset('client_user/client/img/avatar.jpg')}}" alt=""></figure>
-          <h4>Dusting <i class="pending">Pending</i></h4>
-          <ul class="booking_list">
-            <li><strong>Order ID</strong> 784569853215</li>
-            <li><strong>Booking date</strong> 8 May 2020</li>
-            <li><strong>Booking time-slot</strong> 09.30am</li>
-            <li><strong>City</strong> Mahesana</li>
-            <li><strong>Address</strong> 20, Madhuvan Complex, Radhanpur Cross road, Mahesana-2</li>
-          </ul>
-          <p><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a>
-          </p>
-          <ul class="buttons">
-            <li><a href="#0" target="blank" class="btn_1 gray"><i class="fa fa-fw fa-print mr-1"></i>Print Receipt</a></li>
-          </ul>
-        </li>
-        <li>
-          <figure><img src="{{asset('client_user/client/img/avatar.jpg')}}" alt=""></figure>
-          <h4>Plumbing <i class="cancel">Cancelled</i></h4>
-          <ul class="booking_list">
-            <li><strong>Order ID</strong> 784569853215</li>
-            <li><strong>Booking date</strong> 8 May 2020</li>
-            <li><strong>Booking time</strong> 09.30am</li>
-            <li><strong>City</strong> Mahesana</li>
-            <li><strong>Address</strong> 20, Madhuvan Complex, Radhanpur Cross road, Mahesana-2</li>
-          </ul>
-          <p><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a>
-          </p>
-          <ul class="buttons">
-            <li><a href="#0" target="blank" class="btn_1 gray"><i class="fa fa-fw fa-print mr-1"></i>Print Receipt</a></li>
-          </ul>
-        </li>
-        <li>
-          <figure><img src="{{asset('client_user/client/img/avatar.jpg')}}" alt=""></figure>
-          <h4>Electrical <i class="approved">Completed</i></h4>
-          <ul class="booking_list">
-            <li><strong>Order ID</strong> 784569853215</li>
-            <li><strong>Booking date</strong> 8 May 2020</li>
-            <li><strong>Booking time</strong> 09.30am</li>
-            <li><strong>City</strong> Mahesana</li>
-            <li><strong>Address</strong> 20, Madhuvan Complex, Radhanpur Cross road, Mahesana-2</li>
-          </ul>
-          <p><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a>
-          </p>
-          <ul class="buttons">
-            <li><a href="#0" target="blank" class="btn_1 gray"><i class="fa fa-fw fa-print mr-1"></i>Print Receipt</a></li>
-          </ul>
-        </li>
-      </ul>
+        </div>    
+      @else
+        <ul>
+          @foreach ($data as $dt)
+          <li>
+            <figure><img src="{{asset('client_user/client/img/avatar.jpg')}}" alt=""></figure>
+            <h4>Dusting <i class="{{(($dt->bSerStatus)?(($dt->bSerStatus==1)?"approved":"pending"):"cancel")}}">Pending</i></h4>
+            <ul class="booking_list">
+              <li><strong>Order ID</strong> {{$dt->sOrderId}}</li>
+              <li><strong>Booking date</strong> {{date_format(date_create($dt->sTimeSlot),"d/m/Y")}}</li>
+              <li><strong>Booking time-slot</strong> {{date_format(date_create($dt->sTimeSlot),"H:i:s")}}</li>
+              <li><strong>Amount</strong> {{$dt->sAmount}} Rs</li>
+              <li><strong>Address</strong> {{$dt->sAddress}}</li>
+            </ul>
+            <!-- <p><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a>
+            </p>
+            <ul class="buttons">
+              <li><a href="#0" target="blank" class="btn_1 gray"><i class="fa fa-fw fa-print mr-1"></i>Print Receipt</a></li>
+            </ul> -->
+          </li>
+          @endforeach
+        </ul>
+      @endif
     </div>
   </div>
-  <!-- /box_general-->
-  <nav aria-label="...">
-    <ul class="pagination pagination-sm add_bottom_30">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">Previous</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /pagination-->
+ 
 
-  <div class="modal fade custom-modal" id="viewordermodal" role="dialog" aria-hidden="true">
+  <!-- <div class="modal fade custom-modal" id="viewordermodal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -244,11 +203,11 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
         </div>
       </div>
-    </div>
-  </div>
+    </div>  
+  </div> -->
 @endsection
 
 @section('page-script')
-        <script src="{{asset('client_user/user/js/page-scripts/my-order.js')}}"></script>
+        <script src="{{asset('client_user/user/scripts/my-order.js')}}"></script>
         <script src="{{ asset('js/scripts/extensions/sweetalert2.js')}}"></script>
 @endsection

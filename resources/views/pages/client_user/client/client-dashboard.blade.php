@@ -86,9 +86,10 @@
         <div class="mx-auto">
           <div class="align-middle">
             <span class="font-weight-bolder text-dark font-large-30 ">You haven't add any service yet!!</span>
+	          {{-- {{Auth::User()->sClEmail}} --}}
           </div>
           <div class="text-center ">
-            <a href="{{route('add-service-listing')}}" class="btn_1 mt-2 font-weight-bolder">Add Now!</a>
+            <a href="{{route('add-service-listing','insert')}}" class="btn_1 mt-2 font-weight-bolder">Add New Service</a>
           </div>
         </div>
       </div>

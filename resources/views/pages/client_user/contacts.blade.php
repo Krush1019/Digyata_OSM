@@ -95,7 +95,3 @@
   </main>
   <!-- /main -->
 @endsection
-
-@section('specific-script')
-  <script src="{{asset('client_user/js/UI/contact.js')}}"></script>
-@endsection

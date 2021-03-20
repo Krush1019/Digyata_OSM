@@ -39,7 +39,7 @@
 
 
 {{--Sign -login-modal--}}
-<div class="modal fade" role="dialog" id="user-login-modal">
+{{-- <div class="modal fade" role="dialog" id="user-login-modal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <!-- Modal Header -->
@@ -93,7 +93,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 {{-- include scripts --}}
 @include('panels.client_user.scripts')

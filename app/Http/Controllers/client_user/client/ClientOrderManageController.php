@@ -13,6 +13,12 @@ class ClientOrderManageController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+
+  public function __construct()
+  {
+    $this->middleware("auth:client");
+  }
+
   public function index()
   {
     $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "Order Manage"]];

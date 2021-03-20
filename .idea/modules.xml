@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Digyata.iml" filepath="$PROJECT_DIR$/.idea/Digyata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mainDigyata.iml" filepath="$PROJECT_DIR$/.idea/mainDigyata.iml" />
     </modules>
   </component>
 </project>

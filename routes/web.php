@@ -16,14 +16,26 @@ use App\Http\Controllers\LanguageController;
 | contains the "web" middleware group. Now create something great!
 */
 
-// Route url
-Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('admin-dashboard');
+//Auth Route url
+
+    //CLIENT
+    Route::get('/login/client', 'Auth\LoginController@showClientLoginForm')->name('client.login');
+    Route::post('/login/client', 'Auth\LoginController@clientLogin')->name('login.client');
+    Route::get('/register/client', 'Auth\RegisterController@showClientRegisterForm')->name('client.register');
+    Route::post('/register/client', 'Auth\RegisterController@createClient')->name('register.client'); 
+
+    //CUSTOMER
+    Route::get('/login/customer', 'Auth\LoginController@showCustomerLoginForm')->name('customer.login');
+    Route::post('/login/customer', 'Auth\LoginController@customerLogin')->name('login.customer');
+    Route::get('/register/customer', 'Auth\RegisterController@showCustomerRegisterForm')->name('customer.register');
+    Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
 
 /*
  * ***********
  * SUPER ADMIN
  * ***********
  */
+    Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('admin-dashboard');
 
     // service-catalog
     Route::get('/service-catalog', 'ServiceCatalogController@index')->name('service-catalog');
@@ -90,20 +102,22 @@ Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('
     //index-page
     Route::get('/','client_user\indexController@index')->name('index-page');
 
+    Route::get('/home','client_user\indexController@index')->name('home');
+
     //client-register
-    Route::get('/client-register','client_user\ClientRegisterController@index')->name('client-register');
+     Route::get('/client-register','client_user\ClientRegisterController@index')->name('client-register');
 
     //user-register
-    Route::get('/user/register','client_user\UserRegisterController@index')->name('user-register');
-
-    //user-login
-    Route::get('/user/login','client_user\UserLoginController@index')->name('user-login');
+     Route::get('/user-register','client_user\UserRegisterController@index')->name('user-register');
 
     //blog
+    Route::get('/blog','client_user\BlogController@index')->name('blog');
+
+    //about-us
     Route::get('/about-us','client_user\AboutUsController@index')->name('about-us');
 
     //contacts
-    Route::get('/contact','client_user\ContactsController@index')->name('contacts');
+    Route::get('/contacts','client_user\ContactsController@index')->name('contacts');
 
     //captcha
     Route::get('/contact-form', 'client_user\CaptchaController@index');
@@ -116,15 +130,26 @@ Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('
     * *****************/
 
     //client -- Dashboard
-    Route::get('/client-dashboard', 'client_user\client\ClientDashboardController@index')->name('client-dashboard');
+    Route::get('/client-dashboard', 'client_user\client\ClientDashboardController@index')->middleware('auth:client')->name('client-dashboard');
 
     //client -- profile
     Route::get('/client-profile', 'client_user\client\ClientProfileController@index')->name('client-profile');
-
+    
     //client -- service listing
-    Route::get('/add-service-listing', 'client_user\client\ServiceListController@index')->name('add-service-listing');
-    Route::get('/service-listing', 'client_user\client\ServiceListController@service_listing')->name('service-listing');
+    // Route::get('/service-listing', 'client_user\client\ServiceListController@service_listing')->name('service-listing');
+
+    // Route::get('/add-service-listing', 'client_user\client\ServiceListController@index')->name('add-service-listing');
+    // Route::post('/service-listing-store', 'client_user\client\ServiceListController@store');
+    // Route::post('/service-listing-store-img', 'client_user\client\ServiceListController@saveImg');
+
+        Route::get('/service-listing', 'client_user\client\ServiceListController@service_listing')->name('service-listing');
+
+    Route::get('/add-service-listing/{id}', 'client_user\client\ServiceListController@index')->name('add-service-listing');
     Route::post('/service-listing-store', 'client_user\client\ServiceListController@store');
+
+    Route::get('/service-listing-update', 'client_user\client\ServiceListController@update');
+    Route::get('/service-listing-show', 'client_user\client\ServiceListController@show');
+   
     Route::post('/service-listing-store-img', 'client_user\client\ServiceListController@saveImg');
 
     //client -- reviews
@@ -138,11 +163,10 @@ Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('
     * *****************/
 
     //user -- Profile
-    Route::get('/user-profile', 'client_user\user\UserProfileController@index')->name('user-profile');
+    Route::get('/user/profile', 'client_user\user\UserProfileController@index')->name('user.profile');
 
     //user -- My orders
-    Route::get('/my-orders', 'client_user\user\MyOrdersController@index')->name('my-orders');
-
+    Route::get('/user/my-orders', 'client_user\user\MyOrdersController@index')->name('user.myorders');
 
     //client -- detail
     Route::get('/client-detail', 'client_user\user\ClientDetailController@index')->name('client-detail');
@@ -155,9 +179,6 @@ Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('
 
     //user -- review
     Route::get('/user-review', 'client_user\user\UserReviewController@index')->name('user-review');
-
-    //user -- invoice
-    Route::view('/invoice', 'pages/client_user/user/invoice')->name('invoice');
 
 /*
  * *****************

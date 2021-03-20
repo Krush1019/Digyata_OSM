@@ -43,6 +43,7 @@ return array(
     'App\\Http\\Controllers\\client_user\\user\\ClientDetailController' => $baseDir . '/app/Http/Controllers/client_user/user/ClientDetailController.php',
     'App\\Http\\Controllers\\client_user\\user\\ClientListingController' => $baseDir . '/app/Http/Controllers/client_user/user/ClientListingController.php',
     'App\\Http\\Controllers\\client_user\\user\\ConfirmOrderController' => $baseDir . '/app/Http/Controllers/client_user/user/ConfirmOrderController.php',
+    'App\\Http\\Controllers\\client_user\\user\\MyOrdersController' => $baseDir . '/app/Http/Controllers/client_user/user/MyOrdersController.php',
     'App\\Http\\Controllers\\client_user\\user\\UserProfileController' => $baseDir . '/app/Http/Controllers/client_user/user/UserProfileController.php',
     'App\\Http\\Controllers\\client_user\\user\\UserReviewController' => $baseDir . '/app/Http/Controllers/client_user/user/UserReviewController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

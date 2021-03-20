@@ -4,8 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class LocaleMiddleware
-{
+class LocaleMiddleware {
     /**
      * Handle an incoming request.
      *

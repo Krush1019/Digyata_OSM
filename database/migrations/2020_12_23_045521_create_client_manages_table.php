@@ -13,20 +13,23 @@ class CreateClientManagesTable extends Migration {
      */
     public function up() {
         Schema::create($this->tbl_name, function (Blueprint $table) {
-            $table->id("cl_ID");
-            $table->string("sClientID");
+            $table->bigIncrements("id");
+            $table->string("sClientID")->nullable();
             $table->string('sClName');
-            $table->string('sClPhotoURL');
-            $table->string('sClWorkPlace');
-            $table->string('sClProf');
-            $table->string('sClLoc');
-            $table->string('sClExp');
-            $table->string('sClAvalibility');
-            $table->string('sClPhone');
-            $table->string('sClEmail');
-            $table->string('sClIDName');
-            $table->string('sClIDURL');
+            $table->string('sClEmail')->unique();
+            $table->string('sClMobile');
+            $table->string('sClAddress');
+            $table->string('password');
+            $table->string('sClGender');
+            $table->string('sClPhotoURL')->nullable();
+            $table->string('sClWorkPlace')->nullable();
+            $table->string('sClProf')->nullable();
+            $table->string('sClExp')->nullable();
+            $table->string('sClAvalibility')->nullable();
+            $table->string('sClIDName')->nullable();
+            $table->string('sClIDURL')->nullable();
             $table->string('sClientStatus')->default('Pending');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -3,8 +3,7 @@
       <script src="{{asset('client_user/js/slider.js')}}"></script>
       <script src="{{asset('client_user/js/common_func.js')}}"></script>
       <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
-      <script src="{{asset('client_user/assets/validate.js')}}"></script>
-
+      {{-- <script src="{{asset('client_user/assets/validate.js')}}"></script> --}}
         {{-- specific Scripts --}}
         @yield('specific-script')
 

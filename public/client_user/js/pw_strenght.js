@@ -8,8 +8,8 @@ $(document).ready(function () {
 });
 
 function passwordStrengthCheck(password1, password2, passwordsInfo) {
-  //Must contain 5 characters or more
-  var WeakPass = /(?=.{5,}).*/;
+  //Must contain 6 characters or more
+  var WeakPass = /(?=.{6,}).*/;
   //Must contain lower case letters and at least one digit.
   var MediumPass = /^(?=\S*?[a-z])(?=\S*?[0-9])\S{5,}$/;
   //Must contain at least one upper case letter, one lower case letter and one digit.
@@ -27,7 +27,7 @@ function passwordStrengthCheck(password1, password2, passwordsInfo) {
     } else if (WeakPass.test(password1.val())) {
       passwordsInfo.removeClass().addClass('stillweakpass').html("Still Weak! (Enter digits to make good password)");
     } else {
-      passwordsInfo.removeClass().addClass('weakpass').html("Very Weak! (Must be 5 or more chars)");
+      passwordsInfo.removeClass().addClass('weakpass').html("Very Weak! (Must be 6 or more chars)");
     }
   });
 

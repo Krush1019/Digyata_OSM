@@ -6,8 +6,8 @@
         <h3 data-target="#collapse_1">Quick Links</h3>
         <div class="collapse dont-collapse-sm links" id="collapse_1">
           <ul>
-            <li><a href="{{route('client-register')}}">Join Us</a></li>
-            <li><a data-toggle="modal" href="#user-login-modal">Login</a></li>
+            <li><a href="{{route('client.register')}}">Join Us</a></li>
+            <li><a data-toggle="modal" href="{{route('customer.login')}}">Login</a></li>
             <li><a href="{{route('about-us')}}">About Us</a></li>
             <li><a href="{{route('contacts')}}">Contacts</a></li>
           </ul>

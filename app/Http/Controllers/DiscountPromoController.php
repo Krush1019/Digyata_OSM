@@ -13,6 +13,12 @@ class DiscountPromoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+      $this->middleware("auth");
+    }
+    
     public function index() {
       $breadcrumbs = [['link'=>"admin-dashboard",'name'=>"Home"], ['name'=>"Discount & Promo Code"]];
       return view('/pages/discount-promocode', [

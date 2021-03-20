@@ -13,14 +13,14 @@
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My profile">
-            <a class="nav-link" href="{{route('user-profile')}}">
+            <a class="nav-link" href="{{route('user.profile')}}">
               <i class="fa fa-fw fa-user"></i>
               <span class="nav-link-text">My Profile</span>
             </a>
           </li>
-
+          
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Order Manage" data-original-title="Order Manage">
-            <a class="nav-link" href="{{route('my-orders')}}">
+            <a class="nav-link" href="{{route('user.myorders')}}">
               <i class="fa fa-fw fa-calendar-check-o"></i>
               <span class="nav-link-text">My Orders</span>
             </a>
@@ -67,11 +67,55 @@
                 <strong>John Doe</strong>
                 <span class="small float-right text-muted">11:21 AM</span>
                 <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
-              </a>
+              </a> 
               <div class="dropdown-divider"></div>
               <a class="dropdown-item small" href="#">View all messages</a>--}}
             </div>
           </li>
+          
+          {{-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-fw fa-bell"></i>
+              <span class="d-lg-none">Alerts
+                  <span class="badge badge-pill badge-warning">6 New</span>
+                </span>
+              <span class="indicator text-warning d-none d-lg-block">
+                  <i class="fa fa-fw fa-circle"></i>
+                </span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+              <h6 class="dropdown-header">New Alerts:</h6>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                  <span class="text-success">
+                    <strong>
+                      <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                  </span>
+                <span class="small float-right text-muted">11:21 AM</span>
+                <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                  <span class="text-danger">
+                    <strong>
+                      <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
+                  </span>
+                <span class="small float-right text-muted">11:21 AM</span>
+                <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                  <span class="text-success">
+                    <strong>
+                      <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                  </span>
+                <span class="small float-right text-muted">11:21 AM</span>
+                <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item small" href="#">View all alerts</a>
+            </div>
+          </li> --}}
           <li class="nav-item">
             <form class="form-inline my-2 my-lg-0 mr-lg-2">
               <div class="input-group">
@@ -85,9 +129,10 @@
             </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('index-page')}}">
+            <a class="nav-link" href="#exampleModal" data-toggle="modal">
               <i class="fa fa-fw fa-sign-out"></i>Logout</a>
           </li>
         </ul>
       </div>
     </nav>
+    

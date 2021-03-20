@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -36,9 +37,11 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:client')->except('logout');
+        $this->middleware('guest:customer')->except('logout');
+        
     }
 
     // Login
@@ -59,12 +62,82 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
-    {
+    public function logout(Request $request) {
+
+        $path = '/login';
+        if (Auth::guard('client')->check()) {
+            $path = route('home');
+        }
+        if (Auth::guard('customer')->check()) {
+            $path = route('home');
+        }
+
         $this->guard()->logout();
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/login');
+        return $this->loggedOut($request) ?: redirect($path);
     }
+
+    /**
+     *  CLIENT LOGIN
+     *
+     * @return void
+     */
+
+    public function showClientLoginForm() {
+
+        $pageConfigs = [
+            'bodyClass' => "bg-full-screen-image",
+            'blankPage' => true
+        ];
+  
+        return view('auth.clientlogin', [
+            'pageConfigs' => $pageConfigs
+        ]);
+    }
+
+    public function clientLogin(Request $request) {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('client')->attempt(['sClEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            return redirect()->intended(route('client-dashboard'));
+        }
+
+        return back()->withErrors(['email'=>'These credentials do not match our records.'])->withInput($request->only('email', 'remember'));
+    }
+
+    /**
+     *  CUSTOMER LOGIN
+     *
+     * @return void
+     */
+    
+    public function showCustomerLoginForm() {
+        $pageConfigs = [
+            'bodyClass' => "bg-full-screen-image",
+            'blankPage' => true
+        ];
+  
+        return view('auth.userlogin', [
+            'pageConfigs' => $pageConfigs
+        ]);
+    }
+
+    public function customerLogin(Request $request) {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('customer')->attempt(['sUserEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended(route('home'));
+        }
+        return back()->withErrors(['email'=>'These credentials do not match our records.'])->withInput($request->only('email', 'remember'));
+    }
+
 }

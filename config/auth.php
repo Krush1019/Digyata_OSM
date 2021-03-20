@@ -45,6 +45,15 @@ return [
           'driver' => 'passport',
           'provider' => 'users',
         ],
+        'client' => [
+            'driver' => 'session',
+            'provider' => 'client',
+        ],
+        
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customer',
+        ],
     ],
 
     /*
@@ -68,6 +77,15 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'client' => [
+            'driver' => 'eloquent',
+            'model' => App\client_user\ClientManage::class,
+        ],
+
+        'customer' => [
+            'driver' => 'eloquent',
+            'model' => App\client_user\UserManage::class,
         ],
 
         // 'users' => [

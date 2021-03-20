@@ -6,15 +6,17 @@ use App\client_user\client\ClientProfile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ClientProfileController extends Controller
-{
+class ClientProfileController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+
+    public function __construct() {
+        $this->middleware("auth:client");
+    }
+    public function index() {
       $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "My Profile"]];
       return view('/pages/client_user/client/client-profile', [
         'breadcrumbs' => $breadcrumbs
