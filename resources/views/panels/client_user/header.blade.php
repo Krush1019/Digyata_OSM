@@ -8,7 +8,9 @@
       </a>
     </div>
 
-    @if (Auth::guard('customer')->check())
+    @if ( ! str_contains(Request::fullUrl(), 'loginpage'))
+	
+      @if (Auth::guard('customer')->check())
     <ul id="top_menu" class="drop_user">
       <li>
         <div class="dropdown user clearfix min-width-100px">
@@ -33,9 +35,10 @@
     </ul>
     @else
     <ul id="top_menu">
-      <li><a id="sign-in" class="btn_access" href="{{route('customer.login')}}">Sign In</a></li>
-      <li><a href="{{route('client.login')}}" class="btn_access green">Join Free</a></li>
+      <li><a id="sign-in" class="btn_access" href="{{route('login-page')}}">Sign In</a></li>
+      <li><a href="{{route('client.register')}}" class="btn_access green">Join Free</a></li>
     </ul>
+    @endif
     @endif
 
     @yield('top_menu_content')

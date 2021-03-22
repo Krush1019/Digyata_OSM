@@ -22,8 +22,7 @@
         <div class="row justify-content-center">
           <div class="col-xl-9 col-lg-10 col-md-8">
             <h1>Next Generation Consulting</h1>
-            <p>Join to Digyata to get more customers</p>
-            <p>Client</p>
+            <p>Join to Digyata to get more customers & clients</p>
           </div>
         </div>
         <!-- /row -->
@@ -32,52 +31,7 @@
   </div>
   <!-- /hero_single -->
 
-  <div class="bg_gray">
-    <div class="container margin_60_40">
-      <div class="main_title center">
-        <span><em></em></span>
-        <h2>Why Digyata</h2>
-
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="box_why">
-            <figure><img src="{{asset('client_user/img/why_1.svg')}}" alt="" width="200" height="200" class="img-fluid">
-            </figure>
-            <h3>Boost your Visibility</h3>
-            <p class="lead"> Illum suavitate ad has, inani salutatus sit et, error reprehendunt id eam.</p>
-            <p>Eu quem patrioque delicatissimi est. Eos delectus perpetua posidonium ei. Ad debitis accusamus eam. Nec
-              ea esse nulla aperiam, pri at decore numquam, no detracto cotidieque his. Invenire facilisis ex ius.</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="box_why">
-            <figure><img src="{{asset('client_user/img/why_2.svg')}}" alt="" width="200" height="200" class="img-fluid">
-            </figure>
-            <h3>Manage Easily</h3>
-            <p class="lead">Est falli invenire interpretaris id, magna libris sensibus mel id.</p>
-            <p>Per eu nostrud feugiat. Et quo molestiae persecuti neglegentur. At zril definitionem mei, vel ei choro
-              volumus. An tota nulla soluta has, ei nec essent audiam, te nisl dignissim vel. Ex velit audire perfecto
-              pro, ei mei doming vivendo legendos.</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="box_why">
-            <figure><img src="{{asset('client_user/img/why_3.svg')}}" alt="" width="200" height="200" class="img-fluid">
-            </figure>
-            <h3>Reach New Customers</h3>
-            <p class="lead">Laoreet inimicus vulputate est. Sea in voluptatibus comprehensam vituperatoribus.</p>
-            <p>Movet iriure dolores nec ea, per ei dicat audire signiferumque. Illum porro gubergren vis in, affert
-              graecis an eos, qui quem facilis vulputate cu. Ei commodo prompta eum, et eum vide appareat euripidis.</p>
-          </div>
-        </div>
-      </div>
-      <!-- /row -->
-    </div>
-    <!-- /container -->
-  </div>
-  <!-- /bg_gray -->
-
+  
 
   {{-- 
     <div class="container margin_60_40">
@@ -135,9 +89,6 @@
       </div><!-- End row plans-->
     </div> --}}
   <!-- /container -->
-
-
-
 
   <div class="bg_gray pattern_mail" id="submit">
     <div class="container margin_60_40">
@@ -231,6 +182,7 @@
                   </div>
                 </div>
               </div>
+              <div id="pass-info" class="clearfix"></div>
               <!-- /row -->
               <div class="row add_bottom_15">
                 <div class="col-md-12">
@@ -240,20 +192,19 @@
                   </div>
                 </div>
               </div>
-              <div id="pass-info" class="clearfix"></div>
               <!-- /row -->
               <div class="row add_bottom_25">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <input type="text" id="captcha_register" class="form-control @error('captcha') is-invalid @enderror" placeholder="Enter Captcha"
-                      name="captcha">
-                      @error('captcha')
+                    <input type="text" id="captcha_register" class="form-control @error('captcha') is-invalid @enderror"
+                      placeholder="Enter Captcha" name="captcha">
+                    @error('captcha')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                   </div>
-                  
+
                 </div>
                 <div class="captcha col-lg-6">
                   <span>{!! captcha_img() !!}</span>

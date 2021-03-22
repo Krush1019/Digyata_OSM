@@ -5,10 +5,10 @@
 
 
 $(document).ready(function () {
-      
-      $(document).on('click', '#plc_oder_btn', function(){
+
+      $(document).on('click', '#plc_oder_btn', function () {
             $('#placeorderform').validate({
-                  errorPlacement: function errorPlacement(error) {$('.error_message').append(error)},
+                  errorPlacement: function errorPlacement(error) { $('.error_message').append(error) },
                   rules: {
                         date: "required",
                         time: "reqiured",
@@ -22,7 +22,7 @@ $(document).ready(function () {
                         selected_time: "Please select Time.",
 
                   },
-                  submitHandler: function(form){
+                  submitHandler: function (form) {
                         form.submit();
                         window.location.replace('/confirm-order')
                   }
@@ -30,7 +30,4 @@ $(document).ready(function () {
             });
       });
 
-
-
-
-})
+});

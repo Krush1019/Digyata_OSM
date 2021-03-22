@@ -195,3 +195,25 @@ invoice page
   width: max-content !important;
   float: right;
 }
+
+/* both login */
+
+.w-49 {
+  width: 49% !important;
+}
+
+.selected {
+  border: 1px solid transparent !important;
+  background-color: #FF3A65 !important;
+  color: #fff !important;
+}
+
+.selected i {
+  color: #fff !important;
+}
+
+.min-h-none {
+  min-height: auto !important;
+}
+
+

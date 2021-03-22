@@ -19,17 +19,20 @@ use App\Http\Controllers\LanguageController;
 //Auth Route url
 
     //CLIENT
-    Route::get('/login/client', 'Auth\LoginController@showClientLoginForm')->name('client.login');
+    // Route::get('/login/client', 'Auth\LoginController@showClientLoginForm')->name('client.login');
     Route::post('/login/client', 'Auth\LoginController@clientLogin')->name('login.client');
     Route::get('/register/client', 'Auth\RegisterController@showClientRegisterForm')->name('client.register');
     Route::post('/register/client', 'Auth\RegisterController@createClient')->name('register.client'); 
 
     //CUSTOMER
-    Route::get('/login/customer', 'Auth\LoginController@showCustomerLoginForm')->name('customer.login');
+    // Route::get('/login/customer', 'Auth\LoginController@showCustomerLoginForm')->name('customer.login');
     Route::post('/login/customer', 'Auth\LoginController@customerLogin')->name('login.customer');
     Route::get('/register/customer', 'Auth\RegisterController@showCustomerRegisterForm')->name('customer.register');
     Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
 
+    // LOGIN
+    Route::get('/loginpage', 'client_user\LoginPageController@index')->name('login-page');
+    // Route::view('bothlogin', 'pages\client_user\bothlogin');
 /*
  * ***********
  * SUPER ADMIN

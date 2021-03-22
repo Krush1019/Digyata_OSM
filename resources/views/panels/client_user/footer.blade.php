@@ -7,7 +7,7 @@
         <div class="collapse dont-collapse-sm links" id="collapse_1">
           <ul>
             <li><a href="{{route('client.register')}}">Join Us</a></li>
-            <li><a data-toggle="modal" href="{{route('customer.login')}}">Login</a></li>
+            <li><a href="{{route('login-page')}}">Login</a></li>
             <li><a href="{{route('about-us')}}">About Us</a></li>
             <li><a href="{{route('contacts')}}">Contacts</a></li>
           </ul>

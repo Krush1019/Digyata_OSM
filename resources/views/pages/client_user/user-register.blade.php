@@ -96,7 +96,7 @@
         </div>
 
         <button type="submit" id="us_sub_btn" class="btn_1 rounded full-width">Register Now!</button>
-        <div class="text-center add_top_10">Already have an acccount? <strong><a id="URGLink" href="{{route('customer.login')}}">Sign In</a></strong>
+        <div class="text-center add_top_10">Already have an acccount? <strong><a id="URGLink" href="{{route('login-page')}}">Sign In</a></strong>
         </div>
       </form>
       <div class="copy">© 2021 Digyata</div>
