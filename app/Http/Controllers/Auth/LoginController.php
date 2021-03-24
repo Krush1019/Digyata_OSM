@@ -88,10 +88,10 @@ class LoginController extends Controller
      * @return void
      */
 
-    public function showClientLoginForm()
+    /* public function showClientLoginForm()
     {
         return redirect(route('login-page'));
-    }
+    } */
 
     public function clientLogin(Request $request)
     {
@@ -103,7 +103,7 @@ class LoginController extends Controller
 
         if ($validator->fails()) {
             return back()
-                ->with('passlink', route('client.login'))
+                ->with('passlink', route('login.client'))
                 ->withErrors($validator)
                 ->withInput($request->only('email', 'remember'));
         }
@@ -116,7 +116,7 @@ class LoginController extends Controller
         if (Auth::guard('client')->attempt(['sClEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended(route('client-dashboard'));
         }
-        return back()->with('passlink', route('client.login'))->withErrors(['email' => 'These credentials do not match our records.'])->withInput($request->only('email', 'remember'));
+        return back()->with('passlink', route('login.client'))->withErrors(['email' => 'These credentials do not match our records.'])->withInput($request->only('email', 'remember'));
     }
 
     /**
@@ -125,10 +125,18 @@ class LoginController extends Controller
      * @return void
      */
 
-    public function showCustomerLoginForm()
+    /* public function showCustomerLoginForm()
     {
         return redirect(route('login-page'));
+    } */
+
+
+    public function LoginPageForm()
+    {
+        return view('/pages/client_user/login-page');
     }
+
+
 
     public function customerLogin(Request $request)
     {
@@ -139,10 +147,10 @@ class LoginController extends Controller
 
         if (Auth::guard('customer')->attempt(['sUserEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('index-page'));
         }
         return back()
-        ->with('passlink', round('customer.login'))
+        ->with('passlink', route('login.customer'))
         ->withErrors(['email' => 'These credentials do not match our records.'])
         ->withInput($request->only('email', 'remember'));
     }

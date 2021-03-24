@@ -23,7 +23,7 @@
 
 <body id="@yield('bodyId')">
 
-  @include('panels.client_user.header')
+  @yield('header')
 
 {{-- include content --}}
 @yield('content')

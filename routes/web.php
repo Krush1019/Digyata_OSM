@@ -31,8 +31,7 @@ use App\Http\Controllers\LanguageController;
     Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
 
     // LOGIN
-    Route::get('/loginpage', 'client_user\LoginPageController@index')->name('login-page');
-    // Route::view('bothlogin', 'pages\client_user\bothlogin');
+    Route::get('/loginpage', 'Auth\LoginController@LoginPageForm')->name('login-page');
 /*
  * ***********
  * SUPER ADMIN

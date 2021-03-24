@@ -196,7 +196,7 @@ var lazyLoadInstance = new LazyLoad({
 	});*/
 
 	// Show hide password
-	$('.new-password, .cnfm-new-password, .password').hidePassword('focus', {
+	$('.password').hidePassword('focus', {
 		toggle: {
 			className: 'my-toggle'
 		}

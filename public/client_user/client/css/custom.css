@@ -267,3 +267,7 @@ label.error {
 .text-pink {
   color: #ff3a65 !important;
 }
+
+.display-hidden {
+  display: none;
+}

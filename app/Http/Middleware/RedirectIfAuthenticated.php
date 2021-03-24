@@ -14,13 +14,15 @@ class RedirectIfAuthenticated
         // dd(Auth::guard($guard)->check());
 
         if ($guard === 'client' && Auth::guard($guard)->check()) {
-            return route('client-dashboard');
+            return redirect( route('client-dashboard'));
         }
+        
         if ($guard === 'customer' && Auth::guard($guard)->check()) {
-            return route('home');
+            return redirect(route('home'));
         }
+
         if (Auth::guard($guard)->check()) {
-            return route('admin-dashboard');
+            return redirect( route('admin-dashboard'));
         }
 
         return $next($request);

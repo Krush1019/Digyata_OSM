@@ -46,66 +46,6 @@ $('#newsletter_form').submit(function () {
 // 		);
 // });
 
-//Client Register
-$('#submit-register').click(function () {
-  $('#Client-register').validate({
-    rules: {
-      name_register: "required",
-      email_register: {
-        required: true,
-        email: true
-      },
-      mobile_register: {
-        required: true,
-        matches: "(0/91)?[7-9][0-9]{9}"
-      },
-      gender_register: "required",
-      password_register: {
-        required: true,
-        minlength: 5
-      },
-      Cnf_password_register: {
-        required: true,
-        equalTo: 'password_register'
-      },
-      location_register : "required",
-      captcha_register: {
-        required: true,
-      }
-    },
-
-    messages: {
-      name_register: "Please enter your Name",
-      email_register: {
-        required: "Please enter your Email Address",
-        email: "Please enter a valid email address"
-      },
-      password: {
-        required: "Please provide a password",
-        minlength: "Your password must be at least 5 characters long"
-      },
-      mobile_register: {
-        required: "Please enter your Mobile No.",
-        matches: "Mobile No. must have 10 digit",
-      },
-      gender_register: "Please select your Gender",
-      Cnf_password_register: {
-        required: "Please enter a confirm password",
-        equalTo: "Password and Confirm Password must be same"
-      },
-      location_register : "Please enter your Location.",
-      captcha_register: {
-        required: "Please enter the captcha."
-      }
-    },
-    submitHandler: function(form) {
-      form.submit();
-      window.location.replace('/client-dashboard');
-    }
-  });
-})
-
-
 
 // Jquery validate form contact
 $('#contactform').submit(function () {
@@ -133,7 +73,6 @@ $('#contactform').submit(function () {
 				});
 				$('#submit-contact').removeAttr('disabled');
 				if (data.match('success') != null) $('#contactform').slideUp('slow');
-
 			}
 		);
 
@@ -141,65 +80,8 @@ $('#contactform').submit(function () {
 	return false;
 });
 
-//User-register
-$('#User-register').validate({
-  rules: {
-    User_fname: "required",
-    User_lname: "required",
-    User_gender: "required",
-    User_email: {
-      required: true,
-      email: true
-    },
-    User_mobile: {
-      required: true,
-      matches: "[7-9][0-9]{9}"
-    },
-    User_password: {
-      required: true,
-      minlength: 5
-    },
-    User_cnf_password: {
-      required: true,
-      equalTo: 'password_register'
-    },
-    User_captcha: {
-      required: true,
 
-    }
-  },
-
-  messages: {
-    User_fname: "Please enter your First Name",
-    User_lname: "Please enter your Last Name",
-    User_gender: "Please select your Gender",
-    User_email: {
-      required: "Please enter your Email Address",
-      email: "Please enter a valid email address"
-    },
-    User_password: {
-      required: "Please provide a password",
-      minlength: "Your password must be at least 5 characters long"
-    },
-    User_mobile: {
-      required: "Please enter your Mobile No.",
-      matches: "Mobile No. must have 10 digit.",
-    },
-    User_cnf_password: {
-      required: "Please enter a confirm password.",
-      equalTo: "Password and Confirm Password must be same."
-    } ,
-    User_captcha: {
-      required: "Please Enter Captcha Code"
-    }
-  },
-  submitHandler: function(form) {
-    form.submit();
-    window.location.replace('/user-dashboard');
-  }
-});
-
-//SignIn-Modal Validation
+/* //SignIn-Modal Validation
 $('#signIn-submit').click(function () {
   $('#signIn-form').validate(
     {
@@ -254,4 +136,4 @@ $('#repasswdbtn').click(function () {
 
     }
   );
-})
+}) */

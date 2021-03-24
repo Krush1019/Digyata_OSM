@@ -14,6 +14,10 @@
 
 @section('header-class', 'header header_in shadow clearfix')
 
+@section('header')
+@include('panels.client_user.header')    
+@endsection
+
 @section('content')
 <div class="bg_gray pattern_mail">
       <div id="login" class="container position-relative w-100 bg-transparent min-h-none">

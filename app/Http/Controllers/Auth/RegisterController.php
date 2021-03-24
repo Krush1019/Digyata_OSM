@@ -30,7 +30,7 @@ class RegisterController extends Controller {
      *
      * @var string
      */
-    protected $redirectTo = '/';
+     protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -107,7 +107,7 @@ class RegisterController extends Controller {
             'sClAddress' => $request->address,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended(route('client.login'));
+        return redirect()->intended(route('login-page'));
     }
 
 
@@ -136,7 +136,7 @@ class RegisterController extends Controller {
             'sUserGender' => $request->gender,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended(route('customer.login'));
+        return redirect()->intended(route('login-page'));
     }
 
 }

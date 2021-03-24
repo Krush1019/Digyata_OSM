@@ -67,7 +67,8 @@ class CreateServicelistsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists($this->tbl_name);
         Schema::dropIfExists($this->tbl_name2);
+        Schema::dropIfExists($this->tbl_name);
+        
     }
 }

@@ -2,6 +2,10 @@
 
 @section('title','My Profile')
 
+@section('page-style')
+<link href="{{asset('client_user/client/css/dropzone.css')}}" rel="stylesheet">
+@endsection
+
 @section('custom-style')
 <link href="{{asset('client_user/client/css/custom.css')}}" rel="stylesheet">
 @endsection
@@ -16,7 +20,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <div class="mb-3 text-center text-md-left">
+            {{-- <div class="mb-3 text-center text-md-left">
               <img id="user-propic" src="{{ asset('client_user/client/img/ser_img/1240506542-1614419650.jpg') }}"
                 class="img-thumbnail service_img" alt="">
             </div>
@@ -28,23 +32,18 @@
             </div>
             <div class="">
               <button type="button" class="btn_1 btn-primary font-weight-light" id="us-edit-photo">Edit Image</button>
-            </div>
+            </div> --}}
+            <label>Your photo</label>
+            <div  id="profile-pic" action='/file-upload' class="dropzone mr-3"></div>
           </div>
 
           <div class="col-md-8 pl-0">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-8">
                 <div class="form-group mt-20">
-                  <div class="small pl-0">First Name</div>
-                  <input type="text" class="form-control font-weight-bold" id="us_fname" name="First Name"
-                    placeholder="First Name" >
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group mt-20">
-                  <div class="small pl-0">Last Name</div>
-                  <input type="text" class="form-control font-weight-bold" id="us_lname" name="Last Name"
-                    placeholder="Last Name" >
+                  <div class="small pl-0">Name</div>
+                  <input type="text" class="form-control font-weight-bold" id="us_fname" name="name"
+                    placeholder="Full Name" >
                 </div>
               </div>
             </div>
@@ -55,11 +54,11 @@
                 <div class="form-group">
                   <span class="mr-3 small pl-0">Gender:</span>
                   <span class="mr-2">
-                    <input type="radio" name="us_gender" value="male" checked >
+                    <input type="radio" name="gender" value="male" checked >
                     <label class="font-weight-bold"> Male</label>
                   </span>
                   <span class="mr-2">
-                    <input type="radio" name="us_gender" value="female">
+                    <input type="radio" name="gender" value="female">
                     <label> Female</label>
                   </span>
                 </div>
@@ -71,14 +70,14 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <span class="small">Mobile : </span>
-                  <input type="text" name="Mobile" id="us_mobile" class="form-control font-weight-bold" >
+                  <input type="text" name="mobile" id="us_mobile" class="form-control font-weight-bold" >
                 </div>
               </div>
 
               <div class="col-md-5">
                 <div class="form-group">
                   <span class="small">E-mail : </span>
-                  <input type="email" name="Email" id="us_email" class="form-control font-weight-bold"
+                  <input type="email" name="email" id="us_email" class="form-control font-weight-bold"
                     >
                 </div>
               </div>
@@ -91,6 +90,10 @@
                   <span class="mr-3 small pl-0">Address:</span>
                   <div class="row">
                     <div class="form-group col-8 col-md-6">
+                      <select class="form-control font-weight-bold h-auto" name="od_state" id="us_state"
+                        disabled></select>
+                    </div>
+                    <div class="form-group col-8 col-md-6">
                       <select name="od_city" id="us_city" class="form-control font-weight-bold h-auto">
                         <option value="-1" disabled>Select City</option>
                         <option value="Miami">Miami</option>
@@ -98,10 +101,6 @@
                         <option value="Los Angeles">Los Angeles</option>
                         <option value="San Francisco">San Francisco</option>
                       </select>
-                    </div>
-                    <div class="form-group col-8 col-md-6">
-                      <select class="form-control font-weight-bold h-auto" name="od_state" id="us_state"
-                        disabled></select>
                     </div>
                     <div class="form-group col-12">
                       <input type="text" class="form-control font-weight-bold" id="us_addl1" name="Address Line 1"
@@ -137,7 +136,7 @@
           <div class="form-group">
             <label>Old password</label>
             <i class="fa fa-lock"></i>
-            <input id="us_old_pswd" class="form-control" type="password" name="Old Password" placeholder="Old password">
+            <input id="us_old_pswd" class="form-control" type="password" name="oldpassword" placeholder="Old password">
           </div>
         </div>
 
@@ -145,7 +144,7 @@
           <div class="form-group">
             <label>New password</label>
             <i class="fa fa-lock"></i>
-            <input class="form-control new-password" type="password" name="New Password" placeholder="New password"
+            <input class="form-control new-password" type="password" name="newpassword" placeholder="New password"
               id="us_new_pswd">
           </div>
         </div>
@@ -153,7 +152,7 @@
         <div class="col-12 col-md-4">
           <div class="form-group">
             <label>Confirm new password</label>
-            <input class="form-control cnfm-new-password" type="password" name="Confirm New Password" placeholder="Confirm new password" id="us_cnf_new_pswd">
+            <input class="form-control cnfm-new-password" type="password" name="confirmnewpassword" placeholder="Confirm new password" id="us_cnf_new_pswd">
           </div>
         </div> 
 
@@ -181,9 +180,14 @@
 </div>
 @endsection
 
+
 @section('page-script')
-<script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
+{{-- <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script> --}}
 <script src="{{asset('client_user/user/scripts/user-profile.js')}}"></script>
 <script src="{{ asset('js/scripts/extensions/sweetalert2.js')}}"></script>
 <script src="{{asset('client_user/js/pw_strenght.js')}}"></script>
+@endsection
+
+@section('custom-script')
+<script src="{{asset('client_user/client/js/dropzone.min.js')}}"></script>
 @endsection

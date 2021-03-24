@@ -105,7 +105,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                      placeholder="First Name and Last Name" value="{{ old('name') }}" name="name" id="name_register">
+                      placeholder="Full Name" value="{{ old('name') }}" name="name" id="name_register">
                     @error('name')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
