@@ -1250,3 +1250,83 @@ label.fix_spacing {
 .sbOptions .sbSub {
   padding-left: 17px;
 }
+
+/*--------------------------------------- for header ---------------------------------- */
+
+/* user-name and navbar logo */
+
+.logo-a {
+  padding: 10px 0 10px 45px !important ;
+  line-height: 1;
+  font-weight: 500;
+  display: block;
+  position: relative;
+}
+
+@media (max-width: 576px) {
+  .logo-a {
+    padding: 10px 0 10px 0px !important ;
+    line-height: 1;
+    font-weight: 500;
+    display: block;
+    position: relative;
+  }
+
+  .width-logo-auto {
+    width: auto;
+  }
+}
+
+.logo-figure {
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  border: 2px solid #ededed;
+}
+
+.logo-img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  width: 100%;
+}
+
+.fontsize-inherit {
+  font-size: inherit;
+}
+
+.link-color {
+  color :rgba(255,255,255,.5) !important;
+}
+
+.link-color:hover {
+  color :rgba(255,255,255,.75) !important;
+}
+
+.width-min-auto {
+  min-width: max-content;
+  padding: 0px;
+}
+
+.width-min {
+  min-width: 8rem;
+  padding: .4rem 0;
+}

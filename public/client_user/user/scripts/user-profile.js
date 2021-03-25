@@ -8,19 +8,14 @@ $(document).ready(function () {
 
       //State options
       $("#us_state").append(
-            '<option value="-1" disabled>Select State</option>'
+            '<option value="-1" selected disabled>Select State</option>'
       );
       var url = "/data/Text File/states.txt";
       $.get(url, function (data) {
             var arr = data.split(",");
             $.each(arr, function (key, entry) {
-                  if (entry === 'Gujarat') {
-                        var text = 'selected'
-                  } else {
-                        text = '';
-                  }
                   $("#us_state").append(
-                        '<option value="' + entry + '" ' + text + '>' + entry + "</option>"
+                        '<option value="' + entry + '" >' + entry + "</option>"
                   );
             });
       });

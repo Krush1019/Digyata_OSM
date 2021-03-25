@@ -21,7 +21,10 @@ class UserProfileController extends Controller
 
     public function index()
     {
-        return view('/pages/client_user/user/user-profile');
+        $breadcrumbs = [['link' => route('home') , 'name' => "Dashboard"], ['name' => "My Profile"]];
+      return view('/pages/client_user/user/user-profile', [
+        'breadcrumbs' => $breadcrumbs
+      ]);
     }
 
     /**

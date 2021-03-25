@@ -9,7 +9,6 @@
     </div>
 
     @if ( ! str_contains(Request::fullUrl(), 'loginpage'))
-	
       @if (Auth::guard('customer')->check())
     <ul id="top_menu" class="drop_user">
       <li>
