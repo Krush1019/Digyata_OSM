@@ -48,17 +48,17 @@ class ServiceListController extends Controller {
 
     public function service_listing() {
 
-        // $temp = json_decode(Auth::user(), true);
-        // $user = array(
-        //     'id' => encrypt($temp['id']),
-        //     'email' => $temp['sClEmail'],
-        // );
+        $temp = json_decode(Auth::user(), true);
+        $user = array(
+            'id' => encrypt($temp['id']),
+            'email' => $temp['sClEmail'],
+        );
         
         $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "Service Listing"]];
 
         $data = $this->getServiceData("all", Auth::id());
 
-        return view('/pages/client_user/client/client-service-listing', [
+        return view('/pages/client_user/client/client-service-listing',[
             'breadcrumbs' => $breadcrumbs,
             // 'user'=> $user,
         ])->with("serviceList", $data);
@@ -71,40 +71,39 @@ class ServiceListController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-          $request->validate([
-              'user_id' => 'required',
-              'SL_Ser_shopname' => 'required',
-              'SL_Ser_experience' => 'required',
-              'ser_img' => 'required',
-              'SL_Ser_aadharNo' => 'required',
-              'doc_img' => 'required',
-          ]);
+        $request->validate([
+            'user_id' => 'required',
+            'SL_Ser_shopname' => 'required',
+            'SL_Ser_experience' => 'required',
+            'ser_img' => 'required',
+            'SL_Ser_aadharNo' => 'required',
+            'doc_img' => 'required',
+        ]);
 
-         $tbl = new ServiceList();
+        $client_id = Auth::id();
+        $tbl = new ServiceList();
 
-         $tbl->cl_id = Auth::id();
-         $tbl->ser_cat_id = $request->get('serviceCat_id');
-         $tbl->ser_pro_name = $request->get('SL_Ser_shopname');
-         $tbl->user_ser_exp = $request->get('SL_Ser_experience');
-         $tbl->ser_dec = $request->get('dec_msg');
+        $tbl->cl_id = $client_id;
+        $tbl->ser_cat_id = $request->get('serviceCat_id');
+        $tbl->ser_pro_name = $request->get('SL_Ser_shopname');
+        $tbl->user_ser_exp = $request->get('SL_Ser_experience');
+        $tbl->ser_dec = $request->get('dec_msg');
 
-         $tbl->ser_phone = $request->get('SL_ser_phone');
-         $tbl->ser_email = $request->get('SL_ser_email');
-         $tbl->ser_web = $request->get('SL_ser_website');
-         $tbl->ser_fb = $request->get('SL_ser_fblink');
-         $tbl->ser_tw = $request->get('SL_ser_twlink');
-         $tbl->ser_linkedin = $request->get('SL_ser_ldlink');
+        $tbl->ser_phone = $request->get('SL_ser_phone');
+        $tbl->ser_email = $request->get('SL_ser_email');
+        $tbl->ser_web = $request->get('SL_ser_website');
+        $tbl->ser_fb = $request->get('SL_ser_fblink');
+        $tbl->ser_tw = $request->get('SL_ser_twlink');
+        $tbl->ser_linkedin = $request->get('SL_ser_ldlink');
 
-         $tbl->ser_photo = $request->get('ser_img');
-         $tbl->doc_no = $request->get('SL_Ser_aadharNo');
-         $tbl->doc_image = $request->get('doc_img');
+        $tbl->ser_photo = $request->get('ser_img');
+        $tbl->doc_no = $request->get('SL_Ser_aadharNo');
+        $tbl->doc_image = $request->get('doc_img');
 
-         $tbl->ser_days = $request->get('days');
-         $tbl->ser_time = $request->get('time');
+        $tbl->ser_days = $request->get('days');
+        $tbl->ser_time = $request->get('time');
         $tbl->save();
-
-        $this->saveItemList('1', $tbl->id, $request->get('items'));
-        
+        $this->saveItemList($client_id, $tbl->id, $request->get('items'));
         return true;
     }
 
@@ -131,10 +130,10 @@ class ServiceListController extends Controller {
         $action = $request->get("action");
         $id = $request->get("id");
         switch ($action) {
+      
             case "update":
-
-                ServiceList::where("ser_id",decrypt($id))->update([
-//                    "uID" => $request->get('user_id'),
+                ServiceList::where("ser_id", decrypt($id))->update([
+                    //"uID" => $request->get('user_id'),
                     "ser_cat_id" => $request->get('serviceCat_id'),
                     "ser_pro_name" => $request->get('SL_Ser_shopname'),
                     "user_ser_exp" => $request->get('SL_Ser_experience'),
@@ -155,7 +154,7 @@ class ServiceListController extends Controller {
                     "ser_time" => $request->get('time'),
                 ]);
                 DB::table("tbl_user_ser_item_price")->where("ser_id", decrypt($id))->delete();
-                $this->saveItemList($request->get('user_id'), decrypt($id), $request->get('items'));
+                $this->saveItemList(Auth::id(), decrypt($id), $request->get('items'));
                 break;
 
             case "status":
@@ -295,11 +294,10 @@ class ServiceListController extends Controller {
     }
 
 
-    private function saveImgToStorage($imgFile, $saveImgPath){
-
+    private function saveImgToStorage($imgFile, $saveImgPath) {
         $ext = $imgFile->getClientOriginalExtension();
-        $newImgName = rand().'-'.time().'.'.$ext;
+        $newImgName = rand() . '-' . time() . '.' . $ext;
         $imgFile->move(public_path($saveImgPath), $newImgName);
-        return $saveImgPath.'/'.$newImgName;
+        return $saveImgPath . '/' . $newImgName;
     }
 }

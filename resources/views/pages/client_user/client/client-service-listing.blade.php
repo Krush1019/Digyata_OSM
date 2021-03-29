@@ -97,24 +97,24 @@
 								<div class="col-md-4">
 									<div class="mt-20">
 										<div class="col-sm-12 small pl-0">Provider Name :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name">Jay Goga</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name"> </div>
 									</div>
 
 									<div class="mt-15">
 										<div class="col-sm-12 small pl-0">Expericence :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_exp">2 Year</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_exp"> </div>
 									</div>
 
 								</div>
 								<div class="col-md-5">
 									<div class="mt-20">
 										<div class="col-sm-12 small pl-0">Service :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_name">House Wasing</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_name"> </div>
 									</div>
 
 									<div class="mt-10">
 										<div class="col-sm-12 small pl-0">Category :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_cate">Cleaning</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_cate"> </div>
 									</div>
 								</div>
 
@@ -127,42 +127,25 @@
 										<div class="user-info">
 											<div>
 												<span class="col-sm-12 small pl-0">Phone : </span>
-												<span class="col-sm-12 font-weight-bold pl-0 ser_phone">8200707338</span>
+												<span class="col-sm-12 font-weight-bold pl-0 ser_phone"> </span>
 											</div>
 											<div>
 												<span class="col-sm-12 small pl-0">E-mail : </span>
-												<span class="col-sm-12 font-weight-bold pl-0"><a
-															  href="mailto:meetprajapati847@gmail.com" class="ser_email"
-															  target="_blank">meetprajapati847@gmail.com</a></span>
+												<span class="col-sm-12 font-weight-bold pl-0"><a href="mailto:meetprajapati847@gmail.com" class="ser_email" target="_blank"> </a></span>
 											</div>
 										</div>
 									</div>
 									<div class="mt-15">
 										<div class="col-sm-12 small pl-0">Social Media :</div>
 										<div class="social mt-15">
-											{{-- <a href="google.com"  target="_blank" class='social-icon globe'>
-												<i class="fa fa-globe fa-2x"></i>
-											</a> --}}
-											{{-- <a href='google.com'  target='_blank' class='social-icon facebook'>
-												<i class='fa fa-facebook-f fa-2x'></i>
-											</a> --}}
-											{{-- <a href="google.com"  target="_blank" class='social-icon twitter'>
-												<i class='fa fa-twitter fa-2x'></i>
-											</a> --}}
-											{{-- <a href="google.com"  target="_blank" class='social-icon instagram'>
-												<i class='fa fa-instagram fa-2x'></i>
-											</a> --}}
-											{{-- <a href="google.com"  target="_blank" class='social-icon linkedin'>
-												<i class="fa fa-linkedin fa-2x"></i>
-											</a> --}}
+											
 										</div>
-
 									</div>
 								</div>
 								<div class="col-md-7">
 									<div class="mt-20">
 										<div class="col-sm-12 small pl-0">Description :</div>
-										<div class="col-sm-12 pl-0 ser_des"></div>
+										<div class="col-sm-12 pl-0 ser_des"> </div>
 									</div>
 								</div>
 							</div>
@@ -181,7 +164,7 @@
 								</div>
 								<div class="col-md-6">
 									<span>Aadhar No.: </span>
-									<span class="doc_num">788565231578</span>
+									<span class="doc_num"> </span>
 								</div>
 							</div>
 
@@ -192,12 +175,14 @@
 							<div class="row">
 								<div class="col-md-6">
 									<span>
-										<label>City: </label><label>Mahesana</label>
+										<label>City: </label>
+										<label>Mahesana</label>
 									</span>
 								</div>
 								<div class="col-md-6">
 									<span>
-										<label>State: </label><label>Gujarat</label>
+										<label>State: </label>
+										<label>Gujarat</label>
 									</span>
 								</div>
 							</div>
@@ -210,7 +195,10 @@
 									</span>
 								</div>
 								<div class="col-md-6">
-									<span><label>Pincode: </label><label>698745</label></span>
+									<span>
+										<label>Pincode: </label>
+										<label>698745</label>
+									</span>
 								</div>
 							</div>
 
@@ -230,7 +218,7 @@
 											</tr>
 											</thead>
 											<tbody>
-											{{-- Code Here --}}
+												{{-- Code Here --}}
 											</tbody>
 										</table>
 									</div>
@@ -252,7 +240,7 @@
 											</tr>
 											</thead>
 											<tbody>
-											{{-- Code Here  --}}
+												{{-- Code Here  --}}
 											</tbody>
 										</table>
 									</div>

@@ -7,63 +7,107 @@
 $(document).ready(function () {
 
   //change password model validation
-  $('#changepasswdbtn').click(function () {
+  /* $('#changepasswdbtn').click(function () {
+    alert("hello");
+
     $('#changepasswdform').validate({
 
       rules: {
-        odpasswd: {
+        oldpassword: {
           required: true,
-          minlength: 5
+          minlength: 6
         },
-        nwpasswd: {
+        newpassword: {
           required: true,
-          minlength: 5
+          minlength: 6
         },
-        cnfnewpasswd: {
+        confirmnewpassword: {
           required: true,
-          equalTo: nwpasswd
+          equalTo: '#cl_new_pswd'
         }
       },
       messages: {
-        odpasswd: {
+        oldpassword: {
           required: "Please enter the old password.",
           minlength: "Your password must be at least 5 characters long."
         },
-        nwpasswd: {
+        newpassword: {
           required: "Please enter the new password.",
           minlength: "Your password must be at least 5 characters long."
         },
-        cnfnewpasswd: {
+        confirmnewpassword: {
           required: "Please confirm new password.",
           equalTo: "New password and confirm new password must be same."
         }
       },
       submitHandler:  function(form){
         form.submit();
-        $('#changepasswdmodel').hide();
       }
     })
-  });
+  }); */
 
-  //password show-hide button
-  $('#nwpasswd').focus(function () {
+  $('#changepasswdbtn').click(function () {
+    $('#changepasswdform').validate({
+
+      rules: {
+        oldpassword: {
+          required: true,
+          minlength: 6
+        },
+        newpassword: {
+          required: true,
+          minlength: 6
+        },
+        confirmnewpassword: {
+          required: true,
+          equalTo: "#cl_new_pswd"
+        }
+      },
+      messages: {
+        oldpassword: {
+          required: "Please enter the old password.",
+          minlength: "Your password must be at least 6 characters long."
+        },
+        newpassword: {
+          required: "Please enter the new password.",
+          minlength: "Your password must be at least 6 characters long."
+        },
+        confirmnewpassword: {
+          required: "Please confirm new password.",
+          equalTo: "New password and confirm new password must be same."
+        }
+      },
+      submitHandler: function (form) {
+        form.submit();
+      }
+    });
+  })
+
+
+  /* 
+  //change password model reset on close
+  $('#changepasswdmodel').on('hidden.bs.modal', function () {
+    $(this).find('form').trigger('reset').validate().resetForm();
+  });
+//password show-hide button
+  $('.new-password').focus(function () {
     if ($('#btn1').is(':hidden')){
       $('#btn1').removeAttr('hidden');
     }
   });
   $('#btn1').click(function () {
     if ( $(this).text() === 'show'){
-      $('#nwpasswd').attr('type', 'text');
+      $('.new-password').attr('type', 'text');
       $(this).text('hide');
     } else {
-      $('#nwpasswd').attr('type', 'password');
+      $('.new-password').attr('type', 'password');
       $(this).text('show');
     }
   });
+ */
 
-  //change password model reset on close
-  $('#changepasswdmodel').on('hidden.bs.modal', function () {
-    $(this).find('form').trigger('reset').validate().resetForm();
+  $(document).on('click', '.cncpswdbtn', function () {
+    $('#chngepassworddiv').toggleClass('display-hidden');
   });
 
   //client detail form validation
@@ -75,7 +119,9 @@ $(document).ready(function () {
         _gender: "required",
         cl_mobile: {
           required: true,
-          // matches: "(0/91)?[7-9][0-9]{9}"
+          number: true,
+          minlength: 10,
+          maxlength: 10
         },
         cl_email: {
           required: true,
@@ -87,15 +133,17 @@ $(document).ready(function () {
         cl_lname: "Please enter your Last Name",
         User_gender: "Please select your Gender",
         cl_mobile: {
-          required: "Please enter the mobile no.",
-          // matches: "Mobile No. must have 10 digit.",
+          required: "Please enter your mobile no.",
+          minlength: "Mobile No. must have 10 digit",
+          maxlength: "Mobile No. must have 10 digit",
+          number: "Please enter only digits",
         },
         cl_email: {
           required: "Please enter your Email Address",
           email: "Please enter a valid email address"
         }
       },
-      submitHandler:  function(form){
+      submitHandler: function (form) {
         form.submit();
         $('#clientimgupload').submit();
       }

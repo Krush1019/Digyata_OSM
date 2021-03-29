@@ -33,9 +33,8 @@
 								<option value="-1" disabled selected>Select</option>
 								{{-- Print Service Name --}}
 								@foreach ($serviceList as $row)
-									<option value="{{$row->serviceName}}" data-category="{{$row->serviceCategory}}"
-									        data-id="{{$row->id}}"
-									        @isset($serviceData) @if($serviceData['service_name'] == $row->serviceName) selected @endif @endisset >{{$row->serviceName}}</option>
+									<option value="{{$row->serviceName}}" data-category="{{$row->serviceCategory}}" data-id="{{$row->id}}" 
+										@isset($serviceData) @if($serviceData['service_name']  == $row->serviceName) selected @endif @endisset >{{$row->serviceName}}</option>
 								@endforeach
 							@endif
 
@@ -46,8 +45,7 @@
 					<div class="form-group">
 						<label for="SL_ser_category">Category</label>
 						<input type="text" class="form-control" name="SL_ser_category"
-						       value="@isset($serviceData){{$serviceData['service_cat']}}@endisset" id="SL_ser_category"
-						       placeholder="Category" disabled>
+						       value="@isset($serviceData){{$serviceData['service_cat']}}@endisset" id="SL_ser_category" placeholder="Category" disabled>
 					</div>
 				</div>
 			</div>
@@ -58,17 +56,14 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="SL_Ser_shopname">Shop Name / Provider Name</label>
-						<input type="text" class="form-control" name="SL_Ser_shopname" id="SL_Ser_shopname"
-						       value="@isset($serviceData){{$serviceData['name']}}@endisset"
-						       placeholder="Shop Name / Provide Name">
+						<input type="text" class="form-control" name="SL_Ser_shopname" id="SL_Ser_shopname" value="@isset($serviceData){{$serviceData['name']}}@endisset" placeholder="Shop Name / Provide Name">
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="SL_Ser_experience">Expericence in related Field (In Months/Years)</label>
-						<input type="text" class="form-control" name="SL_Ser_experience" id="SL_Ser_experience"
-						       value="@isset($serviceData){{$serviceData['exp']}}@endisset" placeholder="2 Months / 2 Years">
+						<input type="text" class="form-control" name="SL_Ser_experience" id="SL_Ser_experience" value="@isset($serviceData){{$serviceData['exp']}}@endisset" placeholder="2 Months / 2 Years">
 					</div>
 				</div>
 			</div>
@@ -76,7 +71,7 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					@if(@isset($serviceData))
+					@if(isset($serviceData))
 						<input type="text" id="ser_des" value="{{$serviceData['dec']}}" hidden>
 					@endif
 					<div class="form-group">
@@ -91,24 +86,21 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="SL_ser_phone"><i class="fa fa-fw fa-phone"></i> Phone (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_phone" id="SL_ser_phone"
-						       value="@isset($serviceData){{$serviceData['phone']}}@endisset">
+						<input type="text" class="form-control" name="SL_ser_phone" id="SL_ser_phone" value="@isset($serviceData){{$serviceData['phone']}}@endisset">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="SL_ser_website"><i class="fa fa-fw fa-link"></i> Web site (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_website" id="SL_ser_website"
-						       value="@isset($serviceData){{$serviceData['web']}}@endisset">
+						<input type="text" class="form-control" name="SL_ser_website" id="SL_ser_website" value="@isset($serviceData){{$serviceData['web']}}@endisset">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="SL_ser_email"><i class="fa fa-fw fa-envelope"></i> Email (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_email" id="SL_ser_email"
-						       value="@isset($serviceData){{$serviceData['email']}}@endisset">
+						<input type="text" class="form-control" name="SL_ser_email" id="SL_ser_email" value="@isset($serviceData){{$serviceData['email']}}@endisset">
 					</div>
 				</div>
 
@@ -119,24 +111,21 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="SL_ser_fblink"><i class="fa fa-fw fa-facebook"></i> Facebook link (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_fblink" id="SL_ser_fblink"
-						       value="@isset($serviceData){{$serviceData['fb']}}@endisset">
+						<input type="text" class="form-control" name="SL_ser_fblink" id="SL_ser_fblink" value="@isset($serviceData){{$serviceData['fb']}}@endisset">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="SL_ser_twlink"><i class="fa fa-fw fa-twitter"></i> Twitter link (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_twlink" id="SL_ser_twlink"
-						       value="@isset($serviceData){{$serviceData['tw']}}@endisset">
+						<input type="text" class="form-control" name="SL_ser_twlink" id="SL_ser_twlink" value="@isset($serviceData){{$serviceData['tw']}}@endisset">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="SL_ser_ldlink"><i class="fa fa-fw fa-linkedin"></i> Linkedin + (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_ldlink" id="SL_ser_ldlink"
-						       value="@isset($serviceData){{$serviceData['linkedin']}}@endisset">
+						<input type="text" class="form-control" name="SL_ser_ldlink" id="SL_ser_ldlink" value="@isset($serviceData){{$serviceData['linkedin']}}@endisset">
 					</div>
 				</div>
 
@@ -153,13 +142,11 @@
 							@if(@isset($serviceData))
 								<input type="text" name="ser_img_file" value="{{$serviceData['img']}}" hidden>
 							@endif
-
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- /row-->
-
 		</div>
 
 		<!-- /box_general-->
@@ -175,12 +162,10 @@
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" name="SL_ser_idproof">
 							<label class="custom-file-label" id="a1" for="SL_ser_idproof">Choose file</label>
-							@if(@isset($serviceData))
-								<input type="text" name="ser_doc_file" value="{{$serviceData['doc_img']}}" id="SL_ser_idproof"
-								       hidden>
+							@if(isset($serviceData))
+								<input type="text" name="ser_doc_file" value="{{$serviceData['doc_img']}}" id="SL_ser_idproof" hidden>
 							@endif
-							<label class="small font-weight-bold text-secondary">You can upload Aadhar Card/ Pan card/ Driving
-								Licence as Id Proof.</label>
+							<label class="small font-weight-bold text-secondary">You can upload Aadhar Card/ Pan card/ Driving Licence as Id Proof.</label>
 						</div>
 					</div>
 				</div>
@@ -188,8 +173,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="SL_Ser_aadharNo">Aadhar No.</label>
-						<input type="text" class="form-control" name="SL_Ser_aadharNo" id="SL_Ser_aadharNo"
-						       value="@isset($serviceData){{$serviceData['doc_num']}}@endisset" placeholder="Aadhar No.">
+						<input type="text" class="form-control" name="SL_Ser_aadharNo" id="SL_Ser_aadharNo" value="@isset($serviceData){{$serviceData['doc_num']}}@endisset" placeholder="Aadhar No.">
 					</div>
 				</div>
 
@@ -289,14 +273,12 @@
 						</div>
 						<div class="col-md-5">
 							<div class="form-group">
-								<select class="form-control styled-select styled-select-value optime" name="opening_time"
-								        id="start_time"></select>
+								<select class="form-control styled-select styled-select-value optime" name="opening_time" id="start_time"></select>
 							</div>
 						</div>
 						<div class="col-md-5">
 							<div class="form-group">
-								<select class="form-control styled-select styled-select-value cltime" name="closing_time"
-								        id="end_time"></select>
+								<select class="form-control styled-select styled-select-value cltime" name="closing_time" id="end_time"></select>
 							</div>
 						</div>
 					</div>
@@ -309,14 +291,12 @@
 						</div>
 						<div class="col-md-5">
 							<div class="form-group">
-								<select class="form-control styled-select styled-select-value start_time"
-								        name="opening_time"></select>
+								<select class="form-control styled-select styled-select-value start_time" name="opening_time"></select>
 							</div>
 						</div>
 						<div class="col-md-5">
 							<div class="form-group">
-								<select class="form-control styled-select styled-select-value end_time"
-								        name="closing_time"></select>
+								<select class="form-control styled-select styled-select-value end_time" name="closing_time"></select>
 							</div>
 						</div>
 					</div>
@@ -341,14 +321,12 @@
 										<div class="row ">
 											<div class="col-md-3">
 												<div class="form-group">
-													<input type="text" class="form-control" value="{{ $item['iName']}}"
-													       placeholder="Title" name="pli_name">
+													<input type="text" class="form-control" value="{{ $item['iName']}}" placeholder="Title" name="pli_name">
 												</div>
 											</div>
 											<div class="col-md-5">
 												<div class="form-group">
-													<input type="text" class="form-control" value="{{ $item['iDes']}}"
-													       placeholder="Description" name="pli_desc">
+													<input type="text" class="form-control" value="{{ $item['iDes']}}"  placeholder="Description" name="pli_desc">
 												</div>
 											</div>
 											<div class="col-md-3">
@@ -356,9 +334,7 @@
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="price_icon"><small>₹</small></span>
 													</div>
-													<input type="text" id="item_price" name="pli_price" class="form-control"
-													       value="{{ $item['iPrice']}}" placeholder="Price"
-													       aria-describedby="price_icon">
+													<input type="text" id="item_price" name="pli_price" class="form-control" value="{{ $item['iPrice']}}"  placeholder="Price" aria-describedby="price_icon">
 												</div>
 											</div>
 											<div class="col-md-1 ">
@@ -389,8 +365,7 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text" id="price_icon"><small>₹</small></span>
 											</div>
-											<input type="text" id="item_price" name="pli_price" class="form-control"
-											       placeholder="Price" aria-describedby="price_icon">
+											<input type="text" id="item_price" name="pli_price" class="form-control" placeholder="Price" aria-describedby="price_icon">
 										</div>
 									</div>
 									<div class="col-md-1 ">
@@ -402,24 +377,20 @@
 							</td>
 						</tr>
 					</table>
-					<button type="button" class="btn_1 gray add-pricing-list-item"><i
-										class="fa fa-fw fa-plus-circle mr-1"></i>Add Item
-					</button>
+					<button type="button" class="btn_1 gray add-pricing-list-item"><i class="fa fa-fw fa-plus-circle mr-1"></i>Add Item</button>
 				</div>
 			</div>
 			<!-- /row-->
 		</div>
 		<!-- /box_general-->
-		<p><input type="button" class="btn_1 medium" id="addServiceListbtn" value="Save"
-		          data-action="@if (@isset($serviceData)) update @else insert @endif"
-		          data-id="@if (@isset($serviceData)) {{$serviceData['main_id']}} @endif"></p>
+		<p>
+			<input type="button" class="btn_1 medium" id="addServiceListbtn" value="Save" data-action="@if (@isset($serviceData)) update @else insert @endif" data-id="@if (@isset($serviceData)) {{$serviceData['main_id']}} @endif">
+		</p>
 	</form>
 
 
 	<div class="card">
-		<div id="cus_id" class="header">
-
-		</div>
+		<div id="cus_id" class="header"> </div>
 	</div>
 
 @endsection

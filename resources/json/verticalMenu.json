@@ -47,6 +47,11 @@
       ]
     },
     {
+      "url": "service-manage",
+      "name": "Service Manage",
+      "icon": "fa fa-gg"
+    },
+    {
       "url": "booking-schedule",
       "name": "Booking Schedule",
       "icon": "feather icon-calendar"

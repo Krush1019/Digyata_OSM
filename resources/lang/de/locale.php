@@ -8,6 +8,7 @@ return [
   "People" => "Menschen",
   "Client Manage" => "Client verwalten",
   "User Manage" => "Benutzer verwalten",
+  "Service Manage" => "Service verwalten",
   "Booking Schedule" => "Buchungsplan",
   "Review Order" => "Bestellung überprüfen",
   "Other Parameter" => "Anderer Parameter",

@@ -70,17 +70,18 @@ class ClientManageController extends Controller {
 
             $newData = []; $i = 0;
             foreach ($data as $row) {
-                $id = encrypt($row->cl_ID);
+                $id = encrypt($row->id);
                 $tempArr = array(
                     "#" => $i + 1,
+                    "client-id" => $row->sClientID,
                     "client-name" => $row->sClName,
                     "avatar" => $row->sClPhotoURL,
                     "workplace" => $row->sClWorkPlace,
                     "profession" => $row->sClProf,
-                    "location" => $row->sClLoc,
+                    "location" => $row->sClAddress,
                     "experience" => $row->sClExp,
                     "avalibility" => $row->sClAvalibility,
-                    "mobileNo" => $row->sClPhone,
+                    "mobileNo" => $row->sClMobile,
                     "email" => $row->sClEmail,
                     "client-status" => array('val' => $row->sClientStatus, "id" => $id),
                     "approval" => array('val' => $row->sClientStatus, "id" => $id),
@@ -131,7 +132,7 @@ class ClientManageController extends Controller {
                         $status = "Blocked";
                         break;
                 }
-                ClientManage::where('cl_ID', $id)->update([
+                ClientManage::where('id', $id)->update([
                     "sClientStatus" => $status
                 ]);
                 break;

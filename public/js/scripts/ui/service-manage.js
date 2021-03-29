@@ -1,3 +1,7 @@
+/* 
+      File Name: Service-manage.js
+*/
+
 $(document).ready(function () {
 
     var isRtl;
@@ -24,7 +28,7 @@ $(document).ready(function () {
     // Renering Icons in Actions column
     var customIconsHTML = function (params) {
         var usersIcons = document.createElement("span");
-        var editIconHTML = '<a href="/client-view"><i class="feather icon-eye mr-50"></i></a>';
+        var editIconHTML = '<a href="#viewServiceModal" data-toggle="modal"><i class="feather icon-eye mr-50"></i></a>';
         usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
         return usersIcons
     }
@@ -35,7 +39,7 @@ $(document).ready(function () {
         id.value = params.value['id'];
 
         var usersIcons = document.createElement("span");
-        var acceptIconHTML = '<i class="users-accept-icon feather icon-user-check status_btn" data-action="Approve" data-id="'+id.value+'"></i>';
+        var acceptIconHTML = '<i class="users-accept-icon feather icon-user-check status_btn" data-action="Approve" data-id="' + id.value + '"></i>';
         var rejectIconHTML = document.createElement('i');
 
         var attr = document.createAttribute("class");
@@ -83,11 +87,11 @@ $(document).ready(function () {
     }
 
     var customEmailHTML = function (params) {
-        return "<a href='mailto:"+params.value+"'>"+params.value+"</a>"
+        return "<a href='mailto:" + params.value + "'>" + params.value + "</a>"
     }
 
     var customPhoneHTML = function (params) {
-        return "<a href='tel:"+params.value+"'>"+params.value+"</a>"
+        return "<a href='tel:" + params.value + "'>" + params.value + "</a>"
     }
 
     // Renering Links in Government Id Column
@@ -97,7 +101,8 @@ $(document).ready(function () {
         usersIcons.appendChild($.parseHTML(linkHTML)[0]);
         return usersIcons
     }
-// ag-grid
+
+    // ag-grid
     /*** COLUMN DEFINE ***/
 
     var columnDefs = [{
@@ -109,68 +114,105 @@ $(document).ready(function () {
         headerCheckboxSelectionFilteredOnly: true,
         headerCheckboxSelection: true
     },
-
+    {
+        headerName: 'Service',
+        field: 'service-name',
+        filter: true,
+        width: 200,
+        cellRenderer: customAvatarHTML,
+    },
+    {
+        headerName: 'Category',
+        field: 'category',
+        filter: true,
+        width: 150,
+    },
     {
         headerName: 'Client Id',
         field: 'client-id',
         filter: true,
         width: 150,
     },
-        {
-            headerName: 'Name',
-            field: 'client-name',
-            filter: true,
-            width: 200,
-            cellRenderer: customAvatarHTML,
-        },
-        {
-            headerName: 'Email',
-            field: 'email',
-            filter: true,
-            cellRenderer: customEmailHTML,
-            width: 200
-        },
-        {
-            headerName: 'Location',
-            field: 'location',
-            filter: true,
-            width: 150
-        },
-        {
-            headerName: 'Mobile No.',
-            field: 'mobileNo',
-            filter: true,
-            width: 150,
-            cellRenderer: customPhoneHTML
-        },        
-        {
-            headerName: 'Status',
-            field: 'client-status',
-            filter: true,
-            width: 125,
-            cellRenderer: customBadgeHTML,
-            cellStyle: {
-                "text-align": "center"
-            }
-        },
-        {
-            headerName: 'Approval',
-            field: 'approval',
-            width: 125,
-            cellRenderer: customApproveIconsHTML,
-            cellStyle: {
-                "text-align": "center"
-            }
-        },
-        {
-            headerName: 'Actions',
-            field: 'transactions',
-            width: 125,
-            cellRenderer: customIconsHTML,
-            cellStyle: {
-                "text-align": "center"
-            }
+    {
+        headerName: 'Client Name',
+        field: 'client-name',
+        filter: true,
+        width: 200
+    },
+    {
+        headerName: 'Location',
+        field: 'location',
+        filter: true,
+        width: 150
+    },
+    {
+        headerName: 'Experience',
+        field: 'experience',
+        filter: true,
+        width: 140
+    },
+    {
+        headerName: 'Avalibility',
+        field: 'avalibility',
+        filter: true,
+        width: 200,
+        cellStyle: {
+            "text-align": "left"
         }
+    },
+    {
+        headerName: 'Mobile No.',
+        field: 'mobileNo',
+        filter: true,
+        width: 150,
+        cellRenderer: customPhoneHTML
+    },
+    {
+        headerName: 'Email',
+        field: 'email',
+        filter: true,
+        cellRenderer: customEmailHTML,
+        width: 200
+    },
+    {
+        headerName: 'ID Proof',
+        field: 'IDProof',
+        filter: true,
+        width: 125,
+        cellRenderer: customLinkHTML,
+        cellStyle: {
+            "text-align": "center"
+        }
+    },
+    {
+        headerName: 'Status',
+        field: 'client-status',
+        filter: true,
+        width: 125,
+        cellRenderer: customBadgeHTML,
+        cellStyle: {
+            "text-align": "center"
+        }
+    },
+    {
+        headerName: 'Approval',
+        field: 'approval',
+        width: 125,
+        cellRenderer: customApproveIconsHTML,
+        cellStyle: {
+            "text-align": "center"
+        }
+    },
+    {
+        headerName: 'Actions',
+        field: 'transactions',
+        width: 125,
+        cellRenderer: customIconsHTML,
+        cellStyle: {
+            "text-align": "center"
+        }
+    },
+
 
     ];
 
@@ -194,9 +236,9 @@ $(document).ready(function () {
         overlayNoRowsTemplate:
             '<span class="pt-5">No Data To Show</span>'
     };
-    if (document.getElementById("myGrid-clientManage")) {
+    if (document.getElementById("myGrid-serviceManage")) {
         /*** DEFINED TABLE VARIABLE ***/
-        var gridTable = document.getElementById("myGrid-clientManage");
+        var gridTable = document.getElementById("myGrid-serviceManage");
 
         function getTableData() {
             agGrid
@@ -249,7 +291,7 @@ $(document).ready(function () {
     $(document).on('click', '.status_btn', function (e) {
         var id = $(this).attr('data-id');
         var status = $(this).attr('data-action');
-        if(status == "Active")
+        if (status == "Active")
             status = "Blocked"
         else if (status == "Blocked")
             status = "Active"
@@ -265,19 +307,19 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url : '/client-manage-update',
-                    type : 'GET',
-                    data : {
+                    url: '/client-manage-update',
+                    type: 'GET',
+                    data: {
                         action: "status",
                         status: status,
                         id: id
                     },
-                    success : function (result){
+                    success: function (result) {
                         getTableData();
                         getPendingCount();
-                        toastFire(Swal,"Changed Status.");
+                        toastFire(Swal, "Changed Status.");
                     },
-                    error : function (error) {
+                    error: function (error) {
                         swalFire(Swal, "Something went wrong!", "Oops...", "error");
                     }
                 });
@@ -289,13 +331,13 @@ $(document).ready(function () {
     getPendingCount();
     function getPendingCount() {
         $.ajax({
-            url : '/client-manage-show',
+            url: '/client-manage-show',
             type: 'GET',
             data: {
                 action: "Pending"
             },
             success: function (result) {
-                if(result > 0)
+                if (result > 0)
                     $('a[href="client-manage"] span:last').text(result);
                 else
                     $('a[href="client-manage"] span:last').text("");

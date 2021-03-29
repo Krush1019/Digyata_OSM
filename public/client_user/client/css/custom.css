@@ -271,3 +271,7 @@ label.error {
 .display-hidden {
   display: none;
 }
+
+.add_top_40 {
+	margin-top: 40px;
+}

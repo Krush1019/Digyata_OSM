@@ -59,11 +59,11 @@ class UserManageController extends Controller {
         $data = UserManage::all();
         $newData = []; $i = 0;
         foreach ($data as $row) {
-            $id = encrypt($row['uID']);
+            $id = encrypt($row['id']);
             $temp = array(
                 '#' => $i + 1,
                 'user-name' =>$row['sUserName'],
-                'mobileNo' =>$row['sUserPhone'],
+                'mobileNo' =>$row['sUserMobile'],
                 'email' =>$row['sUserEmail'],
                 'user-location' =>$row['sUserLoc'],
                 'user-status' => array('text'=>($row['bUserStatus'] == 1) ? 'Active' : 'Inactive', 'id'=>$id),
@@ -95,7 +95,7 @@ class UserManageController extends Controller {
         switch ($request->action) {
             case 'status':
                 $hasClass = ($request->hasClass == 'true') ? false : true;
-                UserManage::where('uID', $id)->update([
+                UserManage::where('id', $id)->update([
                     'bUserStatus' => $hasClass
                 ]);
                 break;

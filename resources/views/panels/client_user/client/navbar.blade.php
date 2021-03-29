@@ -61,7 +61,7 @@
 
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Order Manage"
         data-original-title="Order Manage">
-        <a class="nav-link" href="{{route('client-order-manage')}}">
+        <a class="nav-link" href="{{route('order-manage.index')}}">
           <i class="fa fa-fw fa-calendar-check-o"></i>
           <span class="nav-link-text">Order Manage <span class="badge badge-pill badge-primary">6 New</span></span>
         </a>

@@ -21,7 +21,11 @@ class CreateUserManagesTable extends Migration {
             $table->string('sUserGender');
             $table->string('password');
             $table->string('sUserImgURL')->nullable();
-            $table->string('sUserAddress')->nullable();
+            $table->string('sUserState')->nullable();
+            $table->string('sUserCity')->nullable();
+            $table->string('sUserHouseNo')->nullable();
+            $table->string('sUserArea')->nullable();
+            $table->integer('sUserPincode')->nullable();
             $table->boolean('bUserStatus')->default(1);
             $table->rememberToken();
             $table->timestamps();

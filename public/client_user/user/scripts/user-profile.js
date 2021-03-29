@@ -6,16 +6,21 @@
 
 $(document).ready(function () {
 
+      $(document).on('focus', 'input[type=password]', function () {
+            $(this).removeAttr('readonly');
+      });
+
       //State options
       $("#us_state").append(
-            '<option value="-1" selected disabled>Select State</option>'
+            '<option value="" disable>Select State</option>'
       );
       var url = "/data/Text File/states.txt";
       $.get(url, function (data) {
             var arr = data.split(",");
+            var tmp = $('#us_state').data('val');
             $.each(arr, function (key, entry) {
                   $("#us_state").append(
-                        '<option value="' + entry + '" >' + entry + "</option>"
+                        '<option class="state_opt" '+((tmp==entry)?"selected":"")+' value="' + entry + '">' + entry + "</option>"
                   );
             });
       });

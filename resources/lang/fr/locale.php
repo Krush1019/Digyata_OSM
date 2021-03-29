@@ -8,6 +8,7 @@ return [
   "People" => "Personnes",
   "Client Manage" => "Gestion du client",
   "User Manage" => "Gérer les utilisateurs",
+  "Service Manage" => "Gérer le service",
   "Booking Schedule" => "Calendrier de réservation",
   "Other Parameter" => "Autre paramètre",
   "Discount&PromoCode" => "Code de réduction et de promotion",

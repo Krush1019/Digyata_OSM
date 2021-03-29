@@ -8,6 +8,7 @@ return [
   "People" => "People",
   "Client Manage" => "Client Manage",
   "User Manage" => "User Manage",
+  "Service Manage" => "Service Manage",
   "Booking Schedule" => "Booking Schedule",
   "Review Order" => "Review Order",
   "Other Parameter" => "Other Parameter",

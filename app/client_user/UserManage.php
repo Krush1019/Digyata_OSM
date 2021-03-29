@@ -14,7 +14,7 @@ class UserManage extends Authenticatable
         protected $guard = 'customer';
 
         protected $fillable = [
-            'sUserName', 'sUserEmail', 'password','sUserMobile','sUserGender','sUserAddress'
+            'sUserID', 'sUserName', 'sUserEmail', 'password', 'sUserMobile','sUserGender', 'sUserAddress'
         ];
 
         protected $hidden = [

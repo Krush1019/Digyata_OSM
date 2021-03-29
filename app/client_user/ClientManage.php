@@ -14,7 +14,7 @@ class ClientManage extends Authenticatable
         protected $guard = 'client';
 
         protected $fillable = [
-            'sClName', 'sClEmail', 'password','sClMobile','sClGender','sClAddress'
+            'sClientID', 'sClName', 'sClEmail', 'password','sClMobile','sClGender','sClAddress'
         ];
 
         protected $hidden = [

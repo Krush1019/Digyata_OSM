@@ -57,8 +57,8 @@
             </figure>
             <h3>Boost your Visibility</h3>
             <p class="lead"> Illum suavitate ad has, inani salutatus sit et, error reprehendunt id eam.</p>
-            <p>Eu quem patrioque delicatissimi est. Eos delectus perpetua posidonium ei. Ad debitis accusamus eam. Nec
-              ea esse nulla aperiam, pri at decore numquam, no detracto cotidieque his. Invenire facilisis ex ius.</p>
+            {{-- <p>Eu quem patrioque delicatissimi est. Eos delectus perpetua posidonium ei. Ad debitis accusamus eam. Nec
+              ea esse nulla aperiam, pri at decore numquam, no detracto cotidieque his. Invenire facilisis ex ius.</p> --}}
           </div>
         </div>
         <div class="col-lg-4">
@@ -67,9 +67,9 @@
             </figure>
             <h3>Manage Easily</h3>
             <p class="lead">Est falli invenire interpretaris id, magna libris sensibus mel id.</p>
-            <p>Per eu nostrud feugiat. Et quo molestiae persecuti neglegentur. At zril definitionem mei, vel ei choro
+            {{-- <p>Per eu nostrud feugiat. Et quo molestiae persecuti neglegentur. At zril definitionem mei, vel ei choro
               volumus. An tota nulla soluta has, ei nec essent audiam, te nisl dignissim vel. Ex velit audire perfecto
-              pro, ei mei doming vivendo legendos.</p>
+              pro, ei mei doming vivendo legendos.</p> --}}
           </div>
         </div>
         <div class="col-lg-4">
@@ -78,8 +78,8 @@
             </figure>
             <h3>Reach New Customers</h3>
             <p class="lead">Laoreet inimicus vulputate est. Sea in voluptatibus comprehensam vituperatoribus.</p>
-            <p>Movet iriure dolores nec ea, per ei dicat audire signiferumque. Illum porro gubergren vis in, affert
-              graecis an eos, qui quem facilis vulputate cu. Ei commodo prompta eum, et eum vide appareat euripidis.</p>
+            {{-- <p>Movet iriure dolores nec ea, per ei dicat audire signiferumque. Illum porro gubergren vis in, affert
+              graecis an eos, qui quem facilis vulputate cu. Ei commodo prompta eum, et eum vide appareat euripidis.</p> --}}
           </div>
         </div>
       </div>
@@ -100,21 +100,21 @@
             <div class="box_contacts font-weight-bolder">
               <div class="rich-text">Over</div>
               <strong class="font-large-50">50+</strong>
-              <div class="rich-text">Clients joined With Us</div>
+              <div class="rich-text">Clients Joined With Us</div>
             </div>
           </div>
           <div class="col-lg-4 hovering-zoom">
             <div class="box_contacts font-weight-bolder">
               <div class="rich-text">Over</div>
               <strong class="font-large-50">100+</strong>
-              <div class="rich-text">People have used Digyata</div>
+              <div class="rich-text">People Have Used Digyata</div>
             </div>
           </div>
           <div class="col-lg-4 hovering-zoom">
             <div class="box_contacts font-weight-bolder">
-              <div class="rich-text">We serve customers in</div>
+              <div class="rich-text">We Serve Customers In</div>
               <strong class="font-large-50">5+</strong>
-              <div class="rich-text">cities</div>
+              <div class="rich-text">Cities</div>
             </div>
           </div>
         </div>

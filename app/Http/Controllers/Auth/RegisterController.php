@@ -30,7 +30,7 @@ class RegisterController extends Controller {
      *
      * @var string
      */
-     protected $redirectTo = '/';
+     protected $redirectTo = '/admin-dashboard';
 
     /**
      * Create a new controller instance.
@@ -100,6 +100,7 @@ class RegisterController extends Controller {
         ]);
         // $this->validator($request->all())->validate();
         ClientManage::create([
+            'sClientID' => $this->getGenerateID("sClientID"),
             'sClName' => $request->name,
             'sClEmail' => $request->email,
             'sClMobile' => $request->mobile,
@@ -130,6 +131,7 @@ class RegisterController extends Controller {
         // $this->validator($request->all())->validate();
 
         UserManage::create([
+            'sUserID' => $this->getGenerateID("sUserID"),
             'sUserName' => $request->name,
             'sUserEmail' => $request->email,
             'sUserMobile' => $request->mobile,
@@ -137,6 +139,26 @@ class RegisterController extends Controller {
             'password' => Hash::make($request->password),
         ]);
         return redirect()->intended(route('login-page'));
+    }
+
+    // Generate ID
+    private function getGenerateID($col_name){
+        $temp = "GI-";
+        if($col_name == "sClientID") {
+            $tbl = new ClientManage();
+            $temp = "CI-";
+        } else if ($col_name == "sUserID") {
+            $tbl = new UserManage();
+            $temp = "UI-";
+        }
+        
+        newGenerateID:
+        $id = $temp . date('ym').rand(100, 999);
+        $count = $tbl->where($col_name, $id)->count();
+        if($count == 0)
+            return $id;
+        else
+            goto newGenerateID;
     }
 
 }

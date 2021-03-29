@@ -1,170 +1,168 @@
 /*
-  * Filename  : client-service-listing.js
-  * Author	  : Digyata
+  *  Filename   : client-service-listing.js
+  *  Author	      : Digyata
   */
 
 $(document).ready(function () {
 
-  const Toast = Swal.mixin({
-      toast: true,
-      position: 'bottom-left',
-      showConfirmButton: true,
-      showCancelLink: true,
-      timer: 5000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-  });
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-left',
+        showConfirmButton: true,
+        showCancelLink: true,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
 
-  //Close modal by click ESC key
-  $(document).on('keyup', function (e) {
-      if (e.keyCode === 27) {
-          $('#viewservicemodal').modal('hide');
-      }
-  })
+    //Close modal by click ESC key
+    $(document).on('keyup', function (e) {
+        if (e.keyCode === 27) {
+            $('#viewservicemodal').modal('hide');
+        }
+    })
 
-  //status change
-  $(document).on('click', '.s_status', function (e) {
-      var btn = $(this);
-      var status = (btn.text() == "Active") ? "Inactive" : "Active";
-      var id = btn.attr("data-id");
-      Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#2778c4',
-          cancelButtonColor: '#757575',
-          confirmButtonText: status
-      }).then((result) => {
-          if (result.isConfirmed) {
-              $.get("/service-listing-update", {
-                  "action": "status",
-                  "id": id,
-                  "status": status
-              }, function (result) {
-                  Toast.fire({
-                      icon: 'success',
-                      title: 'Status Changed'
-                  });
-                  if (status == 'Inactive') {
-                      btn.removeClass('approve').addClass('delete').text('Inactive').prepend('<i class="fa fa-fw fa-ban mr-1"></i>');
-                  } else {
-                      btn.removeClass('delete').addClass('approve').text('Active').prepend('<i class="fa fa-fw fa-check mr-1"></i>');
-                  }
-              });
-          }
-      });
-  });
+    //status change
+    $(document).on('click', '.s_status', function (e) {
+        var btn = $(this);
+        var status = (btn.text() == "Active") ? "Inactive" : "Active";
+        var id = btn.attr("data-id");
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#2778c4',
+            cancelButtonColor: '#757575',
+            confirmButtonText: status
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.get("/service-listing-update", {
+                    "action": "status",
+                    "id": id,
+                    "status": status
+                }, function (result) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Status Changed'
+                    });
+                    if (status == 'Inactive') {
+                        btn.removeClass('approve').addClass('delete').text('Inactive').prepend('<i class="fa fa-fw fa-ban mr-1"></i>');
+                    } else {
+                        btn.removeClass('delete').addClass('approve').text('Active').prepend('<i class="fa fa-fw fa-check mr-1"></i>');
+                    }
+                });
+            }
+        });
+    });
 
-  // Model Open
-  $(document).on('click', ".modal_btn", function (e) {
-      var id = $(this).attr("data-id");
-      var url = "/service-listing-show";
-      var form = $("#viewServiceModal");
-      form.find(".social").empty();
-      var data = {
-          "id": id,
-      }
-      $.get(url, data, function (result) {
-          result = JSON.parse(result);
-          form.find(".service_img").attr("src", result['img']);
-          form.find(".provider_name").text(result['name']);
-          form.find(".provider_exp").text(result['exp']);
-          form.find(".service_name").text(result['service_name']);
-          form.find(".service_cate").text(result['service_cat']);
-          form.find(".ser_phone").text(result['phone']);
-          form.find(".ser_email").text(result['email']);
+    // Model Open
+    $(document).on('click', ".modal_btn", function (e) {
+        var id = $(this).attr("data-id");
+        var url = "/service-listing-show";
+        var form = $("#viewServiceModal");
+        form.find(".social").empty();
+        var data = {
+            "id": id,
+        }
+        $.get(url, data, function (result) {
+            result = JSON.parse(result);
+            form.find(".service_img").attr("src", result['img']);
+            form.find(".provider_name").text(result['name']);
+            form.find(".provider_exp").text(result['exp']);
+            form.find(".service_name").text(result['service_name']);
+            form.find(".service_cate").text(result['service_cat']);
+            form.find(".ser_phone").text(result['phone']);
+            form.find(".ser_email").text(result['email']);
 
-          if (result['web'] != "" && result['web'] != null) {
-              var html = "<a href='" + result['web'] + "'  target='_blank' class='social-icon globe'><i class='fa fa-globe fa-2x'></i></a>";
-              form.find(".social").append(html);
-          }
-          if (result['fb'] != "" && result['fb'] != null) {
-              var html = "<a href='" + result['fb'] + "'  target='_blank' class='social-icon facebook'><i class='fa fa-facebook-f fa-2x'></i></a>";
-              form.find(".social").append(html);
-          }
-          if (result['tw'] != "" && result['tw'] != null) {
-              var html = "<a href='" + result['tw'] + "'  target='_blank' class='social-icon twitter'><i class='fa fa-twitter fa-2x'></i></a>";
-              form.find(".social").append(html);
-          }
-          if (result['linkedin'] != "" && result['linkedin'] != null) {
-              var html = "<a href='" + result['linkedin'] + "'  target='_blank' class='social-icon  linkedin'><i class='fa fa-linkedin fa-2x'></i></a>";
-              form.find(".social").append(html);
-          }
-          if (result['insta'] != "" && result['insta'] != null) {
-              var html = "<a href='" + result['insta'] + "'  target='_blank' class='social-icon instagram'><i class='fa fa-instagram fa-2x'></i></a>";
-              form.find(".social").append(html);
-          }
+            if (result['web'] != "" && result['web'] != null) {
+                var html = "<a href='" + result['web'] + "'  target='_blank' class='social-icon globe'><i class='fa fa-globe fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+            if (result['fb'] != "" && result['fb'] != null) {
+                var html = "<a href='" + result['fb'] + "'  target='_blank' class='social-icon facebook'><i class='fa fa-facebook-f fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+            if (result['tw'] != "" && result['tw'] != null) {
+                var html = "<a href='" + result['tw'] + "'  target='_blank' class='social-icon twitter'><i class='fa fa-twitter fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+            if (result['linkedin'] != "" && result['linkedin'] != null) {
+                var html = "<a href='" + result['linkedin'] + "'  target='_blank' class='social-icon  linkedin'><i class='fa fa-linkedin fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+            if (result['insta'] != "" && result['insta'] != null) {
+                var html = "<a href='" + result['insta'] + "'  target='_blank' class='social-icon instagram'><i class='fa fa-instagram fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
 
-          if (form.find(".social").html() == "") {
-              form.find(".social").text("No Data Available !!!");
-          }
+            if (form.find(".social").html() == "") {
+                form.find(".social").text("No Data Available !!!");
+            }
 
-          form.find(".ser_des").html(result['dec']);
-          form.find(".view_doc").attr("href", result['doc_img']);
-          form.find(".doc_num").text(result['doc_num']);
+            form.find(".ser_des").html(result['dec']);
+            form.find(".view_doc").attr("href", result['doc_img']);
+            form.find(".doc_num").text(result['doc_num']);
 
-          if (result['days'] != "" && result['days_time'] != "") {
-              form.find(".day_time tbody").empty();
-              var days = result['days'].split(",");
-              var time = result['days_time'].split(",");
-              if (days[0] == "CUSTOM") {
-                  for (i = 1; i < days.length - 1; i++) {
-                      var temp = "";
-                      if (time[i] == "")
-                          temp = "Holiday";
-                      else {
-                          time[i] = time[i].split("-");
-                          temp = time[i][0] + ":00 To " + time[i][1] + ":00";
-                      }
-                      form.find(".day_time tbody").append("<tr><td>" + days[i] + "</td><td>" + temp + "</td></tr>");
-                  }
-              } else if (days[0] == "5D") {
-                  time = time[0].split("-");
-                  form.find(".day_time tbody").append("<tr><td>5 Days (Mon-Fri)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-              } else if (days[0] == "6D") {
-                  time = time[0].split("-");
-                  form.find(".day_time tbody").append("<tr><td>6 Days (Mon-Sat)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-                  console.log(time);
-              } else if (days[0] == "All") {
-                  time = time[0].split("-");
-                  form.find(".day_time tbody").append("<tr><td>All Days</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-                  console.log(time);
-              }
-          }
+            if (result['days'] != "" && result['days_time'] != "") {
+                form.find(".day_time tbody").empty();
+                var days = result['days'].split(",");
+                var time = result['days_time'].split(",");
+                if (days[0] == "CUSTOM") {
+                    for (i = 1; i < days.length - 1; i++) {
+                        var temp = "";
+                        if (time[i] == "" )
+                            temp = "Holiday";
+                        else {
+                            time[i] = time[i].split("-");
+                            temp = time[i][0] + ":00 To " + time[i][1] + ":00";
+                        }
+                        form.find(".day_time tbody").append("<tr><td>" + days[i] + "</td><td>" + temp + "</td></tr>");
+                    }
+                } else if (days[0] == "5D") {
+                    time = time[0].split("-");
+                    form.find(".day_time tbody").append("<tr><td>5 Days (Mon-Fri)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
+                } else if (days[0] == "6D") {
+                    time = time[0].split("-");
+                    form.find(".day_time tbody").append("<tr><td>6 Days (Mon-Sat)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
+                    console.log(time);
+                } else if (days[0] == "ALL") {
+                    time = time[0].split("-");
+                    form.find(".day_time tbody").append("<tr><td>All Days</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
+                    console.log(time);
+                }
+            }
 
-          form.find(".list_item tbody").empty();
-          if (result['item'].length != 0) {
-              $.each(result['item'], function (key, value) {
-                  var html = '<tr  class="d-flex"><td class="col-md-3">' + value['iName'] + '</td><td class="col-md-2">₹ ' + value['iPrice'] + '</td><td class="col-md-7">' + value['iDes'] + '</td></tr>';
-                  form.find(".list_item tbody").append(html);
-              });
-          } else {
-              form.find(".list_item tbody").text("No Data Found !!!");
-          }
+            form.find(".list_item tbody").empty();
+            if (result['item'].length != 0) {
+                $.each(result['item'], function (key, value) {
+                    var html = '<tr  class="d-flex"><td class="col-md-3">' + value['iName'] + '</td><td class="col-md-2">₹ ' + value['iPrice'] + '</td><td class="col-md-7">' + value['iDes'] + '</td></tr>';
+                    form.find(".list_item tbody").append(html);
+                });
+            } else {
+                form.find(".list_item tbody").text("No Data Found !!!");
+            }
 
-          form.find(".edit_btn").attr("href", "/add-service-listing/" + result['main_id']);
+            form.find(".edit_btn").attr("href", "/add-service-listing/" + result['main_id']);
 
-          $("#viewServiceModal").modal("show");
-      })
-          .fail(function () {
-              swalError();
-          });
+            $("#viewServiceModal").modal("show");
+        })
+            .fail(function () {
+                swalError();
+            });
+    });
 
-
-  });
-
-})
+});
 
 function swalError(msg = "Something went wrong!", title = "Oops...") {
-  Swal.fire({
-      icon: 'error',
-      title: title,
-      text: msg,
-  }).then((result) => {
-      location.reload();
-  });
+    Swal.fire({
+        icon: 'error',
+        title: title,
+        text: msg,
+    }).then((result) => {
+        location.reload();
+    });
 }

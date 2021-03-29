@@ -5,7 +5,10 @@ namespace App\Http\Controllers\client_user\user;
 use App\client_user\user\UserProfile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\client_user\UserManage;
+use Illuminate\Support\Facades\Hash;
+use Auth;
+use Illuminate\Validation\Rule;
 class UserProfileController extends Controller
 {
     /**
@@ -21,10 +24,7 @@ class UserProfileController extends Controller
 
     public function index()
     {
-        $breadcrumbs = [['link' => route('home') , 'name' => "Dashboard"], ['name' => "My Profile"]];
-      return view('/pages/client_user/user/user-profile', [
-        'breadcrumbs' => $breadcrumbs
-      ]);
+        return view('/pages/client_user/user/user-profile');
     }
 
     /**
@@ -77,9 +77,48 @@ class UserProfileController extends Controller
      * @param  \App\client_user\user\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, UserProfile $userProfile)
     {
-        //
+        $user = Auth::user();
+        $request->validate([
+            'sUserName' => ['required', 'string', 'max:255'],
+            'sUserEmail' => ['required', 'string', 'email', 'max:255', Rule::unique('tbl_user_manage')->ignore($user)],
+            'sUserMobile' => ['required', 'numeric', 'digits:10'],
+        ]);
+        $tmp = $request->all();
+        foreach ($tmp as $key => $value) {
+            if(!$value || $key=="_token"){
+                unset($tmp[$key]);
+            }
+        }
+    // password checking open
+            if ($request->oldpassword || $request->password || $request->password_confirmation) {
+                        $request->validate([
+                            'oldpassword' => ['required', 'string', 'min:6'],
+                            'password' => ['required', 'string', 'min:6', 'confirmed']
+                        ]);
+                $user = Auth::user();
+
+                    if (Hash::check($tmp['oldpassword'], $user->password)) {
+
+                        $tmp['password'] = Hash::make($tmp['password']);
+
+                    }else{
+
+                        return back()->withErrors(['password' => 'Old Password Does not match with records.']);
+                        unset($tmp['password']);
+
+                    }
+
+                    unset($tmp['oldpassword']);
+                    unset($tmp['password_confirmation']);
+                    
+            }
+    // password checking close
+        $result = UserManage::where('id', Auth::guard('customer')->user()->id)->update($tmp);
+        $request->session()->flash('status', 'Updated successfuliy!');
+        return back();
     }
 
     /**
