@@ -227,7 +227,10 @@ var lazyLoadInstance = new LazyLoad({
   //Active Manu List Item
   $(document).ready(function () {
     var activeurl = window.location;
-    $('a[href="' + activeurl + '"]').parent('li').addClass('active');
+    if(activeurl.pathname == '/') {
+	activeurl += 'home';
+    }
+    $('.main-menu ul li a[href="' + activeurl + '"]').addClass('text-green font-weight-bold');
   });
 
 })(window.jQuery);

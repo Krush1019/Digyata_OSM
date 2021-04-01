@@ -12,6 +12,8 @@
 
 @section('header-class', 'header clearfix element_to_stick')
 
+@section('header-class', 'header clearfix element_to_stick')
+
 @section('content')
 <main>
   <div id="carousel-home">

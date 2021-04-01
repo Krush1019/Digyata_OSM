@@ -22,7 +22,7 @@
       </div> -->
     </div>
     <div class="list_general">
-      @if (! empty($data))
+      @if (empty($data))
         <div class="box_general box padding_bottom text-center">
           <div class="row h-100">
             <div class="col-sm-12 my-auto">

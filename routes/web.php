@@ -88,8 +88,8 @@ use App\Http\Controllers\LanguageController;
  * ********************/
 
     /** Index page */
-    Route::get('/', 'client_user\indexController@index')->name('index-page');
-    Route::get('/home', 'client_user\indexController@index')->name('home');
+    Route::get('/', 'client_user\indexController@index')->name('home');
+    Route::get('/home', 'client_user\indexController@index')->name('index-page');
 
     /** client-register */
     Route::get('/client-register', 'client_user\ClientRegisterController@index')->name('client-register');

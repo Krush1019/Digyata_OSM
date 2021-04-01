@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Auth;
 
 class RegisterController extends Controller {
     /*
@@ -108,7 +109,11 @@ class RegisterController extends Controller {
             'sClAddress' => $request->address,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended(route('login-page'));
+        if (Auth::guard('client')->attempt(['sClEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            return redirect()->intended(route('client-dashboard'));
+        }
+
+        // return redirect()->intended(route('login-page'));
     }
 
 
@@ -138,7 +143,11 @@ class RegisterController extends Controller {
             'sUserGender' => $request->gender,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended(route('login-page'));
+        
+        if (Auth::guard('customer')->attempt(['sUserEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            return redirect()->intended(route('index-page'));
+        }
+        // return redirect()->intended(route('login-page'));
     }
 
     // Generate ID

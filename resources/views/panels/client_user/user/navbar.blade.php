@@ -4,13 +4,14 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-      <link rel="shortcut icon" href="{{asset('client_user/img/logo-icon.ico')}}" type="image/x-icon">
+      <link rel="shortcut icon" href="{{asset('client_user/img/favicon.svg')}}" type="image/x-icon">
 
-      <a class="navbar-brand mr-0" href="{{route('index-page')}}"><img class="width-logo-auto" src="{{asset('client_user/img/logo.png')}}" data-retina="true" alt="" width="120" height="35"></a>
+      <a class="navbar-brand mr-4" href="{{route('index-page')}}"><img class="width-logo-auto" src="{{asset('client_user/img/logo.svg')}}" data-retina="true" alt="" width="120" height="35"></a>
 
-      <span class="nav-item dropdown d-lg-none d-md-block">
-        <a class="nav-link dropdown-toggle mr-lg-2 link-color logo-a" id="userDropdown1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span hidden class="logo-figure d-none d-sm-block"><img class="logo-img" src="{{Auth::guard('customer')->user()->sUserImgURL}}" alt=""></span><span>{{Auth::guard('customer')->user()->sUserName}}</span>
+      <span class="dropdown d-lg-none d-md-block">
+        <a class="dropdown-toggle mr-lg-2 link-color logo-a" id="userDropdown1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span hidden class="logo-figure"><img class="logo-img" src="{{Auth::guard('customer')->user()->sUserImgURL}}" alt=""></span>
+          <span class="d-none d-sm-inline-block-">{{Auth::guard('customer')->user()->sUserName}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min-auto" aria-labelledby="userDropdown1">
           <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">

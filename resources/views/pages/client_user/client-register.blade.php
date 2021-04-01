@@ -31,8 +31,6 @@
   </div>
   <!-- /hero_single -->
 
-  
-
   {{-- 
     <div class="container margin_60_40">
       <div class="main_title center">
@@ -93,13 +91,13 @@
   <div class="bg_gray pattern_mail" id="submit">
     <div class="container margin_60_40">
       <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-sm-10 col-md-7 col-xl-5">
           <div class="box_general padding">
             <div class="text-center add_bottom_15">
               <h4>Please fill the form below</h4>
             </div>
             <div id="message-register"></div>
-            <form id="Client-register" method="POST" action="{{ route('register.client') }}">
+            <form id="Client-register" method="POST" action="{{ route('register.client') }}" autocomplete="off">
               @csrf
               <div class="row">
                 <div class="col-md-12">

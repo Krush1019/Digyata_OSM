@@ -134,7 +134,7 @@ a#forgot:hover, a#forgot:focus {
 }
 
 .text-pink {
-  color: #FF3A65;
+  color: #FF3A65 !important;
 }
 
 .running {
@@ -216,4 +216,14 @@ invoice page
   min-height: auto !important;
 }
 
+header.header.sticky .logo {
+  display: inline-block;
+}
 
+.text-green {
+  color: #3cb46e !important ;
+}
+
+#header_menu {
+  background-color: #d7dad6 !important;
+}

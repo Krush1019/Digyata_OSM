@@ -3,10 +3,9 @@
   <div class="container-fluid">
     <div id="logo">
       <a href="{{route('index-page')}}">
-        <img src="{{asset('client_user/img/logo.png')}}" width="200" height="45" alt="" class="logo_normal">
-        <img src="{{asset('client_user/img/logo.png')}}" width="200" height="45" alt="" class="logo_sticky">
+        <img id="logo_normal" src="{{asset('client_user/img/logo.svg')}}" width="150" height="35"  alt="" class="logo">
       </a>
-    </div>
+    </div>  
 
     @if ( ! str_contains(Request::fullUrl(), 'loginpage'))
       @if (Auth::guard('customer')->check())
@@ -52,7 +51,7 @@
         <a href="#0" class="open_close">
           <i class="icon_close"></i><span>Menu</span>
         </a>
-        <a href="{{route('index-page')}}"><img src="{{asset('client_user/img/logo.png')}}" width="200" height="45"
+        <a href="{{route('index-page')}}"><img src="{{asset('client_user/img/logo.svg')}}" width="150" height="35"
             alt=""></a>
       </div>
       <ul>

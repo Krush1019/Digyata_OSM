@@ -88,11 +88,6 @@ class LoginController extends Controller
      * @return void
      */
 
-    /* public function showClientLoginForm()
-    {
-        return redirect(route('login-page'));
-    } */
-
     public function clientLogin(Request $request)
     {
 
@@ -124,12 +119,6 @@ class LoginController extends Controller
      *
      * @return void
      */
-
-    /* public function showCustomerLoginForm()
-    {
-        return redirect(route('login-page'));
-    } */
-
 
     public function LoginPageForm()
     {

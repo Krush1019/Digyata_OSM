@@ -18,7 +18,7 @@
   <div id="login">
     <aside>
       <figure class="px-0">
-        <a href="{{route('index-page')}}"><img src="{{asset('client_user/img/logo.png')}}" width="250" height="80" alt="" class="logo_sticky"></a>
+        <a href="{{route('index-page')}}"><img src="{{asset('client_user/img/logo.svg')}}" width="150" height="35" alt="" class="logo_sticky"></a>
       </figure>
 
       <form autocomplete="off" id="User-register" method="POST" action="{{ route('register.customer') }}">
