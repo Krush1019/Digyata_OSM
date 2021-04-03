@@ -140,7 +140,7 @@ use App\Http\Controllers\LanguageController;
 /******************
 *   USER
 ******************/
-
+    
     /** user -- Profile */
     Route::get('/user/profile', 'client_user\user\UserProfileController@index')->name('user.profile');
     Route::post('/user/profile', 'client_user\user\UserProfileController@update')->name('user.profileupdate');
@@ -149,7 +149,7 @@ use App\Http\Controllers\LanguageController;
     Route::get('/user/my-orders', 'client_user\user\MyOrdersController@index')->name('user.myorders');
 
     /** client -- detail */
-    Route::get('/client-detail', 'client_user\user\ClientDetailController@index')->name('client-detail');
+    Route::get('/client-detail/{id}', 'client_user\user\ClientDetailController@index')->name('client-detail');
 
     /** client -- listing */
     Route::get('/client-listing', 'client_user\user\ClientListingController@index')->name('client-listing');
@@ -168,7 +168,8 @@ use App\Http\Controllers\LanguageController;
     Route::get('/access-control', 'AccessController@index');
     Route::get('/access-control/{roles}', 'AccessController@roles');
     Route::get('/modern-admin', 'AccessController@home')->middleware('permissions:approve-post');
-    Route::get('/logout', 'Auth\LoginController@logout');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    
 
     Auth::routes();
 

@@ -11,9 +11,6 @@
 @endsection
 
 @section('header-class', 'header clearfix element_to_stick')
-
-@section('header-class', 'header clearfix element_to_stick')
-
 @section('content')
 <main>
   <div id="carousel-home">
@@ -85,14 +82,15 @@
         <p>Expert Professionals At Your Doorsteps</p>
       </div>
       <div class="row">
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+      @foreach ($services as $service)
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
           <div class="strip">
             <figure>
-              <img src="{{asset('client_user/img/elecrician-person.jpg')}}" data-src="{{asset('client_user/img/elecrician-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
+              <img src="{{asset($service->ser_photo)}}" data-src="{{asset($service->ser_photo)}}" class="img-fluid lazy" alt="">
+              <a href="{{route('client-detail',['id' => encrypt($service->ser_id)])}}" class="strip_info">
                 <div class="item_title">
-                  <h3>Ramesh Patel</h3>
-                  <small>Electician</small>
+                  <h3>{{$service->ser_pro_name}}</h3>
+                  <small>{{$service->serviceName}}</small>
                 </div>
               </a>
             </figure>
@@ -105,110 +103,7 @@
             </ul>
           </div>
         </div>
-        <!-- /strip grid -->
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-          <div class="strip">
-            <figure>
-              <img src="{{asset('client_user/img/plumber-person.jpg')}}" data-src="{{asset('client_user/img/plumber-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
-                <div class="item_title">
-                  <h3>Kapil Satavara</h3>
-                  <small>Plumber</small>
-                </div>
-              </a>
-            </figure>
-            <ul>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
-              <li>
-                <div class="score"><span>Superb<em>172 Reviews</em></span><strong>4.2</strong></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- /strip grid -->
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-          <div class="strip">
-            <figure>
-              <img src="{{asset('client_user/img/painter-person.jpg')}}" data-src="{{asset('client_user/img/painter-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
-                <div class="item_title">
-                  <h3>Ankit Modi</h3>
-                  <small>Painter</small>
-                </div>
-              </a>
-            </figure>
-            <ul>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
-              <li><div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.4</strong></div></li>
-            </ul>
-          </div>
-        </div>
-        <!-- /strip grid -->
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-          <div class="strip">
-            <figure>
-              <img src="{{asset('client_user/img/cleaner-person.jpg')}}" data-src="{{asset('client_user/img/cleaner-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
-                <div class="item_title">
-                  <h3>Manubhai Khoja</h3>
-                  <small>Cleaner</small>
-                </div>
-              </a>
-            </figure>
-            <ul>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-users"></i></a></li>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
-              <li>
-                <div class="score"><span>Superb<em>300 Reviews</em></span><strong>4.1</strong></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- /strip grid -->
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-          <div class="strip">
-            <figure>
-              <img src="{{asset('client_user/img/pest_controller-person.jpg')}}" data-src="{{asset('client_user/img/pest_controller-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
-                <div class="item_title">
-                  <h3>Umang Panchal</h3>
-                  <small>Pest Controller, Fumigators</small>
-                </div>
-              </a>
-            </figure>
-            <ul>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-users"></i></a></li>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
-              <li>
-                <div class="score"><span>Superb<em>140 Reviews</em></span><strong>4.2</strong></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- /strip grid -->
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-          <div class="strip">
-            <figure>
-              <img src="{{asset('client_user/img/carpenter-person.jpg')}}" data-src="{{asset('client_user/img/carpenter-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
-                <div class="item_title">
-                  <h3>paresh Mistri</h3>
-                  <small>Carpenter</small>
-                </div>
-              </a>
-            </figure>
-            <ul>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
-              <li>
-                <div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.3</strong></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- /strip grid -->
+      @endforeach
       </div>
       <!-- /row -->
       <p class="text-center add_top_30"><a href="{{route('client-listing')}}" class="btn_1 medium">Start Searching</a></p>
@@ -339,7 +234,7 @@
   </div>
   <!-- /bg_gray -->
 
-  <div class="call_section version_2 lazy" data-bg="url({{asset('client_user/img/bg_call_section.jpg')}})">
+  <div class="call_section version_2 lazy" data-bg="url({{asset('client_user/img/index-register.jpg')}})">
     <div class="container clearfix">
       <div class="col-lg-5 col-md-6 float-right wow">
         <div class="box_1">

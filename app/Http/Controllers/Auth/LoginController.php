@@ -71,6 +71,7 @@ class LoginController extends Controller
         if (Auth::guard('client')->check()) {
             $path = route('home');
         }
+        
         if (Auth::guard('customer')->check()) {
             $path = route('home');
         }

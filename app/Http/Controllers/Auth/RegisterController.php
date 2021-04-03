@@ -113,7 +113,7 @@ class RegisterController extends Controller {
             return redirect()->intended(route('client-dashboard'));
         }
 
-        // return redirect()->intended(route('login-page'));
+        return redirect()->intended(route('login-page'));
     }
 
 
@@ -147,7 +147,7 @@ class RegisterController extends Controller {
         if (Auth::guard('customer')->attempt(['sUserEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended(route('index-page'));
         }
-        // return redirect()->intended(route('login-page'));
+        return redirect()->intended(route('login-page'));
     }
 
     // Generate ID
