@@ -31,7 +31,7 @@ class CreateOrderManagesTable extends Migration {
             $table->foreign('user_id')->references('id')->on('tbl_user_manage');
 
             $table->unsignedBigInteger('ser_list_id');
-            $table->foreign("ser_list_id")->references("ser_id")->on("tbl_user_ser_list");
+            $table->foreign("ser_list_id")->references("ser_id")->on("tbl_ser_list");
 
             $table->string("ser_item_id");
             // $table->unsignedBigInteger('item_id');
@@ -42,8 +42,8 @@ class CreateOrderManagesTable extends Migration {
             $table->string('sTimeSlot');
             $table->string('sAmount');
             $table->boolean('bPayStatus')->default(0);
-            $table->string('bSerStatus')->default("pending"); // approved, cancel
-
+            $table->string('bSerStatus')->default("pending");
+            
             $table->timestamps();
         });
     }

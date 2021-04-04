@@ -11,7 +11,7 @@
 
   <!-- Favicons-->
   <link rel="shortcut icon" href="{{asset('client_user/img/favicon.svg ')}}" type="image/x-icon">
-
+  
   {{-- Include core specific custom Styles --}}
   @include('panels.client_user.styles')
 

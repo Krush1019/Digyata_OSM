@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateServicelistsTable extends Migration {
 
-    private $tbl_name = "tbl_user_ser_list";
-    private $tbl_name2 = "tbl_user_ser_item_price";
+    private $tbl_name1 = "tbl_ser_list";
+    private $tbl_name2 = "tbl_ser_item_price";
 
     /**
      * Run the migrations.
@@ -16,10 +16,11 @@ class CreateServicelistsTable extends Migration {
      */
 
     public function up() {
-        Schema::create($this->tbl_name, function (Blueprint $table) {
+        Schema::create($this->tbl_name1, function (Blueprint $table) {
             $table->id('ser_id');
-            $table->unsignedBigInteger('cl_id');
-            $table->foreign('cl_id')->references('id')->on("tbl_client_manage");
+
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on("tbl_client_manage");
 
             $table->unsignedBigInteger('ser_cat_id');
             $table->foreign('ser_cat_id')->references('id')->on('tbl_service_catalogs');
@@ -39,8 +40,14 @@ class CreateServicelistsTable extends Migration {
             $table->string('doc_no');
             $table->string('doc_image');
 
-            $table->string('ser_days')->nullable(); // MON, TUE, WEN,... 
-            $table->string('ser_time')->nullable(); // 6-18, 7-8,...
+            $table->string("ser_state");
+            $table->string("ser_city");
+            $table->text("ser_address");
+            $table->string("pin_no");
+
+            $table->string('ser_days');
+            $table->string('ser_time'); 
+            $table->string('ser_item_id');
             $table->boolean('ser_status')->default(1);
 
             $table->timestamps();
@@ -48,10 +55,13 @@ class CreateServicelistsTable extends Migration {
 
         Schema::create($this->tbl_name2, function (Blueprint $table) {
             $table->id('item_id');
-            $table->unsignedBigInteger('ser_id');
-            $table->foreign('ser_id')->references('ser_id')->on($this->tbl_name);
-            $table->unsignedBigInteger('cl_id');
-            $table->foreign('cl_id')->references('id')->on("tbl_client_manage");
+
+            // $table->unsignedBigInteger('ser_id');
+            // $table->foreign('ser_id')->references('ser_id')->on($this->tbl_name1);
+            
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on("tbl_client_manage");
+            
             $table->string('item_name');
             $table->string('item_des');
             $table->string('item_price');
@@ -68,7 +78,7 @@ class CreateServicelistsTable extends Migration {
      */
     public function down() {
         Schema::dropIfExists($this->tbl_name2);
-        Schema::dropIfExists($this->tbl_name);
+        Schema::dropIfExists($this->tbl_name1);
         
     }
 }

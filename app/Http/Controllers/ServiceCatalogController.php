@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Localization;
 use App\PriceRule;
 use Illuminate\Http\Request;
 use App\ServiceCatalog;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\True_;
 use Validator;
 
@@ -72,6 +74,7 @@ class ServiceCatalogController extends Controller
         $tbl->serviceMaxPrice = $request->get('serviceMaxPrice');
         $tbl->save();
         $this->savePriceRule($tbl->id);
+        $this->addLocatization($tbl->id);
         return true;
     }
 
@@ -158,6 +161,18 @@ class ServiceCatalogController extends Controller
     {
         ServiceCatalog::where('id', $request->id)->delete();
         return true;
+    }
+
+    /** Insert Localization */
+    private function addLocatization ($ser_id) {
+        $tbl_name = "tbl_service_localization";
+        $locData = Localization::all();
+        foreach ($locData as $row) {
+            DB::table($tbl_name)->insert([
+                "loc_id" => $row['loc_id'],
+                "ser_id" => $ser_id
+            ]);
+        }
     }
 
     private function savePriceRule($id) {

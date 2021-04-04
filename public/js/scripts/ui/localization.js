@@ -55,52 +55,53 @@ $(document).ready(function () {
 
   // Renering Icons in Actions column
   var customIconsHTML = function (params) {
-    var usersIcons = document.createElement("span");
-    var editIconHTML = '<i class="users-edit-icon feather icon-edit-1 mr-50 upd_btn" data-id="' + params.data['main_id'] + '"></i>';
-    var deleteIconHTML = document.createElement('i');
-    var attr = document.createAttribute("class")
-    attr.value = "users-delete-icon feather icon-trash-2"
-    deleteIconHTML.setAttributeNode(attr);
-    var attr2 = document.createAttribute("data-id")
-    attr2.value = params.data['main_id']
-    deleteIconHTML.setAttributeNode(attr2);
+      var usersIcons = document.createElement("span");
+      var editIconHTML = '<i class="users-edit-icon feather icon-edit-1 mr-50 upd_btn" data-id="' + params.data['location_id'] + '"></i>';
+      usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
+    // var deleteIconHTML = document.createElement('i');
+    // var attr = document.createAttribute("class")
+    // attr.value = "users-delete-icon feather icon-trash-2"
+    // deleteIconHTML.setAttributeNode(attr);
+    // var attr2 = document.createAttribute("data-id")
+    // attr2.value = params.data['main_id']
+    // deleteIconHTML.setAttributeNode(attr2);
 
     // selected row delete functionality
-    deleteIconHTML.addEventListener("click", function () {
-      var id = $(this).attr('data-id');
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        showLoaderOnConfirm: true,
-        preConfirm: () => {
-          $.ajax({
-            url: '/localization-update/' + id,
-            type: 'GET',
-            data: {'action': 'delete'},
-            success: function (result) {
-              deleteArr = [
-                params.data
-              ];
-              // var selectedData = gridOptions.api.getSelectedRows();
-              gridOptions.api.updateRowData({
-                remove: deleteArr
-              });
-              toastFire('Data Deleted Successfully.');
-            },
-            error: function (error) {
-              swalError();
-            }
-          });
-        }
-      });
-    });
-    usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
-    usersIcons.appendChild(deleteIconHTML);
-    return usersIcons
+    // deleteIconHTML.addEventListener("click", function () {
+    //   var id = $(this).attr('data-id');
+    //   Swal.fire({
+    //     title: 'Are you sure?',
+    //     text: "You won't be able to revert this!",
+    //     icon: 'warning',
+    //     showCancelButton: true,
+    //     confirmButtonColor: '#3085d6',
+    //     cancelButtonColor: '#d33',
+    //     showLoaderOnConfirm: true,
+    //     preConfirm: () => {
+    //       $.ajax({
+    //         url: '/localization-update/' + id,
+    //         type: 'GET',
+    //         data: {'action': 'delete'},
+    //         success: function (result) {
+    //           deleteArr = [
+    //             params.data
+    //           ];
+    //           // var selectedData = gridOptions.api.getSelectedRows();
+    //           gridOptions.api.updateRowData({
+    //             remove: deleteArr
+    //           });
+    //           toastFire('Data Deleted Successfully.');
+    //         },
+    //         error: function (error) {
+    //           swalError();
+    //         }
+    //       });
+    //     }
+    //   });
+    // });
+
+    // usersIcons.appendChild(deleteIconHTML);
+      return usersIcons
   }
 
   //  Rendering avatar in username column
@@ -317,6 +318,7 @@ $(document).ready(function () {
       type: 'GET',
       success: function (result) {
         result = JSON.parse(result);
+        console.log(result);
         $('#location-state').val(result[0]['loc_state']);
         $('#location-place').val(result[0]['loc_location']);
         $('#location-agentEmail').val(result[0]['loc_agent_email']);

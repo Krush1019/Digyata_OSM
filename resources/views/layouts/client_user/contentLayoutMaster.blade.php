@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{asset('client_user/img/apple-touch-icon-72x72-precomposed.png')}}">
   <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{asset('client_user/img/apple-touch-icon-114x114-precomposed.png')}}">
   <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{asset('client_user/img/apple-touch-icon-144x144-precomposed.png')}}"> --}}
-
+  
   {{-- Include core specific custom Styles --}}
   @include('panels.client_user.styles')
 

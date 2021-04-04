@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\DB;
 class indexController extends Controller
 {
     public function index(){
-      $services = DB::table('tbl_user_ser_list')
-                ->join('tbl_service_catalogs', 'tbl_user_ser_list.ser_cat_id', '=', 'tbl_service_catalogs.id')
+      $services = DB::table('tbl_ser_list')
+                ->join('tbl_service_catalogs', 'tbl_ser_list.ser_cat_id', '=', 'tbl_service_catalogs.id')
                 ->inRandomOrder()
                 ->limit(6)
                 ->get();

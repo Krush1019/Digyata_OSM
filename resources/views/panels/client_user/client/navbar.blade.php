@@ -119,7 +119,7 @@
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min" aria-labelledby="clientDropdown">
           <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-        </div>
+        </div> 
       </li>
     </ul>
   </div>

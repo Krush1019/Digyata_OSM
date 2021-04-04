@@ -1,10 +1,9 @@
 /*
- File Name: custom.js
+ File Name: index.js
  */
 //-------------------------------------------------------------------------------------------
 
 
-$(document).ready(function() {
-  
-})
+$(document).ready(function () {
 
+})

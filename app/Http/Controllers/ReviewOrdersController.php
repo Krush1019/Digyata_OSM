@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\ReviewOrders;
 use Illuminate\Http\Request;
 
-class ReviewOrdersController extends Controller
-{
+class ReviewOrdersController extends Controller {
     public function __construct() {
       $this->middleware("auth");
     }
@@ -15,8 +14,7 @@ class ReviewOrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
       $breadcrumbs = [['link' => "admin-dashboard", 'name' => "Home"], ['name' => "Review Order"]];
       return view('/pages/review-order', [
         'breadcrumbs' => $breadcrumbs
@@ -28,8 +26,7 @@ class ReviewOrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -39,8 +36,7 @@ class ReviewOrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $tbl = new ReviewOrders();
         $tbl->BsID = 1;
         $tbl->ser_id = 1;
@@ -60,8 +56,7 @@ class ReviewOrdersController extends Controller
      * @param  \App\ReviewOrders  $reviewOrders
      * @return \Illuminate\Http\Response
      */
-    public function show(ReviewOrders $reviewOrders, Request $request)
-    {
+    public function show(ReviewOrders $reviewOrders, Request $request) {
 //      $data = ReviewOrders::join('tbl_service_catalogs', 'tbl_review_orders.ser_id', '=', 'tbl_service_catalogs.id')
 //        ->join('tbl_user_manage', 'tbl_review_orders.uID', '=', 'tbl_user_manage.uID')
 //        ->join('tbl_client_manage', 'tbl_review_orders.cl_ID', '=', 'tbl_client_manage.cl_ID')

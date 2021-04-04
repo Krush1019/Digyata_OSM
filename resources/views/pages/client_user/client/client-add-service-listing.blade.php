@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-	<form method="POST" id="addServiceListForm" enctype="multipart/form-data">
+	<form method="POST" action="{{ route('service-listing.store') }}" id="addServiceListForm" enctype="multipart/form-data">
 		@csrf
 		<div class="box_general padding_bottom">
 			<div class="header_box version_2">
@@ -25,16 +25,15 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_ser_name">Service Name </label>
-						<select id="SL_ser_name" name="SL_ser_name" class="form-control styled-select">
-							@if ($serviceList == null)
+						<label for="ser_name">Service Name </label><span class="required">*</span>
+						<select id="ser_name" name="ser_name" class="form-control styled-select">
+							@if (empty($serviceList))
 								<option value="-1" disabled selected>No Data Found</option>
 							@else
-								<option value="-1" disabled selected>Select</option>
+								<option value="-1" disabled selected>Select Service</option>
 								{{-- Print Service Name --}}
 								@foreach ($serviceList as $row)
-									<option value="{{$row->serviceName}}" data-category="{{$row->serviceCategory}}" data-id="{{$row->id}}" 
-										@isset($serviceData) @if($serviceData['service_name']  == $row->serviceName) selected @endif @endisset >{{$row->serviceName}}</option>
+									<option value="{{$row['ser_name']}}" data-category="{{$row['ser_cat']}}" data-id="{{$row['main_id']}}" @isset($serviceData) @if($serviceData['service_name']  == $row['ser_name']) selected @endif @endisset >{{$row['ser_name']}}</option>
 								@endforeach
 							@endif
 
@@ -43,9 +42,8 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_ser_category">Category</label>
-						<input type="text" class="form-control" name="SL_ser_category"
-						       value="@isset($serviceData){{$serviceData['service_cat']}}@endisset" id="SL_ser_category" placeholder="Category" disabled>
+						<label for="ser_category">Category</label>
+						<input type="text" class="form-control" name="ser_category" value="@isset($serviceData){{$serviceData['service_cat']}}@endisset" id="ser_category" placeholder="Category" disabled>
 					</div>
 				</div>
 			</div>
@@ -55,15 +53,15 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_Ser_shopname">Shop Name / Provider Name</label>
-						<input type="text" class="form-control" name="SL_Ser_shopname" id="SL_Ser_shopname" value="@isset($serviceData){{$serviceData['name']}}@endisset" placeholder="Shop Name / Provide Name">
+						<label>Shop Name / Provider Name</label><span class="required">*</span>
+						<input type="text" class="form-control" name="provider_name" value="@isset($serviceData){{$serviceData['name']}}@endisset" placeholder="Shop Name / Provide Name">
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_Ser_experience">Expericence in related Field (In Months/Years)</label>
-						<input type="text" class="form-control" name="SL_Ser_experience" id="SL_Ser_experience" value="@isset($serviceData){{$serviceData['exp']}}@endisset" placeholder="2 Months / 2 Years">
+						<label>Expericence in related Field (In Months/Years)</label><span class="required">*</span>
+						<input type="text" class="form-control" name="ser_exp" value="@isset($serviceData){{$serviceData['exp']}}@endisset" placeholder="2 Months / 2 Years">
 					</div>
 				</div>
 			</div>
@@ -85,22 +83,22 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="SL_ser_phone"><i class="fa fa-fw fa-phone"></i> Phone (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_phone" id="SL_ser_phone" value="@isset($serviceData){{$serviceData['phone']}}@endisset">
+						<label><i class="fa fa-fw fa-phone"></i> Phone (Optional)</label>
+						<input type="text" class="form-control" name="ser_phone" id="ser_phone" value="@isset($serviceData){{$serviceData['phone']}}@endisset">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="SL_ser_website"><i class="fa fa-fw fa-link"></i> Web site (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_website" id="SL_ser_website" value="@isset($serviceData){{$serviceData['web']}}@endisset">
+						<label><i class="fa fa-fw fa-link"></i> Web site (Optional)</label>
+						<input type="text" class="form-control" name="ser_website" value="@isset($serviceData){{$serviceData['web']}}@endisset">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="SL_ser_email"><i class="fa fa-fw fa-envelope"></i> Email (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_email" id="SL_ser_email" value="@isset($serviceData){{$serviceData['email']}}@endisset">
+						<label><i class="fa fa-fw fa-envelope"></i> Email (Optional)</label>
+						<input type="text" class="form-control" name="ser_email"  value="@isset($serviceData){{$serviceData['email']}}@endisset">
 					</div>
 				</div>
 
@@ -110,22 +108,22 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="SL_ser_fblink"><i class="fa fa-fw fa-facebook"></i> Facebook link (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_fblink" id="SL_ser_fblink" value="@isset($serviceData){{$serviceData['fb']}}@endisset">
+						<label><i class="fa fa-fw fa-facebook"></i> Facebook link (Optional)</label>
+						<input type="text" class="form-control" name="ser_fblink" value="@isset($serviceData){{$serviceData['fb']}}@endisset">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="SL_ser_twlink"><i class="fa fa-fw fa-twitter"></i> Twitter link (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_twlink" id="SL_ser_twlink" value="@isset($serviceData){{$serviceData['tw']}}@endisset">
+						<label><i class="fa fa-fw fa-twitter"></i> Twitter link (Optional)</label>
+						<input type="text" class="form-control" name="ser_twlink" value="@isset($serviceData){{$serviceData['tw']}}@endisset">
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="SL_ser_ldlink"><i class="fa fa-fw fa-linkedin"></i> Linkedin + (Optional)</label>
-						<input type="text" class="form-control" name="SL_ser_ldlink" id="SL_ser_ldlink" value="@isset($serviceData){{$serviceData['linkedin']}}@endisset">
+						<label><i class="fa fa-fw fa-linkedin"></i> Linkedin + (Optional)</label>
+						<input type="text" class="form-control" name="ser_ldlink" value="@isset($serviceData){{$serviceData['linkedin']}}@endisset">
 					</div>
 				</div>
 
@@ -135,10 +133,10 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_ser_photos">Photos</label>
+						<label>Photos</label><span class="required">*</span>
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="SL_ser_photos" name="SL_ser_photos">
-							<label class="custom-file-label" for="SL_ser_photos">Choose file</label>
+							<input type="file" class="custom-file-input" name="ser_img">
+							<label class="custom-file-label">Choose file</label>
 							@if(@isset($serviceData))
 								<input type="text" name="ser_img_file" value="{{$serviceData['img']}}" hidden>
 							@endif
@@ -158,12 +156,12 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="form-group">
-						<label for="SL_ser_idproof">Upload Id Proof</label>
+						<label for="SL_ser_idproof">Upload Id Proof</label><span class="required">*</span>
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="SL_ser_idproof">
-							<label class="custom-file-label" id="a1" for="SL_ser_idproof">Choose file</label>
+							<input type="file" class="custom-file-input" name="ser_doc_img">
+							<label class="custom-file-label">Choose file</label>
 							@if(isset($serviceData))
-								<input type="text" name="ser_doc_file" value="{{$serviceData['doc_img']}}" id="SL_ser_idproof" hidden>
+								<input type="text" name="ser_doc_file" value="{{$serviceData['doc_img']}}" id="ser_doc_file" hidden>
 							@endif
 							<label class="small font-weight-bold text-secondary">You can upload Aadhar Card/ Pan card/ Driving Licence as Id Proof.</label>
 						</div>
@@ -172,8 +170,8 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_Ser_aadharNo">Aadhar No.</label>
-						<input type="text" class="form-control" name="SL_Ser_aadharNo" id="SL_Ser_aadharNo" value="@isset($serviceData){{$serviceData['doc_num']}}@endisset" placeholder="Aadhar No.">
+						<label>Aadhar No.</label><span class="required">*</span>
+						<input type="text" class="form-control" name="ser_doc_no" value="@isset($serviceData){{$serviceData['doc_num']}}@endisset" placeholder="Aadhar No.">
 					</div>
 				</div>
 
@@ -189,21 +187,34 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_ser_city">Select City</label>
-						<select name="SL_ser_city" id="SL_ser_city" class="form-control styled-select">
-							<option value="-1" selected disabled>Select</option>
-							<option value="Miami">Miami</option>
-							<option value="New York">New York</option>
-							<option value="Los Angeles">Los Angeles</option>
-							<option value="San Francisco">San Francisco</option>
+						<label>State</label><span class="required">*</span>
+
+						<select class="form-control styled-select" name="ser_state" id="ser_state" @if (!isset($state)) readonly @endif>
+							@if (isset($state))
+								<option value="-1" selected disabled>Select State</option>
+								@foreach($state as $row)
+									<option value="{{$row['main_id']}}" @if($serviceData['state'] == $row['state']) selected @endif >{{$row['state']}}</option>
+								@endforeach
+							@else
+								<option value="-1" selected disabled>Not Found !!</option>
+							@endif
 						</select>
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_ser_state">State</label>
-						<select class="form-control styled-select" name="SL_ser_state" id="SL_ser_state"></select>
+						<label>Select City</label><span class="required">*</span>
+						<select name="ser_city" id="ser_city" class="form-control styled-select" @if (!isset($city)) readonly @endif>
+							@if (isset($city))
+								<option value="-1" selected disabled>Select City</option>
+								@foreach($city as $row)
+									<option value="{{$row['main_id']}}" @if($serviceData['city'] == $row['city']) selected @endif >{{$row['city']}}</option>
+								@endforeach
+							@else
+								<option value="-1" selected disabled>Not Found !!</option>
+							@endif
+						</select>
 					</div>
 				</div>
 			</div>
@@ -212,16 +223,15 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_ser_address">Address</label>
-						<input type="text" class="form-control" placeholder="ex. 250, Fifth Avenue..." name="SL_ser_address"
-						       id="SL_ser_address">
+						<label>Address</label><span class="required">*</span>
+						<input type="text" class="form-control" placeholder="ex. 250, Fifth Avenue..." name="ser_address" id="ser_address" @if (isset($serviceData)) value="{{$serviceData['address']}}" @else readonly @endif>
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="SL_ser_pincode">Pin Code</label>
-						<input type="text" class="form-control" name="SL_ser_pincode" id="SL_ser_pincode">
+						<label for="ser_pin_no">Pin Code</label><span class="required">*</span>
+						<input type="text" class="form-control" name="ser_pin_no" id="ser_pin_no" placeholder="ex. 112233" @if (isset($serviceData)) value="{{$serviceData['pin_code']}}" @else readonly @endif>
 					</div>
 				</div>
 			</div>
@@ -236,10 +246,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class=" form-group">
-						<div>
-						<span class="mr-3 ">
-							<label for="days" class="mr-3">Working days in Week:</label>
-						</span>
+						<div class="mr-3 ">
+							<label for="days" class="mr-3">Working days in Week:<span class="required">*</span></label>
 						</div>
 						<div class="row">
 							<span class="mr-2 col-md-1 col-sm-12">
@@ -312,12 +320,13 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					<h6>Item</h6>
-					<table id="pricing-list-container" class="w-100">
+					<span>Item</span> <span class="required">*</span>
+					<table id="pricing-list-container" class="w-100 mt-10">
 						@isset($serviceData)
 							@foreach ($serviceData['item'] as $item )
 								<tr class="pricing-list-item">
 									<td>
+										<input type="text" name="item_id" value="{{$item['iID']}}" hidden>
 										<div class="row ">
 											<div class="col-md-3">
 												<div class="form-group">
@@ -384,7 +393,7 @@
 		</div>
 		<!-- /box_general-->
 		<p>
-			<input type="button" class="btn_1 medium" id="addServiceListbtn" value="Save" data-action="@if (@isset($serviceData)) update @else insert @endif" data-id="@if (@isset($serviceData)) {{$serviceData['main_id']}} @endif">
+			<input type="submit" class="btn_1 medium" id="sbt_btn" value="Save" data-action="@if (@isset($serviceData)) update @else insert @endif" data-id="@if (@isset($serviceData)) {{$serviceData['main_id']}} @endif">
 		</p>
 	</form>
 
@@ -406,7 +415,6 @@
       $('.editor').summernote({
           fontSizes: ['10', '14'],
           toolbar: [
-              // [groupName, [list of button]]
               ['style', ['bold', 'italic', 'underline', 'clear']],
               ['font', ['strikethrough']],
               ['fontsize', ['fontsize']],
