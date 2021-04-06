@@ -33,7 +33,7 @@
         </div>
       </div>
       <!--/owl-slide-->
-      <div class="owl-slide cover" style="background-image: url({{asset('client_user/img/slides/slide_home_3.jpg')}})">
+      <div class="owl-slide cover" style="background-image: url({{asset('client_user/img/slides/slide_home_2.jpg')}})">
         <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.2)">
           <div class="container">
             <div class="row justify-content-center justify-content-md-start">
@@ -51,7 +51,7 @@
         </div>
       </div>
       <!--/owl-slide-->
-      <div class="owl-slide cover" style="background-image: url({{asset('client_user/img/slides/slide_1.jpg')}})">
+      <div class="owl-slide cover" style="background-image: url({{asset('client_user/img/slides/slide_home_3.jpg')}})">
         <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.2)">
           <div class="container">
             <div class="row justify-content-center justify-content-md-end">
