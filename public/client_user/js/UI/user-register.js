@@ -5,6 +5,19 @@
 
 $(document).ready(function () {
 
+    //password hide/show btn
+    $(".toggle-password").on('click' ,function(e) {
+		e.preventDefault();
+		$(this).toggleClass("fa-eye fa-eye-slash");
+		var input = $($(this).attr("toggle"));
+		if (input.attr("type") == "password") {
+			input.attr("type", "text");
+		} else {
+			input.attr("type", "password");
+		}
+	});
+
+
     //User-register Validation
     $(document).on('click', '#us_sub_btn', function () {
         $('#User-register').validate({
