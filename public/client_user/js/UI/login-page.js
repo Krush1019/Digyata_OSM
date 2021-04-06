@@ -16,7 +16,7 @@ $(document).ready(function () {
             $('#radio_client label').removeClass('selected');
             $('#login-form').attr('action', "/login/customer")
                   .find('p').text('Login as a Customer');
-            $('#login-form').find('a').attr('href', "/register/customer");
+            $('#login-form strong a').attr('href', "/register/customer");
 
       });
 
@@ -43,5 +43,5 @@ function link() {
       $('#radio_user label').removeClass('selected');
       $('#login-form').attr('action', "/login/client")
             .find('p').text('Login as a Client');
-      $('#login-form').find('a').attr('href', "/register/client");
+      $('#login-form strong a').attr('href', "/register/client");
 }

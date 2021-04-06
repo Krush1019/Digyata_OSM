@@ -79,7 +79,7 @@
                                                       <span class="checkmark"></span>
                                                 </label>
                                           </div>
-                                          <div class="float-right"><a id="forgot" href="javascript:void(0);">Forgot
+                                          <div class="float-right"><a id="forgot" href="#0">Forgot
                                                       Password?</a></div>
                                     </div>
                                     <button type="submit" class="btn_1 full-width">Login to Digyata</button>
