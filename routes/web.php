@@ -129,7 +129,7 @@ use App\Http\Controllers\LanguageController;
  * FRONT_END
  * ********************/
 
-    Route::get('/','client_user\indexController@index')->name('index-page');
+    Route::get('/','client_user\indexController@index');
     Route::get('/home','client_user\indexController@index')->name('home');
 
 
