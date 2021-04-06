@@ -16,7 +16,7 @@
   <div id="carousel-home">
     <div class="owl-carousel owl-theme">
       <div class="owl-slide cover" style="background-image: url({{asset('client_user/img/slides/slide_home_1.jpg')}})">
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.6)">
+        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.2)">
           <div class="container">
             <div class="row justify-content-center justify-content-md-start">
               <div class="col-lg-12 static">
@@ -34,7 +34,7 @@
       </div>
       <!--/owl-slide-->
       <div class="owl-slide cover" style="background-image: url({{asset('client_user/img/slides/slide_home_2.jpg')}})">
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.2)">
           <div class="container">
             <div class="row justify-content-center justify-content-md-start">
               <div class="col-lg-7 static">
@@ -52,7 +52,7 @@
       </div>
       <!--/owl-slide-->
       <div class="owl-slide cover" style="background-image: url({{asset('client_user/img/slides/slide_home_3.jpg')}})">
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.6)">
+        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.2)">
           <div class="container">
             <div class="row justify-content-center justify-content-md-end">
               <div class="col-lg-6 static">
