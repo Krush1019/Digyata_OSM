@@ -55,7 +55,7 @@
             alt=""></a>
       </div>
       <ul>
-        <li><a href="{{route('index-page')}}">Home</a></li>
+        <li><a href="{{route('home')}}">Home</a></li>
         <li><a href="{{route('about-us')}}">About Us</a></li>
         <li><a href="{{route('contacts')}}">Contact</a></li>
       </ul>
