@@ -46,9 +46,8 @@
 
                   <fieldset class="form-label-group position-relative has-icon-left">
 
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                      name="password" placeholder="Password" required autocomplete="current-password">
-
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
+                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     <div class="form-control-position">
                       <i class="feather icon-lock"></i>
                     </div>

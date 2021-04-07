@@ -19,7 +19,7 @@
             <div class="col-xl-8 col-lg-7">
                 <div class="box_general">
                     <div class="d-none d-sm-block">
-                        <img src="{{asset($service->ser_photo)}}" alt="" class="img-fluid">
+                        <img src="{{asset($service->ser_photo)}}" alt="" class="img-fluid image-set-auto" >
                     </div>
                     <div class="main_info_wrapper">
                         <div class="main_info clearfix">

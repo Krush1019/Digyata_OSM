@@ -2,5 +2,4 @@
 .log
 bootstrap/cache/config.php
 .env
-public\images\client\ser_doc_img
-public\images\client\ser_img
+public/images/client
