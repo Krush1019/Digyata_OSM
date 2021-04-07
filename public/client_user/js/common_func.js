@@ -231,7 +231,7 @@
 		if (PathName == "/") {
 			activeurl += "home";
 		}
-		$('.main-menu ul li a[href="' + activeurl + '"]').addClass('active');
+		$('.main-menu ul li a[href="' + activeurl + '"]').addClass('activelink');
 	});
 
 })(window.jQuery);
