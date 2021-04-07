@@ -235,13 +235,13 @@ header.header.sticky .logo {
   }
 } 
 
-.active {
+.activelink {
   color: #FF3A65 !important;
   font-weight: bold !important;
 }
 
 @media only screen and (max-width: 991px) {
-  .active {
+  .activelink {
     display: block;
     color: #FF3A65 !important;
     font-weight: bold !important;
