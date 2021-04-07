@@ -6,13 +6,14 @@ var highlight_dates = [];
  $('#DatePicker').datepicker({
    inline: true,
    altField: '#datepicker_field',
+   altFormat: 'dd-mm-yy',
   beforeShowDay: function(date){
    var month = date.getMonth()+1;
    var year = date.getFullYear();
    var day = date.getDate();
  
    // Change format of date ( 'mm-dd-yyyy' )
-   var newdate = month+"-"+day+'-'+year;
+   var newdate = day+"-"+month+'-'+year;
 
    // Set tooltip text when mouse over date
    var tooltip_text = "Available on " + newdate;
