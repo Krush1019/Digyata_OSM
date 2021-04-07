@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Crypt;
 class OrderManageController extends Controller {
 
     public function __construct() {
-        $this->middleware("auth:client");  
+        $this->middleware("auth:client");
     }
 
     /**
@@ -32,7 +32,7 @@ class OrderManageController extends Controller {
         // $sql2 = DB::table('tbl_order_manages')
         //     ->join('tbl_user_ser_item_price', 'tbl_order_manages.i_id', '=', 'tbl_user_ser_item_price.ser_id')
         //     ->get();
-    
+
         // // $total = DB::table('tbl_user_ser_item_price')->where('ser_id' '=' '{{ $sql2-> }}')->sum('balance');
 
         // $order = OrderManage::all();
@@ -40,7 +40,7 @@ class OrderManageController extends Controller {
         $orderList = $this->getOrderList(Auth::id());
 
         // echo "<pre>";
-        // print_r($orderList);    
+        // print_r($orderList);
 
         $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "Order Manage"]];
 
@@ -67,7 +67,12 @@ class OrderManageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        $request->validate([
+          'date' => 'required',
+          'selected_time' => 'required',
+          'services' => 'required'
+      ]);
+        dd($request);
     }
 
     /**
@@ -125,18 +130,18 @@ class OrderManageController extends Controller {
         $tbl_ser_list = "tbl_user_ser_list";
         $tbl_user = "tbl_user_manage";
         $tbl_client = "tbl_client_manage";
-        
+
         $where = [
             ['client_id', $client_id,],
             ['order_id', $order_id]
         ];
-        
+
         $data = OrderManage::where($where)
                     ->join($tbl_ser_list, $tbl_ser_list.'.ser_id', '=', $tbl_order_manage.'.ser_list_id')
                     ->join($tbl_user, $tbl_user.".id", "=", $tbl_order_manage.".user_id")
                     ->join($tbl_client, $tbl_client.".id", "=", $tbl_order_manage.".client_id")
                     ->get();
-        
+
         $data = $data[0];
         $newData = array (
             // Order Info
@@ -149,13 +154,13 @@ class OrderManageController extends Controller {
             "booking_time" => $data["sTimeSlot"],
             "city" => "Mahesana - Gujarata",
             "address" => $data["sAddress"],
-            
+
             //User Info
             "user_id" => $data["sUserID"],
             "user_name" => $data["sUserName"],
             "user_email" => $data["sUserEmail"],
             "user_phone" => $data["sUserMobile"],
-            
+
             //Client Info
             "client_id" => $data["sClientID"],
             "client_name" => $data["sClName"],

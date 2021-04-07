@@ -144,7 +144,7 @@ class RegisterController extends Controller {
         ]);
 
         if (Auth::guard('customer')->attempt(['sUserEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended(route('index-page'));
+            return redirect()->intended(route('home'));
         }
         return redirect()->intended(route('login-page'));
     }
@@ -159,7 +159,7 @@ class RegisterController extends Controller {
             $tbl = new UserManage();
             $temp = "UI-";
         }
-        
+
         newGenerateID:
         $id = $temp . date('ym').rand(100, 999);
         $count = $tbl->where($col_name, $id)->count();

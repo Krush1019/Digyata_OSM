@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider {
     /** Get Data */
     private function getViewData () {
         $arr = array();
-        $arr['countClientManage'] = $this->getClientCount();
+        $arr['countClient'] = $this->getClientCount();
         return $arr;
     }
 

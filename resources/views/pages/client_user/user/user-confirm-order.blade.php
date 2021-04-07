@@ -122,11 +122,11 @@
                                     </div>
                                 </section>
 
-                                <a href="{{route('client-detail')}}" class="btn_1 full-width outline mb_25">Change
+                                <a href="" class="btn_1 full-width outline mb_25">Change
                                     Booking</a>
                                 <div class="text-center"><small>Or <strong><a data-toggle="modal"
                                                 href="#user-login-modal">Login</a></strong> - <strong><a
-                                                href="{{route('user-register')}}">Register</a></strong></small></div>
+                                                href="">Register</a></strong></small></div>
                             </form>
                         </div>
                         <div id="switch2" hidden>

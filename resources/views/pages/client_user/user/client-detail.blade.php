@@ -279,7 +279,8 @@
                     </div>
                     <!-- /head -->
                     <div class="main">
-                        <form id="placeorderform">
+                        <form id="placeorderform" method="POST" action="{{route('user.orderbook')}}">
+                          @csrf
                             <input type="text" id="datepicker_field" name="date">
                             <div id="DatePicker"></div>
                             <div class="dropdown time mb-2">
@@ -327,8 +328,8 @@
                                 <div class="services_list clearfix">
                                     <ul>
                                         @foreach ($items as $item)
-                                        <li><input type="checkbox" id="ser_1" name="services" class="mr-2"
-                                                value="1 BHK home"><label for="ser_1">{{$item->item_name}}
+                                        <li><input type="checkbox" id="{{$item->item_id}}" name="services[]" class="mr-2"
+                                                value="{{$item->item_id}}"><label for="ser_1">{{$item->item_name}}
                                             </label><strong><small>from</small> ₹{{$item->item_price}}</strong></li>
                                         @endforeach
                                     </ul>
