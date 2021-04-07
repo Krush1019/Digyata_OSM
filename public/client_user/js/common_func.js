@@ -227,7 +227,7 @@ var lazyLoadInstance = new LazyLoad({
   //Active Manu List Item
   $(document).ready(function () {
     var activeurl = window.location.origin + window.location.pathname ;
-    $('.main-menu ul li a[href="' + activeurl + '"]').addClass('active');
+    $('.main-menu ul li a[href="' + activeurl + '"]').addClass('activelink');
   });
 
 })(window.jQuery);
