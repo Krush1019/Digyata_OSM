@@ -25,18 +25,18 @@ $(document).ready(function () {
       });
 
       //DIV hide-show 
-      $(document).on('click', '#BO_btn1', function () {
-            $('#switch_inner1').slideUp();
-            $('#switch_inner2').removeAttr('hidden').fadeIn();            
-      });
-
       $(document).on('click', '#BO_btn2', function () {
 
-                  if (validation()) {
-                        $('#switch_inner2').slideUp();
-                        $('#switch_inner3').removeAttr('hidden').fadeIn();;
-                  }
-            });
+            if (validation()) {
+                  $('.s_state').text($('#cnfod_state').val());
+                  $('.s_city').text($('#cnfod_city').val());
+                  $('.s_ad1').text($('#cnfod_ad1').val());
+                  $('.s_ad2').text($('#cnfod_ad2').val());
+                  $('.s_pin').text($('#cnfod_pin').val());
+                  $('#switch_inner2').slideUp();
+                  $('#switch_inner3').removeAttr('hidden').fadeIn();;
+            }
+      });
 
       $(document).on('click', '#BO_btn3', function () {
             if (validation()) {
@@ -46,7 +46,7 @@ $(document).ready(function () {
             }
       });
 
-      //location permission
+      /* //location permission
       $(document).on('click', '#uselocation', function () {
             var getPosition = {
                   enableHighAccuracy: true,
@@ -66,29 +66,19 @@ $(document).ready(function () {
             };
 
             navigator.geolocation.getCurrentPosition(success, error, getPosition);
-      });
+      }); */
+
 })
 
 function validation(params) {
       var form = $('#cnfm-od-form');
       form.validate({
             rules: {
-                  od_name: "required",
-                  od_email: {
-                        required: true,
-                        email: true,
-                  },
-                  od_mno: {
-                        required: true,
-                        number: true,
-                        minlength: 10,
-                        maxlength: 10
-                  },
-                  od_city: "required",
-                  od_state: "required",
-                  od_ad1: "required",
-                  od_ad2: "required",
-                  od_pin: {
+                  city: "required",
+                  state: "required",
+                  address1: "required",
+                  address2: "required",
+                  pincode: {
                         required: true,
                         number: true,
                         minlength: 6,
