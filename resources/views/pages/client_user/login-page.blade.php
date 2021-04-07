@@ -9,13 +9,13 @@
 @endsection
 
 @section('custom-style')
-<link href="{{ asset('client_user/css/custom.css') }}" rel="stylesheet">
+<link href="{{asset('client_user/css/custom.css')}}" rel="stylesheet">
 @endsection
 
 @section('header-class', 'header header_in shadow clearfix')
 
 @section('header')
-@include('panels.client_user.header')    
+@include('panels.client_user.header')
 @endsection
 
 @section('content')
@@ -29,7 +29,8 @@
                                     <ul>
                                           <li class="w-49">
                                                 <a id="radio_user" name="radio_user">
-                                                      <label for="radio_user" class="selected"> <i class="icon-users"></i> User</label>
+                                                      <label for="radio_user" class="selected"> <i
+                                                                  class="icon-users"></i> User</label>
                                                 </a>
                                           </li>
                                           <li class="w-49">
@@ -40,7 +41,7 @@
                                           </li>
                                     </ul>
                               </div>
-                                   
+
                               <form id="login-form" method="POST" class="mt-3" action="@if ($errors->all() && session()->has('passlink')) 
                                     {{session()->get('passlink')}}
                                     @else
@@ -52,7 +53,8 @@
                                     </div>
                                     <div class="form-group">
                                           <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                                name="email" id="email"  value="{{ old('email') }}" required placeholder="Email">
+                                                name="email" id="email" value="{{ old('email') }}" required
+                                                placeholder="Email">
                                           <i class="icon_mail_alt"></i>
                                           @error('email')
                                           <span class="invalid-feedback" role="alert">
@@ -61,9 +63,8 @@
                                           @enderror
                                     </div>
                                     <div class="form-group">
-                                          <input type="password"
-                                                class="form-control @error('password') is-invalid @enderror"
-                                                name="password" id="password" required placeholder="Password">
+                                          <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required placeholder="Password">
+                                          <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                           <i class="icon_lock_alt"></i>
                                           @error('password')
                                           <span class="invalid-feedback" role="alert">
@@ -78,7 +79,7 @@
                                                       <span class="checkmark"></span>
                                                 </label>
                                           </div>
-                                          <div class="float-right"><a id="forgot" href="javascript:void(0);">Forgot
+                                          <div class="float-right"><a id="forgot" href="#0">Forgot
                                                       Password?</a></div>
                                     </div>
                                     <button type="submit" class="btn_1 full-width">Login to Digyata</button>

@@ -25,3 +25,19 @@ function toastFire(Swal, title = "Title", icon = "success") {
         title: title
     })
 }
+
+$(document).ready( function () {
+
+    //password hide/show btn
+    $(".toggle-password").on('click' ,function(e) {
+          e.preventDefault();
+          $(this).toggleClass("fa-eye fa-eye-slash");
+          var input = $($(this).attr("toggle"));
+          if (input.attr("type") == "password") {
+              input.attr("type", "text");
+          } else {
+              input.attr("type", "password");
+          }
+      });
+  
+})

@@ -16,8 +16,8 @@
 @section('content')
 <main>
   <div class="hero_single inner_pages background-image"
-    data-background="url({{asset('client_user/img/hero_general.jpg')}})">
-    <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.7)">
+    data-background="url({{asset('client_user/img/register.jpg')}})">
+    <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.4)">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-xl-9 col-lg-10 col-md-8">
@@ -161,8 +161,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <input type="password" class="form-control new-password @error('password') is-invalid @enderror"
-                      placeholder="Password" name="password" id="password_register">
+                    <input type="password" class="form-control new-password @error('password') is-invalid @enderror" placeholder="Password" name="password" id="password_register">
+                    <span toggle="#password_register" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
