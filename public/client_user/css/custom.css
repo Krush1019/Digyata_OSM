@@ -256,3 +256,7 @@ header.header.sticky .logo {
 	position: relative;
 	z-index: 2;
 }
+
+.image-set-auto {
+  width: 100%;
+}
