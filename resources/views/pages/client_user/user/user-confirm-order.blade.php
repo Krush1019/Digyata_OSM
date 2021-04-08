@@ -149,8 +149,6 @@
 @section('specific-script')
 <script src="{{ asset('client_user/js/sticky_sidebar.min.js') }}"></script>
 <script src="{{ asset('client_user/js/specific_detail.js') }}"></script>
-<script src="{{ asset('client_user/js/datepicker.min.js') }}"></script>
-<script src="{{ asset('client_user/js/datepicker_func_1.js') }}"></script>
 @endsection
 
 @section('page-script')

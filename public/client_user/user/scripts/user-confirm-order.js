@@ -9,7 +9,7 @@ $(document).ready(function () {
       $("#cnfod_state").append(
             '<option value="-1" disabled>Select State</option>'
       );
-      var url = "data/Text File/states.txt";
+      var url = "/data/Text File/states.txt";
       $.get(url, function (data) {
             var arr = data.split(",");
             $.each(arr, function (key, entry) {
