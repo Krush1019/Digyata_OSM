@@ -30,8 +30,8 @@ $(document).ready(function () {
             if (validation()) {
                   $('.s_state').text($('#cnfod_state').val());
                   $('.s_city').text($('#cnfod_city').val());
-                  $('.s_ad1').text($('#cnfod_ad1').val());
-                  $('.s_ad2').text($('#cnfod_ad2').val());
+                  $('.s_address1').text($('#cnfod_ad1').val());
+                  $('.s_address2').text($('#cnfod_ad2').val());
                   $('.s_pin').text($('#cnfod_pin').val());
                   $('#switch_inner2').slideUp();
                   $('#switch_inner3').removeAttr('hidden').fadeIn();;

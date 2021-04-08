@@ -73,8 +73,8 @@
                                         <hr>
                                         <h6>Work Location Details</h6>
                                         <ul>
-                                            <li>Address Line 1<span class="s_ad1"></span></li>
-                                            <li>Address Line 2<span class="s_ad2"></span></li>
+                                            <li>Address Line 1<span class="s_address1"></span></li>
+                                            <li>Address Line 2<span class="s_address2"></span></li>
                                             <li>City<span class="s_city"></span></li>
                                             <li>State<span class="s_state"></span></li>
                                             <li>Pincode<span class="s_pin"></span></li>
