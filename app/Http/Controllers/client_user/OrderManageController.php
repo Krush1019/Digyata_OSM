@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
+
 
 class OrderManageController extends Controller {
 
     public function __construct() {
-        $this->middleware("auth:client");
+        $this->middleware("auth:client")->except('store');
     }
 
     /**
@@ -67,12 +69,16 @@ class OrderManageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+
         $request->validate([
           'date' => 'required',
           'selected_time' => 'required',
           'services' => 'required'
       ]);
-        dd($request);
+      $cookie1 = cookie('date', $request->date);
+      $cookie2 = cookie('selected_time', $request->selected_time);
+      $cookie3 = cookie('services', json_encode($request->services));
+      return redirect(route('confirm-order',['id'=>$request->id]))->cookie($cookie1)->cookie($cookie2)->cookie($cookie3);
     }
 
     /**

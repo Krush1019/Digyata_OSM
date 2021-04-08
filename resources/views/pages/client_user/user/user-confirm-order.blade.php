@@ -38,10 +38,7 @@
                                             <div class="form-group col-6">
                                                 <select name="city" id="cnfod_city" class="form-control">
                                                     <option value="-1" selected disabled>Select City</option>
-                                                    <option value="Miami">Miami</option>
-                                                    <option value="New York">New York</option>
-                                                    <option value="Los Angeles">Los Angeles</option>
-                                                    <option value="San Francisco">San Francisco</option>
+                                                    <option value="Miami"></option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-12">

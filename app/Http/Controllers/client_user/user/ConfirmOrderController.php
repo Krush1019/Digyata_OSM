@@ -4,6 +4,10 @@ namespace App\Http\Controllers\client_user\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\DB;
+
+
 
 class ConfirmOrderController extends Controller
 {
@@ -11,9 +15,17 @@ class ConfirmOrderController extends Controller
     {
       $this->middleware("auth:customer");
     }
-    
-    public function index()
+
+    public function index(Request $request)
     {
-      return view('/pages/client_user/user/user-confirm-order');
+    //   try {
+    //     $decrypted = decrypt($request->id);
+    // } catch (DecryptException $e) {
+    //   return view('/pages/error-404');
+    // }
+    // $service =DB::table('tbl_ser_list')->where('ser_id', '=', $decrypted)->first();
+    // dd($request->abc);
+      return view('/pages/client_user/user/user-confirm-order')
+      ->with('service','jbfbd');
     }
 }
