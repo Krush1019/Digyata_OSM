@@ -23,7 +23,17 @@ class ConfirmOrderController extends Controller
     } catch (DecryptException $e) {
       return view('/pages/error-404');
     }
-    $service =DB::table('tbl_ser_list')->where('ser_id', '=', $decrypted)->first();
-      return view('/pages/client_user/user/user-confirm-order')->with('service',$service);
+    $service =DB::table('tbl_ser_list')
+              ->where('ser_id', '=', $decrypted)
+              ->join('tbl_service_catalogs as tsc', 'tbl_ser_list.ser_cat_id', '=', 'tsc.id')
+              ->first();
+              $ser_id = json_decode($request->cookie('services'));
+              foreach ($ser_id as $key => $value) {
+                $ser_id[$key] = decrypt($value);
+              }
+    $items = DB::table('tbl_ser_item_price')
+            ->whereIn('item_id', $ser_id)
+            ->get();
+      return view('/pages/client_user/user/user-confirm-order')->with('service',$service)->with('items',$items);
     }
 }
