@@ -6,25 +6,25 @@
 $(document).ready(function () {
 
       //State options
-      $("#cnfod_state").append(
-            '<option value="-1" disabled>Select State</option>'
-      );
-      var url = "data/Text File/states.txt";
-      $.get(url, function (data) {
-            var arr = data.split(",");
-            $.each(arr, function (key, entry) {
-                  if (entry === 'Gujarat') {
-                        var text = 'selected'
-                  } else {
-                        text = '';
-                  }
-                  $("#cnfod_state").append(
-                        '<option value="' + entry + '" ' + text + '>' + entry + "</option>"
-                  );
-            });
-      });
+      // $("#cnfod_state").append(
+      //       '<option value="-1" disabled>Select State</option>'
+      // );
+      // var url = "data/Text File/states.txt";
+      // $.get(url, function (data) {
+      //       var arr = data.split(",");
+      //       $.each(arr, function (key, entry) {
+      //             if (entry === 'Gujarat') {
+      //                   var text = 'selected'
+      //             } else {
+      //                   text = '';
+      //             }
+      //             $("#cnfod_state").append(
+      //                   '<option value="' + entry + '" ' + text + '>' + entry + "</option>"
+      //             );
+      //       });
+      // });
 
-      //DIV hide-show 
+      //DIV hide-show
       $(document).on('click', '#BO_btn2', function () {
 
             if (validation()) {

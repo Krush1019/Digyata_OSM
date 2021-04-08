@@ -21,7 +21,7 @@
                 <div class="box_booking_2">
                     <div class="head">
                         <div class="title">
-                            <h3>Ankit Modi</h3><span>27 madhuvan complex, Radhanpur cross road, Mahesana - 384623</span>
+                            <h3>{{$service->ser_pro_name}}</h3><span>{{$service->ser_address}}, {{$service->ser_city}}, {{$service->ser_state}} - {{$service->pin_no}}</span>
                         </div>
                     </div>
                     <!-- /head -->
@@ -33,12 +33,13 @@
                                         <h6>Work Location details</h6>
                                         <div class="row">
                                             <div class="form-group col-6">
-                                                <select class="form-control" name="state" id="cnfod_state"></select>
+                                                <select class="form-control" name="state" id="cnfod_state">
+                                                  <option value="{{$service->ser_state}}" selected>{{$service->ser_state}}</option>
+                                                </select>
                                             </div>
                                             <div class="form-group col-6">
                                                 <select name="city" id="cnfod_city" class="form-control">
-                                                    <option value="-1" selected disabled>Select City</option>
-                                                    <option value="Miami"></option>
+                                                    <option value="{{$service->ser_city}}" selected>{{$service->ser_city}}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-12">
