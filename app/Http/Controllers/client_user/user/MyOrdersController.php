@@ -18,10 +18,10 @@ class MyOrdersController extends Controller
     public function __construct() {
         $this->middleware("auth:customer");
     }
-    
+
     public function index(Request $request)
     {
-        $data = MyOrders::where('uID', Auth::guard('customer')->user()->id)->get();
+        $data = MyOrders::where('user_id', Auth::guard('customer')->user()->id)->get();
         $breadcrumbs = [['link' => route('home') , 'name' => "Dashboard"], ['name' => "My Order"]];
       return view('/pages/client_user/user/my-order', [
         'breadcrumbs' => $breadcrumbs,
