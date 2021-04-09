@@ -12,13 +12,13 @@ $(document).ready(function () {
                   rules: {
                         date: "required",
                         time: "reqiured",
-                        services: "required",
+                        'services[]': "required",
                         selected_time: "required"
                   },
                   messages: {
                         date: "Please select Date.",
                         time: "Please select Time.",
-                        services: "Please select Service.",
+                        'services[]': "Please select Service.",
                         selected_time: "Please select Time.",
 
                   },

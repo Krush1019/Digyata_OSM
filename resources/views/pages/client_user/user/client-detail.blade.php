@@ -15,6 +15,14 @@
 @section('content')
 <main class="bg_color">
     <div class="container margin_detail">
+      @if ($errors->first())
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> {{$errors->first()}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      @endif
         <div class="row">
             <div class="col-xl-8 col-lg-7">
                 <div class="box_general">
@@ -279,7 +287,7 @@
                     </div>
                     <!-- /head -->
                     <div class="main">
-                        <form id="placeorderform" method="POST" action="{{route('user.orderbook')}}">
+                        <form id="placeorderform" method="POST" action="{{route('user.orderbook',['id'=>encrypt($service->ser_id)])}}">
                           @csrf
                             <input type="text" id="datepicker_field" name="date">
                             <div id="DatePicker"></div>
@@ -328,8 +336,8 @@
                                 <div class="services_list clearfix">
                                     <ul>
                                         @foreach ($items as $item)
-                                        <li><input type="checkbox" id="{{$item->item_id}}" name="services[]" class="mr-2"
-                                                value="{{$item->item_id}}"><label for="ser_1">{{$item->item_name}}
+                                        <li><input type="checkbox" name="services[]" class="mr-2"
+                                                value="{{encrypt($item->item_id)}}"><label for="ser_1">{{$item->item_name}}
                                             </label><strong><small>from</small> ₹{{$item->item_price}}</strong></li>
                                         @endforeach
                                     </ul>

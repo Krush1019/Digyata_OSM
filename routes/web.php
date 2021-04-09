@@ -116,15 +116,19 @@ use App\Http\Controllers\LanguageController;
     Route::get('/client-detail/{id}', 'client_user\user\ClientDetailController@index')->name('client-detail');
 
     // order book
-    Route::post('/user/order-book', 'client_user\OrderManageController@store')->name('user.orderbook');
+    Route::post('/book-order/{id}', 'client_user\OrderManageController@store')->name('user.orderbook');
 
+    Route::post('/book-confirm/{id}', 'client_user\OrderManageController@create')->name('user.bookconfirm');
 
 
     /** client -- listing */
     Route::get('/client-listing', 'client_user\user\ClientListingController@index')->name('client-listing');
 
     /** confirm -- order */
-    Route::get('/confirm-order', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
+    Route::get('/confirm-order/{id}', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
+    Route::view('/order/confirm', 'pages\client_user\user\confirm-msg');
+
+    
 
     /** user -- review */
     Route::get('/user-review', 'client_user\user\UserReviewController@index')->name('user-review');
