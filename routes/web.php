@@ -126,9 +126,11 @@ use App\Http\Controllers\LanguageController;
 
     /** confirm -- order */
     Route::get('/confirm-order/{id}', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
-    Route::view('/order/confirm', 'pages\client_user\user\confirm-msg');
+    Route::get('/order/confirm/{id}', function ($id) {
+      return view('pages\client_user\user\confirm-msg',['orderId'=>decrypt($id)]);
+    })->name('confirm.msg');
 
-    
+
 
     /** user -- review */
     Route::get('/user-review', 'client_user\user\UserReviewController@index')->name('user-review');

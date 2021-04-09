@@ -5,17 +5,20 @@ namespace App\Http\Controllers\client_user;
 use App\client_user\OrderManage;
 use App\Http\Controllers\Controller;
 use App\ServiceList;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Cookie;
+use App\client_user\UserManage;
 
 
 class OrderManageController extends Controller {
 
     public function __construct() {
-        $this->middleware("auth:client")->except('store')->except('create');
+        $this->middleware("auth:client")->except(['store','create']);
     }
 
     /**
@@ -59,30 +62,66 @@ class OrderManageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request) {
-        dd(Auth::guard('customer')->user()->id);
+
         $request->validate([
           'state' => 'required',
           'city' => 'required',
           'address1' => 'required',
           'address2' => 'required',
-          'pincode' => 'required|digits:10|integer'
+          'pincode' => 'required|digits:6|integer'
       ]);
-        $date = $request->cookie('date');
+        $address = $request->address1 .', '. $request->address2 .', '. $request->city .', '. $request->state .' - '. $request->pincode;
+        $date = date_create_from_format('d-m-Y', $request->cookie('date'));
         $selected_time = $request->cookie('selected_time');
-        $services = $request->cookie('services');
-
-
+        $services = json_decode($request->cookie('services'));
+        $itm = "";
+        $amount = 0;
+          foreach ($services as $key => $value) {
+            $services[$key] = decrypt($value);
+            if (!$itm) {
+              $itm = decrypt($value);
+            }else {
+              $itm = $itm .", ". decrypt($value);
+            }
+          }
+          $item = DB::table('tbl_ser_item_price')
+                ->whereIn('item_id', $services)
+                ->get();
+                foreach ($item as $raw) {
+                  if (!$amount) {
+                    $amount = (int)$raw->item_price;
+                  }else {
+                    $amount = (int)$amount + (int)$raw->item_price;
+                  }
+                }
+          $cl_id =  DB::table('tbl_ser_list')
+                        ->select('client_id')
+                        ->where('ser_id', '=', decrypt($request->id))
+                        ->first();
         $data = array(
           "sOrderId" => $this->getGenerateID('sOrderId'),
-          "client_id" => trim($request->get('loc_Loc')),
+          "client_id" => $cl_id->client_id,
           "user_id" => Auth::guard('customer')->user()->id,
-          "ser_list_id" => trim($request->get('loc_Email')),
-          "ser_item_id" => trim($request->get('loc_Email')),
-          "sbDate" => trim($request->get('loc_Email')),
-          "sAddress" => trim($request->get('loc_Email')),
-          "sTimeSlot" => trim($request->get('loc_Email')),
-          "sAmount" => trim($request->get('loc_Email')),
+          "ser_list_id" => decrypt($request->id),
+          "ser_item_id" => $itm,
+          "sbDate" => $date,
+          "sAddress" => $address,
+          "sTimeSlot" => $selected_time,
+          "sAmount" => $amount
       );
+      $usr_address = array(
+        'sUserHouseNo' => $request->address1,
+        'sUserArea' => $request->address2,
+        'sUserCity' => $request->city,
+        'sUserState' => $request->state,
+        'sUserPincode' => $request->pincode,
+      );
+      UserManage::where('id', Auth::guard('customer')->user()->id)->update($usr_address);
+      $raw = OrderManage::create($data);
+      Cookie::queue(Cookie::forget('date'));
+      Cookie::queue(Cookie::forget('selected_time'));
+      Cookie::queue(Cookie::forget('services'));
+      return redirect(route('confirm.msg',['id'=>encrypt($raw->sOrderId)]));
     }
 
     /**

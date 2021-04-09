@@ -42,7 +42,7 @@
                                                             </g>
                                                       </svg>
                                                 </div>
-                                                <h3>Booking Confirmed!</h3>
+                                                <h3>Booking Confirmed! {{$orderId}}</h3>
                                                 <p>We will reply shortly to confirm the order.</p>
                                           </div>
                                           <div class="footer-btn text-center">

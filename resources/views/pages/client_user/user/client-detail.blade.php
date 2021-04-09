@@ -287,7 +287,9 @@
                     </div>
                     <!-- /head -->
                     <div class="main">
-                        <form id="placeorderform" method="POST" action="{{route('user.orderbook',['id'=>encrypt($service->ser_id)])}}">
+                        <form id="placeorderform" method="POST" action="
+                        {{route('user.orderbook',['id'=>encrypt($service->ser_id)])}}
+                        ">
                           @csrf
                             <input type="text" id="datepicker_field" name="date">
                             <div id="DatePicker"></div>
@@ -344,7 +346,13 @@
                                 </div>
                             </div>
                             <div class="error_message"></div>
-                            <button type="submit" id="plc_oder_btn" class="btn_1 full-width booking">Book Now</button>
+
+                              @if (Auth::guard('customer')->check())
+                              <button type="submit" id="plc_oder_btn" class="btn_1 full-width booking">Book Now</button>
+                              @else
+                              <a href="{{route('login-page')}}" class="btn_1 full-width booking">Login Now to Book</a>
+                              @endif
+
                         </form>
                     </div>
                 </div>
