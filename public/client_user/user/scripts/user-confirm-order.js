@@ -5,25 +5,6 @@
 
 $(document).ready(function () {
 
-      //State options
-      // $("#cnfod_state").append(
-      //       '<option value="-1" disabled>Select State</option>'
-      // );
-      // var url = "data/Text File/states.txt";
-      // $.get(url, function (data) {
-      //       var arr = data.split(",");
-      //       $.each(arr, function (key, entry) {
-      //             if (entry === 'Gujarat') {
-      //                   var text = 'selected'
-      //             } else {
-      //                   text = '';
-      //             }
-      //             $("#cnfod_state").append(
-      //                   '<option value="' + entry + '" ' + text + '>' + entry + "</option>"
-      //             );
-      //       });
-      // });
-
       //DIV hide-show
       $(document).on('click', '#BO_btn2', function () {
 
@@ -40,34 +21,10 @@ $(document).ready(function () {
 
       $(document).on('click', '#BO_btn3', function () {
             if (validation()) {
-                  $('#switch1').slideUp();
-                  $('#switch2').removeAttr('hidden').fadeIn();
-                  // $('#cnfm-od-form').submit();
+                  $('#cnfm-od-form').submit();
+                  window.location.replace('/order/confirm');
             }
       });
-
-      /* //location permission
-      $(document).on('click', '#uselocation', function () {
-            var getPosition = {
-                  enableHighAccuracy: true,
-                  timeout: 9000,
-                  maximumAge: 0
-            };
-
-            function success(gotPosition) {
-                  var uLat = gotPosition.coords.latitude;
-                  var uLon = gotPosition.coords.longitude;
-                  console.log(`${uLat}`, `${uLon}`);
-            };
-
-            function error(err) {
-                  console.warn(`ERROR(${err.code}): ${err.message}`);
-                  $('#uselocation').prop('checked', false);
-            };
-
-            navigator.geolocation.getCurrentPosition(success, error, getPosition);
-      }); */
-
 })
 
 function validation(params) {

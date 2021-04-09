@@ -102,36 +102,10 @@
                                     </div>
                                 </section>
 
-                                <a href="{{ url()->previous() }}" class="btn_1 full-width outline mb_25">Change
+                                <a href="{{ url()->previous()}}" class="btn_1 full-width outline mb_25">Change
                                     Booking</a>
-                                {{-- <div class="text-center"><small>Or <strong><a data-toggle="modal"
-                                                href="#user-login-modal">Login</a></strong> - <strong><a
-                                                href="{{route('user-register')}}">Register</a></strong></small>
-                        </div> --}}
                         </form>
                     </div>
-                    <div id="switch2" hidden>
-                        <div id="confirm">
-                            <div class="icon icon--order-success svg add_bottom_15">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72">
-                                    <g fill="none" stroke="#8EC343" stroke-width="2">
-                                        <circle cx="36" cy="36" r="35"
-                                            style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;">
-                                        </circle>
-                                        <path d="M17.417,37.778l9.93,9.909l25.444-25.393"
-                                            style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px;">
-                                        </path>
-                                    </g>
-                                </svg>
-                            </div>
-                            <h3>Booking Confirmed!</h3>
-                            <p>We will reply shortly to confirm the order.</p>
-                        </div>
-                        <div class="footer-btn text-center">
-                            <a href="#0" class="underline " target="blank">Print receipt</a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <!-- /box_booking -->
@@ -142,13 +116,6 @@
     </div>
     <!-- /container -->
 </main>
-@endsection
-
-@section('specific-script')
-<script src="{{ asset('client_user/js/sticky_sidebar.min.js') }}"></script>
-<script src="{{ asset('client_user/js/specific_detail.js') }}"></script>
-<script src="{{ asset('client_user/js/datepicker.min.js') }}"></script>
-<script src="{{ asset('client_user/js/datepicker_func_1.js') }}"></script>
 @endsection
 
 @section('page-script')
