@@ -15,7 +15,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 class OrderManageController extends Controller {
 
     public function __construct() {
-        $this->middleware("auth:client")->except('store');
+        $this->middleware("auth:client")->except('store')->except('create');
     }
 
     /**
@@ -58,8 +58,31 @@ class OrderManageController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        //
+    public function create(Request $request) {
+        dd(Auth::guard('customer')->user()->id);
+        $request->validate([
+          'state' => 'required',
+          'city' => 'required',
+          'address1' => 'required',
+          'address2' => 'required',
+          'pincode' => 'required|digits:10|integer'
+      ]);
+        $date = $request->cookie('date');
+        $selected_time = $request->cookie('selected_time');
+        $services = $request->cookie('services');
+
+
+        $data = array(
+          "sOrderId" => $this->getGenerateID('sOrderId'),
+          "client_id" => trim($request->get('loc_Loc')),
+          "user_id" => Auth::guard('customer')->user()->id,
+          "ser_list_id" => trim($request->get('loc_Email')),
+          "ser_item_id" => trim($request->get('loc_Email')),
+          "sbDate" => trim($request->get('loc_Email')),
+          "sAddress" => trim($request->get('loc_Email')),
+          "sTimeSlot" => trim($request->get('loc_Email')),
+          "sAmount" => trim($request->get('loc_Email')),
+      );
     }
 
     /**
@@ -207,4 +230,16 @@ class OrderManageController extends Controller {
         $data = ServiceList::where("ser_id", $ser_id)->get();
         return json_decode($data[0], true);
     }
+
+    // Generate ID
+    private function getGenerateID($col_name){
+
+      newGenerateID:
+      $id = date('ym').rand(100000, 999999);
+      $count = OrderManage::where($col_name, $id)->count();
+      if($count == 0)
+          return $id;
+      else
+          goto newGenerateID;
+  }
 }

@@ -118,6 +118,7 @@ use App\Http\Controllers\LanguageController;
     // order book
     Route::post('/book-order/{id}', 'client_user\OrderManageController@store')->name('user.orderbook');
 
+    Route::post('/book-confirm/{id}', 'client_user\OrderManageController@create')->name('user.bookconfirm');
 
 
     /** client -- listing */

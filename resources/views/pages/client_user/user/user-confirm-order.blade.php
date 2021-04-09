@@ -27,8 +27,9 @@
                     <!-- /head -->
                     <div class="main">
                         <div id="switch1">
-                            <form id="cnfm-od-form">
+                            <form id="cnfm-od-form" method="POST" action="{{route('user.bookconfirm',['id'=>encrypt($service->ser_id)])}}">
                                 <section id="switch_inner2">
+                                  @csrf
                                     <div class="mb-3">
                                         <h6>Work Location details</h6>
                                         <div class="row">
@@ -43,15 +44,15 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-12">
-                                                <input type="text" class="form-control" id="cnfod_ad1" name="address1"
+                                                <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->sUserHouseNo}}" id="cnfod_ad1" name="address1"
                                                     placeholder="House no., Building Name">
                                             </div>
                                             <div class="form-group col-12">
-                                                <input type="text" class="form-control" id="cnfod_ad2" name="address2"
+                                                <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->sUserArea}}" id="cnfod_ad2" name="address2"
                                                     placeholder="Road name, Area, Colony">
                                             </div>
                                             <div class="form-group col-6">
-                                                <input type="text" class="form-control" placeholder="Pincode"
+                                                <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->sUserPincode}}" placeholder="Pincode"
                                                     id="cnfod_pin" name="pincode">
                                             </div>
                                         </div>
@@ -65,10 +66,10 @@
                                     <div class="mb-4">
                                         <h6>Booking summary</h6>
                                         <ul>
-                                            <li>Date<span>02/03/2021</span></li>
-                                            <li>Time Slot<span>10:00am - 12:00pm</span></li>
-                                            <li>Category<span>Cleaning</span></li>
-                                            <li>Service<span>Dusting</span></li>
+                                            <li>Date<span>{{Cookie::get('date')}}</span></li>
+                                            <li>Time Slot<span>{{Cookie::get('selected_time')}}</span></li>
+                                            <li>Category<span>{{ucfirst($service->serviceCategory)}}</span></li>
+                                            <li>Service<span>{{ucfirst($service->serviceName)}}</span></li>
                                         </ul>
                                         <hr>
                                         <h6>Work Location Details</h6>
@@ -82,22 +83,28 @@
                                         <hr>
                                         <h6>Service Item Details</h6>
                                         <ol>
-                                            <li><label> 1 BHK home</label><label class="float-right"> 100 ₹</label></li>
-                                            <li><label> 10 sq feet Garden</label><label class="float-right"> 150
-                                                    ₹</label>
+                                          @php
+                                          $total=0
+                                          @endphp
+                                          @foreach ($items as $item)
+                                          @php
+                                            $total = (int)$total + (int)$item->item_price;
+                                          @endphp
+                                          <li><label> {{$item->item_name}}</label><label class="float-right"> {{$item->item_price}} ₹</label></li>
+                                          @endforeach
                                             </li>
                                         </ol>
 
                                         <ul class="pb-4">
                                             <li><span class="float-right border-top"><label
                                                         class="font-weight-bolder">Grand
-                                                        Total:</label> <label class="font-weight-bolder ml-3"> 250
+                                                        Total:</label> <label class="font-weight-bolder ml-3"> {{$total}}
                                                         ₹</label></span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div>
-                                        <button id="BO_btn3" type="button" class="btn_1 full-width mb_5">Book
+                                        <button id="BO_btn3" type="submit" class="btn_1 full-width mb_5">Book
                                             Now</button>
                                     </div>
                                 </section>
