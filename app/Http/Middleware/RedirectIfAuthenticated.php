@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
         }
         
         if ($guard === 'customer' && Auth::guard($guard)->check()) {
-            return redirect(route('home'));
+            return redirect()->intended(route('home'));
         }
 
         if (Auth::guard($guard)->check()) {

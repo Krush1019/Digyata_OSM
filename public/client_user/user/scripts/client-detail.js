@@ -24,7 +24,6 @@ $(document).ready(function () {
                   },
                   submitHandler: function (form) {
                         form.submit();
-                        // window.location.replace('/confirm-order')
                   }
 
             });
