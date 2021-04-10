@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\client_user\client;
 
+use App\ServiceCatalog;
 use App\ServiceList;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use Illuminate\Support\Facades\Crypt;
 
 class ServiceListController extends Controller {
 
@@ -22,6 +24,7 @@ class ServiceListController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
+
         $passArr = array();
         $breadcrumbs = [
 			['link' => "/client-dashboard", 'name' => "Dashboard"],
@@ -29,11 +32,8 @@ class ServiceListController extends Controller {
 			['name' => "Add Service Listing"]
 		];
         $passArr['breadcrumbs'] = $breadcrumbs;
-		
-		$serviceList = DB::table('tbl_service_catalogs')->where('serviceStatus', '1')->get();
-//        $serviceList = json_decode($serviceList, true);
-        if (!$serviceList->count())
-			$serviceList = null;
+
+        $passArr['serviceList'] = $this->getServices();
 
         try{
             $id = decrypt($request->id);
@@ -41,9 +41,22 @@ class ServiceListController extends Controller {
             if(!empty($data[0]))
                 $passArr['serviceData'] = $data[0];
 
+            $where = array(
+                ["loc_status", "=", 1],
+                ["tbl_service_catalogs.id", "=", decrypt($data[0]['service_id'])]
+            );
+            $passArr['state'] = $this->getLocationDetail($where, "tbl_localizations.loc_state", "state");
+
+            array_push($where, ["tbl_localizations.loc_state", "=", $data[0]['state']]);
+            $passArr['city'] = $this->getLocationDetail($where, "tbl_localizations.loc_location", "city");
+
+
         } catch(Exception $e) { }
 
-		return view('/pages/client_user/client/client-add-service-listing', $passArr)->with('serviceList', $serviceList);
+//        echo "<pre>";
+//        print_r($city);
+
+		return view('/pages/client_user/client/client-add-service-listing', $passArr);
     }
 
     public function service_listing() {
@@ -72,38 +85,46 @@ class ServiceListController extends Controller {
      */
     public function store(Request $request) {
         $request->validate([
-            'user_id' => 'required',
-            'SL_Ser_shopname' => 'required',
-            'SL_Ser_experience' => 'required',
+            'provider_name' => 'required',
+            'ser_exp' => 'required',
             'ser_img' => 'required',
-            'SL_Ser_aadharNo' => 'required',
+            'ser_doc_no' => 'required',
             'doc_img' => 'required',
         ]);
 
         $client_id = Auth::id();
-        $tbl = new ServiceList();
+        $items = $this->saveItemList($client_id, $request->get('items'));
 
-        $tbl->cl_id = $client_id;
-        $tbl->ser_cat_id = $request->get('serviceCat_id');
-        $tbl->ser_pro_name = $request->get('SL_Ser_shopname');
-        $tbl->user_ser_exp = $request->get('SL_Ser_experience');
-        $tbl->ser_dec = $request->get('dec_msg');
+        $arr = array(
+            "client_id" => $client_id,
+            "ser_cat_id" => decrypt($request->get('service_id')),
+            "ser_pro_name" => trim($request->get('provider_name')),
+            "user_ser_exp" => trim($request->get('ser_exp')),
+            "ser_dec" => trim($request->get('dec_msg')),
 
-        $tbl->ser_phone = $request->get('SL_ser_phone');
-        $tbl->ser_email = $request->get('SL_ser_email');
-        $tbl->ser_web = $request->get('SL_ser_website');
-        $tbl->ser_fb = $request->get('SL_ser_fblink');
-        $tbl->ser_tw = $request->get('SL_ser_twlink');
-        $tbl->ser_linkedin = $request->get('SL_ser_ldlink');
+            "ser_phone" => trim($request->get('ser_phone')),
+            "ser_email" => trim($request->get('ser_email')),
+            "ser_web" => trim($request->get('ser_website')),
+            "ser_fb" => trim($request->get('ser_fblink')),
+            "ser_tw" => $request->get('ser_twlink'),
+            "ser_linkedin" => trim($request->get('ser_ldlink')),
 
-        $tbl->ser_photo = $request->get('ser_img');
-        $tbl->doc_no = $request->get('SL_Ser_aadharNo');
-        $tbl->doc_image = $request->get('doc_img');
+            "ser_photo" => $request->get('ser_img'),
+            "doc_no" => trim($request->get('ser_doc_no')),
+            "doc_image" => $request->get('doc_img'),
 
-        $tbl->ser_days = $request->get('days');
-        $tbl->ser_time = $request->get('time');
-        $tbl->save();
-        $this->saveItemList($client_id, $tbl->id, $request->get('items'));
+            "ser_state" => Crypt::decryptString(trim($request->get('ser_state'))),
+            "ser_city" => Crypt::decryptString(trim($request->get('ser_city'))),
+            "ser_address" => trim($request->get('ser_address')),
+            "pin_no" => trim($request->get('ser_pin_no')),
+
+            "ser_days" => $request->get('days'),
+            "ser_time" => $request->get('time'),
+            "ser_item_id" => $items
+        );
+
+        ServiceList::create($arr);
+
         return true;
     }
 
@@ -132,29 +153,36 @@ class ServiceListController extends Controller {
         switch ($action) {
       
             case "update":
-                ServiceList::where("ser_id", decrypt($id))->update([
-                    //"uID" => $request->get('user_id'),
-                    "ser_cat_id" => $request->get('serviceCat_id'),
-                    "ser_pro_name" => $request->get('SL_Ser_shopname'),
-                    "user_ser_exp" => $request->get('SL_Ser_experience'),
-                    'ser_dec' => $request->get('dec_msg'),
+                $items = $this->saveItemList(Auth::id(), $request->get('items'));
+                $arr = array(
+                    "ser_cat_id" => decrypt($request->get('service_id')),
+                    "ser_pro_name" => trim($request->get('provider_name')),
+                    "user_ser_exp" => trim($request->get('ser_exp')),
+                    "ser_dec" => trim($request->get('dec_msg')),
 
-                    "ser_phone" => $request->get('SL_ser_phone'),
-                    "ser_email" => $request->get('SL_ser_email'),
-                    "ser_web" => $request->get('SL_ser_website'),
-                    "ser_fb" => $request->get('SL_ser_fblink'),
-                    "ser_tw" => $request->get('SL_ser_twlink'),
-                    "ser_linkedin" => $request->get('SL_ser_ldlink'),
+                    "ser_phone" => trim($request->get('ser_phone')),
+                    "ser_email" => trim($request->get('ser_email')),
+                    "ser_web" => trim($request->get('ser_website')),
+                    "ser_fb" => trim($request->get('ser_fblink')),
+                    "ser_tw" => $request->get('ser_twlink'),
+                    "ser_linkedin" => trim($request->get('ser_ldlink')),
 
                     "ser_photo" => $request->get('ser_img'),
-                    "doc_no" => $request->get('SL_Ser_aadharNo'),
+                    "doc_no" => trim($request->get('ser_doc_no')),
                     "doc_image" => $request->get('doc_img'),
+
+                    "ser_state" => Crypt::decryptString(trim($request->get('ser_state'))),
+                    "ser_city" => Crypt::decryptString(trim($request->get('ser_city'))),
+                    "ser_address" => trim($request->get('ser_address')),
+                    "pin_no" => trim($request->get('ser_pin_no')),
 
                     "ser_days" => $request->get('days'),
                     "ser_time" => $request->get('time'),
-                ]);
-                DB::table("tbl_user_ser_item_price")->where("ser_id", decrypt($id))->delete();
-                $this->saveItemList(Auth::id(), decrypt($id), $request->get('items'));
+                    "ser_item_id" => $items
+                );
+                ServiceList::where("ser_id", decrypt($id))->update($arr);
+                
+
                 break;
 
             case "status":
@@ -177,16 +205,92 @@ class ServiceListController extends Controller {
         //
     }
 
-    /**
-     *  Fetch Service Data
-     */
+    public function getLocation (Request $request) {
+        $action = $request->get('action');
+        switch ($action) {
+            case "state":
+                $ser_id = decrypt($request->get("service_id"));
+                $where = array(
+                    ["loc_status", "=", 1],
+                    ["tbl_service_catalogs.id", "=", $ser_id]
+                );
+                $data = $this->getLocationDetail($where, "tbl_localizations.loc_state", $action);
+                return json_encode($data);
+                break;
+
+            case "city":
+                $state = Crypt::decryptString($request->get("state_id"));
+                $ser_id = decrypt($request->get("service_id"));
+                $where = array(
+                    ["loc_status", "=", 1],
+                    ["tbl_service_catalogs.id", "=", $ser_id],
+                    ["tbl_localizations.loc_state", "=", $state],
+                );
+                $data = $this->getLocationDetail($where, "tbl_localizations.loc_location", $action);
+                return json_encode($data);
+                break;
+        }
+    }
+
+    private function getLocationDetail ($where = array(), $select = "", $action = "") {
+        $tbl_loc = "tbl_localizations";
+        $tbl_ser = "tbl_service_catalogs";
+        $tbl_ser_loc = "tbl_service_localization";
+
+        $data = DB::table($tbl_ser_loc)
+            ->select($select)
+            ->where($where)
+            ->join($tbl_loc, $tbl_loc . ".loc_id", "=", $tbl_ser_loc . ".loc_id")
+            ->join($tbl_ser, $tbl_ser . ".id", "=", $tbl_ser_loc . ".ser_id")
+            ->groupBy($select)
+            ->get();
+        $newData = array();
+        if($action == "state") {
+            foreach ($data as $row) {
+                $temp = Crypt::encryptString($row->loc_state);
+                $arr = array(
+                    "main_id" => $temp,
+                    "state" => $row->loc_state
+                );
+                array_push($newData, $arr);
+            }
+        } else if($action == "city" ) {
+            foreach ($data as $row) {
+                $temp = Crypt::encryptString($row->loc_location);
+                $arr = array(
+                    "main_id" => $temp,
+                    "city" => $row->loc_location
+                );
+                array_push($newData, $arr);
+            }
+        }
+
+        return $newData;
+    }
+
+    /** Get Services Data */
+    private function getServices () {
+        $data = ServiceCatalog::where("serviceStatus", 1)->get();
+        $arr = array();
+        foreach ($data as $row) {
+            $id = encrypt($row['id']);
+            array_push($arr, array(
+                "main_id" => $id,
+                "ser_name" => $row['serviceName'],
+                "ser_cat" => $row['serviceCategory']
+            ));
+        }
+        return $arr;
+    }
+
+    /** Fetch Service Data */
     private function getServiceData($action = "all", $id) {
 
         $where = array();
         if($action == "service") {
             array_push($where, array("ser_id", $id));
         } else {
-            array_push($where, array("cl_id", $id));
+            array_push($where, array("client_id", $id));
         }
 
         $serData = ServiceList::where($where)->get();
@@ -195,7 +299,7 @@ class ServiceListController extends Controller {
         if(!empty($serData)){
             foreach($serData as $row) {
         
-                $itemData = $this->getItemData($row['ser_id'], $row['cl_id']);
+                $itemData = $this->getItemData($row['ser_item_id'], $row['client_id']);
                 $service_cat = DB::table("tbl_service_catalogs")->where("id",$row['ser_cat_id'])->get();
                 $service_cat = json_decode($service_cat,true);
 
@@ -220,12 +324,16 @@ class ServiceListController extends Controller {
                     "img" => $row['ser_photo'],
                     "doc_num" => $row['doc_no'],
                     "doc_img" => $row['doc_image'],
-    
+
+                    "state" => $row['ser_state'],
+                    "city" => $row['ser_city'],
+                    "address" => $row['ser_address'],
+                    "pin_code" => $row['pin_no'],
+
                     "days" => $row['ser_days'],
                     "days_time" => $row['ser_time'],
                     "item" => $itemData,
-                    "status" => $row['ser_status'],
-                    
+                    "status" => $row['ser_status'],   
                 );
                 array_push($data, $arr);
             }    
@@ -234,60 +342,63 @@ class ServiceListController extends Controller {
         return $data;
     }
 
-    /**
-     *  Fetch Item of Service Data
-     */
+    /** Fetch Item of Service Data */
 
-    private function getItemData($ser_id , $cl_id) {
-        
-        $itemData = DB::table('tbl_user_ser_item_price')->where([
-            ["item_status", "=", "1"],
-            ["ser_id", "=", $ser_id],
-            ["cl_id", "=", $cl_id]
-        ])->get();
-        $itemData = json_decode($itemData, true);
-        $data = [];
-        foreach ($itemData as $value) {
-            $id = encrypt($value['item_id']);
-            $arr = array(
-                "iID" => $id,
-                "iName" => $value['item_name'],
-                "iDes" => $value['item_des'],
-                "iPrice" => $value['item_price'],
-            );
-            array_push($data, $arr);
+    private function getItemData($items) {
+        $items = explode( ",", $items);
+        $data = array();
+        foreach ( $items as $item ) {
+            if (trim($item) != "") {
+                $temp = json_decode(
+                    DB::table('tbl_ser_item_price')->where("item_id", $item)->get(),
+                    true
+                );
+                $id  = encrypt($temp[0]['item_id']);
+                array_push($data, array(
+                    "iID" => $id,
+                    "iName" => $temp[0]['item_name'],
+                    "iDes" => $temp[0]['item_des'],
+                    "iPrice" => $temp[0]['item_price'],
+                ));
+            }
+
         }
         return $data;
     }
 
-    /**
-     * Save Item List
-     */
+    /** Save Item List */
 
-    private function saveItemList($user_id, $ser_id, $data) {
-        $tbl_name = "tbl_user_ser_item_price";
+    private function saveItemList($user_id, $data) {
+        $tbl_name = "tbl_ser_item_price";
+        $items = "";
         foreach ($data as $value) {
-            $table = DB::table($tbl_name)->insert([
-                'ser_id' => $ser_id,
-                'cl_id' => $user_id,
+            $data = array(
+//                'ser_id' => $ser_id,
+                'client_id' => $user_id,
                 'item_name' => $value['pli_name'],
                 'item_des' => $value['pli_desc'],
                 'item_price' => $value['pli_price'],
-            ]);
+            );
+            if(isset($value['item_id'])) {
+                $id = decrypt($value['item_id']);
+                DB::table($tbl_name)->where("item_id", $id)->update($data);
+            } else {
+                $id = DB::table($tbl_name)->insertGetId($data);
+            }
+            $items .=  $id . ", ";
         }
+        return $items;
     }
 
-    /**
-     * Save Image
-     */
+    /** Save Image */
     public function saveImg(Request $request) {
         $path = [];
-        if($request->hasFile('SL_ser_photos')){
-            $imgFile = $request->file('SL_ser_photos');
+        if($request->hasFile('ser_img')){
+            $imgFile = $request->file('ser_img');
             $path['ser_img'] = $this->saveImgToStorage($imgFile,'images/client/ser_img');
         } 
-        if($request->hasFile('SL_ser_idproof')) {
-            $imgFile = $request->file('SL_ser_idproof');
+        if($request->hasFile('ser_doc_img')) {
+            $imgFile = $request->file('ser_doc_img');
             $path['doc_img'] = $this->saveImgToStorage($imgFile,'images/client/ser_doc_img');
         }
         return $path;

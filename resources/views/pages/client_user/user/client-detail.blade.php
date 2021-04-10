@@ -15,32 +15,39 @@
 @section('content')
 <main class="bg_color">
     <div class="container margin_detail">
+      @if ($errors->first())
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> {{$errors->first()}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      @endif
         <div class="row">
             <div class="col-xl-8 col-lg-7">
                 <div class="box_general">
                     <div class="d-none d-sm-block">
-                        <img src="{{asset('client_user/img/detail.jpg')}}" alt="" class="img-fluid">
+                        <img src="{{asset($service->ser_photo)}}" alt="" class="img-fluid image-set-auto" >
                     </div>
                     <div class="main_info_wrapper">
                         <div class="main_info clearfix">
                             <div class="user_thumb">
                                 <figure><img src="{{asset('client_user/img/avatar.jpg')}}" alt=""></figure>
-                                <em class="online"><span></span>On line</em>
+                                <em class="online"><span></span>Available</em>
                             </div>
                             <div class="user_desc">
-                                <h3>Ankit Modi</h3>
-                                <p>27 madhuvan complex, Radhanpur cross road, Mahesana - 384623
+                                <h3>{{$service->ser_pro_name}}</h3>
+                                <p>{{$service->ser_city}}
                                     {{-- <a href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361" target="blank">Get directions</a>--}}
                                 </p>
                                 <ul class="tags">
-                                    <li><a>Cleaner</a></li>
+                                    <li><a>{{$service->serviceName}}</a></li>
                                 </ul>
                             </div>
                             <div class="score_in">
                                 <div class="rating">
                                     <div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.4</strong></div>
                                 </div>
-                                <a class="wish_bt"><i class="icon_heart_alt"></i></a>
                             </div>
                         </div>
                         <!-- /main_info_wrapper -->
@@ -79,16 +86,23 @@
                                             <h3>Services</h3>
                                         </div>
                                         <div class="wrapper_indent">
-                                            <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales
-                                                leo, eget blandit nunc tortor eu nibh. Lorem ipsum dolor sit amet,
-                                                consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet
-                                                nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi.
-                                                Nullam mollis. Phasellus hendrerit.</p>
+                                            {{-- <p>{{$service->ser_dec}}</p> --}}
+                                            {!!$service->ser_dec!!}
                                             <h6>Service Items</h6>
                                             <div class="services_list clearfix">
                                                 <ul>
-                                                    <li>1 BHK home <strong><small>from</small> ₹100</strong></li>
-                                                    <li>10 sq feet Garden <strong><small>from</small> ₹150</strong></li>
+                                                    @foreach ($items as $item)
+                                                    <li>
+                                                        <div>
+                                                            <div>{{$item->item_name}} <strong><small>from</small>
+                                                                    ₹{{$item->item_price}}</strong>
+                                                            </div>
+                                                            <div>
+                                                                <small>{{$item->item_des}}</small>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -273,59 +287,72 @@
                     </div>
                     <!-- /head -->
                     <div class="main">
-                        <form id="placeorderform">
+                        <form id="placeorderform" method="POST" action="
+                        {{route('user.orderbook',['id'=>encrypt($service->ser_id)])}}
+                        ">
+                          @csrf
                             <input type="text" id="datepicker_field" name="date">
-                        <div id="DatePicker"></div>
-                        <div class="dropdown time mb-2">
-                            <a href="#" data-toggle="dropdown">Hour <input type="text" readonly class="border-0" id="selected_time" name="selected_time"></a>
-                            <div class="dropdown-menu ">
-                                <div class="dropdown-menu-content">
-                                    <div class="radio_select">
-                                        <div class="row">
-                                            <span class="col-6">
-                                                <input type="radio" id="time_1" name="time"
-                                                    value="10:00am - 12:00pm"><label for="time_1">10:00<small>pm</small>
-                                                    - 12:00<small>pm</small></label>
-                                            </span>
-                                            <span class="col-6">
-                                                <input type="radio" id="time_2" name="time"
-                                                    value="12:00pm - 02:00pm"><label for="time_2">12:00<small>pm</small>
-                                                    - 02:00<small>pm</small></label>
-                                            </span>
-                                            <span class="col-6">
-                                                <input type="radio" id="time_3" name="time"
-                                                    value="02:00-pm - 04:00pm"><label
-                                                    for="time_3">02:00<small>pm</small> - 04:00<small>pm</small></label>
-                                            </span>
-                                            <span class="col-6">
-                                                <input type="radio" id="time_4" name="time"
-                                                    value="04:00pm - 06:00pm"><label for="time_4">04:00<small>pm</small>
-                                                    - 06:00<small>pm</small></label>
-                                            </span>
+                            <div id="DatePicker"></div>
+                            <div class="dropdown time mb-2">
+                                <a href="#" data-toggle="dropdown">Hour <input type="text" readonly class="border-0"
+                                        id="selected_time" name="selected_time"></a>
+                                <div class="dropdown-menu ">
+                                    <div class="dropdown-menu-content">
+                                        <div class="radio_select">
+                                            <div class="row">
+                                                <span class="col-6">
+                                                    <input type="radio" id="time_1" name="time"
+                                                        value="10:00am - 12:00pm"><label
+                                                        for="time_1">10:00<small>pm</small>
+                                                        - 12:00<small>pm</small></label>
+                                                </span>
+                                                <span class="col-6">
+                                                    <input type="radio" id="time_2" name="time"
+                                                        value="12:00pm - 02:00pm"><label
+                                                        for="time_2">12:00<small>pm</small>
+                                                        - 02:00<small>pm</small></label>
+                                                </span>
+                                                <span class="col-6">
+                                                    <input type="radio" id="time_3" name="time"
+                                                        value="02:00-pm - 04:00pm"><label
+                                                        for="time_3">02:00<small>pm</small> -
+                                                        04:00<small>pm</small></label>
+                                                </span>
+                                                <span class="col-6">
+                                                    <input type="radio" id="time_4" name="time"
+                                                        value="04:00pm - 06:00pm"><label
+                                                        for="time_4">04:00<small>pm</small>
+                                                        - 06:00<small>pm</small></label>
+                                                </span>
+                                            </div>
                                         </div>
+                                        <!-- /time_select -->
                                     </div>
-                                    <!-- /time_select -->
                                 </div>
                             </div>
-                        </div>
-                        <!-- /dropdown -->
-                        <div class="mb-3">
-                            <div>
-                                <label class="font-weight-bolder mb-0 font-large-20">Select Service Items</label>
+                            <!-- /dropdown -->
+                            <div class="mb-3">
+                                <div>
+                                    <label class="font-weight-bolder mb-0 font-large-20">Select Service Items</label>
+                                </div>
+                                <div class="services_list clearfix">
+                                    <ul>
+                                        @foreach ($items as $item)
+                                        <li><input type="checkbox" name="services[]" class="mr-2"
+                                                value="{{encrypt($item->item_id)}}"><label for="ser_1">{{$item->item_name}}
+                                            </label><strong><small>from</small> ₹{{$item->item_price}}</strong></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="services_list clearfix">
-                                <ul>
-                                    <li><input type="checkbox" id="ser_1" name="services" class="mr-2"
-                                            value="1 BHK home"><label for="ser_1"> 1 BHK
-                                            home</label><strong><small>from</small> ₹100</strong></li>
-                                    <li><input type="checkbox" id="ser_2" name="services" class="mr-2"
-                                            value="10 sq feet Garden"><label for="ser_2"> 10 sq feet
-                                            Garden</label><strong><small>from</small> ₹150</strong></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="error_message"></div>
-                        <button type="submit" id="plc_oder_btn" class="btn_1 full-width booking">Book Now</button>
+                            <div class="error_message"></div>
+
+                              @if (Auth::guard('customer')->check())
+                              <button type="submit" id="plc_oder_btn" class="btn_1 full-width booking">Book Now</button>
+                              @else
+                              <a href="{{route('login-page')}}" class="btn_1 full-width booking">Login Now to Book</a>
+                              @endif
+
                         </form>
                     </div>
                 </div>

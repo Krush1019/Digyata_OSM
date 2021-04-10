@@ -41,6 +41,7 @@
               <li><a href="#0"><img src="{{asset('client_user/img/twitter_icon.svg')}}" data-src="{{asset('client_user/img/twitter_icon.svg')}}" alt="" class="lazy"></a></li>
               <li><a href="#0"><img src="{{asset('client_user/img/facebook_icon.svg')}}" data-src="{{asset('client_user/img/facebook_icon.svg')}}" alt="" class="lazy"></a></li>
               <li><a href="#0"><img src="{{asset('client_user/img/instagram_icon.svg')}}" data-src="{{asset('client_user/img/instagram_icon.svg')}}" alt="" class="lazy"></a></li>
+              <li><a href="#0"><img src="{{asset('client_user/img/youtube_icon.svg')}}" data-src="{{asset('client_user/img/youtube_icon.svg')}}" alt="" class="lazy"></a></li>
             </ul>
           </div>
         </div>

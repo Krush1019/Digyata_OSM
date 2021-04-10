@@ -107,20 +107,26 @@ $(document).ready(function () {
             form.find(".view_doc").attr("href", result['doc_img']);
             form.find(".doc_num").text(result['doc_num']);
 
+            form.find(".state").text(result['state']);
+            form.find(".city").text(result['city']);
+            form.find(".address").text(result['address']);
+            form.find(".pin_code").text(result['pin_code']);
+
             if (result['days'] != "" && result['days_time'] != "") {
                 form.find(".day_time tbody").empty();
                 var days = result['days'].split(",");
                 var time = result['days_time'].split(",");
+
                 if (days[0] == "CUSTOM") {
-                    for (i = 1; i < days.length - 1; i++) {
+                    for (var  i = 0; i < time.length - 1; i++) {
                         var temp = "";
-                        if (time[i] == "" )
+                        time[i] = time[i].split("-");
+                        if ( time[i][0] == "H" || time[i][1] == "H" )
                             temp = "Holiday";
                         else {
-                            time[i] = time[i].split("-");
                             temp = time[i][0] + ":00 To " + time[i][1] + ":00";
                         }
-                        form.find(".day_time tbody").append("<tr><td>" + days[i] + "</td><td>" + temp + "</td></tr>");
+                        form.find(".day_time tbody").append("<tr><td>" + days[i+1] + "</td><td>" + temp + "</td></tr>");
                     }
                 } else if (days[0] == "5D") {
                     time = time[0].split("-");

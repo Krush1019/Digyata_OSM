@@ -19,7 +19,7 @@
       <div class="container clearfix d-inline-flex d-md-block">
         <div class="sort_select mr-1 w-auto">
           <select name="SL_service" id="SL_service" class="form-control">
-            <option value="all" selected disabled>all</option>
+            <option value="all" selected>all</option>
             <option value="Dusting">Dusting</option>
             <option value="Painting">Painting</option>
             <option value="Electric service">Electric service</option>
@@ -93,7 +93,7 @@
             <figure>
               <img src="{{asset('client_user/img/elecrician-person.jpg')}}"
                    data-src="{{asset('client_user/img/elecrician-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
+              <a href="" class="strip_info">
                 <div class="item_title">
                   <h3>Ramesh Patel</h3>
                   <small>Electician</small>
@@ -117,7 +117,7 @@
             <figure>
               <img src="{{asset('client_user/img/plumber-person.jpg')}}"
                    data-src="{{asset('client_user/img/plumber-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
+              <a href="" class="strip_info">
                 <div class="item_title">
                   <h3>Kapil Satavara</h3>
                   <small>Plumber</small>
@@ -141,7 +141,7 @@
             <figure>
               <img src="{{asset('client_user/img/painter-person.jpg')}}"
                    data-src="{{asset('client_user/img/painter-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
+              <a href="" class="strip_info">
                 <div class="item_title">
                   <h3>Ankit Modi</h3>
                   <small>Painter</small>
@@ -165,7 +165,7 @@
             <figure>
               <img src="{{asset('client_user/img/cleaner-person.jpg')}}"
                    data-src="{{asset('client_user/img/cleaner-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
+              <a href="" class="strip_info">
                 <div class="item_title">
                   <h3>Manubhai Khoja</h3>
                   <small>Cleaner</small>
@@ -189,7 +189,7 @@
             <figure>
               <img src="{{asset('client_user/img/pest_controller-person.jpg')}}"
                    data-src="{{asset('client_user/img/pest_controller-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
+              <a href="" class="strip_info">
                 <div class="item_title">
                   <h3>Umang Panchal</h3>
                   <small>Pest Controller, Fumigators</small>
@@ -213,7 +213,7 @@
             <figure>
               <img src="{{asset('client_user/img/carpenter-person.jpg')}}"
                    data-src="{{asset('client_user/img/carpenter-person.jpg')}}" class="img-fluid lazy" alt="">
-              <a href="{{route('client-detail')}}" class="strip_info">
+              <a href="" class="strip_info">
                 <div class="item_title">
                   <h3>paresh Mistri</h3>
                   <small>Carpenter</small>

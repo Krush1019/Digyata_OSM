@@ -40,6 +40,15 @@
           <div class="col-md-8 pl-0">
             <div class="row">
               <div class="col-md-8">
+                <div class="form-group mt-20 mb-0">
+                    <span class="small pl-0 mr-2">User Id:</span><span class="font-weight-bold">{{Auth::guard('customer')->user()->sUserID}}</span>
+                </div>
+              </div>
+            </div>
+            <!-- /row-->
+
+            <div class="row">
+              <div class="col-md-8">
                 <div class="form-group mt-20">
                   <div class="small pl-0">Name</div>
                   <input type="text" class="form-control font-weight-bold" id="us_fname" name="sUserName" value="{{Auth::guard('customer')

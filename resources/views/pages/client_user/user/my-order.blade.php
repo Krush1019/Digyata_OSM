@@ -22,7 +22,7 @@
       </div> -->
     </div>
     <div class="list_general">
-      @if (! empty($data))
+      @if (!$data->first())
         <div class="box_general box padding_bottom text-center">
           <div class="row h-100">
             <div class="col-sm-12 my-auto">
@@ -33,7 +33,7 @@
               </div>
             </div>
           </div>
-        </div>    
+        </div>
       @else
         <ul>
           @foreach ($data as $dt)
@@ -42,8 +42,8 @@
             <h4>Dusting <i class="{{(($dt->bSerStatus)?(($dt->bSerStatus==1)?"approved":"pending"):"cancel")}}">Pending</i></h4>
             <ul class="booking_list">
               <li><strong>Order ID</strong> {{$dt->sOrderId}}</li>
-              <li><strong>Booking date</strong> {{date_format(date_create($dt->sTimeSlot),"d/m/Y")}}</li>
-              <li><strong>Booking time-slot</strong> {{date_format(date_create($dt->sTimeSlot),"H:i:s")}}</li>
+              <li><strong>Booking date</strong> {{date_format(date_create($dt->sbDate),"d/m/Y")}}</li>
+              <li><strong>Booking time-slot</strong> {{$dt->sTimeSlot}}</li>
               <li><strong>Amount</strong> {{$dt->sAmount}} Rs</li>
               <li><strong>Address</strong> {{$dt->sAddress}}</li>
             </ul>
@@ -58,7 +58,7 @@
       @endif
     </div>
   </div>
- 
+
 
   <!-- <div class="modal fade custom-modal" id="viewordermodal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
@@ -204,7 +204,7 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
         </div>
       </div>
-    </div>  
+    </div>
   </div> -->
 @endsection
 

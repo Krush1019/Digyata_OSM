@@ -7,6 +7,25 @@
 @endsection
 
 @section('content')
+
+@if (empty($serviceList))
+	<div class="box_general box padding_bottom text-center">
+		<div class="row h-100">
+			<div class="col-sm-12 my-auto">
+				<div class="mx-auto">
+					<div class="align-middle">
+						<span class="font-weight-bolder text-dark font-large-30 ">You haven't add any service yet!!</span>
+					</div>
+					<div class="text-center ">
+						<a href="{{route('add-service-listing','insert')}}" class="btn_1 mt-2 font-weight-bolder">Add New Service</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+@else
+
 	<div class="box_general">
 		<div class="header_box">
 			<a class="font-large-20 btn btn-success mr-3" href="{{route('add-service-listing',"insert")}}"><i class="fa fa-plus"></i></a>
@@ -28,34 +47,27 @@
 						<figure><img src="{{asset($value['img'])}}" alt="Service Image"></figure>
 						<small>{{$value['service_cat']}}</small>
 						<h4>{{$value['name']}}</h4>
-						<div class="service_description">{!!$value['dec']!!} </div>
+						<div class="service_description">{!! $value['dec'] !!} </div>
 						<p>
 							<button type="button" class="btn_1 gray modal_btn" data-id="{{$value['main_id']}}">
 								<i class="fa fa-fw fa-eye"></i> View Service
 							</button>
-							{{-- <button type="button" class="btn_1 gray modal_btn" data-toggle="modal" data-target="#viewServiceModal" data-id="{{$value['main_id']}}">
-								<i class="fa fa-fw fa-eye"></i> View Service
-							</button> --}}
 						</p>
 						<ul class="buttons">
 							<li class="">
 								@if($value['status'] == 1)
-									<a href="#" class="btn_1 gray s_status approve" data-id="{{$value['main_id']}}"><i
-												  class="fa fa-fw fa-check"></i> Active</a>
+									<a href="#" class="btn_1 gray s_status approve" data-id="{{$value['main_id']}}"><i class="fa fa-fw fa-check"></i> Active</a>
 								@else
 									<a href="#" class="btn_1 gray s_status delete" data-id="{{$value['main_id']}}"><i class="fa fa-fw fa-ban mr-1"></i> Inactive</a>
 								@endif
 							</li>
 						</ul>
 					</li>
-
 				@endforeach
-
 			</ul>
 		</div>
 	</div>
 	<!-- /box_general-->
-
 
 	<nav aria-label="...">
 		<ul class="pagination pagination-sm add_bottom_30">
@@ -71,6 +83,9 @@
 		</ul>
 	</nav>
 	<!-- /pagination-->
+@endif
+
+
 
 	{{-- START: View Modal --}}
 	<div class="modal fade" id="viewServiceModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -163,8 +178,11 @@
 									</span>
 								</div>
 								<div class="col-md-6">
-									<span>Aadhar No.: </span>
-									<span class="doc_num"> </span>
+									<div class="col-md-6 mt-10">
+										<div class="col-sm-12 small pl-0">Aadhar No.:</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 doc_num"></div>
+									</div>
+
 								</div>
 							</div>
 
@@ -173,34 +191,31 @@
 							</div>
 
 							<div class="row">
-								<div class="col-md-6">
-									<span>
-										<label>City: </label>
-										<label>Mahesana</label>
-									</span>
+								<div class="col-md-6 mt-10">
+									<div class="col-sm-12 small pl-0">City :</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 city">Mahesana</div>
 								</div>
-								<div class="col-md-6">
-									<span>
-										<label>State: </label>
-										<label>Gujarat</label>
-									</span>
+								<div class="col-md-6 mt-10">
+									<div class="col-sm-12 small pl-0">State :</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 state">Gujarat</div>
 								</div>
+
 							</div>
 
 							<div class="row">
-								<div class="col-md-6">
-									<span>
-										<label>Address: </label>
-										<label>20, Madhuvan Complex, Radhanpur Cross road, Mahesana-2</label>
-									</span>
+								<div class="col-md-8">
+									<div class="mt-10">
+										<div class="col-sm-12 small pl-0">Address :</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 address">20, Madhuvan Complex, Radhanpur Cross road, Mahesana-2</div>
+									</div>
 								</div>
-								<div class="col-md-6">
-									<span>
-										<label>Pincode: </label>
-										<label>698745</label>
-									</span>
+								<div class="col-md-4 mt-10">
+									<div class="col-sm-12 small pl-0">Pin Code :</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 pin_code">384340</div>
 								</div>
 							</div>
+
+
 
 							<div class="row">
 								<div class="col-md-4 col-lg-4 col-sm-12">

@@ -1,153 +1,234 @@
-/*
- filename: client-profile.js
- author: digyata
-*/
-//------------------------------------------------------------------------------------------------
-
-$(document).ready(function () {
-
-  //change password model validation
-  /* $('#changepasswdbtn').click(function () {
-    alert("hello");
-
-    $('#changepasswdform').validate({
-
-      rules: {
-        oldpassword: {
-          required: true,
-          minlength: 6
-        },
-        newpassword: {
-          required: true,
-          minlength: 6
-        },
-        confirmnewpassword: {
-          required: true,
-          equalTo: '#cl_new_pswd'
-        }
-      },
-      messages: {
-        oldpassword: {
-          required: "Please enter the old password.",
-          minlength: "Your password must be at least 5 characters long."
-        },
-        newpassword: {
-          required: "Please enter the new password.",
-          minlength: "Your password must be at least 5 characters long."
-        },
-        confirmnewpassword: {
-          required: "Please confirm new password.",
-          equalTo: "New password and confirm new password must be same."
-        }
-      },
-      submitHandler:  function(form){
-        form.submit();
-      }
-    })
-  }); */
-
-  $('#changepasswdbtn').click(function () {
-    $('#changepasswdform').validate({
-
-      rules: {
-        oldpassword: {
-          required: true,
-          minlength: 6
-        },
-        newpassword: {
-          required: true,
-          minlength: 6
-        },
-        confirmnewpassword: {
-          required: true,
-          equalTo: "#cl_new_pswd"
-        }
-      },
-      messages: {
-        oldpassword: {
-          required: "Please enter the old password.",
-          minlength: "Your password must be at least 6 characters long."
-        },
-        newpassword: {
-          required: "Please enter the new password.",
-          minlength: "Your password must be at least 6 characters long."
-        },
-        confirmnewpassword: {
-          required: "Please confirm new password.",
-          equalTo: "New password and confirm new password must be same."
-        }
-      },
-      submitHandler: function (form) {
-        form.submit();
-      }
-    });
-  })
-
-
-  /* 
-  //change password model reset on close
-  $('#changepasswdmodel').on('hidden.bs.modal', function () {
-    $(this).find('form').trigger('reset').validate().resetForm();
-  });
-//password show-hide button
-  $('.new-password').focus(function () {
-    if ($('#btn1').is(':hidden')){
-      $('#btn1').removeAttr('hidden');
-    }
-  });
-  $('#btn1').click(function () {
-    if ( $(this).text() === 'show'){
-      $('.new-password').attr('type', 'text');
-      $(this).text('hide');
-    } else {
-      $('.new-password').attr('type', 'password');
-      $(this).text('show');
-    }
-  });
+/**
+ * File Name  :- client-profile.js
+ * Author 		:- Digyata
  */
 
-  $(document).on('click', '.cncpswdbtn', function () {
-    $('#chngepassworddiv').toggleClass('display-hidden');
-  });
+ $(document).ready(function () {
 
-  //client detail form validation
-  $('#updtClientDtlbtn').click(function () {
-    $('#updateClientDetail').validate({
-      rules: {
-        cl_name: 'required',
-        cl_lname: 'required',
-        _gender: "required",
-        cl_mobile: {
-          required: true,
-          number: true,
-          minlength: 10,
-          maxlength: 10
-        },
-        cl_email: {
-          required: true,
-          email: true
-        }
-      },
-      messages: {
-        cl_name: "Please enter your First Name",
-        cl_lname: "Please enter your Last Name",
-        User_gender: "Please select your Gender",
-        cl_mobile: {
-          required: "Please enter your mobile no.",
-          minlength: "Mobile No. must have 10 digit",
-          maxlength: "Mobile No. must have 10 digit",
-          number: "Please enter only digits",
-        },
-        cl_email: {
-          required: "Please enter your Email Address",
-          email: "Please enter a valid email address"
-        }
-      },
-      submitHandler: function (form) {
-        form.submit();
-        $('#clientimgupload').submit();
-      }
+
+	// On Loding 
+	$(window).on('load', function (e) {
+		$('#profile').css('background-image', 'url('+ $("#profile_img").val() +')').addClass('hasImage');
+	});
+
+	// Verify Password
+	$("#btn_confirm").on('click', function (e) {
+		e.preventDefault();
+		checkPassword();
+		$(this).dialog("destroy"); 
+	});
+
+	function checkPassword() {
+		var password = $("#oldPassword").val().trim();
+		var error = $("#oldPassword-error");
+		if(password != "" && password != null && password != undefined) {
+			var url = "/client-password";
+			var data = {
+				"password" : password
+			};
+			$.get(url, data, function (result) {
+				if(result) {
+					$("#btn_confirm").hide();
+					$("#sbt_btn").attr("hidden", false);
+					$(".new_password").attr("hidden", false);
+					$(".old_password").hide();
+				} else {
+					error.text("Enter Valid Password !!");
+				}
+			});
+		} else {
+			error.text("Enter Old Password !!");
+		}
+	}
+
+	// Close Modal
+	var setTime;
+	$('#changePasswdModel').on('hidden.bs.modal', function (e) {
+		$(this).find('form').trigger('reset').validate().resetForm();
+		setTime= setTimeout(function (e) {
+			$("#btn_confirm").show();
+			$("#sbt_btn").attr("hidden", true);
+			$(".new_password").attr("hidden", true);
+			$(".old_password").show();
+		}, 7000);
+		$(this).dialog("destroy");
+	});
+
+	$("#changePasswdModel").on("shown.bs.modal", function (e) {
+		e.preventDefault();
+		clearTimeout(setTime);
+		$(this).dialog("destroy"); 
+	});
+
+	// Password show-hide button
+	$(".toggle-password").on('click' ,function(e) {
+		e.preventDefault();
+		$(this).toggleClass("fa-eye fa-eye-slash");
+		var input = $($(this).attr("toggle"));
+		if (input.attr("type") == "password") {
+			input.attr("type", "text");
+		} else {
+			input.attr("type", "password");
+		}
+		$('#changePasswdModel').dialog("destroy"); 
+	});
+
+	// Update Password
+	$("#sbt_btn").on('click', function (e) {
+		$("#changePasswordForm").validate({
+			rules : {
+				new_password : {
+					required: true,
+					minlength: 6
+				},
+				con_password : {
+					required : true,
+					equalTo: "#newPassword"
+				}
+			},
+			messages : {
+				new_password : {
+					required : "Enter New Password.",
+					minlength: "Your password must be at least 6 characters long."
+				},
+				con_password : {
+					required : "Enter Confirm Password.",
+					equalTo: "Password did not match. Please try again...",
+				}
+			},
+			submitHandler:  function(form) {
+				
+				Swal.fire({
+					icon: 'info',
+					text: 'Do you want to change the password ??',
+					showDenyButton: true,
+					showCancelButton: false,
+					confirmButtonText: `Save`,
+					denyButtonText: `Don't save`,
+				}).then((result) => {
+					if (result.isConfirmed) {
+						form.submit();
+					} else {
+						Swal.fire('Changes are not saved.', '', 'success');
+					}
+				});
+			}
+		});
+		$('#changePasswdModel').dialog("destroy");
+	});
+
+	// Client detail form validation
+	$('#client_sbt_btn').click(function () {
+		$('#updateClientDetail').validate({
+			rules: {
+				// client_fname: 'required',
+				// client_lname: 'required',
+				client_name : "required",
+				gender: "required",
+				client_mo: {
+					required: true,
+				},
+				client_email: {
+					required: true,
+					email: true
+				}
+			},
+			messages: {
+				// client_fname: "Please enter your First Name",
+				// client_lname: "Please enter your Last Name",
+				client_name : "Enter your Full Name.",
+				gender: "Please select your Gender",
+				client_mo: {
+					required: "Please enter the mobile no.",
+				},
+				client_email: {
+					required: "Please enter your Email Address",
+					email: "Please enter a valid email address"
+				}
+			},
+			submitHandler:  function(form) {
+				
+				Swal.fire({
+					icon: 'info',
+					text: 'Do you want to save the changes ??',
+					showDenyButton: true,
+					showCancelButton: false,
+					confirmButtonText: `Save`,
+					denyButtonText: `Don't save`,
+				}).then((result) => {
+					if (result.isConfirmed) {
+						uploadImg ("clientImgForm" , "/client-save-img")
+						.then((path) => {
+							if(path != ""){
+								$("#profile_img").attr("value", path);
+							}
+							form.submit();
+						})
+						.catch((error) => {
+							swalError();
+						});
+					} else {
+						Swal.fire('Changes are not saved.', '', 'success');
+					}
+				});
+			}
+    	})
+  	});
+
+	// Number Validation
+	numberValidation(".numberValidation");
+	
+});
+
+function uploadImg(form_id, url) {
+	let myform = document.getElementById(form_id);
+    let formData = new FormData(myform);
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: url,
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                resolve(data)
+            },
+            error: function (error) {
+                reject(error)
+            },
+        })
     })
-  });
+}
 
-})
+function swalConfirm(title = "Do you want to save the changes?") {
+	Swal.fire({
+		title: 'Do you want to save the changes?',
+		showDenyButton: true,
+		showCancelButton: true,
+		confirmButtonText: `Save`,
+		denyButtonText: `Don't save`,
+	}).then((result) => {
+		if (result.isConfirmed) {
+			Swal.fire('Saved!', '', 'success')
+		} else if (result.isDenied) {
+			Swal.fire('Changes are not saved', '', 'info')
+		}
+	});
+}
+
+function swalError(msg = "Something went wrong!", title = "Oops...") {
+    Swal.fire({
+        icon: 'error',
+        title: title,
+        text: msg,
+    }).then((result) => {
+        location.reload();
+    });
+}
+
+function numberValidation(input_id) {
+    $(input_id).keypress(function (event) {
+        return /\d/.test(String.fromCharCode(event.keyCode));
+    });
+}

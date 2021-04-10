@@ -16,8 +16,8 @@
 @section('content')
 <main>
   <div class="hero_single inner_pages background-image"
-    data-background="url({{asset('client_user/img/hero_general.jpg')}})">
-    <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.7)">
+    data-background="url({{asset('client_user/img/register.jpg')}})">
+    <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.4)">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-xl-9 col-lg-10 col-md-8">
@@ -30,8 +30,6 @@
     </div>
   </div>
   <!-- /hero_single -->
-
-  
 
   {{-- 
     <div class="container margin_60_40">
@@ -93,13 +91,13 @@
   <div class="bg_gray pattern_mail" id="submit">
     <div class="container margin_60_40">
       <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-sm-10 col-md-7 col-xl-5">
           <div class="box_general padding">
             <div class="text-center add_bottom_15">
               <h4>Please fill the form below</h4>
             </div>
             <div id="message-register"></div>
-            <form id="Client-register" method="POST" action="{{ route('register.client') }}">
+            <form id="Client-register" method="POST" action="{{ route('register.client') }}" autocomplete="off">
               @csrf
               <div class="row">
                 <div class="col-md-12">
@@ -163,8 +161,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <input type="password" class="form-control new-password @error('password') is-invalid @enderror"
-                      placeholder="Password" name="password" id="password_register">
+                    <input type="password" class="form-control new-password @error('password') is-invalid @enderror" placeholder="Password" name="password" id="password_register">
+                    <span toggle="#password_register" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>

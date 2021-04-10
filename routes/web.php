@@ -1,21 +1,10 @@
+
 <?php
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LanguageController;
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-*/
-
 
 /******************
  *   ADMIN
@@ -82,20 +71,78 @@ use App\Http\Controllers\LanguageController;
     Route::get('/discount-promo-edit/{id}', 'DiscountPromoController@edit');
     //    Route::get('/discount-promo-destroy/{id}', 'DiscountPromoController@destroy');
 
+/******************
+*   CLIENT
+* *****************/
+
+    /** client -- Dashboard (Home) */
+    Route::get('/client-dashboard', 'client_user\client\ClientDashboardController@index')->middleware('auth:client')->name('client-dashboard');
+
+    /** client -- profile */
+    Route::get('/client-profile', 'client_user\client\ClientProfileController@index')->name('client-profile');
+    Route::post('/client-profile-update/{action}', 'client_user\client\ClientProfileController@update')->name('client-profile.update');
+    Route::post("/client-save-img", "client_user\client\ClientProfileController@saveImg");
+    Route::get('/client-password', 'client_user\client\ClientProfileController@verifyPasswoad');
+
+    /** client -- service listing */
+    Route::get('/service-listing', 'client_user\client\ServiceListController@service_listing')->name('service-listing');
+    Route::get('/add-service-listing/{id}', 'client_user\client\ServiceListController@index')->name('add-service-listing');
+    Route::post('/service-listing-location', 'client_user\client\ServiceListController@getLocation');
+    Route::post('/service-listing-store', 'client_user\client\ServiceListController@store')->name('service-listing.store');
+    Route::post('/service-listing-update', 'client_user\client\ServiceListController@update');
+    Route::get('/service-listing-show', 'client_user\client\ServiceListController@show');
+    Route::post('/service-listing-store-img', 'client_user\client\ServiceListController@saveImg');
+
+    /** client -- reviews */
+    Route::get('/client-review', 'client_user\client\ClientReviewController@index')->name('client-review');
+
+    /** client -- Order Manage */
+    Route::get('/order-manage', 'client_user\OrderManageController@index')->name('order-manage.index');
+    Route::get('/order-manage-show', 'client_user\OrderManageController@show');
+
+
+/******************
+*   USER
+******************/
+
+    /** user -- Profile */
+    Route::get('/user/profile', 'client_user\user\UserProfileController@index')->name('user.profile');
+    Route::post('/user/profile', 'client_user\user\UserProfileController@update')->name('user.profileupdate');
+
+    /** user -- My orders */
+    Route::get('/user/my-orders', 'client_user\user\MyOrdersController@index')->name('user.myorders');
+
+    /** client -- detail */
+    Route::get('/client-detail/{id}', 'client_user\user\ClientDetailController@index')->name('client-detail');
+
+    // order book
+    Route::post('/book-order/{id}', 'client_user\OrderManageController@store')->name('user.orderbook');
+
+    Route::post('/book-confirm/{id}', 'client_user\OrderManageController@create')->name('user.bookconfirm');
+
+
+    /** client -- listing */
+    Route::get('/client-listing', 'client_user\user\ClientListingController@index')->name('client-listing');
+
+    /** confirm -- order */
+    Route::get('/confirm-order/{id}', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
+    Route::get('/order/confirm/{id}', function ($id) {
+      return view('pages\client_user\user\confirm-msg',['orderId'=>decrypt($id)]);
+    })->name('confirm.msg');
+
+
+
+    /** user -- review */
+    Route::get('/user-review', 'client_user\user\UserReviewController@index')->name('user-review');
+
 
 /*********************
  * FRONT_END
  * ********************/
 
-    /** Index page */
-    Route::get('/', 'client_user\indexController@index')->name('index-page');
-    Route::get('/home', 'client_user\indexController@index')->name('home');
+    Route::get('/','client_user\indexController@index');
+    Route::get('/home','client_user\indexController@index')->name('home');
 
-    /** client-register */
-    Route::get('/client-register', 'client_user\ClientRegisterController@index')->name('client-register');
-
-    /** user-register */
-    Route::get('/user-register', 'client_user\UserRegisterController@index')->name('user-register');
 
     /** about-us */
     Route::get('/about-us', 'client_user\AboutUsController@index')->name('about-us');
@@ -109,58 +156,6 @@ use App\Http\Controllers\LanguageController;
     Route::get('/reload-captcha', 'client_user\CaptchaController@reloadCaptcha');
 
 
-/******************
-*   CLIENT
-* *****************/
-
-    /** client -- Dashboard */
-    Route::get('/client-dashboard', 'client_user\client\ClientDashboardController@index')->middleware('auth:client')->name('client-dashboard');
-
-    /** client -- profile */
-    Route::get('/client-profile', 'client_user\client\ClientProfileController@index')->name('client-profile');
-
-    /** client -- service listing */
-    Route::get('/service-listing', 'client_user\client\ServiceListController@service_listing')->name('service-listing');
-    Route::get('/add-service-listing/{id}', 'client_user\client\ServiceListController@index')->name('add-service-listing');
-    Route::post('/service-listing-store', 'client_user\client\ServiceListController@store');
-    Route::get('/service-listing-update', 'client_user\client\ServiceListController@update');
-    Route::get('/service-listing-show', 'client_user\client\ServiceListController@show');
-    Route::post('/service-listing-store-img', 'client_user\client\ServiceListController@saveImg');
-
-    /** client -- reviews */
-    Route::get('/client-review', 'client_user\client\ClientReviewController@index')->name('client-review');
-
-    /** client -- Order Manage */
-    Route::get('/order-manage', 'client_user\OrderManageController@index')->name('order-manage.index');
-    Route::get('/order-manage-show', 'client_user\OrderManageController@show');
-
-    /** client -- bookings */
-    // Route::get('/client-order-manage', 'client_user\client\ClientOrderManageController@index')->name('client-order-manage');
-    
-/******************
-*   USER
-******************/
-
-    /** user -- Profile */
-    Route::get('/user/profile', 'client_user\user\UserProfileController@index')->name('user.profile');
-    Route::post('/user/profile', 'client_user\user\UserProfileController@update')->name('user.profileupdate');
-
-    /** user -- My orders */
-    Route::get('/user/my-orders', 'client_user\user\MyOrdersController@index')->name('user.myorders');
-
-    /** client -- detail */
-    Route::get('/client-detail', 'client_user\user\ClientDetailController@index')->name('client-detail');
-
-    /** client -- listing */
-    Route::get('/client-listing', 'client_user\user\ClientListingController@index')->name('client-listing');
-
-    /** confirm -- order */
-    Route::get('/confirm-order', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
-
-    /** user -- review */
-    Route::get('/user-review', 'client_user\user\UserReviewController@index')->name('user-review');
-
-
 /*********************
  * ACESSS CONTROLLER
  * ********************/
@@ -168,7 +163,7 @@ use App\Http\Controllers\LanguageController;
     Route::get('/access-control', 'AccessController@index');
     Route::get('/access-control/{roles}', 'AccessController@roles');
     Route::get('/modern-admin', 'AccessController@home')->middleware('permissions:approve-post');
-    Route::get('/logout', 'Auth\LoginController@logout');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
     Auth::routes();
 
@@ -177,21 +172,19 @@ use App\Http\Controllers\LanguageController;
 *   LOGIN
 ******************/
 
-    /** Auth -- Client */ 
-    // Route::get('/login/client', 'Auth\LoginController@showClientLoginForm')->name('client.login');
+    /** Auth -- Login */
+    Route::get('/loginpage', 'Auth\LoginController@LoginPageForm')->name('login-page');
+
+    /** Auth -- Client */
     Route::post('/login/client', 'Auth\LoginController@clientLogin')->name('login.client');
     Route::get('/register/client', 'Auth\RegisterController@showClientRegisterForm')->name('client.register');
     Route::post('/register/client', 'Auth\RegisterController@createClient')->name('register.client');
 
-    /** Auth -- Customer */ 
-    // Route::get('/login/customer', 'Auth\LoginController@showCustomerLoginForm')->name('customer.login');
+    /** Auth -- Customer */
     Route::post('/login/customer', 'Auth\LoginController@customerLogin')->name('login.customer');
     Route::get('/register/customer', 'Auth\RegisterController@showCustomerRegisterForm')->name('customer.register');
     Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
 
-    /** Auth -- Login */ 
-    Route::get('/loginpage', 'Auth\LoginController@LoginPageForm')->name('login-page');
 
-
-/** locale Route */ 
+/** locale Route */
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);

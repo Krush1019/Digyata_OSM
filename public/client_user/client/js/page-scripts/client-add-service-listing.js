@@ -1,233 +1,274 @@
 /**
  *  Filename   : client-service-listing.js
- *  Author       : Digyata
+ *  Author        : Digyata
  */
 
  $(document).ready(function () {
 
-   var action = ""; var ser_id = "";
-   $(window).on('load', function () {
-       // for Add Options to select input field Dynamicaly
-       action = $("#addServiceListbtn").attr("data-action").trim();
-       ser_id = $("#addServiceListbtn").attr("data-id").trim();
-       if (action == "update") {
-           var des = $("#ser_des").val();
-           $('.note-editable').empty().html(des);
-           var ser_days = $("#days").val().split(",");
-           var ser_days_time = $("#days_time").val().split(",");
-           $("input[name='days'][value='" + ser_days[0] + "']").attr("checked", true);
-           if (ser_days[0] == "CUSTOM") {
+    var action = ""; var ser_id = "";
+    $(window).on('load', function () {
+        // for Add Options to select input field Dynamicaly
+        action = $("#sbt_btn").attr("data-action").trim();
+        ser_id = $("#sbt_btn").attr("data-id").trim();
+        if (action == "update") {
+            var des = $("#ser_des").val();
+            $('.note-editable').empty().html(des);
+            var ser_days = $("#days").val().split(",");
+            var ser_days_time = $("#days_time").val().split(",");
+            $("input[name='days'][value='" + ser_days[0] + "']").attr("checked", true);
+            if (ser_days[0] == "CUSTOM") {
                printDays(ser_days, ser_days_time);
-           } else {
-               var temp = ser_days_time[0].split("-");
-               $("select.optime option[value='" + temp[0].trim() + "']").attr("selected", true);
-               $("select.cltime option[value='" + temp[1].trim() + "']").attr("selected", true);
-           }
-       }
-   });
+               var mon_time = ser_days_time[0].split("-");
+               var mon = $("#add-day-div").find(".add-day-data:first");
+               mon.find("select.start_time option[value='" + mon_time[0].trim() + "']").attr("selected", true);
+               mon.find("select.end_time option[value='" + mon_time[1].trim() + "']").attr("selected", true);
 
-   // $('#start_time option[value=""]').attr("selected",true);
+            } else {
+                var temp = ser_days_time[0].split("-");
+                $("select.optime option[value='" + temp[0].trim() + "']").attr("selected", true);
+                $("select.cltime option[value='" + temp[1].trim() + "']").attr("selected", true);
+            }
+        }
+    });
+
+   // For Location
+    $("#ser_state").on("click", function (e) {
+        if($(this).attr("readonly")){
+            swalWarning("Select service name.", "Warning.");
+        }
+    });
+
+
+    // Category Value
+    $(document).on('change', '#ser_name', function (e) {
+        var serviceCategory = $(this).find("option:selected").attr("data-category");
+        if (serviceCategory == null || serviceCategory == undefined || serviceCategory == ""){
+            swalError();
+        } else {
+            $("#ser_category").val(serviceCategory);
+            $("#ser_pin_no, #ser_address").attr("readonly", true).val("");
+            $("#ser_city").attr("readonly", true).empty().append('<option value="-1" selected disabled>Not Found !!</option>');
+            var url = "/service-listing-location";
+            var data = {
+                action : "state",
+                service_id : $(this).find("option:selected").attr("data-id"),
+                _token : $("input[name='_token']").val()
+            };
+            $.post(url, data, function (result) {
+                result = JSON.parse(result);
+                var select = $("#ser_state");
+                select.attr("readonly", false).empty();
+                select.append('<option value="-1" selected disabled>Select State</option>');
+                for (var i = 0; i < result.length; i++) {
+                  select.append("<option value='" + result[i]['main_id'] + "'>" + result[i]['state'] + "</option>");
+                }
+            });
+        }
+    });
+
+    // Change State
+    $("#ser_state").on("change", function (e) {
+
+        $("#ser_pin_no, #ser_address").attr("readonly", false);
+        var select = $("#ser_city");
+        select.attr("readonly", false).empty();
+        select.append('<option value="-1" selected disabled>Select City</option>');
+
+        var url = "/service-listing-location";
+        var data = {
+            action : "city",
+            service_id : $("#ser_name").find("option:selected").attr("data-id"),
+            state_id : $(this).find("option:selected").val(),
+            _token : $("input[name='_token']").val()
+        }
+        $.post(url, data, function (result) {
+            result = JSON.parse(result);
+            // console.log(result);
+            var select = $("#ser_city");
+            select.attr("readonly", false).empty();
+            select.append('<option value="-1" selected disabled>Select City</option>');
+            for (var i = 0; i < result.length; i++) {
+                select.append("<option value='" + result[i]['main_id'] + "'>" + result[i]['city'] + "</option>");
+            }
+        });
+    });
 
    $("#SL_ser_state").append(
        '<option value="-1" selected disabled>Select</option>'
    );
-   var url = "/data/Text File/states.txt";
-   $.get(url, function (data) {
-       var arr = data.split(",");
-       $.each(arr, function (key, entry) {
-           $("#SL_ser_state").append(
-               '<option value="' + entry + '">' + entry + "</option>"
-           );
-       });
-   });
 
-   $(".optime, .start_time").append(
-       '<option value="-1" disabled selected>Opening Time</option>'
-   );
+    $(".optime, .start_time").append(
+        '<option value="-1" disabled selected>Opening Time</option>'
+    );
 
-   $(".cltime, .end_time").append(
-       '<option value="-1" disabled selected>Closing Time</option>'
-   );
+    $(".cltime, .end_time").append(
+        '<option value="-1" disabled selected>Closing Time</option>'
+    );
 
-   for (var i = 0; i < 24; i++) {
-       $(".styled-select-value").append(
-           '<option value="' + i + '">' + i + "</option>"
-       );
-   }
+    for (var i = 0; i < 24; i++) {
+        $(".styled-select-value").append(
+            '<option value="' + i + '">' + i + "</option>"
+        );
+    }
 
-   // Add Days On Select WORKING DAYS
-   var data;
-   $('input[name = "days"]').change(function () {
-       if ($(this).val() === "CUSTOM") {
-           printDays();
-       } else {
-           $("#add-day-div")
-               .attr("hidden", "hidden")
-               .find(".add-day-data:not(:first)")
-               .remove();
-           $("#def_days").show();
-           var days = "";
-           if ($(this).val() === "ALL") {
-               days = "All Days";
-           } else if ($(this).val() === "5D") {
-               days = "Mon - Fri";
-           } else {
-               days = "Mon - Sat";
-           }
-           $("#days_name").html(days);
-       }
-   });
+    // Add Days On Select WORKING DAYS
+    var data;
+    $('input[name = "days"]').change(function () {
+        if ($(this).val() === "CUSTOM") {
+            printDays();
+        } else {
+            $("#add-day-div")
+                .attr("hidden", "hidden")
+                .find(".add-day-data:not(:first)")
+                .remove();
+            $("#def_days").show();
+            var days = "";
+            if ($(this).val() === "ALL") {
+                days = "All Days";
+            } else if ($(this).val() === "5D") {
+                days = "Mon - Fri";
+            } else {
+                days = "Mon - Sat";
+            }
+            $("#days_name").html(days);
+        }
+    });
 
-   function printDays(ser_day = "", ser_day_time = "") {
+    function printDays(ser_day = "", ser_day_time = "") {
+       console.log(ser_day);
+       console.log(ser_day_time);
 
-       $("#add-day-div").removeAttr("hidden");
-       $("#def_days").hide();
-       var days = ['Tuesday', 'wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-       for (var j = 2; j <= 7; j++) {
-           if ($("#add-day-div").is("*")) {
-               var newElem = $(".add-day-data").first().clone();
-               if (newElem.is("*")) {
-                   data = newElem;
-               }
-               if (ser_day_time != "") {
-                   var temp = ser_day_time[j - 1].split("-");
-                   data.find("select.start_time option[value='" + temp[0].trim() + "']").attr("selected", true);
-                   data.find("select.end_time option[value='" + temp[1].trim() + "']").attr("selected", true);
-               }
-               data.find("label.fix_spacing").text(days[j - 2]);
-               data.find(".add-day-data").addClass("add-day-data-extra");
-               data.appendTo("#add-day-div");
-           }
-       }
-   }
+        $("#add-day-div").removeAttr("hidden");
+        $("#def_days").hide();
+        var days = ['Tuesday', 'wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        for (var j = 2; j <= 7; j++) {
+            if ($("#add-day-div").is("*")) {
+                var newElem = $(".add-day-data").first().clone();
+                if (newElem.is("*")) {
+                    data = newElem;
+                }
+                if (ser_day_time != "") {
+                    var temp = ser_day_time[j - 1].split("-");
+                    data.find("select.start_time option[value='" + temp[0].trim() + "']").attr("selected", true);
+                    data.find("select.end_time option[value='" + temp[1].trim() + "']").attr("selected", true);
+                }
+                data.find("label.fix_spacing").text(days[j - 2]);
+                data.find(".add-day-data").addClass("add-day-data-extra");
+                data.appendTo("#add-day-div");
+            }
+        }
+    }
 
    $(".custom-file-input").change(function (e) {
-       $(this)
-           .siblings(".custom-file-label")
-           .text(e.target.files[0].name);
+       $(this).siblings(".custom-file-label").text(e.target.files[0].name);
    });
 
-   $("#addServiceListbtn").click(function () {
-       $("#addServiceListForm").validate({
+    // Form Validation
+    $("#sbt_btn").on("click", function (e) {
+        $("#sbt_btn").attr("type", "submit");
+        
 
-           rules: {
-               SL_ser_name: "required",
-               SL_ser_category: "required",
-               SL_Ser_shopname: "required",
-               SL_Ser_experience: "required",
-               "note-codable": "required",
-               SL_ser_photos: {
-                   required: true,
-                   file: true
-               },
-               SL_ser_idproof: "required",
-               SL_Ser_aadharNo: {
-                   required: true,
-                   number: true,
-                   minlength: 12,
-                   maxlength: 12
-               },
-               SL_ser_city: "required",
-               SL_ser_state: "required",
-               SL_ser_address: "required",
-               SL_ser_pincode: {
-                   required: true,
-                   number: true,
-                   minlength: 6,
-                   maxlength: 6
-               },
-               days: "required",
-               opening_time: "required",
-               closing_time: "required",
-               pli_name: "required",
-               pli_desc: "required",
-               pli_price: {
-                   required: true,
-                   number: true,
-                   min: 0
-               },
-           },
-           messages: {},
+        $("#addServiceListForm").validate({
+            
+            rules : {
+                ser_name : { required : true },
+                provider_name : { required : true },
+                ser_exp : { required : true },
+                // ser_img : { required : true },
+                ser_doc_no : { required : true },
+                ser_state : { required : true },
+                ser_city : { required : true },
+                ser_address : { required : true },
+                ser_pin_no : { required : true, minlength : 6, maxlength : 6 },
+                ser_city : { required : true },
+            },
+            messages : { },
+            submitHandler: function (form) {
+                $("#sbt_btn").attr("type", "button");
+                var obj = getFormValue("#addServiceListForm");
+                obj['days'] = $("input[name='days']:checked").val();
+                if( obj['opening_time'] == undefined || obj['closing_time'] == undefined ) {
+                    obj['time'] = null;
+                } else {
+                    obj['time'] = obj['opening_time'] + "-" + obj['closing_time'];
+                }
+                
+                if (obj['days'].toUpperCase() == "CUSTOM") {
+                    var data = getDayTime("#add-day-div");
+                    obj['days'] = data["days"];
+                    obj['time'] = data["time"];
+                }
+                obj['items'] = getItemValue("#pricing-list-container");
+                    
+                if ( obj['time'] != null ) {
+                    if ( !jQuery.isEmptyObject(obj['items']) ) {
+                        uploadImg("addServiceListForm", "/service-listing-store-img", "POST")
+                        .then((path) => {
+                            
+                            var dec_msg = $('.note-editable').html();
+                            var img = ( path['ser_img'] == undefined || path['ser_img'] == "" ) ? obj['ser_img_file'] : path['ser_img'];
+                            var doc_file = (path['doc_img'] == undefined || path['doc_img'] == "") ? obj['ser_doc_file'] : path['doc_img'];
 
-           submitHandler: function (form) {
-               form.submit();
-           }
-       });
-   });
+                            var url = ""; var method = "";
+                            obj['action'] = action;
 
+                            if (action == "insert") {
+                                url = "/service-listing-store";
+                            } else if (action == "update") {
+                                obj['id'] = ser_id;
+                                url = "/service-listing-update";
+                            } else {
+                                swalError();
+                            }
 
-   // Category Value
-   $(document).on('change', '#SL_ser_name', function (e) {
-       var serviceCategory = $(this).find("option:selected").attr("data-category");
-       if (serviceCategory == null || serviceCategory == undefined || serviceCategory == "") {
-           swalError();
-       } else {
-           $("#SL_ser_category").val(serviceCategory);
-       }
-   });
+                            obj['dec_msg'] = dec_msg;
+                            obj['ser_img'] = img;
+                            obj['doc_img'] = doc_file;
 
+                            obj['service_id'] = $("#ser_name option:selected").attr("data-id");
+                            delete obj['ser_doc_file']
+                            delete obj['ser_img_file'];
 
-   // Submit Form Data
-   $(document).on('click', "#addServiceListbtn", function (e) {
-       uploadImg("addServiceListForm", "/service-listing-store-img", "POST")
-           .then((path) => {
+                            $.ajax({
+                                url: url,
+                                type: "POST",
+                                data: obj,
+                                success: function (result) {
+                                    swalSuccess("/service-listing", "");
+                                },
+                                error: function (error) {
+                                    swalError();
+                                }
+                            });
+                        })
+                            .catch((error) => {
+                                swalError();
+                            });
+                    } else {
+                        swalWarning("Enter at least one Item !!!", "Missing...");
+                    }
+                } else {
+                    swalWarning("Complete Availability !!!", "Missing...");
+                }   
+            }
 
-               var dec_msg = $('.note-editable').html();
-               var obj = getFormValue("#addServiceListForm");
+        });
+    });
 
-               var img = (path['ser_img'] == undefined || path['ser_img'] == "") ? obj['ser_img_file'] : path['ser_img'];
-               var doc_file = (path['doc_img'] == undefined || path['doc_img'] == "") ? obj['ser_doc_file'] : path['doc_img'];
-
-               var url = ""; var method = "";
-               obj['action'] = action;
-               if (action == "insert") {
-                   method = "POST";
-                   url = "/service-listing-store";
-               } else if (action == "update") {
-                   obj['id'] = ser_id;
-                   method = "GET";
-                   url = "/service-listing-update";
-               } else {
-                   swalError();
-               }
-
-               obj['dec_msg'] = dec_msg;
-               obj['ser_img'] = img;
-               obj['doc_img'] = doc_file;
-
-               obj['days'] = $("input[name='days']:checked").val();
-               obj['time'] = obj['opening_time'] + "-" + obj['closing_time'];
-               if (obj['days'].toUpperCase() == "CUSTOM") {
-                   var data = getDayTime("#add-day-div");
-                   obj['days'] = data["days"];
-                   obj['time'] = data["time"];
-               }
-               
-               obj['items'] = getItemValue("#pricing-list-container");
-               obj['serviceCat_id'] = $("#SL_ser_name option:selected").attr("data-id");
-               delete obj['ser_doc_file']
-               delete obj['ser_img_file'];
-
-               $.ajax({
-                   url: url,
-                   type: method,
-                   data: obj,
-                   success: function (result) {
-                       swalSuccess("/service-listing", "");
-                   },
-                   error: function (error) {
-                       swalError(error);
-                   }
-               });
-           })
-           .catch((error) => {
-               swalError(error);
-           });
-   });
-
-   numberValidation("#SL_ser_phone");
+   numberValidation("#ser_phone");
    numberValidation("#item_price");
+   numberValidation("#ser_pin_no");
+   var temp = getItemValue("#pricing-list-container");
+   console.log(temp);
 });
+
+function swalWarning( msg = "Something went wrong!", title = "Warning..." ) {
+    Swal.fire({
+        icon: 'warning',
+        title: title,
+        text: msg,
+    });
+}
 
 function swalError(msg = "Something went wrong!", title = "Oops...") {
    Swal.fire({
@@ -257,6 +298,9 @@ function getDayTime(id) {
 
        var opening_val = opening.find(":selected").val();
        var closing_val = closing.find(":selected").val();
+       if(opening_val == -1 || closing_val == -1) {
+          opening_val = closing_val = "H";
+       }
 
        var day = $(this).find("div label.fix_spacing").text();
 

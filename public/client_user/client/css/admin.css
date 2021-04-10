@@ -1263,20 +1263,6 @@ label.fix_spacing {
   position: relative;
 }
 
-@media (max-width: 576px) {
-  .logo-a {
-    padding: 10px 0 10px 0px !important ;
-    line-height: 1;
-    font-weight: 500;
-    display: block;
-    position: relative;
-  }
-
-  .width-logo-auto {
-    width: auto;
-  }
-}
-
 .logo-figure {
   width: 34px;
   height: 34px;
@@ -1290,6 +1276,35 @@ label.fix_spacing {
   -ms-border-radius: 50%;
   border-radius: 50%;
   border: 2px solid #ededed;
+}
+
+@media (max-width: 576px) {
+  .logo-a {
+    padding: 10px 0 10px 0px !important ;
+    line-height: 1;
+    font-weight: 500;
+    display: block;
+    position: relative;
+  }
+
+  .width-logo-auto {
+    width: auto;
+  }
+
+  .logo-figure {
+    width: 34px;
+    height: 34px;
+    overflow: hidden;
+    position: absolute;
+    left: -40px;  
+    top: 0;
+    display: inline-block;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #ededed;
+  }
 }
 
 .logo-img {

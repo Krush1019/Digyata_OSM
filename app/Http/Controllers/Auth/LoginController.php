@@ -13,16 +13,6 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
     use AuthenticatesUsers;
 
@@ -87,12 +77,6 @@ class LoginController extends Controller
      *
      * @return void
      */
-
-    /* public function showClientLoginForm()
-    {
-        return redirect(route('login-page'));
-    } */
-
     public function clientLogin(Request $request)
     {
 
@@ -124,19 +108,10 @@ class LoginController extends Controller
      *
      * @return void
      */
-
-    /* public function showCustomerLoginForm()
-    {
-        return redirect(route('login-page'));
-    } */
-
-
     public function LoginPageForm()
     {
         return view('/pages/client_user/login-page');
     }
-
-
 
     public function customerLogin(Request $request)
     {
@@ -147,11 +122,11 @@ class LoginController extends Controller
 
         if (Auth::guard('customer')->attempt(['sUserEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->intended(route('index-page'));
+            return redirect()->intended(route('home'));
         }
         return back()
-        ->with('passlink', route('login.customer'))
-        ->withErrors(['email' => 'These credentials do not match our records.'])
-        ->withInput($request->only('email', 'remember'));
+            ->with('passlink', route('login.customer'))
+            ->withErrors(['email' => 'These credentials do not match our records.'])
+            ->withInput($request->only('email', 'remember'));
     }
 }
