@@ -258,8 +258,12 @@ header.header.sticky .logo {
 }
 
 .image-set-auto {
-  width: 100%;
-}
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 400px; 
+
+  }
 
 .font-size-large {
   font-size: large !important;
