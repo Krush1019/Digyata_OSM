@@ -124,6 +124,8 @@ use App\Http\Controllers\LanguageController;
     /** client -- listing */
     Route::get('/client-listing', 'client_user\user\ClientListingController@index')->name('client-listing');
 
+    Route::get('/service-filter/{id}', 'client_user\user\ClientListingController@filter')->name('service.filter');
+
     /** confirm -- order */
     Route::get('/confirm-order/{id}', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
     Route::get('/order/confirm/{id}', function ($id) {

@@ -114,83 +114,25 @@
   <div class="container margin_60_40">
     <div class="main_title center">
       <span><em></em></span>
-      <h2>Popular Categories</h2>
+      <h2>Popular Services</h2>
       <p>Quality Home Services</p>
     </div>
     <!-- /main_title -->
     <div class="owl-carousel owl-theme categories_carousel add_bottom_45">
+      @foreach ($catalogs as $catalog)
       <div class="item_version_2">
-        <a href="{{route('client-listing')}}">
+        <a href="{{route('service.filter',['id'=>encrypt($catalog->id)])}}">
           <figure>
             <span>50</span>
-            <img src="{{asset('client_user/img/electrician.jpg')}}" data-src="{{asset('client_user/img/electrician.jpg')}}" alt="" class="owl-lazy">
+            <img src="https://source.unsplash.com/200x300/?{{$catalog->serviceName}}" data-src="https://source.unsplash.com/200x300/?{{$catalog->serviceName}}" alt="" class="owl-lazy">
             <div class="info">
-              <h3>Electician</h3>
+              <h3>{{$catalog->serviceName}}</h3>
               <small>Avg price ₹200</small>
             </div>
           </figure>
         </a>
       </div>
-      <div class="item_version_2">
-        <a href="{{route('client-listing')}}">
-          <figure>
-            <span>20</span>
-            <img src="{{asset('client_user/img/plumber.jpg')}}" data-src="{{asset('client_user/img/plumber.jpg')}}" alt="" class="owl-lazy">
-            <div class="info">
-              <h3>Plumber</h3>
-              <small>Avg price ₹100</small>
-            </div>
-          </figure>
-        </a>
-      </div>
-      <div class="item_version_2">
-        <a href="{{route('client-listing')}}">
-          <figure>
-            <span>10</span>
-            <img src="{{asset('client_user/img/painter.jpg')}}" data-src="{{asset('client_user/img/painter.jpg')}}" alt="" class="owl-lazy">
-            <div class="info">
-              <h3>Painter</h3>
-              <small>Avg price ₹200</small>
-            </div>
-          </figure>
-        </a>
-      </div>
-      <div class="item_version_2">
-        <a href="{{route('client-listing')}}">
-          <figure>
-            <span>40</span>
-            <img src="{{asset('client_user/img/cleaner.jpg')}}" data-src="{{asset('client_user/img/cleaner.jpg')}}" alt="" class="owl-lazy">
-            <div class="info">
-              <h3>Cleaner</h3>
-              <small>Avg price ₹100</small>
-            </div>
-          </figure>
-        </a>
-      </div>
-      <div class="item_version_2">
-        <a href="{{route('client-listing')}}">
-          <figure>
-            <span>7</span>
-            <img src="{{asset('client_user/img/pest_controller.jpg')}}" data-src="{{asset('client_user/img/pest_controller.jpg')}}" alt="" class="owl-lazy">
-            <div class="info">
-              <h3>Pest Controller</h3>
-              <small>Avg price ₹300</small>
-            </div>
-          </figure>
-        </a>
-      </div>
-      <div class="item_version_2">
-        <a href="{{route('client-listing')}}">
-          <figure>
-            <span>20</span>
-            <img src="{{asset('client_user/img/carpenter.jpg')}}" data-src="{{asset('client_user/img/carpenter.jpg')}}" alt="" class="owl-lazy">
-            <div class="info">
-              <h3>Carpenter</h3>
-              <small>Avg price ₹200</small>
-            </div>
-          </figure>
-        </a>
-      </div>
+      @endforeach
     </div>
     <!-- /carousel -->
 

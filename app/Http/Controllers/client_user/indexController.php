@@ -14,6 +14,10 @@ class indexController extends Controller
                 ->inRandomOrder()
                 ->limit(6)
                 ->get();
-      return view('/pages/client_user/index')->with('services',$services);
+      $catalogs = DB::table('tbl_service_catalogs')
+                  ->inRandomOrder()
+                  ->limit(6)
+                  ->get();
+      return view('/pages/client_user/index')->with('services',$services)->with('catalogs',$catalogs);
     }
 }
