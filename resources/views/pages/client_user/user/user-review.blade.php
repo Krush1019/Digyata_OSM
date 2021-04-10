@@ -57,6 +57,7 @@
                               <button id="review-submit-btn" class="btn_1">Submit review</button>
                         </div>
                   </div>
+                  
       </div>
       <!-- /row -->
       </div>
