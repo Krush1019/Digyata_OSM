@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
-use App\client_user\ClientManage;
+use Illuminate\Http\Request;
 use App\client_user\UserManage;
+use App\Mail\UserRegisteredMail;
+use App\client_user\ClientManage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
-use Auth;
+use Mail;
 
 class RegisterController extends Controller {
     /*
@@ -109,6 +111,9 @@ class RegisterController extends Controller {
             'sClAddress' => $request->address,
             'password' => Hash::make($request->password),
         ]);
+
+        Mail::to($request->email)->queue(new UserRegisteredMail($request->name));
+
         if (Auth::guard('client')->attempt(['sClEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended(route('client-dashboard'));
         }
@@ -142,6 +147,8 @@ class RegisterController extends Controller {
             'sUserGender' => $request->gender,
             'password' => Hash::make($request->password),
         ]);
+
+        Mail::to($request->email)->queue(new UserRegisteredMail($request->name));
 
         if (Auth::guard('customer')->attempt(['sUserEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended(route('home'));

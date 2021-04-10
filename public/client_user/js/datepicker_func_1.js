@@ -7,6 +7,7 @@ var highlight_dates = [];
    inline: true,
    altField: '#datepicker_field',
    altFormat: 'dd-mm-yy',
+   minDate: new Date(),
   beforeShowDay: function(date){
    var month = date.getMonth()+1;
    var year = date.getFullYear();

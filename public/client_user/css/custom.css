@@ -260,3 +260,7 @@ header.header.sticky .logo {
 .image-set-auto {
   width: 100%;
 }
+
+.font-size-large {
+  font-size: large !important;
+}

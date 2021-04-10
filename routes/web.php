@@ -183,6 +183,8 @@ use App\Http\Controllers\LanguageController;
     Route::get('/register/customer', 'Auth\RegisterController@showCustomerRegisterForm')->name('customer.register');
     Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
 
+// mail
+Route::get('/sendemail', 'home@sendemail')->name('sendemail');
 
 /** locale Route */
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
