@@ -197,7 +197,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'E:\\backup php\\NewDigyata\\storage\\framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -464,12 +464,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\backup php\\NewDigyata\\storage\\app',
+        'root' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\backup php\\NewDigyata\\storage\\app/public',
+        'root' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -515,13 +515,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'E:\\backup php\\NewDigyata\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'E:\\backup php\\NewDigyata\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -585,7 +585,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'E:\\backup php\\NewDigyata\\resources\\views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\resources\\views/vendor/mail',
       ),
     ),
     'log_channel' => NULL,
@@ -726,7 +726,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'E:\\backup php\\NewDigyata\\storage\\framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -746,9 +746,9 @@
   array (
     'paths' => 
     array (
-      0 => 'E:\\backup php\\NewDigyata\\resources\\views',
+      0 => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\resources\\views',
     ),
-    'compiled' => 'E:\\backup php\\NewDigyata\\storage\\framework\\views',
+    'compiled' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\framework\\views',
   ),
   'debug-server' => 
   array (
