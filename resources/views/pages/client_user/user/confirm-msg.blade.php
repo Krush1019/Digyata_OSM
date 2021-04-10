@@ -19,16 +19,14 @@
             <div class="row justify-content-center">
                   <div class="col-lg-4 col-md-5 col-sm-8">
                         <div class="box_booking_2">
-                              <div class="head">
+                               <div class="head">
                                     <div class="title">
-                                          {{-- <h3>{{$service->ser_pro_name}}</h3>
-                                          <span>{{$service->ser_address}}, {{$service->ser_city}}, {{$service->ser_state}} -
-                                                {{$service->pin_no}}</span> --}}
+                                          <h2 class="text-white">Awesome!</h2>
                                     </div>
                               </div>
                               <!-- /head -->
                               <div class="main">
-                                    <div id="switch2">
+                                    <div>
                                           <div id="confirm">
                                                 <div class="icon icon--order-success svg add_bottom_15">
                                                       <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72">
@@ -42,7 +40,8 @@
                                                             </g>
                                                       </svg>
                                                 </div>
-                                                <h3>Booking Confirmed! {{$orderId}}</h3>
+                                                <h3>Booking Confirmed!</h3>
+                                                <p>Your Order ID is <label class="font-weight-bolder font-size-large">{{$orderId}}</label>.</p>
                                                 <p>We will reply shortly to confirm the order.</p>
                                           </div>
                                           <div class="footer-btn text-center">
