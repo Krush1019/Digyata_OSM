@@ -6,6 +6,7 @@
   {{-- Page Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/ag-grid/ag-grid.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/ag-grid/ag-theme-material.css')) }}">
+  
 @endsection
 
 @section('page-style')

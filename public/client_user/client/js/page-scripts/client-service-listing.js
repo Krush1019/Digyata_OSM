@@ -2,7 +2,7 @@
   *  Filename   : client-service-listing.js
   *  Author	      : Digyata
   */
-
+ 
 $(document).ready(function () {
 
     const Toast = Swal.mixin({
@@ -23,44 +23,53 @@ $(document).ready(function () {
         if (e.keyCode === 27) {
             $('#viewservicemodal').modal('hide');
         }
-    })
+    });
 
     //status change
     $(document).on('click', '.s_status', function (e) {
+
         var btn = $(this);
-        var status = (btn.text() == "Active") ? "Inactive" : "Active";
+        var status = (btn.attr("data-action") == "Active") ? "Inactive" : "Active";
+        var btn_color = (btn.attr("data-action") == "Active") ? "#df4759" : "#28a745";
         var id = btn.attr("data-id");
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#2778c4',
+            confirmButtonColor: btn_color,
             cancelButtonColor: '#757575',
             confirmButtonText: status
         }).then((result) => {
+
             if (result.isConfirmed) {
-                $.get("/service-listing-update", {
+                HoldOn.open(options);
+                var url = "/service-listing-update";
+                var data = {
                     "action": "status",
                     "id": id,
-                    "status": status
-                }, function (result) {
+                    "status": status,
+                    "_token" :  $("meta[name='csrf-token']").attr("content"),
+                }
+                $.post( url, data, function (result) {
                     Toast.fire({
                         icon: 'success',
                         title: 'Status Changed'
                     });
                     if (status == 'Inactive') {
-                        btn.removeClass('approve').addClass('delete').text('Inactive').prepend('<i class="fa fa-fw fa-ban mr-1"></i>');
+                        btn.removeClass('approve').addClass('delete').text('Inactive').attr("data-action", "Inactive").prepend('<i class="fa fa-fw fa-ban mr-1"></i>');
                     } else {
-                        btn.removeClass('delete').addClass('approve').text('Active').prepend('<i class="fa fa-fw fa-check mr-1"></i>');
+                        btn.removeClass('delete').addClass('approve').text('Active').attr("data-action", "Active").prepend('<i class="fa fa-fw fa-check mr-1"></i>');
                     }
                 });
+                HoldOn.close();
             }
         });
     });
 
     // Model Open
     $(document).on('click', ".modal_btn", function (e) {
+        HoldOn.open(options);
         var id = $(this).attr("data-id");
         var url = "/service-listing-show";
         var form = $("#viewServiceModal");
@@ -76,7 +85,11 @@ $(document).ready(function () {
             form.find(".service_name").text(result['service_name']);
             form.find(".service_cate").text(result['service_cat']);
             form.find(".ser_phone").text(result['phone']);
-            form.find(".ser_email").text(result['email']);
+            if( result['email'] == "" ) {
+                form.find(".ser_email").text("NA");
+            } else {
+                form.find('.ser_email').attr("href", "mailto:" + result['email']).text(result['email']);
+            }
 
             if (result['web'] != "" && result['web'] != null) {
                 var html = "<a href='" + result['web'] + "'  target='_blank' class='social-icon globe'><i class='fa fa-globe fa-2x'></i></a>";
@@ -153,10 +166,11 @@ $(document).ready(function () {
             }
 
             form.find(".edit_btn").attr("href", "/add-service-listing/" + result['main_id']);
-
+            HoldOn.close();
             $("#viewServiceModal").modal("show");
         })
             .fail(function () {
+                HoldOn.close();
                 swalError();
             });
     });

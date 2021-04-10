@@ -44,6 +44,20 @@
 			</div>
 
       		<div class="col-md-8 add_top_30">
+
+				@if ($clientData['status'] == "Blocked" )
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<div class="font-large-17 font-weight-bold">Stopped :)</div> 
+						Your service is currently stopped by <b>Digyata Team</b>.
+					</div>
+
+				@elseif( $clientData['status'] == "Pending" )
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<div class="font-large-17 font-weight-bold">Watting !!!</div> 
+						Your application has been successfully submitted and awaiting for verification by <b>Digyata Team</b>.
+					</div>
+				@endif
+
         		<form id="updateClientDetail" method="POST" action="{{ route('client-profile.update', 'detail')}}">
 					@csrf
 					<div class="row">

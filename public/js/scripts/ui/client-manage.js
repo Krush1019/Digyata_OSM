@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     var isRtl;
     isRtl = $('html').attr('data-textdirection') === 'rtl';
 
@@ -131,12 +130,6 @@ $(document).ready(function () {
             width: 200
         },
         {
-            headerName: 'Location',
-            field: 'location',
-            filter: true,
-            width: 150
-        },
-        {
             headerName: 'Mobile No.',
             field: 'mobileNo',
             filter: true,
@@ -264,6 +257,7 @@ $(document).ready(function () {
             confirmButtonText: status
         }).then((result) => {
             if (result.isConfirmed) {
+               HoldOn.open(options);
                 $.ajax({
                     url : '/client-manage-update',
                     type : 'GET',
@@ -274,19 +268,23 @@ $(document).ready(function () {
                     },
                     success : function (result){
                         getTableData();
-                        getPendingCount();
+                        if(status == "Approve")
+                           getPendingCount();
                         toastFire(Swal,"Changed Status.");
+                        HoldOn.close();
                     },
                     error : function (error) {
                         swalFire(Swal, "Something went wrong!", "Oops...", "error");
+                       HoldOn.close();
                     }
                 });
+
             }
         })
     });
     // END: Approve Data
 
-    getPendingCount();
+    // getPendingCount();
     function getPendingCount() {
         $.ajax({
             url : '/client-manage-show',
@@ -300,6 +298,6 @@ $(document).ready(function () {
                 else
                     $('a[href="client-manage"] span:last').text("");
             }
-        })
+        });
     }
 });

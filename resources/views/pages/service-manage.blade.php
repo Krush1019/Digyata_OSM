@@ -3,18 +3,18 @@
 @section('title', 'Service Manage')
 
 @section('vendor-style')
-  {{-- Page Css files --}}
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/ag-grid/ag-grid.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/ag-grid/ag-theme-material.css')) }}">
+	{{-- Page Css files --}}
+	<link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/ag-grid/ag-grid.css')) }}">
+	<link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/ag-grid/ag-theme-material.css')) }}">
 @endsection
 
 @section('page-style')
-  {{-- Page Css files --}}
-  <link rel="stylesheet" href="{{ asset(mix('css/pages/app-user.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('css/pages/aggrid.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('css/plugins/forms/validation/form-validation.css')) }}">
-  <link rel="stylesheet" href="{{ asset('css/custom/custom.css') }}">
-  <link href="{{asset('client_user/client/css/custom.css')}}" rel="stylesheet">
+	{{-- Page Css files --}}
+	<link rel="stylesheet" href="{{ asset(mix('css/pages/app-user.css')) }}">
+	<link rel="stylesheet" href="{{ asset(mix('css/pages/aggrid.css')) }}">
+	<link rel="stylesheet" href="{{ asset(mix('css/plugins/forms/validation/form-validation.css')) }}">
+	<link rel="stylesheet" href="{{ asset('css/custom/custom.css') }}">
+	<link href="{{asset('client_user/client/css/custom.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -78,7 +78,7 @@
     <!-- Ag Grid users list section end -->
   </section>
   <!-- users list ends -->
-
+  
 
   {{-- START: View Modal --}}
 	<div class="modal fade" id="viewServiceModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -99,25 +99,24 @@
 							</div>
 							<div class="row">
 								<div class="col-md-3">
-									<img src="{{ asset('client_user/client/img/ser_img/1240506542-1614419650.jpg') }}"
-									     class="img-thumbnail service_img" alt="Cinque Terre">
+									<img src="" class="img-thumbnail service_img" alt="Cinque Terre">
 								</div>
 								<div class="col-md-4">
 									<div class="mt-20">
 										<div class="col-sm-12 pl-0">Provider Name :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name">Krushang prajapati </div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name"></div>
 									</div>
 
 									<div class="mt-15">
 										<div class="col-sm-12 pl-0">Expericence :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_exp">2 months </div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_exp"></div>
 									</div>
 
 								</div>
 								<div class="col-md-5">
 									<div class="mt-20">
 										<div class="col-sm-12 pl-0">Service :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_name"> Dusting</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_name"></div>
 									</div>
 
 									<div class="mt-10">
@@ -135,11 +134,11 @@
 										<div class="user-info">
 											<div>
 												<span class="col-sm-12 pl-0">Phone : </span>
-												<span class="col-sm-12 font-weight-bold pl-0 ser_phone">7845123698 </span>
+												<span class="col-sm-12 font-weight-bold pl-0 ser_phone"></span>
 											</div>
 											<div>
 												<span class="col-sm-12 pl-0">E-mail : </span>
-												<span class="col-sm-12 font-weight-bold pl-0"><a href="mailto:meetprajapati847@gmail.com" class="ser_email" target="_blank">kp@gmail.com </a></span>
+												<span class="col-sm-12 font-weight-bold pl-0 "><a href="mailto:" class="ser_email" target="_blank"></a></span>
 											</div>
 										</div>
 									</div>
@@ -153,7 +152,7 @@
 								<div class="col-md-7">
 									<div class="mt-20">
 										<div class="col-sm-12 pl-0">Description :</div>
-										<div class="col-sm-12 pl-0 ser_des">hello </div>
+										<div class="col-sm-12 pl-0 ser_des"></div>
 									</div>
 								</div>
 							</div>
@@ -172,7 +171,7 @@
 								</div>
 								<div class="col-md-6">
 									<span>Aadhar No.: </span>
-									<span class="doc_num">784512369852 </span>
+									<span class="doc_num"></span>
 								</div>
 							</div>
 
@@ -184,13 +183,13 @@
 								<div class="col-md-6">
 									<span>
 										<label>City: </label>
-										<label>Mahesana</label>
+										<label class="city"></label>
 									</span>
 								</div>
 								<div class="col-md-6">
 									<span>
 										<label>State: </label>
-										<label>Gujarat</label>
+										<label class="state"></label>
 									</span>
 								</div>
 							</div>
@@ -199,13 +198,13 @@
 								<div class="col-md-6">
 									<span>
 										<label>Address: </label>
-										<label>20, Madhuvan Complex, Radhanpur Cross road, Mahesana-2</label>
+										<label class="address"></label>
 									</span>
 								</div>
 								<div class="col-md-6">
 									<span>
 										<label>Pincode: </label>
-										<label>698745</label>
+										<label class="pin_code">	</label>
 									</span>
 								</div>
 							</div>
