@@ -25,15 +25,6 @@ $(document).ready(function () {
             });
       });
 
-      //On click Edit Image Hide/Show Div
-      /* $(document).on('click', '#us-edit-photo', function () {
-            $('#edit-photo-div').removeAttr('hidden');
-            if (!($(this).siblings().is('#remove-photo'))) {
-                  $(this).after('<button type="button" class="btn_1 bg-secondary btn-secondary smaller ml-md-2" id="remove-photo">Remove Image</button>');
-            }
-            $(this).text('Update Image');   
-      }); */
-
       //on change gender bold class toggle
       $(document).on('change', 'input[name = gender]', function () {
             $(this).siblings('label').addClass('font-weight-bold');
@@ -45,11 +36,7 @@ $(document).ready(function () {
             $('#chngepassworddiv').toggleClass('display-hidden');
       });
 
-      //remove profile image
-      /* $(document).on('click', '#remove-photo, #clspassbtn', function () {
-            $('#user-propic').attr('src', '/client_user/client/img/avatar.jpg')
-      });
-   */
+      
       //profile form Validation
       
     /*         $('#updt-prof-btn').click(function () {

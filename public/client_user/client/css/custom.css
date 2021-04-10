@@ -304,3 +304,7 @@ label.error {
 .position-top-0 {
 	top: 0px !important;
 }
+
+.display-hidden {
+	display: none !important;
+}
