@@ -2,7 +2,12 @@
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/ui/prism.min.css')) }}">
         {{-- Vendor Styles --}}
+        
         @yield('vendor-style')
+
+        <!-- HoldOn Js styles -->
+        <link href="{{asset('css/HoldOn/HoldOn.min.css')}}" rel="stylesheet">
+
         {{-- Theme Styles --}}
         <link rel="stylesheet" href="{{ asset(mix('css/bootstrap.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('css/bootstrap-extended.css')) }}">

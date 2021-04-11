@@ -3,6 +3,9 @@
         <script src="{{ asset(mix('vendors/js/ui/prism.min.js')) }}"></script>
 
         @yield('vendor-script')
+        <script src="{{ asset('js/scripts/HoldOn/HoldOn.min.js') }}"></script>
+        <script src="{{ asset('js/scripts/HoldOn/runHoldOn.js') }}"></script>
+        
         {{-- Theme Scripts --}}
         <script src="{{ asset(mix('js/core/app-menu.js')) }}"></script>
         <script src="{{ asset(mix('js/core/app.js')) }}"></script>

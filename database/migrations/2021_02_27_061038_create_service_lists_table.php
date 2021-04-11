@@ -50,6 +50,8 @@ class CreateServicelistsTable extends Migration {
             $table->string('ser_item_id');
             $table->boolean('ser_status')->default(1);
 
+            $table->string("aStatus")->default("Pending");
+
             $table->timestamps();
         });
 

@@ -6,10 +6,7 @@
  $(document).ready(function () {
 
 
-	// On Loding 
-	$(window).on('load', function (e) {
-		$('#profile').css('background-image', 'url('+ $("#profile_img").val() +')').addClass('hasImage');
-	});
+	$('#profile').css('background-image', 'url('+ $("#profile_img").val() +')').addClass('hasImage');
 
 	// Verify Password
 	$("#btn_confirm").on('click', function (e) {
