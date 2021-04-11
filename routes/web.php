@@ -163,7 +163,7 @@ use App\Http\Controllers\LanguageController;
     Route::get('/access-control', 'AccessController@index');
     Route::get('/access-control/{roles}', 'AccessController@roles');
     Route::get('/modern-admin', 'AccessController@home')->middleware('permissions:approve-post');
-    Route::get('/logout', 'Auth\LoginController@logout');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
     Auth::routes();
 
