@@ -37,16 +37,6 @@ class ReviewOrdersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $tbl = new ReviewOrders();
-        $tbl->BsID = 1;
-        $tbl->ser_id = 1;
-        $tbl->cl_ID = 1;
-        $tbl->uID = 1;
-        $tbl->ltFeedback = "very good";
-        $tbl->iReview_Rating = 3;
-        $tbl->iReview_Avg_Rating = 3.5;
-        $tbl->bReview_Status = 1;
-        $tbl->save();
 
     }
 
@@ -66,14 +56,15 @@ class ReviewOrdersController extends Controller {
 //        ->get();
 
       $searchdata = ReviewOrders::join('tbl_service_catalogs', 'tbl_review_orders.ser_id', '=', 'tbl_service_catalogs.id')
-        ->join('tbl_user_manage', 'tbl_review_orders.uID', '=', 'tbl_user_manage.uID')
-        ->join('tbl_client_manage', 'tbl_review_orders.cl_ID', '=', 'tbl_client_manage.cl_ID')
-        ->join('tbl_booking_schedule', 'tbl_review_orders.BsID', '=', 'tbl_booking_schedule.BsID')
-        ->where('tbl_booking_schedule.sOrderId', 'like','%'.$request->text.'%')
-        ->orWhere('tbl_user_manage.sUserID', 'like','%'.$request->text.'%')
-        ->orWhere('tbl_client_manage.sClientID', 'like','%'.$request->text.'%')
-        ->orderBy('RoID', 'desc')
-        ->get();
+      ->join('tbl_user_manage', 'tbl_review_orders.uID', '=', 'tbl_user_manage.id')
+      ->join('tbl_client_manage', 'tbl_review_orders.cl_ID', '=', 'tbl_client_manage.id')
+      ->join('tbl_order_manages', 'tbl_review_orders.order_id', '=', 'tbl_order_manages.order_id')
+      ->where('tbl_order_manages.order_id', 'like','%'.$request->text.'%')
+      ->orWhere('tbl_user_manage.id', 'like','%'.$request->text.'%')
+      ->orWhere('tbl_client_manage.id', 'like','%'.$request->text.'%')
+      ->orderBy('RoID', 'desc')
+      ->take(200)
+      ->get();
 
       $newData = []; $i = 0;
       foreach ($searchdata as $user) {

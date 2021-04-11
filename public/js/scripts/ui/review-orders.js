@@ -18,7 +18,7 @@ $(document).ready(function () {
 
   //  Rendering avatar in username column
   var customUserAvatarHTML = function (params) {
-    return '<a href=' + "user-view" + '><span class="avatar"><img src="' + params.value['userImg'] + '" height="32" width="32" alt=" "></span>' + params.value['userName'] + '</a>';
+    return '<a href=' + "user-view" + '>' + params.value['userName'] + '</a>';
   }
 
   //  Rendering avatar in client-name column

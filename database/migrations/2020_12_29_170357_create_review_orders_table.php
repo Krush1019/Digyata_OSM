@@ -16,8 +16,8 @@ class CreateReviewOrdersTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
           $table->id("RoID");
-          $table->unsignedBigInteger("BsID");
-          $table->foreign("BsID")->references("BsID")->on("tbl_booking_schedule");
+          $table->unsignedBigInteger("order_id");
+          $table->foreign("order_id")->references("order_id")->on("tbl_order_manages");
           $table->unsignedBigInteger("ser_id");
           $table->foreign("ser_id")->references("id")->on("tbl_service_catalogs");
           $table->unsignedBigInteger("cl_ID");

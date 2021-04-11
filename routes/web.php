@@ -172,7 +172,6 @@ use App\Http\Controllers\LanguageController;
 
     Auth::routes();
 
-
 /******************
 *   LOGIN
 ******************/
