@@ -16,6 +16,7 @@ class ClientReviewController extends Controller
     public function index(){
       $reviews = DB::table('tbl_review_orders')
                  ->join('tbl_user_manage as tum', 'tbl_review_orders.uID', '=', 'tum.id')
+                 ->where('cl_ID','=',auth()->guard('client')->user()->id)
                  ->get();
                 //  dd($reviews);
       $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "Reviews"]];
