@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\client_user\client;
 
+use App\client_user\ClientManage;
 use App\ServiceCatalog;
 use App\ServiceList;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,7 @@ class ServiceListController extends Controller {
 
 
     public function __construct() {
-        $this->middleware("auth:client");  
+        $this->middleware("auth:client");
     }
 
     /**
@@ -53,19 +54,16 @@ class ServiceListController extends Controller {
 
         } catch(Exception $e) { }
 
-//        echo "<pre>";
-//        print_r($city);
-
 		return view('/pages/client_user/client/client-add-service-listing', $passArr);
     }
 
     public function service_listing() {
 
-        $temp = json_decode(Auth::user(), true);
-        $user = array(
-            'id' => encrypt($temp['id']),
-            'email' => $temp['sClEmail'],
-        );
+        // $temp = json_decode(Auth::user(), true);
+        // $user = array(
+        //     'id' => encrypt($temp['id']),
+        //     'email' => $temp['sClEmail'],
+        // );
         
         $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "Service Listing"]];
 
@@ -373,7 +371,7 @@ class ServiceListController extends Controller {
         $items = "";
         foreach ($data as $value) {
             $data = array(
-//                'ser_id' => $ser_id,
+            //    'ser_id' => $ser_id,
                 'client_id' => $user_id,
                 'item_name' => $value['pli_name'],
                 'item_des' => $value['pli_desc'],
