@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +50,9 @@ use App\Http\Controllers\LanguageController;
 
     /** Admin -- service-manage */
     Route::get('/service-manage', 'ServiceManageController@index')->name('service-manage');
+    Route::get('/service-manage-show', 'ServiceManageController@show');
+    Route::post('/show-service-list', 'ServiceManageController@showServiceList');
+    Route::post('/service-manage-update', 'ServiceManageController@update')->name("service-manage.update");
 
     /** Admin -- Booking Schedule */
     Route::get('/booking-schedule', 'BookingScheduleController@index');
@@ -100,7 +102,7 @@ use App\Http\Controllers\LanguageController;
     Route::get('/order-manage', 'client_user\OrderManageController@index')->name('order-manage.index');
     Route::get('/order-manage-show', 'client_user\OrderManageController@show');
 
-
+  
 /******************
 *   USER
 ******************/
@@ -119,10 +121,11 @@ use App\Http\Controllers\LanguageController;
     Route::post('/book-order/{id}', 'client_user\OrderManageController@store')->name('user.orderbook');
 
     Route::post('/book-confirm/{id}', 'client_user\OrderManageController@create')->name('user.bookconfirm');
-
-
+    
     /** client -- listing */
     Route::get('/client-listing', 'client_user\user\ClientListingController@index')->name('client-listing');
+
+    Route::get('/service-filter/{id}', 'client_user\user\ClientListingController@filter')->name('service.filter');
 
     /** confirm -- order */
     Route::get('/confirm-order/{id}', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
@@ -130,19 +133,16 @@ use App\Http\Controllers\LanguageController;
       return view('pages\client_user\user\confirm-msg',['orderId'=>decrypt($id)]);
     })->name('confirm.msg');
 
-
-
     /** user -- review */
     Route::get('/user-review', 'client_user\user\UserReviewController@index')->name('user-review');
-
-
+    
 /*********************
  * FRONT_END
  * ********************/
 
+    /** home */
     Route::get('/','client_user\indexController@index');
     Route::get('/home','client_user\indexController@index')->name('home');
-
 
     /** about-us */
     Route::get('/about-us', 'client_user\AboutUsController@index')->name('about-us');
@@ -167,7 +167,6 @@ use App\Http\Controllers\LanguageController;
 
     Auth::routes();
 
-
 /******************
 *   LOGIN
 ******************/
@@ -175,16 +174,16 @@ use App\Http\Controllers\LanguageController;
     /** Auth -- Login */
     Route::get('/loginpage', 'Auth\LoginController@LoginPageForm')->name('login-page');
 
-    /** Auth -- Client */
+    /** Auth -- Client */ 
     Route::post('/login/client', 'Auth\LoginController@clientLogin')->name('login.client');
     Route::get('/register/client', 'Auth\RegisterController@showClientRegisterForm')->name('client.register');
     Route::post('/register/client', 'Auth\RegisterController@createClient')->name('register.client');
 
-    /** Auth -- Customer */
+    /** Auth -- Customer */ 
     Route::post('/login/customer', 'Auth\LoginController@customerLogin')->name('login.customer');
     Route::get('/register/customer', 'Auth\RegisterController@showCustomerRegisterForm')->name('customer.register');
     Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
+    
 
-
-/** locale Route */
+/** locale Route */ 
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);

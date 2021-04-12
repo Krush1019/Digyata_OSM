@@ -1,5 +1,5 @@
 /* 
-      File Name: Service-manage.js
+    File Name: Service-manage.js
 */
 
 $(document).ready(function () {
@@ -28,7 +28,7 @@ $(document).ready(function () {
     // Renering Icons in Actions column
     var customIconsHTML = function (params) {
         var usersIcons = document.createElement("span");
-        var editIconHTML = '<a href="#viewServiceModal" data-toggle="modal"><i class="feather icon-eye mr-50"></i></a>';
+        var editIconHTML = '<a href="#" class="modal_btn" data-id="' + params.value['id'] + '"><i class="feather icon-eye mr-50 "></i></a>';
         usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
         return usersIcons
     }
@@ -39,11 +39,11 @@ $(document).ready(function () {
         id.value = params.value['id'];
 
         var usersIcons = document.createElement("span");
-        var acceptIconHTML = '<i class="users-accept-icon feather icon-user-check status_btn" data-action="Approve" data-id="' + id.value + '"></i>';
+        var acceptIconHTML = '<i class="users-accept-icon feather icon-user-check btn_approve" data-action="Approve" data-id="' + id.value + '"></i>';
         var rejectIconHTML = document.createElement('i');
 
         var attr = document.createAttribute("class");
-        attr.value = " ml-2 users-delete-icon feather icon-user-x status_btn";
+        attr.value = " ml-2 users-delete-icon feather icon-user-x btn_reject";
         rejectIconHTML.setAttributeNode(attr);
         rejectIconHTML.setAttributeNode(id);
         var attr2 = document.createAttribute("data-action");
@@ -83,7 +83,7 @@ $(document).ready(function () {
 
     //  Rendering avatar in username column
     var customAvatarHTML = function (params) {
-        return "<span class='avatar'><img src='" + params.data.avatar + "' height='32' width='32'></span>" + params.value
+        return "<span class='avatar'><img src='" + params.value['img'] + "' height='32' width='32'></span>" + params.value['name']
     }
 
     var customEmailHTML = function (params) {
@@ -115,11 +115,17 @@ $(document).ready(function () {
         headerCheckboxSelection: true
     },
     {
+        headerName: 'Shop Name',
+        field: 'shop-name',
+        filter: true,
+        width: 200,
+        cellRenderer: customAvatarHTML,
+    },
+    {
         headerName: 'Service',
         field: 'service-name',
         filter: true,
         width: 200,
-        cellRenderer: customAvatarHTML,
     },
     {
         headerName: 'Category',
@@ -236,14 +242,16 @@ $(document).ready(function () {
         overlayNoRowsTemplate:
             '<span class="pt-5">No Data To Show</span>'
     };
+
     if (document.getElementById("myGrid-serviceManage")) {
         /*** DEFINED TABLE VARIABLE ***/
         var gridTable = document.getElementById("myGrid-serviceManage");
 
         function getTableData() {
+            
             agGrid
                 .simpleHttpRequest({
-                    url: "/client-manage-show",
+                    url: "/service-manage-show",
                 })
                 .then(function (data) {
                     gridOptions.api.setRowData(data);
@@ -281,67 +289,166 @@ $(document).ready(function () {
         new agGrid.Grid(gridTable, gridOptions);
     }
 
-
-    // Input, Select, Textarea validations except submit button validation initialization
-    if ($(".users-edit").length > 0) {
-        $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
-    }
-
-    // START: Approve Data
-    $(document).on('click', '.status_btn', function (e) {
-        var id = $(this).attr('data-id');
-        var status = $(this).attr('data-action');
-        if (status == "Active")
-            status = "Blocked"
-        else if (status == "Blocked")
-            status = "Active"
+   
+    // change status of services of client
+    $(document).on( "click", ".status_btn, .btn_approve, .btn_reject" ,function (e) {
+        var status = $(this).attr("data-action");
+        var btn_color = ""; var btn_text = "";
+        if(status == "Active" || status == "Rejected") {
+            btn_color = "#df4759";
+            btn_text = (status == "Active") ? "Block" : "Rejecte";
+        } else if (status == "Blocked" || status == "Approve" ) {
+            btn_color = "#28a745";
+            btn_text = (status == "Blocked") ? "Active" : "Approve";
+        }
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
+            title: 'Do you want to save the changes?',
+            showDenyButton: false,
             showCancelButton: true,
-            confirmButtonColor: '#78d278',
-            cancelButtonColor: '#d33',
-            confirmButtonText: status
+            confirmButtonText: btn_text,
+            confirmButtonColor: btn_color,
         }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                $.ajax({
-                    url: '/client-manage-update',
-                    type: 'GET',
-                    data: {
-                        action: "status",
-                        status: status,
-                        id: id
-                    },
-                    success: function (result) {
-                        getTableData();
-                        getPendingCount();
-                        toastFire(Swal, "Changed Status.");
-                    },
-                    error: function (error) {
-                        swalFire(Swal, "Something went wrong!", "Oops...", "error");
-                    }
-                });
+                HoldOn.open(options);
+                var url = "/service-manage-update";
+                var data = {
+                    "main_id" : $(this).attr("data-id"),
+                    "action" : "status",
+                    "data_action" : status,
+                    "_token" :  $("meta[name='csrf-token']").attr("content"),
+                };
+                $.post( url, data, function (result) {
+                    getTableData();
+                })
+                    .always(function () {   
+                        HoldOn.close();
+                    });
             }
-        })
+        });
+        
     });
-    // END: Approve Data
 
-    getPendingCount();
-    function getPendingCount() {
-        $.ajax({
-            url: '/client-manage-show',
-            type: 'GET',
-            data: {
-                action: "Pending"
-            },
-            success: function (result) {
-                if (result > 0)
-                    $('a[href="client-manage"] span:last').text(result);
-                else
-                    $('a[href="client-manage"] span:last').text("");
+    // Show modal with data
+    $(document).on('click', ".modal_btn", function (e) {
+        HoldOn.open(options);
+        var id = $(this).attr("data-id");
+        var url = "/show-service-list";
+        var form = $("#viewServiceModal");
+        var data = {
+            "id": id,
+            "_token" :  $("meta[name='csrf-token']").attr("content"),
+        }
+        $.post(url, data, function (result) {
+            result = JSON.parse(result);
+            form.find(".service_img").attr("src", result['img']);
+
+            form.find('.provider_name').text(result['name']);
+            form.find('.provider_exp').text(result['exp']);
+            form.find('.service_name').text(result['service_name']);
+            form.find('.service_cate').text(result['service_cat']);
+
+            form.find('.ser_phone').text(result['phone']);
+            if ( result['email'] == "") {
+                form.find('.ser_email').text("NA");
+            } else {
+                form.find('.ser_email').attr("href", "mailto:" + result['email']).text(result['email']);
             }
+            form.find('.ser_des').html(result['dec']);
+            
+            form.find(".view_doc").attr("href", result['doc_img']);
+            form.find('.doc_num').html(result['doc_num']);
+
+            form.find('.city').text(result['city']);
+            form.find('.state').text(result['state']);
+            form.find('.address').text(result['address']);
+            form.find('.pin_code').text(result['pin_code']);
+
+            // Social Media Link
+            form.find(".social").empty();
+            if (result['web'] != "" && result['web'] != null) {
+                var html = "<a href='" + result['web'] + "'  target='_blank' class='social-icon globe'><i class='fa fa-globe fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+            if (result['fb'] != "" && result['fb'] != null) {
+                var html = "<a href='" + result['fb'] + "'  target='_blank' class='social-icon facebook'><i class='fa fa-facebook-f fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+            if (result['tw'] != "" && result['tw'] != null) {
+                var html = "<a href='" + result['tw'] + "'  target='_blank' class='social-icon twitter'><i class='fa fa-twitter fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+            if (result['linkedin'] != "" && result['linkedin'] != null) {
+                var html = "<a href='" + result['linkedin'] + "'  target='_blank' class='social-icon  linkedin'><i class='fa fa-linkedin fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+            if (result['insta'] != "" && result['insta'] != null) {
+                var html = "<a href='" + result['insta'] + "'  target='_blank' class='social-icon instagram'><i class='fa fa-instagram fa-2x'></i></a>";
+                form.find(".social").append(html);
+            }
+
+            if (form.find(".social").html() == "") {
+                form.find(".social").text("No Data Available !!!");
+            }
+
+            // Availability Table
+            if (result['days'] != "" && result['days_time'] != "") {
+                form.find(".day_time tbody").empty();
+                var days = result['days'].split(",");
+                var time = result['days_time'].split(",");
+
+                if (days[0] == "CUSTOM") {
+                    for (var  i = 0; i < time.length - 1; i++) {
+                        var temp = "";
+                        time[i] = time[i].split("-");
+                        if ( time[i][0] == "H" || time[i][1] == "H" )
+                            temp = "Holiday";
+                        else {
+                            temp = time[i][0] + ":00 To " + time[i][1] + ":00";
+                        }
+                        form.find(".day_time tbody").append("<tr><td>" + days[i+1] + "</td><td>" + temp + "</td></tr>");
+                    }
+                } else if (days[0] == "5D") {
+                    time = time[0].split("-");
+                    form.find(".day_time tbody").append("<tr><td>5 Days (Mon-Fri)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
+                } else if (days[0] == "6D") {
+                    time = time[0].split("-");
+                    form.find(".day_time tbody").append("<tr><td>6 Days (Mon-Sat)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
+                } else if (days[0] == "ALL") {
+                    time = time[0].split("-");
+                    form.find(".day_time tbody").append("<tr><td>All Days</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
+                }
+            }
+
+            // Pricing Table   
+            form.find(".list_item tbody").empty();
+            if (result['item'].length != 0) {
+                $.each(result['item'], function (key, value) {
+                    var html = '<tr  class="d-flex"><td class="col-md-3">' + value['iName'] + '</td><td class="col-md-2">₹ ' + value['iPrice'] + '</td><td class="col-md-7">' + value['iDes'] + '</td></tr>';
+                    form.find(".list_item tbody").append(html);
+                });
+            } else {
+                form.find(".list_item tbody").text("No Data Found !!!");
+            }
+
+            HoldOn.close();
+            $("#viewServiceModal").modal("show");
         })
-    }
+            .fail(function () {
+                swalError();
+            })
+            .always(function () {   
+                HoldOn.close();
+            });
+    });
+
 });
+
+function  swalError() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+    });
+}

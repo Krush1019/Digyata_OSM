@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\BookingSchedule;
+use App\client_user\OrderManage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class BookingScheduleController extends Controller {
@@ -40,33 +41,24 @@ class BookingScheduleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $tbl = new BookingSchedule();
-        $tbl->sOrderId = $this->getOrderID("sOrderId");
-        $tbl->ser_id = 2;
-        $tbl->cl_ID = 2;
-        $tbl->uID = 3;
-        $tbl->sAddress = "Patan";
-        $tbl->sTimeSlot = "10:00am - 2:00 pm";
-        $tbl->sAmount = "150";
-        $tbl->bPayStatus = 0;
-        $tbl->save();
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\BookingSchedule $bookingSchedule
+     * @param \App\OrderManage $orderManage
      * @return \Illuminate\Http\Response
      */
-    public function show(BookingSchedule $bookingSchedule, Request $request) {
+    public function show(OrderManage $orderManage, Request $request) {
 
-        $sql = "SELECT * FROM tbl_booking_schedule AS tbl_bs";
-        $sql .= " INNER JOIN tbl_service_catalogs AS tbl_ser ON tbl_ser.id = tbl_bs.ser_id";
-        $sql .= " INNER JOIN tbl_user_manage AS tbl_user ON tbl_user.uID = tbl_bs.uID";
-        $sql .= " INNER JOIN tbl_client_manage AS tbl_client ON tbl_client.cl_ID = tbl_bs.cl_ID";
+        $sql = "SELECT * FROM tbl_order_manages AS tbl_om";
+        $sql .= " INNER JOIN tbl_ser_list AS tbl_ser ON tbl_ser.ser_id = tbl_om.ser_list_id";
+        $sql .= " INNER JOIN tbl_service_catalogs AS tbl_ser_cat ON tbl_ser_cat.id = tbl_ser.ser_cat_id";
+        $sql .= " INNER JOIN tbl_user_manage AS tbl_user ON tbl_user.id = tbl_om.user_id";
+        $sql .= " INNER JOIN tbl_client_manage AS tbl_client ON tbl_client.id = tbl_om.client_id";
         if($request->action == "search"){
-            $sql .= " WHERE tbl_bs.sOrderId LIKE '%".$request->text."%' OR tbl_user.sUserID LIKE '%".$request->text."%' OR tbl_client.sClientID LIKE '%".$request->text."%'";
+            $sql .= " WHERE tbl_om.sOrderId LIKE '%".$request->text."%' OR tbl_user.sUserID LIKE '%".$request->text."%' OR tbl_client.sClientID LIKE '%".$request->text."%'";
         }
         $sql .= " ORDER BY bPayStatus = 0 OR bSerStatus = 0 DESC";
 
@@ -74,7 +66,7 @@ class BookingScheduleController extends Controller {
 
         $newData = []; $i = 0;
         foreach($data as $row){
-            $id = encrypt($row->bsID);
+            $id = encrypt($row->sOrderId);
             if($i > 199)
                 if($row->bPayStatus == 1 && $row->bSerStatus == 1)
                     break;
@@ -89,7 +81,7 @@ class BookingScheduleController extends Controller {
                 "service-provider" => array('clientName'=>$row->sClName, "clientImg"=>$row->sClPhotoURL),
                 "user-name" => array('userName'=>$row->sUserName, "userImg"=>$row->sUserImgURL),
                 "service-address" => $row->sAddress,
-                "service-timeslot" => $row->sTimeSlot,
+                "service-timeslot" =>$row->sbDate. " ".$row->sTimeSlot,
                 "service-amount" => $row->sAmount,
                 "payment-status" => $payStatus,
                 "service-status" => $serStatus,
@@ -102,10 +94,10 @@ class BookingScheduleController extends Controller {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\BookingSchedule $bookingSchedule
+     * @param \App\OrderManage $orderManage
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookingSchedule $bookingSchedule) {
+    public function edit(OrderManage $orderManage) {
         //
     }
 
@@ -113,20 +105,20 @@ class BookingScheduleController extends Controller {
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\BookingSchedule $bookingSchedule
+     * @param \App\OrderManage $orderManage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BookingSchedule $bookingSchedule) {
+    public function update(Request $request, OrderManage $orderManage) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\BookingSchedule $bookingSchedule
+     * @param \App\OrderManage $orderManage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookingSchedule $bookingSchedule) {
+    public function destroy(OrderManage $orderManage) {
         //
     }
 
@@ -134,7 +126,7 @@ class BookingScheduleController extends Controller {
         date_default_timezone_set('Asia/Kolkata');
         newOrderID:
             $id = date("ymdH").rand(1000,9999);
-        $count = BookingSchedule::where($col_name,$id)->count();
+        $count = OrderManage::where($col_name,$id)->count();
         if($count == 0)
             return $id;
         else

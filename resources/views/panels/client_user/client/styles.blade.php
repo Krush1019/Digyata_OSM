@@ -1,4 +1,6 @@
 <link href="{{asset('client_user/css/bootstrap.min.css')}}" rel="stylesheet">
+<!-- HoldOn Js styles -->
+<link href="{{asset('css/HoldOn/HoldOn.min.css')}}" rel="stylesheet">
 <!-- Main styles -->
 <link href="{{asset('client_user/client/css/admin.css')}}" rel="stylesheet">
 <!-- Icon fonts-->

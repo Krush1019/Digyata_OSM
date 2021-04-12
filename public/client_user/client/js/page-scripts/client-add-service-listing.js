@@ -1,6 +1,6 @@
 /**
  *  Filename   : client-service-listing.js
- *  Author        : Digyata
+ *  Author       : Digyata
  */
 
  $(document).ready(function () {
@@ -54,6 +54,7 @@
                 service_id : $(this).find("option:selected").attr("data-id"),
                 _token : $("input[name='_token']").val()
             };
+            HoldOn.open(options);
             $.post(url, data, function (result) {
                 result = JSON.parse(result);
                 var select = $("#ser_state");
@@ -62,13 +63,17 @@
                 for (var i = 0; i < result.length; i++) {
                   select.append("<option value='" + result[i]['main_id'] + "'>" + result[i]['state'] + "</option>");
                 }
-            });
+            })    
+                .always(function () {   
+                    HoldOn.close();
+                });
         }
     });
 
     // Change State
     $("#ser_state").on("change", function (e) {
 
+        HoldOn.open(options);
         $("#ser_pin_no, #ser_address").attr("readonly", false);
         var select = $("#ser_city");
         select.attr("readonly", false).empty();
@@ -83,14 +88,16 @@
         }
         $.post(url, data, function (result) {
             result = JSON.parse(result);
-            // console.log(result);
             var select = $("#ser_city");
             select.attr("readonly", false).empty();
             select.append('<option value="-1" selected disabled>Select City</option>');
             for (var i = 0; i < result.length; i++) {
                 select.append("<option value='" + result[i]['main_id'] + "'>" + result[i]['city'] + "</option>");
             }
-        });
+        })
+            .always(function () {   
+                HoldOn.close();
+            });
     });
 
    $("#SL_ser_state").append(
@@ -135,8 +142,6 @@
     });
 
     function printDays(ser_day = "", ser_day_time = "") {
-       console.log(ser_day);
-       console.log(ser_day_time);
 
         $("#add-day-div").removeAttr("hidden");
         $("#def_days").hide();
@@ -165,8 +170,7 @@
 
     // Form Validation
     $("#sbt_btn").on("click", function (e) {
-        $("#sbt_btn").attr("type", "submit");
-        
+        $("#sbt_btn").attr("type", "submit");   
 
         $("#addServiceListForm").validate({
             
@@ -202,6 +206,7 @@
                     
                 if ( obj['time'] != null ) {
                     if ( !jQuery.isEmptyObject(obj['items']) ) {
+                        HoldOn.open(options);
                         uploadImg("addServiceListForm", "/service-listing-store-img", "POST")
                         .then((path) => {
                             
@@ -234,14 +239,17 @@
                                 type: "POST",
                                 data: obj,
                                 success: function (result) {
+                                    HoldOn.close();
                                     swalSuccess("/service-listing", "");
                                 },
                                 error: function (error) {
+                                    HoldOn.close();
                                     swalError();
                                 }
                             });
                         })
                             .catch((error) => {
+                                HoldOn.close();
                                 swalError();
                             });
                     } else {
@@ -258,8 +266,6 @@
    numberValidation("#ser_phone");
    numberValidation("#item_price");
    numberValidation("#ser_pin_no");
-   var temp = getItemValue("#pricing-list-container");
-   console.log(temp);
 });
 
 function swalWarning( msg = "Something went wrong!", title = "Warning..." ) {

@@ -52,15 +52,17 @@
 							<button type="button" class="btn_1 gray modal_btn" data-id="{{$value['main_id']}}">
 								<i class="fa fa-fw fa-eye"></i> View Service
 							</button>
+							<a href=" {{ route('add-service-listing', $value['main_id'] ) }}" class="btn_1 gray "><i class="fa fa-fw fa-edit"></i> Edit</a>
 						</p>
 						<ul class="buttons">
 							<li class="">
 								@if($value['status'] == 1)
-									<a href="#" class="btn_1 gray s_status approve" data-id="{{$value['main_id']}}"><i class="fa fa-fw fa-check"></i> Active</a>
+									<a href="#" class="btn_1 gray s_status approve" data-id="{{$value['main_id']}}" data-action="Active"><i class="fa fa-fw fa-check"></i> Active</a>
 								@else
-									<a href="#" class="btn_1 gray s_status delete" data-id="{{$value['main_id']}}"><i class="fa fa-fw fa-ban mr-1"></i> Inactive</a>
+									<a href="#" class="btn_1 gray s_status delete" data-id="{{$value['main_id']}}" data-action="Inactive"><i class="fa fa-fw fa-ban mr-1"></i> Inactive</a>
 								@endif
 							</li>
+							
 						</ul>
 					</li>
 				@endforeach
@@ -146,7 +148,7 @@
 											</div>
 											<div>
 												<span class="col-sm-12 small pl-0">E-mail : </span>
-												<span class="col-sm-12 font-weight-bold pl-0"><a href="mailto:meetprajapati847@gmail.com" class="ser_email" target="_blank"> </a></span>
+												<span class="col-sm-12 font-weight-bold pl-0"><a href="mailto:" class="ser_email" target="_blank"> </a></span>
 											</div>
 										</div>
 									</div>
