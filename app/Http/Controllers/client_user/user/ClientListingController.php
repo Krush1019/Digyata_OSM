@@ -9,9 +9,16 @@ use Illuminate\Http\Request;
 
 class ClientListingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-      return view('/pages/client_user/user/client-listing');
+
+              $services = DB::table('tbl_ser_list')
+                      ->join('tbl_service_catalogs as tsc', 'tbl_ser_list.ser_cat_id', '=', 'tsc.id')
+                      ->Paginate(6);
+              $catalogs = DB::table('tbl_service_catalogs')
+                      ->get();
+
+      return view('/pages/client_user/user/client-listing')->with('services',$services)->with('catalogs',$catalogs)->with('selectId',"");
     }
 
     public function filter(Request $request){
@@ -24,14 +31,11 @@ class ClientListingController extends Controller
     $services = DB::table('tbl_ser_list')
                 ->where('ser_cat_id','=' ,$decrypted)
                 ->join('tbl_service_catalogs as tsc', 'tbl_ser_list.ser_cat_id', '=', 'tsc.id')
-                // ->join('tbl_client_manage as tcm', 'tbl_ser_list.ser_cat_id', '=', 'tcm.id')
                 ->Paginate(6);
-                // ->get();
     $catalogs = DB::table('tbl_service_catalogs')
                 ->get();
 
-            // dd($services);
-      return view('/pages/client_user/user/client-listing')->with('services',$services)->with('catalogs',$catalogs);
+      return view('/pages/client_user/user/client-listing')->with('services',$services)->with('catalogs',$catalogs)->with('selectId',$decrypted);
 
     }
 }

@@ -18,7 +18,6 @@ class ClientReviewController extends Controller
                  ->join('tbl_user_manage as tum', 'tbl_review_orders.uID', '=', 'tum.id')
                  ->where('cl_ID','=',auth()->guard('client')->user()->id)
                  ->get();
-                //  dd($reviews);
       $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "Reviews"]];
       return view('/pages/client_user/client/client-review', [
         'breadcrumbs' => $breadcrumbs

@@ -25,6 +25,11 @@
     </div>
     <div class="list_general reviews">
       <ul>
+        @if (!$reviews->first())
+        <div>
+          you have not any Reviews yet!!
+        </div>
+        @else
         @foreach ($reviews as $review)
         <li>
           <span>{{date_format(date_create($review->created_at),"M d Y")}}</span>
@@ -35,6 +40,8 @@
           {{-- <p class="inline-popups"><a href="#modal-reply" data-effect="mfp-zoom-in" class="btn_1 gray"><i class="fa fa-fw fa-reply"></i> Reply to this review</a></p> --}}
         </li>
         @endforeach
+        @endif
+
       </ul>
     </div>
   </div>
