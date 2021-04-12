@@ -84,6 +84,5 @@
 @endsection
 
 @section('page-script')
-<script src="{{ asset('js/scripts/extensions/sweetalert2.js')}}"></script>
 <script src="{{ asset('client_user/user/scripts/user-review.js') }}"></script>
 @endsection
