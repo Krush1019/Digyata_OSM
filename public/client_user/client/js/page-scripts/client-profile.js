@@ -5,14 +5,13 @@
 
  $(document).ready(function () {
 
-
+	HoldOn.open(options);
 	$('#profile').css('background-image', 'url('+ $("#profile_img").val() +')').addClass('hasImage');
-
+	HoldOn.close();
 	// Verify Password
 	$("#btn_confirm").on('click', function (e) {
 		e.preventDefault();
 		checkPassword();
-		$(this).dialog("destroy"); 
 	});
 
 	function checkPassword() {
@@ -20,9 +19,8 @@
 		var error = $("#oldPassword-error");
 		if(password != "" && password != null && password != undefined) {
 			var url = "/client-password";
-			var data = {
-				"password" : password
-			};
+			var data = { "password" : password };
+			HoldOn.open(options);
 			$.get(url, data, function (result) {
 				if(result) {
 					$("#btn_confirm").hide();
@@ -33,6 +31,7 @@
 					error.text("Enter Valid Password !!");
 				}
 			});
+			HoldOn.close();
 		} else {
 			error.text("Enter Old Password !!");
 		}
@@ -48,18 +47,14 @@
 			$(".new_password").attr("hidden", true);
 			$(".old_password").show();
 		}, 7000);
-		$(this).dialog("destroy");
 	});
 
 	$("#changePasswdModel").on("shown.bs.modal", function (e) {
-		e.preventDefault();
 		clearTimeout(setTime);
-		$(this).dialog("destroy"); 
 	});
 
 	// Password show-hide button
 	$(".toggle-password").on('click' ,function(e) {
-		e.preventDefault();
 		$(this).toggleClass("fa-eye fa-eye-slash");
 		var input = $($(this).attr("toggle"));
 		if (input.attr("type") == "password") {
@@ -67,7 +62,6 @@
 		} else {
 			input.attr("type", "password");
 		}
-		$('#changePasswdModel').dialog("destroy"); 
 	});
 
 	// Update Password
@@ -111,7 +105,6 @@
 				});
 			}
 		});
-		$('#changePasswdModel').dialog("destroy");
 	});
 
 	// Client detail form validation
@@ -124,6 +117,8 @@
 				gender: "required",
 				client_mo: {
 					required: true,
+					maxlength: 10,
+					minlength: 10,
 				},
 				client_email: {
 					required: true,
@@ -154,14 +149,17 @@
 					denyButtonText: `Don't save`,
 				}).then((result) => {
 					if (result.isConfirmed) {
+						HoldOn.open(options);
 						uploadImg ("clientImgForm" , "/client-save-img")
 						.then((path) => {
 							if(path != ""){
 								$("#profile_img").attr("value", path);
 							}
+							HoldOn.close();
 							form.submit();
 						})
 						.catch((error) => {
+							HoldOn.close();
 							swalError();
 						});
 					} else {
