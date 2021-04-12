@@ -6,6 +6,9 @@
 
 $(document).ready(function () {
 
+      $('.pagination .page-item:first-child .page-link').text('Prev');
+      $('.pagination .page-item:last-child .page-link').text('Next');
+
       //no of items
       var Ino = $("#search-content .search-item").length;
       $('.page_header span').text(Ino + ' Records');
@@ -18,6 +21,11 @@ $(document).ready(function () {
         });
         var count =  $("#search-content .search-item").filter(':visible').length;
         $('.page_header span').text(count + ' Records');
+      });
+
+      //Dropdown Services 
+      $("#SL_service").on("change", function () {
+        window.location.replace($(this).val());
       });
     
     })
