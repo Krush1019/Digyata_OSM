@@ -6,20 +6,6 @@
 
 $(document).ready(function () {
 
-      const Toast = Swal.mixin({
-            toast: true,
-            position: 'bottom-left',
-            showConfirmButton: true,
-            showCancelLink: true,
-            timer: 5000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-      });
-
-
       // Accept a value from a file input based on a required mimetype
       $.validator.addMethod("accept", function (value, element, param) {
             var typeParam = typeof param === "string" ? param.replace(/\s/g, "") : "image/*",
