@@ -63,8 +63,10 @@
                 for (var i = 0; i < result.length; i++) {
                   select.append("<option value='" + result[i]['main_id'] + "'>" + result[i]['state'] + "</option>");
                 }
-            });
-            HoldOn.close();
+            })    
+                .always(function () {   
+                    HoldOn.close();
+                });
         }
     });
 
@@ -86,15 +88,16 @@
         }
         $.post(url, data, function (result) {
             result = JSON.parse(result);
-            // console.log(result);
             var select = $("#ser_city");
             select.attr("readonly", false).empty();
             select.append('<option value="-1" selected disabled>Select City</option>');
             for (var i = 0; i < result.length; i++) {
                 select.append("<option value='" + result[i]['main_id'] + "'>" + result[i]['city'] + "</option>");
             }
-        });
-        HoldOn.close();
+        })
+            .always(function () {   
+                HoldOn.close();
+            });
     });
 
    $("#SL_ser_state").append(
@@ -263,8 +266,6 @@
    numberValidation("#ser_phone");
    numberValidation("#item_price");
    numberValidation("#ser_pin_no");
-   var temp = getItemValue("#pricing-list-container");
-   console.log(temp);
 });
 
 function swalWarning( msg = "Something went wrong!", title = "Warning..." ) {
