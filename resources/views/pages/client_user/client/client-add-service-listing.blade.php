@@ -74,7 +74,7 @@
 					@endif
 					<div class="form-group">
 						<label for="SL_ser_description">Description</label>
-						<div class="editor"></div>
+						<div class="editor" id="summernote"></div>
 					</div>
 				</div>
 			</div>
@@ -171,7 +171,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Aadhar No.</label><span class="required">*</span>
-						<input type="text" class="form-control" name="ser_doc_no" value="@isset($serviceData){{$serviceData['doc_num']}}@endisset" placeholder="Aadhar No.">
+						<input type="text" class="form-control num_valid" name="ser_doc_no" value="@isset($serviceData){{$serviceData['doc_num']}}@endisset" placeholder="Aadhar No.">
 					</div>
 				</div>
 
