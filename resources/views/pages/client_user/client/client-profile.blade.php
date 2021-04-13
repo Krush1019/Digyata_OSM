@@ -92,7 +92,7 @@
 								<label>Status: </label>
 							</span>
 							<span class="mt-5 ml-2">
-								@if ($clientData['status'] == "Blocked" )
+								@if ($clientData['status'] == 	"Blocked" )
 									<i class="cancel">Blocked</i>
 								@elseif( $clientData['status'] == "Active" )
 									<i class="approved">Active</i>
