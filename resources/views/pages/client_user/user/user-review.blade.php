@@ -15,13 +15,15 @@
 
 @section('content')
 <main class="bg_gray">
-
+{{-- {{ $service }} --}}
       <div class="container margin_60_40">
             <div class="row justify-content-center">
                   <div class="col-lg-8">
                         <div class="box_general write_review">
-                              <form id="reviewForm">
-                                    <h1 class="add_bottom_15">Write a review for "Service Provider Name"</h1>
+                              <form id="reviewForm" action="{{ route('user-review-submit') }}" method="POST" enctype="multipart/form-data">
+                                    {{ @csrf_field() }}
+                                    <h1 class="add_bottom_15">Write a review for 
+                                          "{{$service->ser_pro_name}}"</h1>
                                     <div class="row">
                                           <div class="col-md-3 col-sm-6 add_bottom_25">
                                                 <div class="add_bottom_15">Response time <strong
@@ -29,6 +31,7 @@
                                                 <input type="range" min="0" max="5" step="1" value="0"
                                                       data-orientation="horizontal" id="resp_revw"
                                                       name="resp_revw">
+                                               
                                           </div>
                                           <div class="col-md-3 col-sm-6  add_bottom_25">
                                                 <div class="add_bottom_15">Service <strong class="service_val"></strong>
@@ -66,6 +69,7 @@
                                           </div>
                                     </div>
                                     <button type="submit" id="review-submit-btn" class="btn_1">Submit review</button>
+                                  <h4 class="text-success"> {{ session('msg') }} </h4> 
                               </form>
                         </div>
                   </div>
