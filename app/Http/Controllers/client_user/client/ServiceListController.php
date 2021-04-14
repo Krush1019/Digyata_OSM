@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\client_user\client;
 
-use App\client_user\ClientManage;
 use App\ServiceCatalog;
 use App\ServiceList;
 use App\Http\Controllers\Controller;
@@ -184,10 +183,12 @@ class ServiceListController extends Controller {
                 break;
 
             case "status":
-                $status = ($request->get('status') == "Active") ? true : false ;
-                ServiceList::where("ser_id", decrypt($id))->update([
-                    "ser_status" => $status,
-                ]);
+                $status = decrypt($request->get('status'));
+                $arr = array();
+                if ( $status == "Active" ) { $arr['ser_status'] = "Inactive"; }
+                else if ( $status == "Inactive" ) { $arr['ser_status'] = "Active"; }
+                else { break; }
+                ServiceList::where("ser_id", decrypt($id))->update($arr);
                 break;
         }
         return true;        
@@ -331,7 +332,8 @@ class ServiceListController extends Controller {
                     "days" => $row['ser_days'],
                     "days_time" => $row['ser_time'],
                     "item" => $itemData,
-                    "status" => $row['ser_status'],   
+                    "status" => $row['ser_status'], 
+                    "status_id"  => encrypt($row['ser_status'])
                 );
                 array_push($data, $arr);
             }    

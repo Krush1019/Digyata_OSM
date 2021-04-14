@@ -12,7 +12,7 @@
                 i, file, regex;
 
         if (optionalValue) {
-                return optionalValue;
+            return optionalValue;
         }
 
         if ($(element).attr("type") === "file") {
@@ -39,6 +39,7 @@
 
     var action = ""; var ser_id = "";
     $(window).on('load', function () {
+        HoldOn.open(options);
         // for Add Options to select input field Dynamicaly
         action = $("#sbt_btn").attr("data-action").trim();
         ser_id = $("#sbt_btn").attr("data-id").trim();
@@ -62,6 +63,7 @@
                 $("select.cltime option[value='" + temp[1].trim() + "']").attr("selected", true);
             }
         }
+        HoldOn.close();
     });
 
    // For Location

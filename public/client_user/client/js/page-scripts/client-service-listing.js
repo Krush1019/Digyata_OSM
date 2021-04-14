@@ -48,7 +48,7 @@ $(document).ready(function () {
                 var data = {
                     "action": "status",
                     "id": id,
-                    "status": status,
+                    "status": btn.attr("data-status"),
                     "_token" :  $("meta[name='csrf-token']").attr("content"),
                 }
                 $.post( url, data, function (result) {
@@ -61,8 +61,13 @@ $(document).ready(function () {
                     } else {
                         btn.removeClass('delete').addClass('approve').text('Active').attr("data-action", "Active").prepend('<i class="fa fa-fw fa-check mr-1"></i>');
                     }
-                });
-                HoldOn.close();
+                })
+                    .fail(function () {
+                        swalError();
+                    })
+                    .always(function () {   
+                        HoldOn.close();
+                    });         
             }
         });
     });

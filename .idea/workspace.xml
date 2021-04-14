@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="907c4b15-13ef-4a19-9fa3-a551806c5ba4" name="Default Changelist" comment="" />
+    <list default="true" id="907c4b15-13ef-4a19-9fa3-a551806c5ba4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServiceManageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServiceManageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/client_user/client/ServiceListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/client_user/client/ServiceListController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_27_061038_create_service_lists_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_061038_create_service_lists_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/client_user/client/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/client_user/client/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/client_user/client/js/page-scripts/client-add-service-listing.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/client_user/client/js/page-scripts/client-add-service-listing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/client_user/client/js/page-scripts/client-service-listing.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/client_user/client/js/page-scripts/client-service-listing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/client_user/client/client-service-listing.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/client_user/client/client-service-listing.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost:8000" id="fdccbc9b-cf01-41fb-92f4-5c04d618698f" name="Unnamed" />
+    </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -144,11 +161,18 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Web Page.HOME">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="HOME" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="Unnamed" start_url="/home">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PHP Web Page.HOME" />
+      <item itemvalue="PHPUnit.phpunit.xml" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -160,6 +184,7 @@
       <updated>1617427958507</updated>
       <workItem from="1617427985914" duration="71000" />
       <workItem from="1617428125963" duration="9277000" />
+      <workItem from="1618410666828" duration="1190000" />
     </task>
     <servers />
   </component>
@@ -167,9 +192,65 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1617458238825">
+    <state x="263" y="21" key="#Servers" timestamp="1618412275019">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1617458238825" />
+    <state x="263" y="21" key="#Servers/0.0.1366.728@0.0.1366.728" timestamp="1618412275019" />
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618412286308">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1618412286308" />
+    <state width="1323" height="222" key="GridCell.Tab.0.bottom" timestamp="1618412757276">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1618412757276" />
+    <state width="1323" height="222" key="GridCell.Tab.0.center" timestamp="1618412757276">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1618412757276" />
+    <state width="1323" height="222" key="GridCell.Tab.0.left" timestamp="1618412757276">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1618412757276" />
+    <state width="1323" height="222" key="GridCell.Tab.0.right" timestamp="1618412757276">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1618412757276" />
+    <state width="1323" height="222" key="GridCell.Tab.1.bottom" timestamp="1618412757277">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1618412757277" />
+    <state width="1323" height="222" key="GridCell.Tab.1.center" timestamp="1618412757276">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1618412757276" />
+    <state width="1323" height="222" key="GridCell.Tab.1.left" timestamp="1618412757276">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1618412757276" />
+    <state width="1323" height="222" key="GridCell.Tab.1.right" timestamp="1618412757276">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1618412757276" />
+    <state width="1323" height="222" key="GridCell.Tab.2.bottom" timestamp="1618412757277">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1618412757277" />
+    <state width="1323" height="222" key="GridCell.Tab.2.center" timestamp="1618412757277">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1618412757277" />
+    <state width="1323" height="222" key="GridCell.Tab.2.left" timestamp="1618412757277">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1618412757277" />
+    <state width="1323" height="222" key="GridCell.Tab.2.right" timestamp="1618412757277">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1618412757277" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1618412316972">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1618412316972" />
   </component>
 </project>
