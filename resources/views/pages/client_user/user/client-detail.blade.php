@@ -33,7 +33,7 @@
                     <div class="main_info_wrapper">
                         <div class="main_info clearfix">
                             <div class="user_thumb">
-                                <figure><img src="{{asset('client_user/img/avatar.jpg')}}" alt=""></figure>
+                                <figure><img src="{{asset($service->sClPhotoURL)}}" alt=""></figure>
                                 <em class="online"><span></span>Available</em>
                             </div>
                             <div class="user_desc">

@@ -5,11 +5,13 @@
 
 
 $(document).ready(function () {
+
+  // $(".dz-hidden-input").attr('name', 'serviceImage');
   const Toast = Swal.mixin({
     toast: true,
     position: 'bottom-left',
     showConfirmButton: true,
-    showCancelLink: true,
+    showCancelButton: false,
     timer: 5000,
     timerProgressBar: true,
     didOpen: (toast) => {
@@ -35,7 +37,7 @@ $(document).ready(function () {
       {
         orderable: true,
         targets: 0,
-        checkboxes: {selectRow: true}
+        checkboxes: { selectRow: true }
       }
     ],
     dom:
@@ -74,15 +76,15 @@ $(document).ready(function () {
 
   // Scrollbar
   if ($(".data-items").length > 0) {
-    new PerfectScrollbar(".data-items", {wheelPropagation: false})
+    new PerfectScrollbar(".data-items", { wheelPropagation: false })
   }
 
   // Close sidebar
   $(".hide-data-sidebar, .cancel-data-btn, .overlay-bg").on("click", function () {
     $(".add-new-data").removeClass("show");
     $(".overlay-bg").removeClass("show");
-    $("#data-name, #data-price").val("");
-    $("#data-category, #data-status").prop("selectedIndex", 0);
+    $('#service-img').val("");
+    $('.text-uppercase').text('Add New Service');
     $("#service-submit").text('Add Service');
     $('#service-submit').attr('data-action', "insert");
     $('#addServiceForm')[0].reset();
@@ -92,70 +94,54 @@ $(document).ready(function () {
     removeCheck();
   })
 
-  // $(document).on('focusout', '#service-max', function (e) {
-  //
-  //   var minPrice = $('#service-min').val();
-  //   var maxPrice = $('#service-max').val();
-  //   if(maxPrice <= minPrice){
-  //     alert("true");
-  //     $('#service-max').attr("aria-invalid", "true").siblings('div').append('<ul role="alert"><li>The value must be greater then min value</li></ul>');
-  //     $('#addServiceForm').addClass("error");
-  //     $('#div-service-max').addClass("error");
-  //     $('#addServiceForm').preventSubmit = false;
-  //   } else {
-  //     $('#addServiceForm').removeClass("error");
-  //     $("#addServiceForm").find("ul").remove();
-  //     $('#service-max').attr("aria-invalid", "false");
-  //     $('#div-service-max').removeClass("issue error").addClass("validate");
-  //     $('#addServiceForm').preventSubmit = true;
-  //   }
-  //
-  // });
-
   // On Insert and update
   $(document).on('submit', '#addServiceForm', function (e) {
+    HoldOn.open(options);
     e.preventDefault();
     var data = $(this).serializeArray();
-    if ($('#service-submit').attr('data-action') === "insert") {
-      var url = "/service-store";
-      var str = "Data added successfully.";
-    } else if ($('#service-submit').attr('data-action') === "update") {
-      url = '/service-update';
-      data[data.length] = {name: "id", value: ($('#service-submit').attr('data-id'))};
-      data[data.length] = {name: "action", value: "service"};
-      str = "Data updated successfully.";
+    if (!jQuery.isEmptyObject(data)) {
+      uploadImg("addServiceForm", "/service-store-img")
+        .then((path) => {
+          data[data.length] = (!jQuery.isEmptyObject(path)) ? { name: "serviceImage", value: path } : data[4][value];
+          if ($('#service-submit').attr('data-action') === "insert") {
+            var url = "/service-store";
+            var str = "Data added successfully.";
+          } else if ($('#service-submit').attr('data-action') === "update") {
+            url = '/service-update';
+            data[data.length] = { name: "id", value: ($('#service-submit').attr('data-id')) };
+            data[data.length] = { name: "action", value: "service" };
+            str = "Data updated successfully.";
+          }
+
+          $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: function (data) {
+              if (!data.errors) {
+                getData(dataListView);
+                $(".add-new-data").removeClass("show");
+                $(".overlay-bg").removeClass("show");
+                $('.text-uppercase').text('Add New Service');
+                $('#service-submit').text('Add Service').attr('data-action', "insert");
+                $('#addServiceForm')[0].reset();
+                HoldOn.close();
+                Toast.fire({
+                  icon: 'success',
+                  title: str
+                })
+              } 
+            },
+            error: function(error) {
+              HoldOn.close();
+                Toast.fire({
+                  icon: 'warning',
+                  title: error
+                })
+            }
+          });
+        })
     }
-    $.ajax({
-      url: url,
-      type: "POST",
-      data: data,
-      success: function (data) {
-        if (!data.errors) {
-          $('#service-submit').prepend('<span id="btn-spin" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>').attr("disabled", true);;
-
-          setTimeout(function () {
-            getData(dataListView);
-            $(".add-new-data").removeClass("show");
-            $(".overlay-bg").removeClass("show");
-            $("#data-name, #data-price").val("");
-            $("#data-category, #data-status").prop("selectedIndex", 0);
-            $('#service-submit').text('Add Service').attr('data-action', "insert").removeAttr("disabled");
-            $('#btn-spin').remove();
-            $('#addServiceForm')[0].reset();
-            Toast.fire({
-              icon: 'success',
-              title: str
-            })
-          }, 2000);
-
-        } else {
-          Toast.fire({
-            icon: 'warning',
-            title: data.errors[0]
-          })
-        }
-      }
-    });
   });
 
   // On Edit
@@ -166,9 +152,9 @@ $(document).ready(function () {
     $('#service-name').val($this.data('service'));
     $('#service-category').val($this.data('category'));
     $('#service-desc').val($this.data('desc'));
-    $('#service-min').val($this.data('min'));
-    $('#service-max').val($this.data('max'));
-    $('#service-submit').text('Update Service').attr({'data-action': "update"},{'data-id': $this.data('id')});
+    // $('#service-img').val($this.data('img'));
+    $('.text-uppercase').text('Update Service');
+    $('#service-submit').text('Update Service').attr({ 'data-action': "update", 'data-id': $this.data('id') });
     $(".add-new-data").addClass("show");
     $(".overlay-bg").addClass("show");
     removeCheck();
@@ -188,7 +174,7 @@ $(document).ready(function () {
           },
           url: "/service-destroy",
           type: "POST",
-          data: {id},
+          data: { id },
           success: function (data) {
             dataListView.row($this.closest('td').parent('tr')).remove().draw();
             Toast.fire({
@@ -219,7 +205,7 @@ $(document).ready(function () {
               },
               url: "/service-destroy",
               type: "POST",
-              data: {id},
+              data: { id },
               success: function (data) {
                 $this.prop("checked", false);
                 dataListView.row($this.closest('td').parent('tr')).remove().draw();
@@ -260,7 +246,7 @@ $(document).ready(function () {
           },
           url: "/service-update",
           type: "POST",
-          data: {id: id, action: "status"},
+          data: { id: id, action: "status" },
           success: function (data) {
             if (data) {
               $this.removeClass('chip-danger').addClass('chip-success')
@@ -298,7 +284,7 @@ $(document).ready(function () {
               },
               url: "/service-update",
               type: "POST",
-              data: {id: id, action: "status-enable"},
+              data: { id: id, action: "status-enable" },
               success: function (data) {
                 if (data) {
                   $this.removeClass('chip-danger').addClass('chip-success')
@@ -343,7 +329,7 @@ $(document).ready(function () {
               },
               url: "/service-update",
               type: "POST",
-              data: {id: id, action: "status-disable"},
+              data: { id: id, action: "status-disable" },
               success: function (data) {
                 if (data) {
                   $this.removeClass('chip-success').addClass('chip-danger')
@@ -368,11 +354,6 @@ $(document).ready(function () {
     }
     removeCheck();
   });
-
-  // mac chrome checkbox fix
-  if (navigator.userAgent.indexOf("Mac OS X") != -1) {
-    $(".dt-checkboxes-cell input, .dt-checkboxes").addClass("mac-checkbox");
-  }
 });
 
 function getData(dataListView) {
@@ -386,16 +367,16 @@ function getData(dataListView) {
       dataListView.clear().draw();
       for (var i = 0; i <= data.length; i++) {
         dataListView.row.add(['<td></td>',
+          '<td class="product-img"><img src="' + window.location.origin + '/' + data[i]['serviceImage'] + '" height="110px" width="110px" ></td>',
           '<td class="product-name">' + data[i]['serviceName'] + '</td>',
           '<td class="product-category">' + data[i]['serviceCategory'] + '</td>',
-          '<td class="product-price">' + data[i]['serviceMinPrice'] + ' - ' + data[i]['serviceMaxPrice'] + '</td>',
           '<td><div class="service-status chip ' + ((data[i]['serviceStatus']) ? "chip-success" : "chip-danger") + '" data-id="' + data[i]['id'] + '">' +
           '<div class="chip-body">' +
           '<div class="chip-text">' + ((data[i]['serviceStatus']) ? "Active" : "Inactive") + '</div>' +
           '</div>' +
           '</div></td>',
           '<td class="product-action">' +
-          '<span class="action-edit" data-id="' + data[i]['id'] + '" data-service="' + data[i]['serviceName'] + '" data-category="' + data[i]['serviceCategory'] + '" data-desc="' + data[i]['serviceCategory'] + '" data-min="' + data[i]['serviceMinPrice'] + '" data-max="' + data[i]['serviceMaxPrice'] + '"><i class="feather icon-edit"></i></span>' +
+          '<span class="action-edit" data-id="' + data[i]['id'] + '" data-service="' + data[i]['serviceName'] + '" data-category="' + data[i]['serviceCategory'] + '" data-desc="' + data[i]['serviceDescription'] + '" data-img="' + data[i]['serviceImage'] + '"><i class="feather icon-edit"></i></span>' +
           '<span class="action-delete" data-id="' + data[i]['id'] + '"><i class="feather icon-trash"></i></span>' +
           '</td>']).draw(false);
       }
@@ -407,4 +388,27 @@ function getData(dataListView) {
 function removeCheck() {
   $('#ServiceCatlogTable :checked').prop("checked", false);
   $('#ServiceCatlogTable tr').removeClass("selected");
+}
+
+
+//upload Image
+function uploadImg(form_id, url) {
+  let myform = document.getElementById(form_id);
+  let formData = new FormData(myform);
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: url,
+      type: "post",
+      data: formData,
+      contentType: false,
+      processData: false,
+      cache: false,
+      success: function (data) {
+        resolve(data)
+      },
+      error: function (error) {
+        reject(error)
+      },
+    })
+  })
 }

@@ -17,6 +17,7 @@ use App\Http\Controllers\LanguageController;
     Route::post('/service-update', 'ServiceCatalogController@update')->name('service-update');
     Route::post('/service-destroy', 'ServiceCatalogController@destroy')->name('service-destroy');
     Route::post('/service-retrive', 'ServiceCatalogController@retrive')->name('service-retrive');
+    Route::post('/service-store-img', 'ServiceCatalogController@saveImg');
 
     /** Admin -- localization */
     Route::get('/localization', 'LocalizationController@index');

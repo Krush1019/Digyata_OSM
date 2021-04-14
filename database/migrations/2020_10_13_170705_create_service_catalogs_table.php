@@ -19,8 +19,7 @@ class CreateServiceCatalogsTable extends Migration {
             $table->string("serviceName");
             $table->string("serviceCategory");
             $table->text("serviceDescription")->nullable(true);
-            $table->integer("serviceMinPrice");
-            $table->integer("serviceMaxPrice");
+            $table->string("serviceImage");
             $table->boolean("serviceStatus")->default(true);
             $table->softDeletes();
             $table->timestamps();
