@@ -1,5 +1,7 @@
+
 # ignore all logs *
 .log
 bootstrap/cache/config.php
 .env
 public/images/client
+
