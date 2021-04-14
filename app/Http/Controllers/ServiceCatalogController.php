@@ -58,8 +58,7 @@ class ServiceCatalogController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $tbl = new ServiceCatalog();
         $request->validate([
             'serviceName' => 'required',

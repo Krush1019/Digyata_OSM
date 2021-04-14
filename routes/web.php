@@ -102,7 +102,7 @@ use App\Http\Controllers\LanguageController;
     Route::get('/order-manage', 'client_user\OrderManageController@index')->name('order-manage.index');
     Route::get('/order-manage-show', 'client_user\OrderManageController@show');
 
-  
+
 /******************
 *   USER
 ******************/
@@ -122,7 +122,7 @@ use App\Http\Controllers\LanguageController;
     Route::post('/book-order/{id}', 'client_user\OrderManageController@store')->name('user.orderbook');
 
     Route::post('/book-confirm/{id}', 'client_user\OrderManageController@create')->name('user.bookconfirm');
-    
+
     /** client -- listing */
     Route::get('/client-listing', 'client_user\user\ClientListingController@index')->name('client-listing');
 
@@ -135,9 +135,11 @@ use App\Http\Controllers\LanguageController;
     })->name('confirm.msg');
 
     /** user -- review */
+
     Route::get('/user-review/{id}', 'client_user\user\UserReviewController@index')->name('user-review');
     Route::POST('/user-review-submit', 'client_user\user\UserReviewController@submit')->name('user-review-submit');
     
+
 /*********************
  * FRONT_END
  * ********************/
@@ -176,16 +178,16 @@ use App\Http\Controllers\LanguageController;
     /** Auth -- Login */
     Route::get('/loginpage', 'Auth\LoginController@LoginPageForm')->name('login-page');
 
-    /** Auth -- Client */ 
+    /** Auth -- Client */
     Route::post('/login/client', 'Auth\LoginController@clientLogin')->name('login.client');
     Route::get('/register/client', 'Auth\RegisterController@showClientRegisterForm')->name('client.register');
     Route::post('/register/client', 'Auth\RegisterController@createClient')->name('register.client');
 
-    /** Auth -- Customer */ 
+    /** Auth -- Customer */
     Route::post('/login/customer', 'Auth\LoginController@customerLogin')->name('login.customer');
     Route::get('/register/customer', 'Auth\RegisterController@showCustomerRegisterForm')->name('customer.register');
     Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
-    
 
-/** locale Route */ 
+
+/** locale Route */
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
