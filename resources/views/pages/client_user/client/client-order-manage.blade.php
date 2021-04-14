@@ -86,7 +86,7 @@
 	</div>
 	<!-- /box_general-->
 
-	<nav aria-label="...">
+	{{-- <nav aria-label="...">
 		<ul class="pagination pagination-sm add_bottom_30">
 			<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
 			<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -94,8 +94,8 @@
 			<li class="page-item"><a class="page-link" href="#">3</a></li>
 			<li class="page-item"><a class="page-link" href="#">Next</a></li>
 		</ul>
-	</nav>
-  	<!-- /pagination-->
+	</nav>--}}
+	   <!-- /pagination-->
 
 	{{-- START: Modal --}}
   	<div class="modal fade custom-modal" id="viewOrderModal" role="dialog" aria-hidden="true">

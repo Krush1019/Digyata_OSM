@@ -71,7 +71,7 @@
 	</div>
 	<!-- /box_general-->
 
-	<nav aria-label="...">
+	{{-- <nav aria-label="...">
 		<ul class="pagination pagination-sm add_bottom_30">
 			<li class="page-item disabled">
 				<a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -83,7 +83,7 @@
 				<a class="page-link" href="#">Next</a>
 			</li>
 		</ul>
-	</nav>
+	</nav> --}}
 	<!-- /pagination-->
 @endif
 
