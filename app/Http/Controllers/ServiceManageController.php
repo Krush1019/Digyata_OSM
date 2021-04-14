@@ -58,7 +58,7 @@ class ServiceManageController extends Controller {
         $data = ServiceList::
                     join( $tbl_ser_cat, $tbl_ser_cat . ".id", "=", $tbl_ser_list . ".ser_cat_id" )
                     ->join( $tbl_client, $tbl_client . ".id", "=", $tbl_ser_list . ".client_id" )
-                    ->orderBy('aStatus', 'DESC')
+                    ->orderBy('ser_status', 'DESC')
                     ->get();
         
         
@@ -83,8 +83,8 @@ class ServiceManageController extends Controller {
                 "email" => $value['sClEmail'],
 
                 "IDProof" => array( "name" => "Document" , "url" => $value['doc_image'] ),
-                "client-status" => array( "val" => $value['aStatus'], "id" => $id ),
-                "approval" => array( "val" => $value['aStatus'], "id" => $id ),
+                "client-status" => array( "val" => $value['ser_status'], "id" => $id ),
+                "approval" => array( "val" => $value['ser_status'], "id" => $id ),
                 "transactions" => array("id" => $id),
             ));
         }
@@ -125,7 +125,7 @@ class ServiceManageController extends Controller {
                     default: $status = "Rejected"; break;
                 }
                 $data = array(
-                    "aStatus" => $status,
+                    "ser_status" => $status,
                 );
                 ServiceList::where("ser_id", decrypt($request->get("main_id")))->update($data);
                 return $status;
