@@ -47,7 +47,7 @@
                             </div>
                             <div class="score_in">
                                 <div class="rating">
-                                    <div class="score"><span>Superb<em>200 Reviews</em></span><strong>4.4</strong></div>
+                                    <div class="score"><span>Superb<em>200 Reviews</em></span><strong>{{ $R5 }}</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                                         <div class="row add_bottom_45 d-flex align-items-center">
                                             <div class="col-md-3">
                                                 <div id="review_summary">
-                                                    <strong>4.4</strong>
+                                                    <strong>{{ $R5 }}</strong>
                                                     <em>Superb</em>
                                                     <small>Based on 4 reviews</small>
                                                 </div>
@@ -143,7 +143,7 @@
                                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>4.5</strong>
+                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{ $R1 }}</strong>
                                                             </div>
                                                         </div>
                                                         <!-- /row -->
@@ -156,7 +156,7 @@
                                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>4.4</strong>
+                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{ $R2 }}</strong>
                                                             </div>
                                                         </div>
                                                         <!-- /row -->
@@ -171,7 +171,7 @@
                                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>4.4</strong>
+                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{ $R3 }}</strong>
                                                             </div>
                                                         </div>
                                                         <!-- /row -->
@@ -184,7 +184,7 @@
                                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>4.4</strong>
+                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{ $R4 }}</strong>
                                                             </div>
                                                         </div>
                                                         <!-- /row -->
@@ -193,82 +193,33 @@
                                                 <!-- /row -->
                                             </div>
                                         </div>
+                                        {{-- {{ $i = 0 }}  --}}
+                                        @foreach ($reviews as $review)
+                                      
                                         <div id="reviews">
                                             <div class="review_card">
                                                 <div class="row">
                                                     <div class="col-md-2 user_info">
                                                         <figure><img src="{{asset('client_user/img/avatar.jpg')}}"
                                                                 alt=""></figure>
-                                                        <h5>Lukas</h5>
+                                        <h5>{{ $rev_user[$i++]->sUserName }}</h5>
                                                     </div>
                                                     <div class="col-md-10 review_content">
                                                         <div class="clearfix add_bottom_15">
-                                                            <span class="rating">8.5<small>/10</small> <strong>Rating
+                                                            <span class="rating"> {{ $review->Avg_Rating }}<small>/5</small> <strong>Rating
                                                                     average</strong></span>
-                                                            <em>Published 54 minutes ago</em>
+                                                            <em>Published On {{ $review->created_at }}</em>
                                                         </div>
-                                                        <h4>"Great!!"</h4>
-                                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros
-                                                            eirmod scaevola sea. Et nec tantas accusamus salutatus, sit
-                                                            commodo veritus te, erat legere fabulas has ut. Rebum laudem
-                                                            cum ea, ius essent fuisset ut. Viderer petentium cu his.
-                                                            Tollit molestie suscipiantur his et.</p>
+                                                        <h4>{{ $review->Title }}</h4>
+                                                        <p>{{ $review->Feedback }}</p>
                                                     </div>
                                                 </div>
                                                 <!-- /row -->
-                                            </div>
-                                            <!-- /review_card -->
-                                            <div class="review_card">
-                                                <div class="row">
-                                                    <div class="col-md-2 user_info">
-                                                        <figure><img src="{{asset('client_user/img/avatar.jpg')}}"
-                                                                alt=""></figure>
-                                                        <h5>Lukas</h5>
-                                                    </div>
-                                                    <div class="col-md-10 review_content">
-                                                        <div class="clearfix add_bottom_15">
-                                                            <span class="rating">8.5<small>/10</small> <strong>Rating
-                                                                    average</strong></span>
-                                                            <em>Published 10 Oct. 2019</em>
-                                                        </div>
-                                                        <h4>"Awesome Experience"</h4>
-                                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros
-                                                            eirmod scaevola sea. Et nec tantas accusamus salutatus, sit
-                                                            commodo veritus te, erat legere fabulas has ut. Rebum laudem
-                                                            cum ea, ius essent fuisset ut. Viderer petentium cu his.
-                                                            Tollit molestie suscipiantur his et.</p>
-                                                    </div>
-                                                </div>
-                                                <!-- /row -->
-                                            </div>
-                                            <!-- /review_card -->
-                                            <div class="review_card">
-                                                <div class="row">
-                                                    <div class="col-md-2 user_info">
-                                                        <figure><img src="{{asset('client_user/img/avatar.jpg')}}"
-                                                                alt=""></figure>
-                                                        <h5>Marika</h5>
-                                                    </div>
-                                                    <div class="col-md-10 review_content">
-                                                        <div class="clearfix add_bottom_15">
-                                                            <span class="rating">9.0<small>/10</small> <strong>Rating
-                                                                    average</strong></span>
-                                                            <em>Published 11 Oct. 2019</em>
-                                                        </div>
-                                                        <h4>"Really great!!"</h4>
-                                                        <p>Eos tollit ancillae ea, lorem consulatu qui ne, eu eros
-                                                            eirmod scaevola sea. Et nec tantas accusamus salutatus, sit
-                                                            commodo veritus te, erat legere fabulas has ut. Rebum laudem
-                                                            cum ea, ius essent fuisset ut. Viderer petentium cu his.
-                                                            Tollit molestie suscipiantur his et.</p>
-                                                    </div>
-                                                </div>
-                                                <!-- /row -->
-                                            </div>
-                                            <!-- /review_card -->
+                                            </div>                             
                                         </div>
+                                    @endforeach     
                                         <!-- /reviews -->
-                                        <p class="text-right"><a href="{{route('user-review')}}" class="btn_1">Leave a
+                                        <p class="text-right"><a href="{{route('user-review',['id'=>encrypt($service->ser_id)])}}" class="btn_1">Leave a
                                                 review</a></p>
                                     </div>
                                 </div>
