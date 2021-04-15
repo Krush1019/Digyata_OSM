@@ -259,7 +259,6 @@
    numberValidation("#item_price");
    numberValidation("#ser_pin_no");
    var temp = getItemValue("#pricing-list-container");
-   console.log(temp);
 });
 
 function swalWarning( msg = "Something went wrong!", title = "Warning..." ) {

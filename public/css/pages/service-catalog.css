@@ -523,3 +523,17 @@ _:-ms-lang(x) .table-responsive .top .dataTables_filter .form-control:after,
   top: -10px;
 }
 
+.error {
+  color: #ea5455;
+}
+
+input,textarea.error {
+  border: 1px #ea5455 solid;
+}
+
+.preview-text {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 85px;
+}

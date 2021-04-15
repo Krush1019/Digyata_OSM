@@ -6,7 +6,6 @@
 
 $(document).ready(function () {
 
-  // $(".dz-hidden-input").attr('name', 'serviceImage');
   const Toast = Swal.mixin({
     toast: true,
     position: 'bottom-left',
@@ -74,6 +73,11 @@ $(document).ready(function () {
   var actionDropdown = $(".actions-dropodown")
   actionDropdown.insertBefore($(".top .actions .dt-buttons"))
 
+  //on change Image-preview
+  $(document).on('change', '#service-img', function (e) {
+    imagePreview(e, 'image_prevw' ,'prevw_text');
+  });
+
   // Scrollbar
   if ($(".data-items").length > 0) {
     new PerfectScrollbar(".data-items", { wheelPropagation: false })
@@ -83,76 +87,126 @@ $(document).ready(function () {
   $(".hide-data-sidebar, .cancel-data-btn, .overlay-bg").on("click", function () {
     $(".add-new-data").removeClass("show");
     $(".overlay-bg").removeClass("show");
-    $('#service-img').val("");
+    $('.custom-file-label').text("Choose file");
+    $('#image_prevw').removeAttr('src', 'alt');
+    $('#prevw_text').show();
     $('.text-uppercase').text('Add New Service');
     $("#service-submit").text('Add Service');
     $('#service-submit').attr('data-action', "insert");
-    $('#addServiceForm')[0].reset();
-    //remove validation
-    $("#addServiceForm").find(".error").removeClass("error");
-    $("#addServiceForm").find("ul").remove();
+    $('#addServiceForm').trigger('reset').validate().resetForm();
     removeCheck();
   })
 
-  // On Insert and update
-  $(document).on('submit', '#addServiceForm', function (e) {
-    HoldOn.open(options);
-    e.preventDefault();
-    var data = $(this).serializeArray();
-    if (!jQuery.isEmptyObject(data)) {
-      uploadImg("addServiceForm", "/service-store-img")
-        .then((path) => {
-          data[data.length] = (!jQuery.isEmptyObject(path)) ? { name: "serviceImage", value: path } : data[4][value];
-          if ($('#service-submit').attr('data-action') === "insert") {
-            var url = "/service-store";
-            var str = "Data added successfully.";
-          } else if ($('#service-submit').attr('data-action') === "update") {
-            url = '/service-update';
-            data[data.length] = { name: "id", value: ($('#service-submit').attr('data-id')) };
-            data[data.length] = { name: "action", value: "service" };
-            str = "Data updated successfully.";
-          }
+  $.validator.addMethod("accept", function (value, element, param) {
+    var typeParam = typeof param === "string" ? param.replace(/\s/g, "") : "image/*",
+      optionalValue = this.optional(element),
+      i, file, regex;
 
-          $.ajax({
-            url: url,
-            type: "POST",
-            data: data,
-            success: function (data) {
-              if (!data.errors) {
-                getData(dataListView);
-                $(".add-new-data").removeClass("show");
-                $(".overlay-bg").removeClass("show");
-                $('.text-uppercase').text('Add New Service');
-                $('#service-submit').text('Add Service').attr('data-action', "insert");
-                $('#addServiceForm')[0].reset();
-                HoldOn.close();
-                Toast.fire({
-                  icon: 'success',
-                  title: str
-                })
-              } 
-            },
-            error: function(error) {
-              HoldOn.close();
-                Toast.fire({
-                  icon: 'warning',
-                  title: error
-                })
-            }
-          });
-        })
+    if (optionalValue) {
+      return optionalValue;
     }
+
+    if ($(element).attr("type") === "file") {
+      typeParam = typeParam
+        .replace(/[\-\[\]\/\{\}\(\)\+\?\.\\\^\$\|]/g, "\\$&")
+        .replace(/,/g, "|")
+        .replace(/\/\*/g, "/.*");
+
+      // Check if the element has a FileList before checking each file
+      if (element.files && element.files.length) {
+        regex = new RegExp(".?(" + typeParam + ")$", "i");
+        for (i = 0; i < element.files.length; i++) {
+          file = element.files[i];
+
+          // Grab the mimetype from the loaded file, verify it matches
+          if (!file.type.match(regex)) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }, $.validator.format("Please enter a value with a valid type."));
+
+
+  // On Insert and update
+  $(document).on('click', '#service-submit', function (e) {
+    e.stopPropagation();
+    $('#addServiceForm').validate({
+      rules: {
+        serviceName: 'required',
+        serviceCategory: 'required',
+        serviceDescription: 'required',
+        serviceImage: {
+          required: true,
+          accept: "jpg,png,jpeg,gif"
+        }
+      },
+      messages: {
+        serviceImage: {
+          accept: "Only image type jpg/png/jpeg/gif is allowed."
+        }
+      },
+      submitHandler: function (form) {
+        HoldOn.open(options);
+        var data = $(form).serializeArray();
+        if (!jQuery.isEmptyObject(data)) {
+            uploadImg('addServiceForm', "/service-store-img")
+            .then((path) => {
+              data[data.length] = (!jQuery.isEmptyObject(path)) ? { name: "serviceImage", value: path } : data[4][value];
+              if ($('#service-submit').attr('data-action') === "insert") {
+                var url = "/service-store";
+                var str = "Data added successfully.";
+              } else if ($('#service-submit').attr('data-action') === "update") {
+                url = '/service-update';
+                data[data.length] = { name: "id", value: ($('#service-submit').attr('data-id')) };
+                data[data.length] = { name: "action", value: "service" };
+                str = "Data updated successfully.";
+              }
+              $.ajax({
+                url: url,
+                type: "POST",
+                data: data,
+                success: function (data) {
+                  if (!data.errors) {
+                    getData(dataListView);
+                    $(".add-new-data").removeClass("show");
+                    $(".overlay-bg").removeClass("show");
+                    $('#image_prevw').removeAttr('src', 'alt');
+                    $('#prevw_text').show();
+                    $('.text-uppercase').text('Add New Service');
+                    $('#service-submit').text('Add Service').attr('data-action', "insert");
+                    $('#addServiceForm')[0].reset();
+                    HoldOn.close();
+                    Toast.fire({
+                      icon: 'success',
+                      title: str
+                    })
+                  }
+                },
+                error: function (error) {
+                  HoldOn.close();
+                  Toast.fire({
+                    icon: 'warning',
+                    title: error.responseText
+                  })
+                }
+              });
+            })
+        }
+      }
+    });
   });
 
   // On Edit
   $(document).on("click", '.action-edit', function (e) {
     e.stopPropagation();
-    var id = $(this).data('id');
     var $this = $(this);
+    imagePreview('#service-img', 'image_prevw' ,'prevw_text', $this.data('img'));
     $('#service-name').val($this.data('service'));
     $('#service-category').val($this.data('category'));
     $('#service-desc').val($this.data('desc'));
-    // $('#service-img').val($this.data('img'));
+    $('.custom-file-label').text("Choose file");
     $('.text-uppercase').text('Update Service');
     $('#service-submit').text('Update Service').attr({ 'data-action': "update", 'data-id': $this.data('id') });
     $(".add-new-data").addClass("show");
@@ -168,6 +222,7 @@ $(document).ready(function () {
     confirmbox.fire({
       showLoaderOnConfirm: true,
       preConfirm: () => {
+        HoldOn.open(options);
         return $.ajax({
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -176,11 +231,19 @@ $(document).ready(function () {
           type: "POST",
           data: { id },
           success: function (data) {
+            HoldOn.close();
             dataListView.row($this.closest('td').parent('tr')).remove().draw();
             Toast.fire({
               icon: 'success',
               title: 'Data Deleted Successfully.'
             });
+          },
+          error: function (error) {
+            HoldOn.close();
+            Toast.fire({
+              icon: 'warning',
+              title: error.responseText
+            })
           }
         });
       }
@@ -196,6 +259,7 @@ $(document).ready(function () {
       confirmbox.fire({
         showLoaderOnConfirm: true,
         preConfirm: () => {
+          HoldOn.open(options);
           tablearr.each(function () {
             var id = $(this).data('id');
             var $this = $(this);
@@ -209,6 +273,7 @@ $(document).ready(function () {
               success: function (data) {
                 $this.prop("checked", false);
                 dataListView.row($this.closest('td').parent('tr')).remove().draw();
+                HoldOn.close();
                 Toast.fire({
                   icon: 'success',
                   title: 'Data Deleted Successfully.'
@@ -232,7 +297,6 @@ $(document).ready(function () {
   // on status
   $(document).on('click', '.service-status', function (e) {
     e.stopPropagation();
-    e.stopPropagation();
     var id = $(this).data('id');
     var $this = $(this);
     var txt = $(this).hasClass('chip-success');
@@ -240,6 +304,7 @@ $(document).ready(function () {
       text: "This will " + ((txt) ? "Disable" : "Enable") + " services on website",
       showLoaderOnConfirm: true,
       preConfirm: () => {
+        HoldOn.open(options);
         return $.ajax({
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -255,10 +320,18 @@ $(document).ready(function () {
               $this.removeClass('chip-success').addClass('chip-danger')
               $this.find('.chip-text').text('Inactive');
             }
+            HoldOn.close();
             Toast.fire({
               icon: 'success',
               title: 'Status Changed Successfully.'
             });
+          },
+          error: function (error) {
+            HoldOn.close();
+            Toast.fire({
+              icon: 'warning',
+              title: error.responseText
+            })
           }
         });
       }
@@ -275,6 +348,7 @@ $(document).ready(function () {
         text: "This will Enable all selected services on website",
         showLoaderOnConfirm: true,
         preConfirm: () => {
+          HoldOn.open(options);
           tablearr.each(function () {
             var id = $(this).data('id');
             var $this = $(this);
@@ -290,6 +364,7 @@ $(document).ready(function () {
                   $this.removeClass('chip-danger').addClass('chip-success')
                   $this.find('.chip-text').text('Active');
                 }
+                HoldOn.close();
                 Toast.fire({
                   icon: 'success',
                   title: 'Status Changed Successfully.'
@@ -319,6 +394,7 @@ $(document).ready(function () {
         text: "This will Disable all selected services on website",
         showLoaderOnConfirm: true,
         preConfirm: () => {
+          HoldOn.open(options);
           tablearr.each(function () {
             var id = $(this).data('id');
             var $this = $(this);
@@ -335,6 +411,7 @@ $(document).ready(function () {
                   $this.removeClass('chip-success').addClass('chip-danger')
                   $this.find('.chip-text').text('Inactive');
                 }
+                HoldOn.close();
                 Toast.fire({
                   icon: 'success',
                   title: 'Status Changed Successfully.'
@@ -354,9 +431,11 @@ $(document).ready(function () {
     }
     removeCheck();
   });
+
 });
 
 function getData(dataListView) {
+  HoldOn.open(options);
   $.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -382,6 +461,7 @@ function getData(dataListView) {
       }
     }
   });
+  HoldOn.close();
 }
 
 // function for checkbox remove check
@@ -389,7 +469,6 @@ function removeCheck() {
   $('#ServiceCatlogTable :checked').prop("checked", false);
   $('#ServiceCatlogTable tr').removeClass("selected");
 }
-
 
 //upload Image
 function uploadImg(form_id, url) {
@@ -407,8 +486,21 @@ function uploadImg(form_id, url) {
         resolve(data)
       },
       error: function (error) {
+        HoldOn.close();
+        Toast.fire({
+          icon: 'warning',
+          title: JSON.stringify(error.responseJSON),
+          timer: false
+        })
         reject(error)
       },
     })
   })
+}
+
+function imagePreview(e, imgId, altTextId , img="" ){
+  var image = ($.isEmptyObject(img) ? URL.createObjectURL( e.target.files[0]) : window.location.origin + '/' + img );
+    $('#'+ imgId).prop('src', image);
+    $('#' + altTextId).hide();
+  
 }

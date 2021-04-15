@@ -77,7 +77,7 @@
   <div class="add-new-data-sidebar">
     <div class="overlay-bg"></div>
     <div class="add-new-data">
-      <form action="{{route('service-store')}}" id="addServiceForm" method="POST" novalidate>
+      <form action="javascript:void(0)" id="addServiceForm" method="POST">
         @csrf
         <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
           <div>
@@ -94,14 +94,12 @@
                 <label for="service-name">Service Name</label>
                 <div class="controls">
                   <input type="text" class="form-control" name="serviceName" id="service-name"
-                    placeholder="add service name" data-validation-required-message="This field is required"
-                    aria-invalid="false">
+                    placeholder="add service name">
                 </div>
               </div>
               <div class="col-sm-12 data-field-col Controls">
                 <label for="service-category"> Category </label>
-                <select class="form-control" name="serviceCategory" id="service-category"
-                  data-validation-required-message="This field is required" aria-invalid="false">
+                <select class="form-control" name="serviceCategory" id="service-category">
                   <option value="Cleaning">Cleaning</option>
                   <option value="Maintenance">Maintenance</option>
                   <option value="Fitness">Fitness</option>
@@ -116,17 +114,20 @@
                 <label for="service-desc">Description</label>
                 <div class="controls">
                   <textarea class="new-todo-item-desc form-control" id="service-desc" name="serviceDescription" rows="3"
-                    placeholder="Add Service description" data-validation-required-message="This field is required" 
-                    aria-invalid="false"></textarea>
+                    placeholder="Add Service description"></textarea>
                 </div>
               </div>           
               <div class="col-sm-12 data-field-col form-group">
                   <label for="service-img">Service Image</label>
                   <div class="controls custom-file">
                       <input type="file" class="custom-file-input" id="service-img" name="serviceImage"
-                      data-validation-required-message="This field is required" accept="image/* ">
+                      data-validation-required-message="This field is required" accept=".jpg,.png,.jpeg,.gif">
                       <label class="custom-file-label" for="service-img">Choose file</label>
-                  </div>          
+                  </div> 
+                  <div class="text-center mt-1">
+                    <img class="border"  id="image_prevw"  height="180px" width="200px">
+                    <span class="preview-text" id="prevw_text">No File Choosen</span>
+                  </div>         
               </div>
             </div>
           </div>
@@ -157,8 +158,9 @@
 @endsection
 @section('page-script')
 {{-- Page js files --}}
-<script src="{{ asset(mix('vendors/js/forms/validation/jqBootstrapValidation.js')) }}"></script>
-<script src="{{ asset(mix('js/scripts/forms/validation/form-validation.js')) }}"></script>
+{{-- <script src="{{ asset(mix('vendors/js/forms/validation/jqBootstrapValidation.js')) }}"></script> --}}
+<script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
+{{-- <script src="{{ asset(mix('js/scripts/forms/validation/form-validation.js')) }}"></script> --}}
 <script src="{{ asset(mix('js/scripts/ui/service-catalog.js')) }}"></script>
 <script src="{{ asset('js/scripts/extensions/sweetalert2.js')}}"></script>
 @endsection
