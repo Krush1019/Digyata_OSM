@@ -23,6 +23,14 @@
             </button>
           </div>
       @endif
+      @if (session()->has('msg'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Success!</strong> {{session('msg')}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
         <div class="row">
             <div class="col-xl-8 col-lg-7">
                 <div class="box_general">
@@ -47,7 +55,7 @@
                             </div>
                             <div class="score_in">
                                 <div class="rating">
-                                    <div class="score"><span>Superb<em>200 Reviews</em></span><strong>{{ $R5 }}</strong></div>
+                                    <div class="score"><span>Superb<em>200 Reviews</em></span><strong>12</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -121,14 +129,15 @@
                                         </a>
                                     </h5>
                                 </div>
+
                                 <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
                                     <div class="card-body reviews">
                                         <div class="row add_bottom_45 d-flex align-items-center">
                                             <div class="col-md-3">
                                                 <div id="review_summary">
-                                                    <strong>{{ $R5 }}</strong>
+                                                    <strong>{{round((round($avg->Res_R1,1)+round($avg->Ser_R2,1)+round($avg->Com_R3,1)+round($avg->Price_R4,1))/4,1)}}</strong>
                                                     <em>Superb</em>
-                                                    <small>Based on 4 reviews</small>
+                                                    <small>Based on {{count($reviews)}} reviews</small>
                                                 </div>
                                             </div>
                                             <div class="col-md-9 reviews_sum_details">
@@ -139,11 +148,11 @@
                                                             <div class="col-xl-10 col-lg-9 col-9">
                                                                 <div class="progress">
                                                                     <div class="progress-bar" role="progressbar"
-                                                                        style="width: 92%" aria-valuenow="92"
+                                                                        style="width: {{(round($avg->Res_R1,2)/5)*100}}%" aria-valuenow="{{(round($avg->Res_R1,2)/5)*100}}"
                                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{ $R1 }}</strong>
+                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{round($avg->Res_R1,2)}}</strong>
                                                             </div>
                                                         </div>
                                                         <!-- /row -->
@@ -152,11 +161,11 @@
                                                             <div class="col-xl-10 col-lg-9 col-9">
                                                                 <div class="progress">
                                                                     <div class="progress-bar" role="progressbar"
-                                                                        style="width: 90%" aria-valuenow="90"
+                                                                        style="width: {{(round($avg->Ser_R2,2)/5)*100}}%" aria-valuenow="{{(round($avg->Ser_R2,2)/5)*100}}"
                                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{ $R2 }}</strong>
+                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{round($avg->Ser_R2,2)}}</strong>
                                                             </div>
                                                         </div>
                                                         <!-- /row -->
@@ -167,11 +176,11 @@
                                                             <div class="col-xl-10 col-lg-9 col-9">
                                                                 <div class="progress">
                                                                     <div class="progress-bar" role="progressbar"
-                                                                        style="width: 90%" aria-valuenow="90"
+                                                                        style="width: {{(round($avg->Com_R3,2)/5)*100}}%" aria-valuenow="{{(round($avg->Com_R3,2)/5)*100}}"
                                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{ $R3 }}</strong>
+                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{round($avg->Com_R3,2)}}</strong>
                                                             </div>
                                                         </div>
                                                         <!-- /row -->
@@ -180,11 +189,11 @@
                                                             <div class="col-xl-10 col-lg-9 col-9">
                                                                 <div class="progress">
                                                                     <div class="progress-bar" role="progressbar"
-                                                                        style="width: 90%" aria-valuenow="90"
+                                                                        style="width: {{(round($avg->Price_R4,2)/5)*100}}%" aria-valuenow="{{(round($avg->Price_R4,2)/5)*100}}"
                                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{ $R4 }}</strong>
+                                                            <div class="col-xl-2 col-lg-3 col-3"><strong>{{round($avg->Price_R4,2)}}</strong>
                                                             </div>
                                                         </div>
                                                         <!-- /row -->
@@ -193,34 +202,44 @@
                                                 <!-- /row -->
                                             </div>
                                         </div>
-                                        {{-- {{ $i = 0 }}  --}}
                                         @foreach ($reviews as $review)
-                                      
+
                                         <div id="reviews">
                                             <div class="review_card">
                                                 <div class="row">
                                                     <div class="col-md-2 user_info">
                                                         <figure><img src="{{asset('client_user/img/avatar.jpg')}}"
                                                                 alt=""></figure>
-                                        <h5>{{ $rev_user[$i++]->sUserName }}</h5>
+                                        <h5>{{$review->sUserName}}</h5>
                                                     </div>
                                                     <div class="col-md-10 review_content">
                                                         <div class="clearfix add_bottom_15">
-                                                            <span class="rating"> {{ $review->Avg_Rating }}<small>/5</small> <strong>Rating
+                                                            <span class="rating">{{round(($review->Res_R1+$review->Ser_R2+$review->Com_R3+$review->Price_R4)/4,1)}}<small>/5</small> <strong>Rating
                                                                     average</strong></span>
-                                                            <em>Published On {{ $review->created_at }}</em>
+                                                            <em>Published On {{date_format(date_create($review->created_at),"M d Y")}}</em>
                                                         </div>
                                                         <h4>{{ $review->Title }}</h4>
                                                         <p>{{ $review->Feedback }}</p>
                                                     </div>
                                                 </div>
                                                 <!-- /row -->
-                                            </div>                             
+                                            </div>
                                         </div>
-                                    @endforeach     
+                                    @endforeach
                                         <!-- /reviews -->
-                                        <p class="text-right"><a href="{{route('user-review',['id'=>encrypt($service->ser_id)])}}" class="btn_1">Leave a
-                                                review</a></p>
+                                        @if (Auth::guard('customer')->check())
+                                              <p class="text-right"><a href="{{route('user-review',['id'=>encrypt($service->ser_id)])}}" class="btn_1">
+                                                  @if ($usrReview)
+                                                    Edit Your review
+                                                  @else
+                                                    Leave a review
+                                                  @endif
+                                              </a></p>
+
+                                        @else
+                                              <p class="text-right"><a href="{{route('login-page')}}" class="btn_1">Login to write Review</a></p>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
@@ -309,7 +328,12 @@
                     </div>
                 </div>
                 <!-- /box_booking -->
-                <div class="btn_reserve_fixed"><a href="#0" class="btn_1 full-width booking">Book Now</a></div>
+                              @if (Auth::guard('customer')->check())
+                              <div class="btn_reserve_fixed"><a href="#0" class="btn_1 full-width booking">Book Now</a></div>
+                              @else
+                              <div class="btn_reserve_fixed"><a href="{{route('login-page')}}" class="btn_1 full-width booking">Login Now to Book</a></div>
+                              @endif
+                {{-- <div class="btn_reserve_fixed"><a href="#0" class="btn_1 full-width booking">Book Now</a></div> --}}
             </div>
         </div>
         <!-- /row -->

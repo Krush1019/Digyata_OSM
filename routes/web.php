@@ -116,7 +116,7 @@ use App\Http\Controllers\LanguageController;
 
     /** client -- detail */
     Route::get('/client-detail/{id}', 'client_user\user\ClientDetailController@index')->name('client-detail');
-   
+
 
     // order book
     Route::post('/book-order/{id}', 'client_user\OrderManageController@store')->name('user.orderbook');
@@ -137,8 +137,9 @@ use App\Http\Controllers\LanguageController;
     /** user -- review */
 
     Route::get('/user-review/{id}', 'client_user\user\UserReviewController@index')->name('user-review');
-    Route::POST('/user-review-submit', 'client_user\user\UserReviewController@submit')->name('user-review-submit');
-    
+    Route::POST('/review-submit/{id}', 'client_user\user\UserReviewController@submit')->name('review.submit');
+    Route::POST('/review-update/{id}', 'client_user\user\UserReviewController@update')->name('review.update');
+
 
 /*********************
  * FRONT_END

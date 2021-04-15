@@ -197,7 +197,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\framework/cache/data',
+        'path' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -375,7 +375,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'db_digyata',
+        'database' => 'digyata',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -385,7 +385,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'db_digyata',
+        'database' => 'digyata',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -405,7 +405,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'db_digyata',
+        'database' => 'digyata',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -420,7 +420,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'db_digyata',
+        'database' => 'digyata',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -464,12 +464,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\app',
+        'root' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\app/public',
+        'root' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -515,13 +515,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\logs/laravel.log',
+        'path' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\logs/laravel.log',
+        'path' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -585,7 +585,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\resources\\views/vendor/mail',
+        0 => 'E:\\Xampp\\htdocs\\github\\Digyata\\resources\\views/vendor/mail',
       ),
     ),
     'log_channel' => NULL,
@@ -726,7 +726,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\framework/sessions',
+    'files' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -746,9 +746,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\resources\\views',
+      0 => 'E:\\Xampp\\htdocs\\github\\Digyata\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\Laravel Clg\\Digyata\\storage\\framework\\views',
+    'compiled' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\framework\\views',
   ),
   'debug-server' => 
   array (
