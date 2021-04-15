@@ -20,7 +20,7 @@
         <div class="sort_select mr-1 w-auto">
           <select name="SL_service" id="SL_service" class="form-control">
             @foreach ($catalogs as $catalog)
-            <option value="{{encrypt($catalog->id)}}" @if ($services->first()->ser_cat_id == $catalog->id)
+            <option value="{{ route('service.filter', ['id'=>encrypt($catalog->id)]) }}" @if ($services->first()->ser_cat_id == $catalog->id)
               selected
             @endif>{{$catalog->serviceName}}</option>
             @endforeach

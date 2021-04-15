@@ -5,7 +5,6 @@
 
  $(document).ready(function () {
 
-
 	$('#profile').css('background-image', 'url('+ $("#profile_img").val() +')').addClass('hasImage');
 
 	// Verify Password
