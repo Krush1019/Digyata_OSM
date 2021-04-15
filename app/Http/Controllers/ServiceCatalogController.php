@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Localization;
 use App\PriceRule;
-use Illuminate\Http\Request;
+use App\Localization;
 use App\ServiceCatalog;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\True_;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+
 
 class ServiceCatalogController extends Controller
 {
@@ -58,19 +58,19 @@ class ServiceCatalogController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request) {
+  
         $tbl = new ServiceCatalog();
         $request->validate([
             'serviceName' => 'required',
             'serviceCategory' => 'required',
-            'serviceMinPrice' => 'required',
-            'serviceMaxPrice' => 'required'
+            'serviceImage' => 'required'           
         ]);
         $tbl->serviceName = $request->get('serviceName');
         $tbl->serviceCategory = $request->get('serviceCategory');
         $tbl->serviceDescription = $request->get('serviceDescription');
-        $tbl->serviceMinPrice = $request->get('serviceMinPrice');
-        $tbl->serviceMaxPrice = $request->get('serviceMaxPrice');
+        $tbl->serviceImage = $request->get('serviceImage');
         $tbl->save();
         $this->savePriceRule($tbl->id);
         $this->addLocatization($tbl->id);
@@ -113,8 +113,7 @@ class ServiceCatalogController extends Controller
                 $rules = array(
                     'serviceName' => 'required',
                     'serviceCategory' => 'required',
-                    'serviceMinPrice' => 'required',
-                    'serviceMaxPrice' => 'required'
+                    'serviceImage' => 'required'
                 );
                 $id = $request->id;
                 $tmp = $request->all();
@@ -179,5 +178,25 @@ class ServiceCatalogController extends Controller
         $tbl->ser_id = $id;
         $tbl->save();
         return true;
+    }
+
+    /** Image Save */
+    public function saveImg(Request $request) {
+        $request->validate([
+            'serviceImage' => 'required|image'           
+        ]);
+        $path = "";
+        if($request->hasFile('serviceImage')) {
+            $imgFile = $request->file('serviceImage');
+            $path = $this->saveImgToStorage($imgFile, 'images/services');
+        }
+        return $path;
+    }
+
+    private function saveImgToStorage($imgFile, $saveImgPath) {
+        $ext = $imgFile->getClientOriginalExtension();
+        $newImgName = rand() . '-' . time() . '.' . $ext;
+        $imgFile->move(public_path($saveImgPath), $newImgName);
+        return $saveImgPath . '/' . $newImgName;
     }
 }
