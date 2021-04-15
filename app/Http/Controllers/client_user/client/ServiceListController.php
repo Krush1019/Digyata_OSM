@@ -15,7 +15,7 @@ class ServiceListController extends Controller {
 
 
     public function __construct() {
-        $this->middleware("auth:client");  
+        $this->middleware("auth:client");
     }
 
     /**
@@ -53,19 +53,16 @@ class ServiceListController extends Controller {
 
         } catch(Exception $e) { }
 
-//        echo "<pre>";
-//        print_r($city);
-
 		return view('/pages/client_user/client/client-add-service-listing', $passArr);
     }
 
     public function service_listing() {
 
-        $temp = json_decode(Auth::user(), true);
-        $user = array(
-            'id' => encrypt($temp['id']),
-            'email' => $temp['sClEmail'],
-        );
+        // $temp = json_decode(Auth::user(), true);
+        // $user = array(
+        //     'id' => encrypt($temp['id']),
+        //     'email' => $temp['sClEmail'],
+        // );
         
         $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "Service Listing"]];
 
@@ -186,10 +183,12 @@ class ServiceListController extends Controller {
                 break;
 
             case "status":
-                $status = ($request->get('status') == "Active") ? true : false ;
-                ServiceList::where("ser_id", decrypt($id))->update([
-                    "ser_status" => $status,
-                ]);
+                $status = decrypt($request->get('status'));
+                $arr = array();
+                if ( $status == "Active" ) { $arr['ser_status'] = "Inactive"; }
+                else if ( $status == "Inactive" ) { $arr['ser_status'] = "Active"; }
+                else { break; }
+                ServiceList::where("ser_id", decrypt($id))->update($arr);
                 break;
         }
         return true;        
@@ -333,7 +332,8 @@ class ServiceListController extends Controller {
                     "days" => $row['ser_days'],
                     "days_time" => $row['ser_time'],
                     "item" => $itemData,
-                    "status" => $row['ser_status'],   
+                    "status" => $row['ser_status'], 
+                    "status_id"  => encrypt($row['ser_status'])
                 );
                 array_push($data, $arr);
             }    
@@ -373,7 +373,7 @@ class ServiceListController extends Controller {
         $items = "";
         foreach ($data as $value) {
             $data = array(
-//                'ser_id' => $ser_id,
+            //    'ser_id' => $ser_id,
                 'client_id' => $user_id,
                 'item_name' => $value['pli_name'],
                 'item_des' => $value['pli_desc'],

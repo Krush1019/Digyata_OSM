@@ -26,7 +26,7 @@
 							<label>Click to browse or drag an image here</label>
 						</div>
 						<div class="editable">
-							<h1>@isset($clientData['name']) {{$clientData['name']}} @endisset</h1>
+							<h1 class="font-weight-bold">@isset($clientData['client_id']) #{{$clientData['client_id']}} @endisset</h1>
 							{{-- <h1 contenteditable>@isset($clientData['first_name']) {{$clientData['first_name']}} {{$clientData['last_name']}} @endisset</h1><i class="fa fa-pencil"></i> --}}
 						</div>
 						<div class="stat">
@@ -42,47 +42,29 @@
 				</form>
 
 			</div>
-
       		<div class="col-md-8 add_top_30">
 
 				@if ($clientData['status'] == "Blocked" )
-				<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					<div class="font-large-17 font-weight-bold">Stopped :)</div> 
-					Your service is currently stopped by <b>Digyata Team</b>.
-				</div>
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<div class="font-large-17 font-weight-bold">Stopped :)</div> 
+						Your service is currently stopped by <b>the Digyata Team</b>.
+					</div>
+				
+				@elseif ($clientData['status'] == "Rejected" )
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<div class="font-large-17 font-weight-bold">Rejected :)</div> 
+						your application has been rejected by  <b>the Digyata Team</b>.
+					</div>
 
-			@elseif( $clientData['status'] == "Pending" )
-				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					<div class="font-large-17 font-weight-bold">Watting !!!</div> 
-					Your application has been successfully submitted and awaiting for verification by <b>Digyata Team</b>.
-				</div>
-			@endif
-
+				@elseif( $clientData['status'] == "Pending" )
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<div class="font-large-17 font-weight-bold">Watting !!!</div> 
+						Your application has been successfully submitted and awaiting for verification by <b>the Digyata Team</b>.
+					</div>
+				@endif
+				  
         		<form id="updateClientDetail" method="POST" action="{{ route('client-profile.update', 'detail')}}">
 					@csrf
-					<div class="row">
-						<div class="col-md-4">
-							<span class="text-dark font-large-2">
-								<label>Client Id:</label>
-							</span>
-							<span class="ml-1 font-weight-bold">{{$clientData['client_id']}}</span>
-						</div>
-						<div class="col-md-4">
-							<span class="text-dark font-large-2">
-								<label>Status: </label>
-							</span>
-							<span class="mt-2 ml-2">
-								@if ($clientData['status'] == "Block" )
-									<i class="position-top-0 cancel">Block</i>
-								@elseif( $clientData['status'] == "Active" )
-									<i class="position-top-0 approved">Active</i>
-								@else
-									<i class="position-top-0 pending">Pending</i>
-								@endif
-							</span>
-						</div>
-					</div>
-	
 					{{-- <div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
@@ -99,11 +81,27 @@
 					</div> --}}
 
 					<div class="row">
-						<div class="col-md-7">
+						<div class="col-md-8">
 							<div class="form-group">
 								<label>Full Name<span class="required">*</span></label>
 								<input type="text" class="form-control"	 name="client_name" value="@isset($clientData['name']) {{$clientData['name']}} @endisset" placeholder="Full Name" >
 							</div>
+						</div>
+						<div class="col-md-4">
+							<span class="text-dark font-large-2">
+								<label>Status: </label>
+							</span>
+							<span class="mt-5 ml-2">
+								@if ($clientData['status'] == 	"Blocked" )
+									<i class="cancel">Blocked</i>
+								@elseif( $clientData['status'] == "Active" )
+									<i class="approved">Active</i>
+								@elseif( $clientData['status'] == "Rejected" )
+									<i class="cancel">Rejected</i>
+								@else
+									<i class="pending">Pending</i>
+								@endif
+							</span>
 						</div>
 					</div>
 
@@ -130,7 +128,7 @@
 							<div class="form-group">
 								<label>Mobile No.<span class="required">*</span></label> 
 								<input type="text" class="form-control numberValidation" name="client_mo" value="@isset($clientData['client_phone']) {{$clientData['client_phone']}} @endisset" placeholder="Your Mobile No.">
-							</div>
+							</div>							
 						</div>
 					</div>
 
@@ -222,7 +220,6 @@
 @section('page-script')
 	<script src="{{ asset('vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
 	<script src="{{ asset('client_user/js/pw_strenght.js') }}"></script>
-	<script src="{{ asset('client_user/client/js/page-scripts/client-profile.js') }}"></script>
 	<script src="{{ asset('client_user/client/js/sweetalert2.min.js') }}"></script>
 	<script src="{{ asset('client_user/client/js/page-scripts/client-profile.js')}}"></script>
 @endsection

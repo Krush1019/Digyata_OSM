@@ -39,7 +39,8 @@ class AppServiceProvider extends ServiceProvider {
 
     /** Get Client Manage Count */
     private function getClientCount() {
-        $count = ClientManage::where('sClientStatus', '=', 'Pending')->count();
+        // $count = ClientManage::where('sClientStatus', '=', 'Pending')->count();
+        $count = 10;
         return ( $count > 0 ) ? $count : "" ;
     }
 

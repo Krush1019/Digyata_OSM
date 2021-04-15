@@ -56,10 +56,16 @@
 						</p>
 						<ul class="buttons">
 							<li class="">
-								@if($value['status'] == 1)
-									<a href="#" class="btn_1 gray s_status approve" data-id="{{$value['main_id']}}" data-action="Active"><i class="fa fa-fw fa-check"></i> Active</a>
-								@else
-									<a href="#" class="btn_1 gray s_status delete" data-id="{{$value['main_id']}}" data-action="Inactive"><i class="fa fa-fw fa-ban mr-1"></i> Inactive</a>
+								@if( $value['status'] == "Active")
+									<a href="#" class="btn_1 gray s_status approve" data-id="{{$value['main_id']}}" data-action="Active" data-status="{{$value['status_id']}}" ><i class="fa fa-fw fa-check"></i> Active</a>
+								@elseif( $value['status'] == "Inactive" )
+									<a href="#" class="btn_1 gray s_status delete" data-id="{{$value['main_id']}}" data-action="Inactive" data-status="{{$value['status_id']}}"><i class="fa fa-fw fa-ban mr-1"></i> Inactive</a>
+								@elseif( $value['status'] == "Pending" )
+									<button class="btn_1 " data-action="Pending"><i class="fa fa-clock-o mr-1"></i> Pending</button>
+								@elseif( $value['status'] == "Rejected" )
+									<button class="btn_1 " data-action="Rejected"><i class="fa fa-fw fa-ban mr-1"></i> Rejected</button>
+								@elseif( $value['status'] == "Blocked" )
+									<button class="btn_1 " data-action="Blocked"><i class="fa fa-fw fa-ban mr-1"></i> Blocked</button>
 								@endif
 							</li>
 							
@@ -71,7 +77,7 @@
 	</div>
 	<!-- /box_general-->
 
-	<nav aria-label="...">
+	{{-- <nav aria-label="...">
 		<ul class="pagination pagination-sm add_bottom_30">
 			<li class="page-item disabled">
 				<a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -83,7 +89,7 @@
 				<a class="page-link" href="#">Next</a>
 			</li>
 		</ul>
-	</nav>
+	</nav> --}}
 	<!-- /pagination-->
 @endif
 

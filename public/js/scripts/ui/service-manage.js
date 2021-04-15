@@ -1,5 +1,5 @@
 /* 
-      File Name: Service-manage.js
+    File Name: Service-manage.js
 */
 
 $(document).ready(function () {
@@ -321,8 +321,10 @@ $(document).ready(function () {
                 };
                 $.post( url, data, function (result) {
                     getTableData();
-                    HoldOn.close();
-                });
+                })
+                    .always(function () {   
+                        HoldOn.close();
+                    });
             }
         });
         
@@ -340,7 +342,6 @@ $(document).ready(function () {
         }
         $.post(url, data, function (result) {
             result = JSON.parse(result);
-            console.log(result);
             form.find(".service_img").attr("src", result['img']);
 
             form.find('.provider_name').text(result['name']);
@@ -414,11 +415,9 @@ $(document).ready(function () {
                 } else if (days[0] == "6D") {
                     time = time[0].split("-");
                     form.find(".day_time tbody").append("<tr><td>6 Days (Mon-Sat)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-                    console.log(time);
                 } else if (days[0] == "ALL") {
                     time = time[0].split("-");
                     form.find(".day_time tbody").append("<tr><td>All Days</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-                    console.log(time);
                 }
             }
 
@@ -437,8 +436,10 @@ $(document).ready(function () {
             $("#viewServiceModal").modal("show");
         })
             .fail(function () {
-                HoldOn.close();
                 swalError();
+            })
+            .always(function () {   
+                HoldOn.close();
             });
     });
 

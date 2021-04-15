@@ -24,9 +24,20 @@ class CreateReviewOrdersTable extends Migration
           $table->foreign("cl_ID")->references("id")->on("tbl_client_manage");
           $table->unsignedBigInteger("uID");
           $table->foreign("uID")->references("id")->on("tbl_user_manage");
-          $table->longText("ltFeedback")->nullable(true);
-          $table->integer("iReview_Rating");
-          $table->float("iReview_Avg_Rating");
+
+          $table->integer("Res_R1");
+          $table->integer("Ser_R2");
+          $table->integer("Com_R3");
+          $table->integer("Price_R4");
+
+          $table->float("Avg_Rating");
+          $table->float("Overall_Rating");
+
+          $table->string("Title")->nullable();
+          $table->longText("Feedback")->nullable(true);
+          
+          $table->string("Image")->nullable();
+          
           $table->boolean("bReview_Status");
           $table->timestamps();
         });

@@ -1,18 +1,52 @@
 /**
  *  Filename   : client-service-listing.js
- *  Author        : Digyata
+ *  Author       : Digyata
  */
 
  $(document).ready(function () {
 
+    // Accept a value from a file input based on a required mimetype
+    $.validator.addMethod("accept", function (value, element, param) {
+        var typeParam = typeof param === "string" ? param.replace(/\s/g, "") : "image/*",
+                optionalValue = this.optional(element),
+                i, file, regex;
+
+        if (optionalValue) {
+            return optionalValue;
+        }
+
+        if ($(element).attr("type") === "file") {
+            typeParam = typeParam
+                .replace(/[\-\[\]\/\{\}\(\)\+\?\.\\\^\$\|]/g, "\\$&")
+                .replace(/,/g, "|")
+                .replace(/\/\*/g, "/.*");
+
+            // Check if the element has a FileList before checking each file
+            if (element.files && element.files.length) {
+                regex = new RegExp(".?(" + typeParam + ")$", "i");
+                for (i = 0; i < element.files.length; i++) {
+                    file = element.files[i];
+
+                    // Grab the mimetype from the loaded file, verify it matches
+                    if (!file.type.match(regex)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }, $.validator.format("Please enter a value with a valid mimetype."));
+
     var action = ""; var ser_id = "";
     $(window).on('load', function () {
+        HoldOn.open(options);
         // for Add Options to select input field Dynamicaly
         action = $("#sbt_btn").attr("data-action").trim();
         ser_id = $("#sbt_btn").attr("data-id").trim();
         if (action == "update") {
             var des = $("#ser_des").val();
-            $('.note-editable').empty().html(des);
+            $('#summernote').summernote('code', des);
+            // $('.note-editable').empty().html(des);
             var ser_days = $("#days").val().split(",");
             var ser_days_time = $("#days_time").val().split(",");
             $("input[name='days'][value='" + ser_days[0] + "']").attr("checked", true);
@@ -29,6 +63,7 @@
                 $("select.cltime option[value='" + temp[1].trim() + "']").attr("selected", true);
             }
         }
+        HoldOn.close();
     });
 
    // For Location
@@ -54,6 +89,7 @@
                 service_id : $(this).find("option:selected").attr("data-id"),
                 _token : $("input[name='_token']").val()
             };
+            HoldOn.open(options);
             $.post(url, data, function (result) {
                 result = JSON.parse(result);
                 var select = $("#ser_state");
@@ -62,13 +98,17 @@
                 for (var i = 0; i < result.length; i++) {
                   select.append("<option value='" + result[i]['main_id'] + "'>" + result[i]['state'] + "</option>");
                 }
-            });
+            })    
+                .always(function () {   
+                    HoldOn.close();
+                });
         }
     });
 
     // Change State
     $("#ser_state").on("change", function (e) {
 
+        HoldOn.open(options);
         $("#ser_pin_no, #ser_address").attr("readonly", false);
         var select = $("#ser_city");
         select.attr("readonly", false).empty();
@@ -83,14 +123,16 @@
         }
         $.post(url, data, function (result) {
             result = JSON.parse(result);
-            // console.log(result);
             var select = $("#ser_city");
             select.attr("readonly", false).empty();
             select.append('<option value="-1" selected disabled>Select City</option>');
             for (var i = 0; i < result.length; i++) {
                 select.append("<option value='" + result[i]['main_id'] + "'>" + result[i]['city'] + "</option>");
             }
-        });
+        })
+            .always(function () {   
+                HoldOn.close();
+            });
     });
 
    $("#SL_ser_state").append(
@@ -135,8 +177,6 @@
     });
 
     function printDays(ser_day = "", ser_day_time = "") {
-       console.log(ser_day);
-       console.log(ser_day_time);
 
         $("#add-day-div").removeAttr("hidden");
         $("#def_days").hide();
@@ -159,14 +199,13 @@
         }
     }
 
-   $(".custom-file-input").change(function (e) {
-       $(this).siblings(".custom-file-label").text(e.target.files[0].name);
-   });
+    $(".custom-file-input").change(function (e) {
+        $(this).siblings(".custom-file-label").text(e.target.files[0].name);
+    });
 
     // Form Validation
     $("#sbt_btn").on("click", function (e) {
-        $("#sbt_btn").attr("type", "submit");
-        
+        $("#sbt_btn").attr("type", "submit");   
 
         $("#addServiceListForm").validate({
             
@@ -174,15 +213,19 @@
                 ser_name : { required : true },
                 provider_name : { required : true },
                 ser_exp : { required : true },
-                // ser_img : { required : true },
-                ser_doc_no : { required : true },
+                ser_img : { accept: "jpg,png,jpeg" },
+                ser_doc_img : { accept: "jpg,png,jpeg,pdf" },
+                ser_doc_no : { required : true, minlength : 12, maxlength : 12 },
                 ser_state : { required : true },
                 ser_city : { required : true },
                 ser_address : { required : true },
                 ser_pin_no : { required : true, minlength : 6, maxlength : 6 },
                 ser_city : { required : true },
             },
-            messages : { },
+            messages : { 
+                ser_img : { accept : "Upload only jpg / jpeg / png file." },
+                ser_doc_img : { accept : "Upload only jpg / jpeg / pdf / png file." }
+            },
             submitHandler: function (form) {
                 $("#sbt_btn").attr("type", "button");
                 var obj = getFormValue("#addServiceListForm");
@@ -202,14 +245,11 @@
                     
                 if ( obj['time'] != null ) {
                     if ( !jQuery.isEmptyObject(obj['items']) ) {
+                        HoldOn.open(options);
                         uploadImg("addServiceListForm", "/service-listing-store-img", "POST")
                         .then((path) => {
-                            
-                            var dec_msg = $('.note-editable').html();
-                            var img = ( path['ser_img'] == undefined || path['ser_img'] == "" ) ? obj['ser_img_file'] : path['ser_img'];
-                            var doc_file = (path['doc_img'] == undefined || path['doc_img'] == "") ? obj['ser_doc_file'] : path['doc_img'];
 
-                            var url = ""; var method = "";
+                            var url = "";
                             obj['action'] = action;
 
                             if (action == "insert") {
@@ -221,7 +261,11 @@
                                 swalError();
                             }
 
-                            obj['dec_msg'] = dec_msg;
+                            // var dec_msg = $('.note-editable').html();
+                            var img = ( path['ser_img'] == undefined || path['ser_img'] == "" ) ? obj['ser_img_file'] : path['ser_img'];
+                            var doc_file = (path['doc_img'] == undefined || path['doc_img'] == "") ? obj['ser_doc_file'] : path['doc_img'];
+
+                            obj['dec_msg'] = $('#summernote').summernote('code');
                             obj['ser_img'] = img;
                             obj['doc_img'] = doc_file;
 
@@ -234,14 +278,17 @@
                                 type: "POST",
                                 data: obj,
                                 success: function (result) {
+                                    HoldOn.close();
                                     swalSuccess("/service-listing", "");
                                 },
                                 error: function (error) {
+                                    HoldOn.close();
                                     swalError();
                                 }
                             });
                         })
                             .catch((error) => {
+                                HoldOn.close();
                                 swalError();
                             });
                     } else {
@@ -258,7 +305,7 @@
    numberValidation("#ser_phone");
    numberValidation("#item_price");
    numberValidation("#ser_pin_no");
-   var temp = getItemValue("#pricing-list-container");
+   numberValidation(".num_valid");
 });
 
 function swalWarning( msg = "Something went wrong!", title = "Warning..." ) {
@@ -345,23 +392,23 @@ function getFormValue(form_id) {
 }
 
 function uploadImg(form_id, url, method) {
-   let myform = document.getElementById(form_id);
-   let formData = new FormData(myform);
+    let myform = document.getElementById(form_id);
+    let formData = new FormData(myform);
 
-   return new Promise((resolve, reject) => {
-       $.ajax({
-           url: url,
-           type: method,
-           data: formData,
-           contentType: false,
-           processData: false,
-           cache: false,
-           success: function (data) {
-               resolve(data)
-           },
-           error: function (error) {
-               reject(error)
-           },
-       })
-   })
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: url,
+            type: method,
+            data: formData,
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                resolve(data)
+            },
+            error: function (error) {
+                reject(error)
+            },
+        })
+    })
 }
