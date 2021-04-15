@@ -29,7 +29,7 @@ class ClientListingController extends Controller
             }
 
     $services = DB::table('tbl_ser_list')
-                ->where('ser_cat_id','=' ,$decrypted)
+                // ->where('ser_cat_id','=' ,$decrypted)
                 ->join('tbl_service_catalogs as tsc', 'tbl_ser_list.ser_cat_id', '=', 'tsc.id')
                 ->Paginate(6);
     $catalogs = DB::table('tbl_service_catalogs')
