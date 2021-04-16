@@ -45,7 +45,7 @@
           <div class="d-block d-sm-inline-block font-large-20"><small>by</small> {{$review->sUserName}}</div>
           <div class="d-block d-sm-inline-block float-left float-sm-right">
             <span class="float-right">{{date_format(date_create($review->created_at),"M d Y")}}</span>
-            <span class="rating mr-8" data-value="{{$review->Avg_Rating}}"></span>
+            <span class="rating mr-8" data-value="{{round((round($review->Res_R1,1)+round($review->Ser_R2,1)+round($review->Com_R3,1)+round($review->Price_R4,1))/4,1)}}"></span>
           </div>
         </div>
         <div class="d-inline-block">
