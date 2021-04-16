@@ -20,6 +20,7 @@
         </button>
       </div>
   @endif
+  {{dd($errors)}}
   @if ($errors->first())
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Error!</strong> {{$errors->first()}}
@@ -28,7 +29,7 @@
         </button>
       </div>
   @endif
-  
+
   <div class="row">
     <form id="profile-update-form" action="{{route('user.profileupdate')}}" method="post" autocomplete="off">
       @csrf
@@ -170,7 +171,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
 

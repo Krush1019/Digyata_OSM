@@ -33,18 +33,6 @@ class ClientDetailController extends Controller
              ->get();
 
 
-
-    // $reviews = DB::table('tbl_order_manages');
-    // if (auth()->guard('customer')->check()) {
-    //         $reviews->where([
-    //           ['ser_list_id', '=', $decrypted],
-    //           ['user_id', '=', auth()->guard('customer')->user()->id],
-    //       ]);
-    // }
-
-    //   $reviews->get();
-    // dd($reviews);
-
     $reviews = DB::table('tbl_review_orders')
                 ->where('ser_id','=',$decrypted)
                 ->join('tbl_user_manage', 'tbl_review_orders.uID', '=', 'tbl_user_manage.id')

@@ -23,6 +23,18 @@ class UserReviewController extends Controller
           } catch (DecryptException $e) {
             return view('/pages/error-404');
           }
+          $checkOrder = DB::table('tbl_order_manages')
+                        ->where([['ser_list_id', '=', $decrypted],
+                        ['user_id', '=', auth()->guard('customer')->user()->id]])
+                        ->first();
+
+          if (!$checkOrder) {
+
+            return back()
+            ->withErrors(['error'=> "you can't leave a reaview because You did't Book this service yet !"]);
+
+          }
+
           $checkReview = DB::table('tbl_order_manages')
                         ->join('tbl_review_orders', 'tbl_review_orders.uID', '=', 'tbl_order_manages.user_id')
                         ->where([

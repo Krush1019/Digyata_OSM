@@ -95,10 +95,10 @@
               </a>
             </figure>
             <ul>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Appointment"><i class="icon-users"></i></a></li>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="Available Chat"><i class="icon-chat"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->user_ser_exp}} experiance"><i class="icon-users"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->ser_address}}">{{$service->ser_city}}</i></a></li>
               <li>
-                <div class="score"><span>Superb<em>150 Reviews</em></span><strong>4.3</strong></div>
+                <div class="score"><span>Superb<em>{{$service->revCount}} Reviews</em></span><strong>{{round((round($service->Res_R1,1)+round($service->Ser_R2,1)+round($service->Com_R3,1)+round($service->Price_R4,1))/4,1)}}</strong></div>
               </li>
             </ul>
           </div>
