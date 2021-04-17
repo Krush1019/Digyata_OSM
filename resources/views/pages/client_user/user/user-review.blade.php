@@ -28,7 +28,7 @@
                   <div class="col-lg-8">
                         <div class="box_general write_review">
                               <form id="reviewForm" action="@if ($checkReview)
-                              {{ route('review.update',['id'=>encrypt($checkReview->RoID)]) }}
+                              {{ route('review.update',['id'=>encrypt($checkReview->ser_id)]) }}
                               @else
                               {{ route('review.submit',['id'=>encrypt($serviceId)]) }}
                               @endif" method="POST" enctype="multipart/form-data">

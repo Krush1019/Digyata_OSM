@@ -28,6 +28,7 @@ class UserReviewController extends Controller
                         ['user_id', '=', auth()->guard('customer')->user()->id]])
                         ->first();
 
+
           if (!$checkOrder) {
 
             return back()
@@ -96,6 +97,8 @@ class UserReviewController extends Controller
     } catch (DecryptException $e) {
       return view('/pages/error-404');
     }
+
+    // dd($decrypted);
 
         $request->validate([
             'resp_revw' => 'required' ,
