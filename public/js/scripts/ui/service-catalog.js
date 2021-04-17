@@ -75,7 +75,11 @@ $(document).ready(function () {
 
   //on change Image-preview
   $(document).on('change', '#service-img', function (e) {
-    imagePreview(e, 'image_prevw' ,'prevw_text');
+    if (!$(this).val() == "") {
+      imagePreview(e, 'image_prevw', 'prevw_div');
+    } else {
+      $('#prevw_div').addClass('display-hidden');
+    }
   });
 
   // Scrollbar
@@ -87,15 +91,24 @@ $(document).ready(function () {
   $(".hide-data-sidebar, .cancel-data-btn, .overlay-bg").on("click", function () {
     $(".add-new-data").removeClass("show");
     $(".overlay-bg").removeClass("show");
-    $('.custom-file-label').text("Choose file");
-    $('#image_prevw').removeAttr('src', 'alt');
-    $('#prevw_text').show();
+    // $('.custom-file-label').text("Choose file");
+    $('#image_prevw').removeAttr('src');
+    $('#prevw_div').addClass('display-hidden');
     $('.text-uppercase').text('Add New Service');
     $("#service-submit").text('Add Service');
     $('#service-submit').attr('data-action', "insert");
+    $('#addServiceForm')[0].reset();
     $('#addServiceForm').trigger('reset').validate().resetForm();
     removeCheck();
   })
+
+  $.validator.addMethod("required_image", function (value, element, param) {
+    if ($('#service-submit').attr('data-action') === "insert") {
+      return ($.isEmptyObject(value) ? false : true);
+    } else if ($('#service-submit').attr('data-action') === "update") {
+      return true;
+    }
+  }, $.validator.format("This field is required."));
 
   $.validator.addMethod("accept", function (value, element, param) {
     var typeParam = typeof param === "string" ? param.replace(/\s/g, "") : "image/*",
@@ -138,7 +151,7 @@ $(document).ready(function () {
         serviceCategory: 'required',
         serviceDescription: 'required',
         serviceImage: {
-          required: true,
+          required_image: true,
           accept: "jpg,png,jpeg,gif"
         }
       },
@@ -150,10 +163,12 @@ $(document).ready(function () {
       submitHandler: function (form) {
         HoldOn.open(options);
         var data = $(form).serializeArray();
-        if (!jQuery.isEmptyObject(data)) {
-            uploadImg('addServiceForm', "/service-store-img")
+        if (!$.isEmptyObject(data)) {
+          uploadImg('addServiceForm', "/service-store-img")
             .then((path) => {
-              data[data.length] = (!jQuery.isEmptyObject(path)) ? { name: "serviceImage", value: path } : data[4][value];
+              if (!$.isEmptyObject(path)) {
+                data[data.length] = { name: "serviceImage", value: path };
+              }
               if ($('#service-submit').attr('data-action') === "insert") {
                 var url = "/service-store";
                 var str = "Data added successfully.";
@@ -172,8 +187,10 @@ $(document).ready(function () {
                     getData(dataListView);
                     $(".add-new-data").removeClass("show");
                     $(".overlay-bg").removeClass("show");
-                    $('#image_prevw').removeAttr('src', 'alt');
-                    $('#prevw_text').show();
+                    $('#image_prevw').removeAttr('src');
+                    $('#service-img').val('');
+                    $('#prevw_div').addClass('display-hidden');
+                    // $('.custom-file-label').text("Choose file");
                     $('.text-uppercase').text('Add New Service');
                     $('#service-submit').text('Add Service').attr('data-action', "insert");
                     $('#addServiceForm')[0].reset();
@@ -184,15 +201,11 @@ $(document).ready(function () {
                     })
                   }
                 },
-                error: function (error) {
-                  HoldOn.close();
-                  Toast.fire({
-                    icon: 'warning',
-                    title: error.responseText
-                  })
+                error: function (xhr, error) {
+                  errorView(xhr);
                 }
               });
-            })
+            });
         }
       }
     });
@@ -202,11 +215,11 @@ $(document).ready(function () {
   $(document).on("click", '.action-edit', function (e) {
     e.stopPropagation();
     var $this = $(this);
-    imagePreview('#service-img', 'image_prevw' ,'prevw_text', $this.data('img'));
+    imagePreview('#service-img', 'image_prevw', 'prevw_div', $this.data('img'));
     $('#service-name').val($this.data('service'));
     $('#service-category').val($this.data('category'));
     $('#service-desc').val($this.data('desc'));
-    $('.custom-file-label').text("Choose file");
+    // $('.custom-file-label').text("Choose file");
     $('.text-uppercase').text('Update Service');
     $('#service-submit').text('Update Service').attr({ 'data-action': "update", 'data-id': $this.data('id') });
     $(".add-new-data").addClass("show");
@@ -238,12 +251,8 @@ $(document).ready(function () {
               title: 'Data Deleted Successfully.'
             });
           },
-          error: function (error) {
-            HoldOn.close();
-            Toast.fire({
-              icon: 'warning',
-              title: error.responseText
-            })
+          error: function (xhr, error) {
+            errorView(xhr);
           }
         });
       }
@@ -278,6 +287,9 @@ $(document).ready(function () {
                   icon: 'success',
                   title: 'Data Deleted Successfully.'
                 });
+              },
+              error: function (xhr, error) {
+                errorView(xhr);
               }
             });
           });
@@ -326,12 +338,8 @@ $(document).ready(function () {
               title: 'Status Changed Successfully.'
             });
           },
-          error: function (error) {
-            HoldOn.close();
-            Toast.fire({
-              icon: 'warning',
-              title: error.responseText
-            })
+          error: function (xhr, error) {
+            errorView(xhr);
           }
         });
       }
@@ -369,6 +377,9 @@ $(document).ready(function () {
                   icon: 'success',
                   title: 'Status Changed Successfully.'
                 });
+              },
+              error: function (xhr, error) {
+                errorView(xhr);
               }
             });
           });
@@ -416,6 +427,9 @@ $(document).ready(function () {
                   icon: 'success',
                   title: 'Status Changed Successfully.'
                 });
+              },
+              error: function (xhr, error) {
+                errorView(xhr);
               }
             });
           });
@@ -432,6 +446,53 @@ $(document).ready(function () {
     removeCheck();
   });
 
+  //upload Image
+  function uploadImg(form_id, url) {
+    let myform = document.getElementById(form_id);
+    let formData = new FormData(myform);
+    return new Promise((resolve, reject) => {
+      if (!$('#service-img').val() == "") {
+        $.ajax({
+          url: url,
+          type: "post",
+          data: formData,
+          contentType: false,
+          processData: false,
+          cache: false,
+          success: function (data) {
+            resolve(data)
+          },
+          error: function (error) {
+            HoldOn.close();
+            Toast.fire({
+              icon: 'warning',
+              title: JSON.stringify(error.responseJSON),
+              timer: false
+            })
+            reject(error)
+          },
+        });
+      } else {
+        resolve();
+      }
+    });
+  }
+
+  // function For error View
+  function errorView(id) {
+    var text = "<ul class='mt-1'>";
+    $.each(id.responseJSON.errors, function (key, item) {
+      text += ("<li class='text-danger'>" + item + "</li>");
+    });
+    text += "</ul>";
+    HoldOn.close();
+    Toast.fire({
+      icon: 'error',
+      position: 'top-left',
+      title: text,
+      timer: false,
+    })
+  }
 });
 
 function getData(dataListView) {
@@ -446,7 +507,7 @@ function getData(dataListView) {
       dataListView.clear().draw();
       for (var i = 0; i <= data.length; i++) {
         dataListView.row.add(['<td></td>',
-          '<td class="product-img"><img src="' + window.location.origin + '/' + data[i]['serviceImage'] + '" height="110px" width="110px" ></td>',
+          '<td class="product-img"><img src="' + window.location.origin + '/storage/' + data[i]['serviceImage'] + '" height="110px" width="110px" ></td>',
           '<td class="product-name">' + data[i]['serviceName'] + '</td>',
           '<td class="product-category">' + data[i]['serviceCategory'] + '</td>',
           '<td><div class="service-status chip ' + ((data[i]['serviceStatus']) ? "chip-success" : "chip-danger") + '" data-id="' + data[i]['id'] + '">' +
@@ -470,37 +531,16 @@ function removeCheck() {
   $('#ServiceCatlogTable tr').removeClass("selected");
 }
 
-//upload Image
-function uploadImg(form_id, url) {
-  let myform = document.getElementById(form_id);
-  let formData = new FormData(myform);
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: url,
-      type: "post",
-      data: formData,
-      contentType: false,
-      processData: false,
-      cache: false,
-      success: function (data) {
-        resolve(data)
-      },
-      error: function (error) {
-        HoldOn.close();
-        Toast.fire({
-          icon: 'warning',
-          title: JSON.stringify(error.responseJSON),
-          timer: false
-        })
-        reject(error)
-      },
-    })
-  })
+//Image Preview function
+function imagePreview(e, imgId, imgDivId, img = "") {
+  var image = "";
+  if (!$.isEmptyObject(img)) {
+    image = window.location.origin + '/storage/' + img;
+  } else {
+    image = URL.createObjectURL(e.target.files[0]);
+  }
+  $('#' + imgId).prop('src', image);
+  $('#' + imgDivId).removeClass('display-hidden');
 }
 
-function imagePreview(e, imgId, altTextId , img="" ){
-  var image = ($.isEmptyObject(img) ? URL.createObjectURL( e.target.files[0]) : window.location.origin + '/' + img );
-    $('#'+ imgId).prop('src', image);
-    $('#' + altTextId).hide();
-  
-}
+

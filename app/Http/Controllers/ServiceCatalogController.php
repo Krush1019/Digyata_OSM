@@ -112,8 +112,7 @@ class ServiceCatalogController extends Controller
             case "service":
                 $rules = array(
                     'serviceName' => 'required',
-                    'serviceCategory' => 'required',
-                    'serviceImage' => 'required'
+                    'serviceCategory' => 'required',                    
                 );
                 $id = $request->id;
                 $tmp = $request->all();
@@ -187,16 +186,8 @@ class ServiceCatalogController extends Controller
         ]);
         $path = "";
         if($request->hasFile('serviceImage')) {
-            $imgFile = $request->file('serviceImage');
-            $path = $this->saveImgToStorage($imgFile, 'images/services');
+            $path = $request->serviceImage->store('images/services');
         }
         return $path;
-    }
-
-    private function saveImgToStorage($imgFile, $saveImgPath) {
-        $ext = $imgFile->getClientOriginalExtension();
-        $newImgName = rand() . '-' . time() . '.' . $ext;
-        $imgFile->move(public_path($saveImgPath), $newImgName);
-        return $saveImgPath . '/' . $newImgName;
     }
 }
