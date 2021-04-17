@@ -137,7 +137,9 @@
       <div class="item_version_2">
         <a href="{{route('service.filter',['id'=>encrypt($catalog->id)])}}">
           <figure>
-            <span>50</span>
+            <span>@if ($catalog->serCount>100)
+              100+
+            @else{{$catalog->serCount}}@endif</span>
             <img src="https://source.unsplash.com/200x300/?{{$catalog->serviceName}}" data-src="https://source.unsplash.com/200x300/?{{$catalog->serviceName}}" alt="" class="owl-lazy">
             <div class="info">
               <h3>{{$catalog->serviceName}}</h3>
