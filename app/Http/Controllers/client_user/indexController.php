@@ -18,7 +18,6 @@ class indexController extends Controller
                 ->limit(6)
                 ->groupBy('tbl_ser_list.ser_id')
                 ->get();
-                // dd($services);
       $catalogs = DB::table('tbl_service_catalogs')
                   ->inRandomOrder()
                   ->limit(6)
