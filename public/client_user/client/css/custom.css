@@ -300,14 +300,21 @@ label.error {
   display: none !important;
 }
 
-.list_general > ul > li {
-  margin: 0 -30px 0 -30px;
+/* Client Review Page Css */
+
+.review-ul > li {
+  margin: 0 -30px 0 -30px !important;
   position: relative;
-  padding: 30px 30px 5px 30px;
+  padding: 30px 30px 5px 40px !important;
   border-top: 1px solid #ededed;
 }
 
-.list_general > ul > li figure {
+#revw-Ul > li {
+  position: relative;
+}
+
+
+#revwfig-img {
   width: 70px;
   height: 70px;
   -webkit-border-radius: 50%;
@@ -322,7 +329,7 @@ label.error {
   top: 60px;
 }
 @media (max-width: 576px) {
-  .list_general > ul > li figure {
+  #revwfig-img {
     /* For less than 767px */
     position: relative;
     top: 0;
@@ -339,7 +346,7 @@ label.error {
   }
 }
 
-ul li strong {
+#revw-Ul li strong {
   background-color: #1f2f6a75;
   color: #fff;
   border: 1px solid #ededed;

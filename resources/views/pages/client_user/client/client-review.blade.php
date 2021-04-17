@@ -24,7 +24,7 @@
       </div> --}}
   </div>
   <div class="list_general reviews">
-    <ul>
+    <ul class="review-ul">
       @if (!$reviews->first())
       <div class="box_general box padding_bottom text-center">
         <div class="row h-100">
@@ -52,9 +52,9 @@
         <p class="font-weight-bold font-large-15 mb-0 mt-2 ">{{$review->Title}}</p>
         <p class="mt-0">{{$review->Feedback}}</p>
         @if($review->Image)
-        <figure><img src="images/default-img/user.png" alt=""></figure>
+        <figure id="revwfig-img"><img src="{{ asset('storage/'.$review->Image) }}" alt=""></figure>
         @endif
-        <ul class="list-unstyled w-75 w-sm-100">
+        <ul id="revw-Ul" class="list-unstyled w-75 w-sm-100">
           <li class="list-inline-item"><label class="mr-0 mr-sm-2">Respnse Time: </label><span class="rating" data-value="{{$review->Res_R1}}"></span></li>
           <li class="list-inline-item"><label class="mr-0 mr-sm-2">Service: </label><span class="rating" data-value="{{$review->Ser_R2}}"></span></li>
           <li class="list-inline-item"><label class="mr-0 mr-sm-2">Comunication: </label><span class="rating" data-value="{{$review->Com_R3}}"></span></li>
