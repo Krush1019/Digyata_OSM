@@ -49,7 +49,7 @@
         @foreach ($services as $service)
         <tr>
           <td></td>
-          <td class="product-img"><img src="{{asset($service->serviceImage)}}" height="110px" width="110px" ></td>
+          <td class="product-img"><img src="{{asset('storage/'.$service->serviceImage)}}" height="110px" width="110px" ></td>
           <td class="product-name">{{$service->serviceName}}</td>
           <td class="product-category">{{$service->serviceCategory}}</td>
           <td>
@@ -119,14 +119,13 @@
               </div>           
               <div class="col-sm-12 data-field-col form-group">
                   <label for="service-img">Service Image</label>
-                  <div class="controls custom-file">
-                      <input type="file" class="custom-file-input" id="service-img" name="serviceImage"
-                      data-validation-required-message="This field is required" accept=".jpg,.png,.jpeg,.gif">
-                      <label class="custom-file-label" for="service-img">Choose file</label>
+                  <div class="controls ">
+                      <input type="file" class="form-control" id="service-img" name="serviceImage"
+                      accept=".jpg,.png,.jpeg,.gif">
+                      {{-- <label class="custom-file-label" for="service-img">Choose file</label> --}}
                   </div> 
-                  <div class="text-center mt-1">
-                    <img class="border"  id="image_prevw"  height="180px" width="200px">
-                    <span class="preview-text" id="prevw_text">No File Choosen</span>
+                  <div id="prevw_div" class="text-center mt-1 display-hidden">
+                    <img class="border" id="image_prevw"  height="180px" width="200px">
                   </div>         
               </div>
             </div>
@@ -134,7 +133,7 @@
         </div>
         <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
           <div class="add-data-btn">
-            <button type="submit" id="service-submit" data-action="insert" class="btn btn-primary">Add Service</button>
+            <button type="submit"  id="service-submit" data-action="insert" class="btn btn-primary">Add Service</button>
           </div>
           <div class="cancel-data-btn">
             <input type="reset" class="btn btn-outline-danger" value="Cancel">
