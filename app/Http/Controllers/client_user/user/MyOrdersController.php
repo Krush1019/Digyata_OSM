@@ -21,7 +21,9 @@ class MyOrdersController extends Controller
 
     public function index(Request $request)
     {
-        $data = MyOrders::where('user_id', Auth::guard('customer')->user()->id)->get();
+        $data = MyOrders::where('user_id', Auth::guard('customer')->user()->id)
+                          ->join('tbl_ser_list', 'tbl_ser_list.ser_id', '=', 'tbl_order_manages.ser_list_id')
+                          ->get();
         $breadcrumbs = [['link' => route('home') , 'name' => "Dashboard"], ['name' => "My Order"]];
       return view('/pages/client_user/user/my-order', [
         'breadcrumbs' => $breadcrumbs,

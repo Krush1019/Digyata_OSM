@@ -39,7 +39,7 @@
           @foreach ($data as $dt)
           <li>
             <figure><img src="{{asset('client_user/client/img/avatar.jpg')}}" alt=""></figure>
-            <h4>Dusting <i class="{{(($dt->bSerStatus)?(($dt->bSerStatus==1)?"approved":"pending"):"cancel")}}">Pending</i></h4>
+            <h4>{{$dt->ser_pro_name}} <i class="{{(($dt->bSerStatus)?(($dt->bSerStatus==1)?"approved":"pending"):"cancel")}}">Pending</i></h4>
             <ul class="booking_list">
               <li><strong>Order ID</strong> {{$dt->sOrderId}}</li>
               <li><strong>Booking date</strong> {{date_format(date_create($dt->sbDate),"d/m/Y")}}</li>
