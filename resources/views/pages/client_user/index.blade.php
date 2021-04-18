@@ -98,7 +98,21 @@
               <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->user_ser_exp}} experiance"><i class="icon_datareport_alt"></i></a></li>
               <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->ser_address}}"><i class="icon_pin"></i></a></li>
               <li>
-                <div class="score"><span>Superb<em>{{$service->revCount}} Reviews</em></span><strong>{{round((round($service->Res_R1,1)+round($service->Ser_R2,1)+round($service->Com_R3,1)+round($service->Price_R4,1))/4,1)}}</strong></div>
+                @php
+                $avg = round((round($service->Res_R1,1)+round($service->Ser_R2,1)+round($service->Com_R3,1)+round($service->Price_R4,1))/4,1);
+                @endphp
+                <div class="score"><span>@if ($avg>=4)
+                  superb
+                @elseif ($avg>=3)
+                Very Good
+                @elseif ($avg>=2)
+                Good
+                @elseif ($avg>=1)
+                Pleasant
+                @elseif ($avg<1)
+                Noob
+                @endif
+                <em>{{$service->revCount}} Reviews</em></span><strong>{{$avg}}</strong></div>
               </li>
             </ul>
           </div>
@@ -123,7 +137,9 @@
       <div class="item_version_2">
         <a href="{{route('service.filter',['id'=>encrypt($catalog->id)])}}">
           <figure>
-            <span>50</span>
+            <span>@if ($catalog->serCount>100)
+              100+
+            @else{{$catalog->serCount}}@endif</span>
             <img src="{{asset('storage/'.$service->serviceImage)}}" data-src="{{asset('storage/'.$service->serviceImage)}}" alt="" class="owl-lazy">
             <div class="info">
               <h3>{{$catalog->serviceName}}</h3>

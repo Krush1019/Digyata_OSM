@@ -55,7 +55,22 @@
                             </div>
                             <div class="score_in">
                                 <div class="rating">
-                                    <div class="score"><span>Superb<em>{{count($reviews)}} Reviews</em></span><strong>{{round((round($avg->Res_R1,1)+round($avg->Ser_R2,1)+round($avg->Com_R3,1)+round($avg->Price_R4,1))/4,1)}}</strong></div>
+                                  @php
+                                  $revSum = round((round($avg->Res_R1,1)+round($avg->Ser_R2,1)+round($avg->Com_R3,1)+round($avg->Price_R4,1))/4,1);
+                                  @endphp
+                                    <div class="score"><span>
+                                      @if ($revSum>=4)
+                                      superb
+                                      @elseif ($revSum>=3)
+                                      Very Good
+                                      @elseif ($revSum>=2)
+                                      Good
+                                      @elseif ($revSum>=1)
+                                      Pleasant
+                                      @elseif ($revSum<1)
+                                      Noob
+                                      @endif
+                                      <em>{{count($reviews)}} Reviews</em></span><strong>{{$revSum}}</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -135,8 +150,23 @@
                                         <div class="row add_bottom_45 d-flex align-items-center">
                                             <div class="col-md-3">
                                                 <div id="review_summary">
-                                                    <strong>{{round((round($avg->Res_R1,1)+round($avg->Ser_R2,1)+round($avg->Com_R3,1)+round($avg->Price_R4,1))/4,1)}}</strong>
-                                                    <em>Superb</em>
+                                                  @php
+                                                  $revSum = round((round($avg->Res_R1,1)+round($avg->Ser_R2,1)+round($avg->Com_R3,1)+round($avg->Price_R4,1))/4,1);
+                                                  @endphp
+                                                    <strong>{{$revSum}}</strong>
+                                                    <em>
+                                                      @if ($revSum>=4)
+                                                        superb
+                                                      @elseif ($revSum>=3)
+                                                      Very Good
+                                                      @elseif ($revSum>=2)
+                                                      Good
+                                                      @elseif ($revSum>=1)
+                                                      Pleasant
+                                                      @elseif ($revSum<1)
+                                                      Noob
+                                                      @endif
+                                                    </em>
                                                     <small>Based on {{count($reviews)}} reviews</small>
                                                 </div>
                                             </div>

@@ -19,8 +19,11 @@ class indexController extends Controller
                 ->groupBy('tbl_ser_list.ser_id')
                 ->get();
       $catalogs = DB::table('tbl_service_catalogs')
+                  ->leftJoin('tbl_ser_list', 'tbl_ser_list.ser_cat_id', '=', 'tbl_service_catalogs.id')
+                  ->select(DB::raw('COUNT(ser_id) as serCount, tbl_service_catalogs.*'))
                   ->inRandomOrder()
                   ->limit(6)
+                  ->groupBy('tbl_service_catalogs.id')
                   ->get();
       return view('/pages/client_user/index')->with('services',$services)->with('catalogs',$catalogs);
     }
