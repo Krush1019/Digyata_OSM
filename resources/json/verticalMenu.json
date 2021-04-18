@@ -60,23 +60,6 @@
       "url": "review-order",
       "name": "Review Order",
       "icon": "feather icon-tag"
-    },
-    {
-      "url": "",
-      "name": "Other Parameter",
-      "icon": "feather icon-layers",
-      "submenu": [
-        {
-          "url": ["discount-promo"],
-          "name": "Discount&PromoCode",
-          "icon": "fa fa-chevron-right"
-        },
-        {
-          "url": ["#"],
-          "name": "News & Blog",
-          "icon": "fa fa-chevron-right"
-        }
-      ]
-    }
+    }    
   ]
 }

@@ -20,7 +20,6 @@
         </button>
       </div>
   @endif
-  {{dd($errors)}}
   @if ($errors->first())
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Error!</strong> {{$errors->first()}}
@@ -51,7 +50,7 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="form-group mt-20">
-                  <div class="small pl-0">Name</div>
+                  <span class="small pl-0"><label class="required">*</label>Name</span>
                   <input type="text" class="form-control font-weight-bold" id="us_fname" name="sUserName" value="{{Auth::guard('customer')
                   ->user()->sUserName}}" placeholder="Full Name" >
                 </div>
@@ -62,7 +61,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <span class="mr-3 small pl-0">Gender:</span>
+                  <span class="mr-3 small pl-0"><label class="required">*</label>Gender:</span>
                   <span class="mr-2">
                     <input type="radio" name="sUserGender" value="male" @if (Auth::guard('customer')->user()->sUserGender =="male")
                     checked
@@ -83,14 +82,14 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
-                  <span class="small">Mobile : </span>
+                  <span class="small"><label class="required">*</label>Mobile : </span>
                   <input type="text" name="sUserMobile" id="us_mobile" value="{{Auth::guard('customer')->user()->sUserMobile}}" class="form-control font-weight-bold" >
                 </div>
               </div>
 
               <div class="col-md-5">
                 <div class="form-group">
-                  <span class="small">E-mail : </span>
+                  <span class="small"><label class="required">*</label>E-mail : </span>
                   <input type="email" name="sUserEmail" id="us_email" value="{{Auth::guard('customer')->user()->sUserEmail}}" class="form-control font-weight-bold">
                 </div>
               </div>
@@ -141,7 +140,7 @@
     <div id="chngepassworddiv" class="box_general pb-md-4  display-hidden">
       <div class="row mt-25">
         <div class="col-12 col-md-4">
-          <div class="form-group">
+          <div class="form-group"><label class="required">*</label>
             <label>Old password</label>
             <i class="fa fa-lock"></i>
             <input id="us_old_pswd" class="form-control" type="password" name="oldpassword" readonly placeholder="Old password">
@@ -149,7 +148,7 @@
         </div>
 
         <div class="col-12 col-md-4">
-          <div class="form-group">
+          <div class="form-group"><label class="required">*</label>
             <label>New password</label>
             <i class="fa fa-lock"></i>
             <input class="form-control new-password" type="password" name="password" readonly placeholder="New password"
@@ -158,7 +157,7 @@
         </div>
 
         <div class="col-12 col-md-4">
-          <div class="form-group">
+          <div class="form-group"><label class="required">*</label>
             <label>Confirm new password</label>
             <input class="form-control cnfm-new-password" type="password" name="password_confirmation" readonly placeholder="Confirm new password" id="us_cnf_new_pswd">
           </div>

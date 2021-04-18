@@ -9,7 +9,7 @@
 
 @section('content')
 <section class="row flexbox-container">
-  <div class="col-xl-8 col-11 d-flex justify-content-center">
+  <div class="col-xl-8 col-11 d-flex justify-content-center top-30">
     <div class="card bg-authentication rounded-0 mb-0">
       <div class="row m-0">
         <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
@@ -79,9 +79,8 @@
                     @endif
 
                   </div>
-                  <div >
-                    <a href="register" class="btn btn-outline-primary float-sm-left btn-inline">Register</a>
-                    <button type="submit" class="btn btn-primary float-sm-right btn-inline">Login</button>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-inline">Login</button>
                   </div>
                 </form>
               </div>
@@ -90,6 +89,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-11 d-flex justify-content-center top--30">
+    <a href="{{ route('home') }}" class="btn  btn-danger mt-sm-0 mt-2 font-medium-1"><i class="fa fa-home font-medium-5 pr-1"></i>Go To Home</a>
   </div>
 </section>
 @endsection

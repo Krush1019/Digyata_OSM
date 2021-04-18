@@ -52,34 +52,27 @@
       </div>
       <div class="row">
         <div class="col-lg-4">
-          <div class="box_why">
+          <div class="box_why  text-center">
             <figure><img src="{{asset('client_user/img/why_1.svg')}}" alt="" width="200" height="200" class="img-fluid">
             </figure>
             <h3>Boost your Visibility</h3>
             <p class="lead"> Illum suavitate ad has, inani salutatus sit et, error reprehendunt id eam.</p>
-            {{-- <p>Eu quem patrioque delicatissimi est. Eos delectus perpetua posidonium ei. Ad debitis accusamus eam. Nec
-              ea esse nulla aperiam, pri at decore numquam, no detracto cotidieque his. Invenire facilisis ex ius.</p> --}}
-          </div>
+            </div>
         </div>
         <div class="col-lg-4">
-          <div class="box_why">
+          <div class="box_why  text-center">
             <figure><img src="{{asset('client_user/img/why_2.svg')}}" alt="" width="200" height="200" class="img-fluid">
             </figure>
             <h3>Manage Easily</h3>
             <p class="lead">Est falli invenire interpretaris id, magna libris sensibus mel id.</p>
-            {{-- <p>Per eu nostrud feugiat. Et quo molestiae persecuti neglegentur. At zril definitionem mei, vel ei choro
-              volumus. An tota nulla soluta has, ei nec essent audiam, te nisl dignissim vel. Ex velit audire perfecto
-              pro, ei mei doming vivendo legendos.</p> --}}
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="box_why">
+          <div class="box_why text-center">
             <figure><img src="{{asset('client_user/img/why_3.svg')}}" alt="" width="200" height="200" class="img-fluid">
             </figure>
             <h3>Reach New Customers</h3>
             <p class="lead">Laoreet inimicus vulputate est. Sea in voluptatibus comprehensam vituperatoribus.</p>
-            {{-- <p>Movet iriure dolores nec ea, per ei dicat audire signiferumque. Illum porro gubergren vis in, affert
-              graecis an eos, qui quem facilis vulputate cu. Ei commodo prompta eum, et eum vide appareat euripidis.</p> --}}
           </div>
         </div>
       </div>
@@ -142,7 +135,7 @@
             </div>
             <div class="col-lg-3">
               <div class="box_contacts font-weight-bolder hovering-zoom">
-                <img src="{{asset('client_user/img/about_3.svg')}}" class="img-fluid mb-3" alt="">
+                <img src="{{asset('client_user/img/about_2.svg')}}" class="img-fluid mb-3" alt="">
                 <h2 class="font-weight-bold">Rashmin Prajapati </h2>
                 <a href="mailto:meetprajapati847@gmail.com" target="_blank">meetprajapati847@gmail.com</a>
               </div>

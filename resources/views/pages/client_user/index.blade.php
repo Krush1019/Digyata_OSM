@@ -95,8 +95,8 @@
               </a>
             </figure>
             <ul>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->user_ser_exp}} experiance"><i class="icon-users"></i></a></li>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->ser_address}}">{{$service->ser_city}}</i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->user_ser_exp}} experiance"><i class="icon_datareport_alt"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->ser_address}}"><i class="icon_pin"></i></a></li>
               <li>
                 @php
                 $avg = round((round($service->Res_R1,1)+round($service->Ser_R2,1)+round($service->Com_R3,1)+round($service->Price_R4,1))/4,1);
@@ -140,10 +140,9 @@
             <span>@if ($catalog->serCount>100)
               100+
             @else{{$catalog->serCount}}@endif</span>
-            <img src="https://source.unsplash.com/200x300/?{{$catalog->serviceName}}" data-src="https://source.unsplash.com/200x300/?{{$catalog->serviceName}}" alt="" class="owl-lazy">
+            <img src="{{asset('storage/'.$service->serviceImage)}}" data-src="{{asset('storage/'.$service->serviceImage)}}" alt="" class="owl-lazy">
             <div class="info">
               <h3>{{$catalog->serviceName}}</h3>
-              <small>Avg price ₹200</small>
             </div>
           </figure>
         </a>

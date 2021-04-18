@@ -106,7 +106,6 @@ class RegisterController extends Controller {
             'sClEmail' => $request->email,
             'sClMobile' => $request->mobile,
             'sClGender' => $request->gender,
-            'sClAddress' => $request->address,
             'password' => Hash::make($request->password),
         ]);
         if (Auth::guard('client')->attempt(['sClEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {

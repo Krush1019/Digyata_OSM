@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="ser_name">Service Name </label><span class="required">*</span>
+						<label class="required">*</label><label for="ser_name">Service Name </label>
 						<select id="ser_name" name="ser_name" class="form-control styled-select">
 							@if (empty($serviceList))
 								<option value="-1" disabled selected>No Data Found</option>
@@ -42,7 +42,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="ser_category">Category</label>
+						<label class="required">*</label><label for="ser_category">Category</label>
 						<input type="text" class="form-control" name="ser_category" value="@isset($serviceData){{$serviceData['service_cat']}}@endisset" id="ser_category" placeholder="Category" disabled>
 					</div>
 				</div>
@@ -53,14 +53,14 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Shop Name / Provider Name</label><span class="required">*</span>
+						<label class="required">*</label><label>Shop Name / Provider Name</label>
 						<input type="text" class="form-control" name="provider_name" value="@isset($serviceData){{$serviceData['name']}}@endisset" placeholder="Shop Name / Provide Name">
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Expericence in related Field (In Months/Years)</label><span class="required">*</span>
+						<label class="required">*</label><label>Expericence in related Field (In Months/Years)</label>
 						<input type="text" class="form-control" name="ser_exp" value="@isset($serviceData){{$serviceData['exp']}}@endisset" placeholder="2 Months / 2 Years">
 					</div>
 				</div>
@@ -133,7 +133,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Photos</label><span class="required">*</span>
+						<label class="required">*</label><label>Photos</label>
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" name="ser_img">
 							<label class="custom-file-label">Choose file</label>
@@ -156,7 +156,7 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="form-group">
-						<label for="SL_ser_idproof">Upload Id Proof</label><span class="required">*</span>
+						<label class="required">*</label><label for="SL_ser_idproof">Upload Id Proof</label>
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" name="ser_doc_img">
 							<label class="custom-file-label">Choose file</label>
@@ -170,7 +170,7 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Aadhar No.</label><span class="required">*</span>
+						<label class="required">*</label><label>Aadhar No.</label>
 						<input type="text" class="form-control num_valid" name="ser_doc_no" value="@isset($serviceData){{$serviceData['doc_num']}}@endisset" placeholder="Aadhar No.">
 					</div>
 				</div>
@@ -187,7 +187,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>State</label><span class="required">*</span>
+						<label class="required">*</label><label>State</label>
 
 						<select class="form-control styled-select" name="ser_state" id="ser_state" @if (!isset($state)) readonly @endif>
 							@if (isset($state))
@@ -204,7 +204,7 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Select City</label><span class="required">*</span>
+						<label class="required">*</label><label>Select City</label>
 						<select name="ser_city" id="ser_city" class="form-control styled-select" @if (!isset($city)) readonly @endif>
 							@if (isset($city))
 								<option value="-1" selected disabled>Select City</option>
@@ -223,14 +223,14 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Address</label><span class="required">*</span>
+						<label class="required">*</label><label>Address</label>
 						<input type="text" class="form-control" placeholder="ex. 250, Fifth Avenue..." name="ser_address" id="ser_address" @if (isset($serviceData)) value="{{$serviceData['address']}}" @else readonly @endif>
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="ser_pin_no">Pin Code</label><span class="required">*</span>
+						<label class="required">*</label><label for="ser_pin_no">Pin Code</label>
 						<input type="text" class="form-control" name="ser_pin_no" id="ser_pin_no" placeholder="ex. 112233" @if (isset($serviceData)) value="{{$serviceData['pin_code']}}" @else readonly @endif>
 					</div>
 				</div>
@@ -247,7 +247,7 @@
 				<div class="col-md-12">
 					<div class=" form-group">
 						<div class="mr-3 ">
-							<label for="days" class="mr-3">Working days in Week:<span class="required">*</span></label>
+							<label class="required">*</label><label for="days" class="mr-3">Working days in Week:</label>
 						</div>
 						<div class="row">
 							<span class="mr-2 col-md-1 col-sm-12">
@@ -320,7 +320,7 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					<span>Item</span> <span class="required">*</span>
+					<label class="required">*</label><span>Item</span> 
 					<table id="pricing-list-container" class="w-100 mt-10">
 						@isset($serviceData)
 							@foreach ($serviceData['item'] as $item )
@@ -413,7 +413,7 @@
 	<script src="{{asset('client_user/client/js/summernote-bs4.min.js')}}"></script>
 	<script>
       $('.editor').summernote({
-          fontSizes: ['10', '14'],
+          fontSizes: ['10', '14', '16', '18'],
           toolbar: [
               ['style', ['bold', 'italic', 'underline', 'clear']],
               ['font', ['strikethrough']],

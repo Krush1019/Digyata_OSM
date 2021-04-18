@@ -83,7 +83,7 @@
 					<div class="row">
 						<div class="col-md-8">
 							<div class="form-group">
-								<label>Full Name<span class="required">*</span></label>
+								<label class="required">*</label><label>Full Name</label>
 								<input type="text" class="form-control"	 name="client_name" value="@isset($clientData['name']) {{$clientData['name']}} @endisset" placeholder="Full Name" >
 							</div>
 						</div>
@@ -92,7 +92,7 @@
 								<label>Status: </label>
 							</span>
 							<span class="mt-5 ml-2">
-								@if ($clientData['status'] == 	"Blocked" )
+								@if ($clientData['status'] == "Blocked" )
 									<i class="cancel">Blocked</i>
 								@elseif( $clientData['status'] == "Active" )
 									<i class="approved">Active</i>
@@ -109,7 +109,7 @@
 						<div class="col-md-6">
 							<div class=" form-group">
 								<span class="mr-3">
-									<label for="gender" class="">Gender:<span class="required">*</span></label>
+									<label class="required">*</label><label for="gender">Gender:</label>
 								</span>
 								<span class="mr-2">
 									<input type="radio" name="gender" value="male" @if ($clientData['client_gender'] == "male") checked @endif >
@@ -126,7 +126,7 @@
 					<div class="row">
 						<div class="col-md-5">
 							<div class="form-group">
-								<label>Mobile No.<span class="required">*</span></label> 
+								<label class="required">*</label><label>Mobile No.</label> 
 								<input type="text" class="form-control numberValidation" name="client_mo" value="@isset($clientData['client_phone']) {{$clientData['client_phone']}} @endisset" placeholder="Your Mobile No.">
 							</div>							
 						</div>
@@ -135,7 +135,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Email<span class="required">*</span></label> 
+								<label class="required">*</label><label>Email</label> 
 								<input type="email" class="form-control" id="cl_email"  name="client_email" value="@isset($clientData['client_email']) {{$clientData['client_email']}} @endisset" placeholder="Your email">
 							</div>
 						</div>
@@ -178,7 +178,7 @@
 							<section class="old_password">
 								<div class="form-group input-container mb-0">
 									<i class="fa fa-lock"></i>
-									<label>Old password</label><label class="required">*</label>
+									<label class="required">*</label><label>Old password</label>
 									<input class="form-control" id="oldPassword" type="password" name="old_password" placeholder="Old Password">
 									<label id="oldPassword-error" class="error" for="oldPassword"></label>
 								</div>
@@ -187,7 +187,7 @@
 							<section class="new_password" hidden>
 								<div class="form-group">
 									<i class="fa fa-lock"></i>
-									<label>New password</label><label class="required">*</label>
+									<label class="required">*</label><label>New password</label>
 
 									<input class="form-control" type="password" name="new_password" placeholder="New Password" id="newPassword">
 									<span toggle="#newPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
@@ -195,7 +195,7 @@
 
 								<div class="form-group">
 									<i class="fa fa-lock"></i>
-									<label>Confirm Password</label><label class="required">*</label>
+									<label class="required">*</label><label>Confirm Password</label>
 									<input class="form-control" id="conPassword" type="password" name="con_password" placeholder="Confirm Password">
 								</div>
 

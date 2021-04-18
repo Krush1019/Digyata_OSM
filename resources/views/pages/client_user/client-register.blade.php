@@ -103,7 +103,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                      placeholder="Full Name" value="{{ old('name') }}" name="name" id="name_register">
+                      placeholder="*Full Name" value="{{ old('name') }}" name="name" id="name_register">
                     @error('name')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -117,7 +117,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <input type="email" class="form-control @error('email') is-invalid @enderror"
-                      placeholder="Email Address" name="email" value="{{ old('email') }}" id="email_register">
+                      placeholder="*Email Address" name="email" value="{{ old('email') }}" id="email_register">
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -131,7 +131,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <input type="text" class="form-control @error('mobile') is-invalid @enderror"
-                      value="{{ old('mobile') }}" placeholder="Mobile No." name="mobile" id="mobile_register">
+                      value="{{ old('mobile') }}" placeholder="*Mobile No." name="mobile" id="mobile_register">
                     @error('mobile')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -161,7 +161,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <input type="password" class="form-control new-password @error('password') is-invalid @enderror" placeholder="Password" name="password" id="password_register">
+                    <input type="password" class="form-control new-password @error('password') is-invalid @enderror" placeholder="*Password" name="password" id="password_register">
                     <span toggle="#password_register" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -175,21 +175,12 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <input type="password" class="form-control cnfm-new-password" placeholder="Confirm Password"
+                    <input type="password" class="form-control cnfm-new-password" placeholder="*Confirm Password"
                       name="password_confirmation" id="cnf_name_register">
                   </div>
                 </div>
               </div>
               <div id="pass-info" class="clearfix"></div>
-              <!-- /row -->
-              <div class="row add_bottom_15">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="location" value="{{ old('address') }}"
-                      name="address" id="location_register">
-                  </div>
-                </div>
-              </div>
               <!-- /row -->
               <div class="row add_bottom_25">
                 <div class="col-lg-6">

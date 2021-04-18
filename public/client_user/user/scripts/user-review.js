@@ -6,6 +6,18 @@
 
 $(document).ready(function () {
 
+      // Range slider
+      $('input[type="range"]').rangeslider({
+            polyfill: false,
+            onInit: function () {
+                  console.log(this);
+                  this.output = $(this.$element).siblings('div').children('strong').html(this.$element.val());
+            },
+            onSlide: function (position, value) {
+                  this.output.html(value);
+            }
+      });
+      
       // Accept a value from a file input based on a required mimetype
       $.validator.addMethod("accept", function (value, element, param) {
             var typeParam = typeof param === "string" ? param.replace(/\s/g, "") : "image/*",

@@ -42,7 +42,6 @@ $(document).ready( function () {
             required: true,
             equalTo: '#password_register'
           },
-          address : "required",
           captcha: "required",
         },
   
@@ -67,7 +66,6 @@ $(document).ready( function () {
             required: "Please enter a confirm password",
             equalTo: "Password and confirm password must be same"
           },
-          address : "Please enter your location.",
           captcha: "Please enter captcha."
         },
         submitHandler: function(form) {

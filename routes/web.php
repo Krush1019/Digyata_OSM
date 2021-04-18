@@ -67,12 +67,12 @@ use App\Http\Controllers\LanguageController;
     Route::get('/review-order-search', 'ReviewOrdersController@search');
 
     /** Admin -- Discount & PromoCode */
-    Route::get('/discount-promo', 'DiscountPromoController@index');
+    /* Route::get('/discount-promo', 'DiscountPromoController@index');
     Route::get('/discount-promo-store', 'DiscountPromoController@store');
     Route::get('/discount-promo-show', 'DiscountPromoController@show');
     Route::get('/discount-promo-update/{id}', 'DiscountPromoController@update');
     Route::get('/discount-promo-edit/{id}', 'DiscountPromoController@edit');
-    //    Route::get('/discount-promo-destroy/{id}', 'DiscountPromoController@destroy');
+    //    Route::get('/discount-promo-destroy/{id}', 'DiscountPromoController@destroy'); */
 
 /******************
 *   CLIENT
@@ -158,7 +158,6 @@ use App\Http\Controllers\LanguageController;
 
     /** captcha */
     Route::get('/contact-form', 'client_user\CaptchaController@index');
-    // Route::post('/captcha-validation', 'client_user\CaptchaController@capthcaFormValidate');
     Route::get('/reload-captcha', 'client_user\CaptchaController@reloadCaptcha');
 
 
