@@ -39,7 +39,7 @@
           @foreach ($data as $dt)
           <li>
             <figure><img src="{{asset('client_user/client/img/avatar.jpg')}}" alt=""></figure>
-            <h4>{{$dt->ser_pro_name}} <i class="{{(($dt->bSerStatus)?(($dt->bSerStatus==1)?"approved":"pending"):"cancel")}}">Pending</i></h4>
+            <h4>{{$dt->ser_pro_name}} <i class="{{(($dt->bSerStatus)?(($dt->bSerStatus==1)?"approved":"pending"):"cancel")}} od_status">Pending</i></h4>
             <ul class="booking_list">
               <li><strong>Order ID</strong> {{$dt->sOrderId}}</li>
               <li><strong>Booking date</strong> {{date_format(date_create($dt->sbDate),"d/m/Y")}}</li>
@@ -48,17 +48,16 @@
               <li><strong>Address</strong> {{$dt->sAddress}}</li>
             </ul>
             <!-- <p><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a>
-            </p>
+            </p> -->
             <ul class="buttons">
-              <li><a href="#0" target="blank" class="btn_1 gray"><i class="fa fa-fw fa-print mr-1"></i>Print Receipt</a></li>
-            </ul> -->
+              <li><a href="#" class="od_approve btn_1 gray approve"><i class="fa fa-fw fa-check-square-o font-large-15 mr-1"></i>Mark as Completed</a></li>
+            </ul>
           </li>
           @endforeach
         </ul>
       @endif
     </div>
   </div>
-
 
   <!-- <div class="modal fade custom-modal" id="viewordermodal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
