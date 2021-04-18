@@ -20,7 +20,6 @@ class CreateClientManagesTable extends Migration {
             $table->string('sClName');
             $table->string('sClEmail')->unique();
             $table->string('sClMobile');
-            $table->string('sClAddress');
             $table->string('password');
             $table->string('sClGender');
             $table->string('sClPhotoURL')->default("images/default-img/user.png");

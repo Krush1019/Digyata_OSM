@@ -334,3 +334,15 @@ header.header.sticky .logo {
   border-top-right-radius: 1.428rem;
   border-bottom-right-radius: 1.428rem;
 }
+
+.font-size-18 {
+  font-size: 18px !important;
+  font-weight: 700!important;
+}
+
+.required {
+  color: #e3464c !important;
+  margin: 1px;
+  font-size: medium;
+  font-weight: bold;
+}

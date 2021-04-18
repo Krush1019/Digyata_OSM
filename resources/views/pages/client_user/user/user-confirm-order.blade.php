@@ -53,14 +53,14 @@
                                             </div>
                                             <div class="form-group col-12">
                                                 <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->sUserHouseNo}}" id="cnfod_ad1" name="address1"
-                                                    placeholder="House no., Building Name">
+                                                    placeholder="*House no., Building Name">
                                             </div>
                                             <div class="form-group col-12">
                                                 <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->sUserArea}}" id="cnfod_ad2" name="address2"
-                                                    placeholder="Road name, Area, Colony">
+                                                    placeholder="*Road name, Area, Colony">
                                             </div>
                                             <div class="form-group col-6">
-                                                <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->sUserPincode}}" placeholder="Pincode"
+                                                <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->sUserPincode}}" placeholder="*Pincode"
                                                     id="cnfod_pin" name="pincode">
                                             </div>
                                         </div>

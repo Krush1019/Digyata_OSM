@@ -24,7 +24,7 @@
     <form method="POST" id="User-register" action="{{ route('register.customer')}}" autocomplete="off">
       @csrf
       <div class="form-group">
-        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Full Name" value="{{ old('name') }}" name="name" id="User_name">
+        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="*Full Name" value="{{ old('name') }}" name="name" id="User_name">
         @error('name')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -46,7 +46,7 @@
         </span>
       </div>
       <div class="form-group">
-        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email" id="User_email">
+        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="*Email" value="{{ old('email') }}" name="email" id="User_email">
         @error('email')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
         <i class="icon_mail_alt"></i>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control @error('mobile') is-invalid @enderror" placeholder="Mobile No."
+        <input type="text" class="form-control @error('mobile') is-invalid @enderror" placeholder="*Mobile No."
           value="{{ old('mobile') }}" name="mobile" id="User_mobile">
         @error('mobile')
         <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
         <i class="icon_mobile"></i>
       </div>
       <div class="form-group">
-        <input class="form-control new-password @error('password') is-invalid @enderror" type="password" id="User_password" name="password" placeholder="Password">
+        <input class="form-control new-password @error('password') is-invalid @enderror" type="password" id="User_password" name="password" placeholder="*Password">
         <span toggle="#User_password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
         @error('password')
         <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
         <i class="icon_lock_alt"></i>
       </div>
       <div class="form-group">
-        <input class="form-control cnfm-new-password" type="password" id="User_cnf_password" name="password_confirmation" placeholder="Confirm Password">
+        <input class="form-control cnfm-new-password" type="password" id="User_cnf_password" name="password_confirmation" placeholder="*Confirm Password">
         <i class="icon_lock_alt"></i>
       </div>
       <div id="pass-info" class="clearfix"></div>

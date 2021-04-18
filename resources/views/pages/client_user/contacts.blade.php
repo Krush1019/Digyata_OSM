@@ -58,13 +58,13 @@
                 <div class="col-12">
                   <form id="contactform">
                     <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Name" id="name_contact" name="name">
+                      <input class="form-control" type="text" placeholder="*Name" id="name_contact" name="name">
                     </div>
                     <div class="form-group">
-                      <input class="form-control" type="email" placeholder="Email" id="email_contact" name="email">
+                      <input class="form-control" type="email" placeholder="*Email" id="email_contact" name="email">
                     </div>
                     <div class="form-group">
-                      <textarea class="form-control" style="height: 150px;" placeholder="Message" id="message_contact"
+                      <textarea class="form-control" style="height: 150px;" placeholder="*Message" id="message_contact"
                         name="message"></textarea>
                     </div>
                     <div class="form-group">
