@@ -26,7 +26,7 @@ $(document).ready(function () {
         return '<a href=' + "client-view" + '><span class="avatar"><img src="' + params.value['clientImg'] + '" height="32" width="32" alt=" "></span>' + params.value['clientName'] + '</a>';
     }
 
-// ag-grid
+    // ag-grid
     /*** COLUMN DEFINE ***/
 
     var columnDefs = [{
@@ -38,64 +38,64 @@ $(document).ready(function () {
         headerCheckboxSelectionFilteredOnly: true,
         headerCheckboxSelection: true
     },
-        {
-            headerName: 'Service Name',
-            field: 'service-name',
-            filter: true,
-            width: 200
-        },
-        {
-            headerName: 'Service Provider',
-            field: 'service-provider',
-            filter: true,
-            width: 200,
-            cellRenderer: customClientAvatarHTML
-        },
-        {
-            headerName: 'User',
-            field: 'user-name',
-            filter: true,
-            width: 200,
-            cellRenderer: customUserAvatarHTML
-        },
-        {
-            headerName: 'Service Address',
-            field: 'service-address',
-            filter: true,
-            width: 200,
-        },
-        {
-            headerName: 'Time-Slot',
-            field: 'service-timeslot',
-            filter: true,
-            width: 200,
-        },
-        {
-            headerName: 'Amount',
-            field: 'service-amount',
-            filter: true,
-            width: 150
-        },
-        {
-            headerName: 'Payment Status',
-            field: 'payment-status',
-            filter: true,
-            width: 175,
-            cellRenderer: customBadgeHTML,
-            cellStyle: {
-                "text-align": "center"
-            }
-        },
-        {
-            headerName: 'Service Status',
-            field: 'service-status',
-            filter: true,
-            width: 175,
-            cellRenderer: customBadgeHTML,
-            cellStyle: {
-                "text-align": "center"
-            }
+    {
+        headerName: 'Service Name',
+        field: 'service-name',
+        filter: true,
+        width: 200
+    },
+    {
+        headerName: 'Service Provider',
+        field: 'service-provider',
+        filter: true,
+        width: 200,
+        cellRenderer: customClientAvatarHTML
+    },
+    {
+        headerName: 'User',
+        field: 'user-name',
+        filter: true,
+        width: 200,
+        cellRenderer: customUserAvatarHTML
+    },
+    {
+        headerName: 'Service Address',
+        field: 'service-address',
+        filter: true,
+        width: 200,
+    },
+    {
+        headerName: 'Time-Slot',
+        field: 'service-timeslot',
+        filter: true,
+        width: 200,
+    },
+    {
+        headerName: 'Amount',
+        field: 'service-amount',
+        filter: true,
+        width: 150
+    },
+    {
+        headerName: 'Payment Status',
+        field: 'payment-status',
+        filter: true,
+        width: 175,
+        cellRenderer: customBadgeHTML,
+        cellStyle: {
+            "text-align": "center"
         }
+    },
+    {
+        headerName: 'Service Status',
+        field: 'service-status',
+        filter: true,
+        width: 175,
+        cellRenderer: customBadgeHTML,
+        cellStyle: {
+            "text-align": "center"
+        }
+    }
     ];
 
     /*** GRID OPTIONS ***/
@@ -127,7 +127,7 @@ $(document).ready(function () {
         function getTableData(data = "all") {
             agGrid
                 .simpleHttpRequest({
-                    url: "/booking-schedule-show/"+data,
+                    url: "/booking-schedule-show/" + data,
                 })
                 .then(function (data) {
                     console.log(data);
@@ -158,19 +158,19 @@ $(document).ready(function () {
         });
 
         /*** EXPORT AS CSV BTN ***/
-        $(".ag-grid-export-btn").on("click", function () {
+        /* $(".ag-grid-export-btn").on("click", function () {
             gridOptions.api.exportDataAsCsv();
-        });
+        }); */
 
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);
     }
 
-    $(document).on('click', "#search_btn", function (){
+    $(document).on('click', "#search_btn", function () {
         var text = $("#search-text").val();
-        if(text !== ""){
+        if (text !== "") {
             $(this).attr('type', 'button');
-            getTableData("search?text="+text);
+            getTableData("search?text=" + text);
         }
     });
 });

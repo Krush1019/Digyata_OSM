@@ -40,9 +40,9 @@
                     </div>
                   </div>
                   <div class="ag-btns d-flex flex-wrap">
-                    <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0"
+                    <input type="text" class="ag-grid-filter form-control mr-1 mb-1 mb-sm-0"
                            id="filter-text-box" placeholder="Search...."/>
-                    <div class="action-btns">
+                    {{-- <div class="action-btns">
                       <div class="btn-dropdown ">
                         <div class="btn-group dropdown actions-dropodown">
                           <button type="button"
@@ -63,7 +63,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> --}}
                   </div>
                 </div>
               </div>

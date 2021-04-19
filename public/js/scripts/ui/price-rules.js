@@ -108,7 +108,7 @@ $(document).ready(function () {
   var columnDefs = [{
     headerName: '#',
     field: '#',
-    width: 125,
+    width: 150,
     filter: true,
     checkboxSelection: true,
     headerCheckboxSelectionFilteredOnly: true,
@@ -121,16 +121,7 @@ $(document).ready(function () {
       headerName: 'Service Name',
       field: 'service-name',
       filter: true,
-      width: 175,
-      cellStyle: {
-        "text-align": "center"
-      }
-    },
-    {
-      headerName: 'Price Range',
-      field: 'price-range',
-      filter: true,
-      width: 165,
+      width: 200,
       cellStyle: {
         "text-align": "center"
       }
@@ -139,7 +130,7 @@ $(document).ready(function () {
       headerName: 'Visit (%)',
       field: 'visit-charge-brokrage',
       filter: true,
-      width: 130,
+      width: 150,
       cellStyle: {
         "text-align": "center"
       }
@@ -157,7 +148,7 @@ $(document).ready(function () {
       headerName: 'Status',
       field: 'status',
       filter: true,
-      width: 125,
+      width: 150,
       cellRenderer: customBadgeHTML,
       cellStyle: {
         "text-align": "center"
@@ -166,7 +157,7 @@ $(document).ready(function () {
     {
       headerName: 'Actions',
       field: 'transactions',
-      width: 125,
+      width: 150,
       cellRenderer: customIconsHTML,
     }
   ];
@@ -229,9 +220,9 @@ $(document).ready(function () {
     });
 
     /*** EXPORT AS CSV BTN ***/
-    $(".ag-grid-export-btn").on("click", function (params) {
+    /* $(".ag-grid-export-btn").on("click", function (params) {
       gridOptions.api.exportDataAsCsv();
-    });
+    }); */
 
     /*** INIT TABLE ***/
     new agGrid.Grid(gridTable, gridOptions);
@@ -278,8 +269,6 @@ $(document).ready(function () {
       success: function (result) {
         result = JSON.parse(result);
         $('#pr_sername').val(result['service_name']);
-        $('#pr_maxprice').val(result['max_price']);
-        $('#pr_minprice').val(result['min_price']);
         $('#pr_visitbrokrage').val(result['visit_charge']);
         $('#pr_servicebrokrage').val(result['service_charge']);
         $('#sbt_btn').attr('data-id', result['main_id']);

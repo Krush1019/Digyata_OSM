@@ -66,7 +66,7 @@ class ClientManageController extends Controller
                 $id = encrypt($row->id);
                 $tempArr = array(
                     "#" => $i + 1,
-                    "client-id" => $row->sClientID,
+                    "client-id" => '#'.$row->sClientID,
                     "client-name" => $row->sClName,
                     "avatar" => $row->sClPhotoURL,
                     "mobileNo" => $row->sClMobile,

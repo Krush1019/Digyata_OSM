@@ -67,7 +67,7 @@ class ServiceManageController extends Controller {
         foreach ($data as $value) {
             $id = encrypt($value['ser_id']);
             array_push($newArr, array(
-                "#" => $i,
+                "#" => $i++,
                 "main_id" => $id, 
                 "shop-name" => array( "name" => $value['ser_pro_name'], "img" => $value['ser_photo'] ),
                 "service-name" => $value['serviceName'],

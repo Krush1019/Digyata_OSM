@@ -181,14 +181,9 @@ $(document).ready(function () {
     });
 
     /*** Dropdown btn-Download CSV BTN ***/
-    $("#Aggrid-export-btn").on("click", function (params) {
+    /* $("#Aggrid-export-btn").on("click", function (params) {
       gridOptions.api.exportDataAsCsv();
-    });
-
-    $('#Aggrid-print-btn').on('click', function () {
-      gridOptions.api.setDomLayout('print');
-      print();
-    } )
+    }); */
 
     /*** INIT TABLE ***/
     new agGrid.Grid(gridTable, gridOptions);
@@ -202,22 +197,6 @@ $(document).ready(function () {
       $(this).attr('type', 'button');
       getTableData("search?text="+text);
     }
-    // $.ajax({
-    //   url : '/review-order-search',
-    //   type : 'GET',
-    //   data : {
-    //     "action": colval,
-    //     "text": txt
-    //   },
-    //   success : function (result) {
-    //     console.log(result);
-    //     gridOptions.api.setRowData(result);
-    //   },
-    //   error : function (error) {
-    //     console.log(result);
-    //     gridOptions.api.setRowData([]);
-    //   }
-    // })
   })
   //end: Search Data
 

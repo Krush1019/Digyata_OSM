@@ -55,11 +55,9 @@ class PriceRuleController extends Controller {
         $newData = []; $i = 0;
         foreach ($data as $user) {
             $id = encrypt($user->pr_id);
-            $price_range = $user->serviceMinPrice . " - " . $user->serviceMaxPrice;
             $arr = array(
                 '#' => $i + 1,
                 'main_id' => $id,
-                'price-range'=> $price_range,
                 'service-name'=> $user->serviceName,
                 'visit-charge-brokrage' => $user->iVisit,
                 'service-charge-brokrage' => $user->iService,
@@ -85,8 +83,6 @@ class PriceRuleController extends Controller {
         $newData = array(
             'main_id' => encrypt($data[0]['pr_id']),
             'service_name' => $data[0]['serviceName'],
-            'max_price' => $data[0]['serviceMinPrice'],
-            'min_price' => $data[0]['serviceMaxPrice'],
             'visit_charge' => $data[0]['iVisit'],
             'service_charge' => $data[0]['iService'],
         );

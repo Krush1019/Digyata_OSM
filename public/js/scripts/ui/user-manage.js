@@ -36,6 +36,13 @@ $(document).ready(function () {
             "text-align": "center"
         }
     },
+    
+    {
+        headerName: 'User Id',
+        field: 'user-id',
+        filter: true,
+        width: 150,
+    },
         {
             headerName: 'User Name',
             field: 'user-name',
@@ -71,15 +78,6 @@ $(document).ready(function () {
             cellRenderer: customBadgeHTML,
             cellStyle: {
                 "text-align": "center"
-            }
-        },
-        {
-            headerName: 'Location',
-            field: 'user-location',
-            filter: true,
-            width: 140,
-            cellStyle: {
-                "text-align": "left"
             }
         },
       {
@@ -151,9 +149,9 @@ $(document).ready(function () {
         });
 
         /*** EXPORT AS CSV BTN ***/
-        $(".ag-grid-export-btn").on("click", function (params) {
+        /* $(".ag-grid-export-btn").on("click", function (params) {
             gridOptions.api.exportDataAsCsv();
-        });
+        }); */
 
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);

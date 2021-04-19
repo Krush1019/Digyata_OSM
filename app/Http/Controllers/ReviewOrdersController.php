@@ -57,11 +57,11 @@ class ReviewOrdersController extends Controller {
 
       $searchdata = ReviewOrders::join('tbl_service_catalogs', 'tbl_review_orders.ser_id', '=', 'tbl_service_catalogs.id')
       ->join('tbl_user_manage', 'tbl_review_orders.uID', '=', 'tbl_user_manage.id')
-      ->join('tbl_client_manage', 'tbl_review_orders.cl_ID', '=', 'tbl_client_manage.id')
-      ->join('tbl_order_manages', 'tbl_review_orders.order_id', '=', 'tbl_order_manages.order_id')
-      ->where('tbl_order_manages.order_id', 'like','%'.$request->text.'%')
+      // ->join('tbl_client_manage', 'tbl_review_orders.cl_ID', '=', 'tbl_client_manage.id')
+      // ->join('tbl_order_manages', 'tbl_review_orders.order_id', '=', 'tbl_order_manages.order_id')
+      // ->where('tbl_order_manages.order_id', 'like','%'.$request->text.'%')
       ->orWhere('tbl_user_manage.id', 'like','%'.$request->text.'%')
-      ->orWhere('tbl_client_manage.id', 'like','%'.$request->text.'%')
+      // ->orWhere('tbl_client_manage.id', 'like','%'.$request->text.'%')
       ->orderBy('RoID', 'desc')
       ->take(200)
       ->get();
@@ -73,8 +73,8 @@ class ReviewOrdersController extends Controller {
           'service-name' => $user->serviceName,
           "service-provider" => array('clientName'=>$user->sClName, "clientImg"=>$user->sClPhotoURL),
           "user-name" => array('userName'=>$user->sUserName, "userImg"=>$user->sUserImgURL),
-          'rating' => $user->iReview_Rating,
-          'feedback' => $user->ltFeedback,
+          'rating' => $user->Review_Rating,
+          'feedback' => $user->Feedback,
           'avarage-rating' => $user->iReview_Avg_Rating,
           'review-status' => ($user->bReview_Status == 1)? "Good" : "Bad"
         );
