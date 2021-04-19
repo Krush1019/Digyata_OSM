@@ -13,7 +13,7 @@
       <li>
         <div class="dropdown user clearfix min-width-100px">
           <a href="#" data-toggle="dropdown">
-            <figure><img src="{{Auth::guard('customer')->user()->sUserImgURL}}" alt=""></figure>{{Auth::guard('customer')->user()->sUserName}}
+            <figure><img src="{{Auth::guard('customer')->user()->sUserImgURL}}" alt=""></figure>{{Auth::guard('customer')->user()->sUserID}}
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-max-content">
             <div class="dropdown-menu-content">

@@ -41,25 +41,95 @@
       @else
       @foreach ($reviews as $review)
       <li>
-        <div class="d-block">
-          <div class="d-block d-sm-inline-block font-large-20"><small>by</small> {{$review->sUserName}}</div>
-          <div class="d-block d-sm-inline-block float-left float-sm-right">
-            <span class="float-right">{{date_format(date_create($review->created_at),"M d Y")}}</span>
-            <span class="rating mr-8" data-value="{{round((round($review->Res_R1,1)+round($review->Ser_R2,1)+round($review->Com_R3,1)+round($review->Price_R4,1))/4,1)}}"></span>
+        <div class="row">
+          <div class="col-sm-9">
+            <div class="font-weight-bold font-large-20">RM Cleaners</div><label class="mb-0"><small>Cleaning</small></label>
+            
+          </div>
+          <div class="col-sm-3">
+            <span class="mt-1 mt-sm-0 float-sm-right">on {{date_format(date_create($review->created_at),"M d Y")}}</span>
           </div>
         </div>
-        <div class="d-inline-block">
-        <p class="font-weight-bold font-large-15 mb-0 mt-2 ">{{$review->Title}}</p>
-        <p class="mt-0">{{$review->Feedback}}</p>
-        @if($review->Image)
-        <figure id="revwfig-img"><img src="{{ asset('storage/'.$review->Image) }}" alt=""></figure>
-        @endif
-        <ul id="revw-Ul" class="list-unstyled w-75 w-sm-100">
-          <li class="list-inline-item"><label class="mr-0 mr-sm-2">Respnse Time: </label><span class="rating" data-value="{{$review->Res_R1}}"></span></li>
-          <li class="list-inline-item"><label class="mr-0 mr-sm-2">Service: </label><span class="rating" data-value="{{$review->Ser_R2}}"></span></li>
-          <li class="list-inline-item"><label class="mr-0 mr-sm-2">Comunication: </label><span class="rating" data-value="{{$review->Com_R3}}"></span></li>
-          <li class="list-inline-item"><label class="mr-0 mr-sm-2">Price: </label><span class="rating" data-value="{{$review->Price_R4}}"></span></li>
-        </ul>
+        <div class="row mb-4 mb-md-3">
+          <div class="col-md-5">
+            <div class="font-weight-bold font-large-17 mt-2 mb-10"><small>by</small> {{$review->sUserName}}</div>
+          </div>
+          <div class="col-md-7">
+            <div class="row d-flex align-items-center">
+              <div class="col-sm-9 reviews_sum_details">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Response time</label>
+                    <div class="row">
+                      <div class="col-xl-10 col-lg-9 col-9">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-lg-3 col-3"><strong>9.0</strong></div>
+                    </div>
+                    <!-- /row -->
+                    <label>Service</label>
+                    <div class="row">
+                      <div class="col-xl-10 col-lg-9 col-9">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-lg-3 col-3"><strong>9.5</strong></div>
+                    </div>
+                    <!-- /row -->
+                  </div>
+                  <div class="col-md-6">
+                    <label>Communication</label>
+                    <div class="row">
+                      <div class="col-xl-10 col-lg-9 col-9">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-lg-3 col-3"><strong>6.0</strong></div>
+                    </div>
+                    <!-- /row -->
+                    <label>Price</label>
+                    <div class="row">
+                      <div class="col-xl-10 col-lg-9 col-9">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-lg-3 col-3"><strong>6.0</strong></div>
+                    </div>
+                    <!-- /row -->
+                  </div>
+                </div>
+                <!-- /row -->
+              </div>
+              <div class="col-sm-3 align-self-center">
+                <div id="review_summary">
+                  <strong>8.5</strong>
+                  <em>Superb</em>
+                  <small>Based on 4 reviews</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <p class="font-weight-bold font-large-17 mb-1">{{$review->Title}}</p>
+            <div class="mt-0 text-justify">{{$review->Feedback}}</div>
+          </div>  
+          @if($review->Image)
+          <div class="col-md-3 mt-sm-0 mt-15 text-center">
+            <img class="img-fluid img-thumbnail float-md-right mb-10 w-auto" src="{{asset('storage/'.$review->Image)}}"
+              height="130px">
+          </div>
+          @endif
         </div>
       </li>
       @endforeach
@@ -80,7 +150,7 @@
   </nav> --}}
 <!-- /pagination-->
 <!-- Reply to review popup -->
-<div id="modal-reply" class="white-popup mfp-with-anim mfp-hide">
+{{-- <div id="modal-reply" class="white-popup mfp-with-anim mfp-hide">
   <div class="small-dialog-header">
     <h3>Reply to review</h3>
   </div>
@@ -90,7 +160,7 @@
     </div>
     <button class="btn_1">Reply</button>
   </div>
-</div>
+</div> --}}
 @endsection
 
 @section('page-script')

@@ -15,24 +15,13 @@
       aria-haspopup="true" aria-expanded="false">
       <span class="logo-figure"><img class="logo-img"
           src="{{Auth::guard('client')->user()->sClPhotoURL}}"
-          alt=""></span><span class="d-none d-sm-inline-block">{{Auth::guard('client')->user()->sClName}}</span>
+          alt=""></span><span class="d-none d-sm-inline-block">{{Auth::guard('client')->user()->sClientID}}</span>
     </a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min-auto" aria-labelledby="clientDropdown1">
       <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">
         <i class="fa fa-fw fa-sign-out"></i>Logout</a>
     </div>
   </span>
-
-  {{-- <span class="nav-item dropdown d-lg-none d-md-block">
-    <a class="nav-link dropdown-toggle mr-lg-2 link-color logo-a" id="userDropdown1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span hidden class="logo-figure d-none d-sm-block"><img class="logo-img" src="{{Auth::guard('customer')->user()->sUserImgURL}}"
-  alt=""></span><span>{{Auth::guard('customer')->user()->sUserName}}</span>
-  </a>
-  <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min-auto" aria-labelledby="userDropdown1">
-    <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">
-      <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-  </div>
-  </span> --}}
 
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
@@ -114,7 +103,7 @@
         <a class="nav-link dropdown-toggle mr-lg-2 logo-a" id="clientDropdown" href="#" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <span class="logo-figure"><img class="logo-img" src="{{Auth::guard('client')->user()->sClPhotoURL}}"
-              alt=""></span>{{Auth::guard('client')->user()->sClName}}
+              alt=""></span>{{Auth::guard('client')->user()->sClientID}}
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min" aria-labelledby="clientDropdown">
           <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">
