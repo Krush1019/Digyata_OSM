@@ -30,14 +30,6 @@ $(document).ready(function () {
     $('#location-state').focus();
   });
 
-  $(document).on('click', 'a .users-edit-icon', function () {
-    $('#locationFormModel').text("Update Location Data");
-    $('#location-submit').text("Update Location");
-    $('#location-state').val("Gujarat");
-    $('#location-place').val("Visnagar");
-    $('#location-agentEmail').val("example@gmail.com");
-  });
-
   var isRtl;
   isRtl = $('html').attr('data-textdirection') === 'rtl';
 
@@ -58,49 +50,48 @@ $(document).ready(function () {
       var usersIcons = document.createElement("span");
       var editIconHTML = '<i class="users-edit-icon feather icon-edit-1 mr-50 upd_btn" data-id="' + params.data['location_id'] + '"></i>';
       usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
-    // var deleteIconHTML = document.createElement('i');
-    // var attr = document.createAttribute("class")
-    // attr.value = "users-delete-icon feather icon-trash-2"
-    // deleteIconHTML.setAttributeNode(attr);
-    // var attr2 = document.createAttribute("data-id")
-    // attr2.value = params.data['main_id']
-    // deleteIconHTML.setAttributeNode(attr2);
+    /* var deleteIconHTML = document.createElement('i');
+    var attr = document.createAttribute("class")
+    attr.value = "users-delete-icon feather icon-trash-2"
+    deleteIconHTML.setAttributeNode(attr);
+    var attr2 = document.createAttribute("data-id")
+    attr2.value = params.data['main_id']
+    deleteIconHTML.setAttributeNode(attr2);
 
-    // selected row delete functionality
-    // deleteIconHTML.addEventListener("click", function () {
-    //   var id = $(this).attr('data-id');
-    //   Swal.fire({
-    //     title: 'Are you sure?',
-    //     text: "You won't be able to revert this!",
-    //     icon: 'warning',
-    //     showCancelButton: true,
-    //     confirmButtonColor: '#3085d6',
-    //     cancelButtonColor: '#d33',
-    //     showLoaderOnConfirm: true,
-    //     preConfirm: () => {
-    //       $.ajax({
-    //         url: '/localization-update/' + id,
-    //         type: 'GET',
-    //         data: {'action': 'delete'},
-    //         success: function (result) {
-    //           deleteArr = [
-    //             params.data
-    //           ];
-    //           // var selectedData = gridOptions.api.getSelectedRows();
-    //           gridOptions.api.updateRowData({
-    //             remove: deleteArr
-    //           });
-    //           toastFire('Data Deleted Successfully.');
-    //         },
-    //         error: function (error) {
-    //           swalError();
-    //         }
-    //       });
-    //     }
-    //   });
-    // });
-
-    // usersIcons.appendChild(deleteIconHTML);
+    selected row delete functionality
+    deleteIconHTML.addEventListener("click", function () {
+      var id = $(this).attr('data-id');
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+          $.ajax({
+            url: '/localization-update/' + id,
+            type: 'GET',
+            data: {'action': 'delete'},
+            success: function (result) {
+              deleteArr = [
+                params.data
+              ];
+              // var selectedData = gridOptions.api.getSelectedRows();
+              gridOptions.api.updateRowData({
+                remove: deleteArr
+              });
+              toastFire('Data Deleted Successfully.');
+            },
+            error: function (error) {
+              swalError();
+            }
+          });
+        }
+      });
+    });
+    usersIcons.appendChild(deleteIconHTML);*/
       return usersIcons
   }
 
@@ -161,6 +152,9 @@ $(document).ready(function () {
       field: 'transactions',
       width: 125,
       cellRenderer: customIconsHTML,
+      cellStyle: {
+        "text-align": "center"
+      }
     }
   ];
 
@@ -223,12 +217,12 @@ $(document).ready(function () {
       $(".filter-btn").text("1 - " + $this.text() + " of 50");
     });
 
-    /*** EXPORT AS CSV BTN ***/
-    $(".ag-grid-export-btn").on("click", function (params) {
+     /*** EXPORT AS CSV BTN ***/
+    /* $(".ag-grid-export-btn").on("click", function (params) {
       gridOptions.api.exportDataAsCsv();
-    });
+    });  */
 
-    //  filter data function
+    /* //  filter data function
     var filterData = function agSetColumnFilter(column, val) {
       var filter = gridOptions.api.getFilterInstance(column)
       var modelObj = null
@@ -267,7 +261,7 @@ $(document).ready(function () {
       $('#filter-state').prop('selectedIndex', 0).change();
       $('#filter-services').prop('selectedIndex', 0).change();
       $('#filter-status').prop('selectedIndex', 0).change();
-    });
+    }); */
 
     /*** INIT TABLE ***/
     new agGrid.Grid(gridTable, gridOptions);
@@ -380,7 +374,6 @@ $(document).ready(function () {
     });
 
   });
-
   // END: Change Status
 
   function getFormValue(form_id) {

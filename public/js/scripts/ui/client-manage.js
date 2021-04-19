@@ -28,54 +28,6 @@ $(document).ready(function () {
         return usersIcons
     }
 
-    // Renering Approval Icons in Actions column
-    var customApproveIconsHTML = function (params) {
-        var id = document.createAttribute("data-id");
-        id.value = params.value['id'];
-
-        var usersIcons = document.createElement("span");
-        var acceptIconHTML = '<i class="users-accept-icon feather icon-user-check status_btn" data-action="Approve" data-id="'+id.value+'"></i>';
-        var rejectIconHTML = document.createElement('i');
-
-        var attr = document.createAttribute("class");
-        attr.value = " ml-2 users-delete-icon feather icon-user-x status_btn";
-        rejectIconHTML.setAttributeNode(attr);
-        rejectIconHTML.setAttributeNode(id);
-        var attr2 = document.createAttribute("data-action");
-        attr2.value = "Rejected";
-        rejectIconHTML.setAttributeNode(attr2);
-
-        var passIconHTML = document.createElement('i');
-        attr = document.createAttribute("class");
-        attr.value = "users-accept-icon feather icon-check"
-        passIconHTML.setAttributeNode(attr);
-
-        var failIconHTML = document.createElement('i');
-        attr = document.createAttribute("class");
-        attr.value = "users-delete-icon feather icon-slash"
-        failIconHTML.setAttributeNode(attr);
-
-        switch (params.value['val']) {
-            case 'Pending':
-                usersIcons.appendChild($.parseHTML(acceptIconHTML)[0]);
-                usersIcons.appendChild(rejectIconHTML);
-                break;
-
-            case 'Rejected':
-                usersIcons.appendChild($.parseHTML(acceptIconHTML)[0]);
-                break;
-
-            case 'Active':
-                usersIcons.appendChild(passIconHTML);
-                break;
-
-            case 'Blocked':
-                usersIcons.appendChild(failIconHTML);
-                break;
-        }
-        return usersIcons
-    }
-
     //  Rendering avatar in username column
     var customAvatarHTML = function (params) {
         return "<span class='avatar'><img src='" + params.data.avatar + "' height='32' width='32'></span>" + params.value
@@ -142,15 +94,6 @@ $(document).ready(function () {
             filter: true,
             width: 125,
             cellRenderer: customBadgeHTML,
-            cellStyle: {
-                "text-align": "center"
-            }
-        },
-        {
-            headerName: 'Approval',
-            field: 'approval',
-            width: 125,
-            cellRenderer: customApproveIconsHTML,
             cellStyle: {
                 "text-align": "center"
             }
@@ -224,9 +167,9 @@ $(document).ready(function () {
         });
 
         /*** EXPORT AS CSV BTN ***/
-        $(".ag-grid-export-btn").on("click", function (params) {
+        /* $(".ag-grid-export-btn").on("click", function (params) {
             gridOptions.api.exportDataAsCsv();
-        });
+        }); */
 
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);
