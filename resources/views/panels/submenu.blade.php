@@ -2,13 +2,13 @@
 <ul class="menu-content">
     @foreach($menu as $submenu)
         <?php
-                $submenuTranslation = "";
-                if(isset($menu->i18n)){
-                    $submenuTranslation = $menu->i18n;
-                }
-                if (isset($submenu->badge)){
-                    $badgeClasses = "badge badge-pill badge-primary float-right";
-                }
+            $submenuTranslation = "";
+            if(isset($menu->i18n)){
+                $submenuTranslation = $menu->i18n;
+            }
+            if (isset($submenu->badge)){
+                $badgeClasses = "badge badge-pill badge-primary float-right";
+            }
         ?>
         <li class="{{ (request()->is($submenu->url)) ? 'active' : '' }}">
             <a href="{{ $submenu->url[0] }}">

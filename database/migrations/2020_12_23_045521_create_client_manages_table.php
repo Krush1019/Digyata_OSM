@@ -23,7 +23,7 @@ class CreateClientManagesTable extends Migration {
             $table->string('password');
             $table->string('sClGender');
             $table->string('sClPhotoURL')->default("images/default-img/user.png");
-            $table->string('sClientStatus')->default('Pending');
+            $table->string('sClientStatus')->default('Active');
             $table->rememberToken();
             $table->timestamps();
         });

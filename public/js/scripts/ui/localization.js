@@ -1,8 +1,8 @@
-/*=========================================================================================
-    File Name: localization.js
-    Author: Digyata
-==========================================================================================*/
-
+/*
+  * File Name: localization.js
+  * Author: Digyata
+  */
+ 
 $(document).ready(function () {
 
   $('#location-state').append('<option value="" selected>select</option>');
@@ -282,6 +282,7 @@ $(document).ready(function () {
   // START: Insert or Update Data
   $(document).on('submit', '#addLocationForm', function (e) {
     e.preventDefault();
+    HoldOn.open(options);
     var url = "", msg = "", data = "", action = "";
     data = getFormValue('#addLocationForm');
     action = $('#addLocBtn').attr('data-action');
@@ -302,8 +303,10 @@ $(document).ready(function () {
         toastFire(Swal, msg);
         $('#locationFormDiv').modal('toggle');
         getTableData();
+        HoldOn.close();
       },
       error: function (error) {
+        HoldOn.close();
         swalFire(Swal, "Something went wrong!", "Oops...", "error");
       }
     })
@@ -312,21 +315,23 @@ $(document).ready(function () {
 
   // START: Fetch Data for model
   $(document).on('click', '.upd_btn', function () {
+    HoldOn.open(options);
     var id = $(this).attr('data-id');
     $.ajax({
       url: '/localization-edit/' + id,
       type: 'GET',
       success: function (result) {
         result = JSON.parse(result);
-        console.log(result);
         $('#location-state').val(result[0]['loc_state']);
         $('#location-place').val(result[0]['loc_location']);
         $('#location-agentEmail').val(result[0]['loc_agent_email']);
         $('#addLocBtn').attr('data-action', 'update').attr('data-id', id).removeClass('btn-outline-primary').addClass('btn-outline-success').text('Update');
+        HoldOn.close();
         $('#locationFormDiv').modal('show');
 
       },
       error: function (error) {
+        HoldOn.close();
         swalFire(Swal, "Something went wrong!", "Oops...", "error");
       }
 
@@ -354,6 +359,7 @@ $(document).ready(function () {
       cancelButtonColor: '#d33',
       showLoaderOnConfirm: true,
       preConfirm: () => {
+        HoldOn.open(options);
         $.ajax({
           url: '/localization-update/' + id,
           type: 'GET',
@@ -362,6 +368,7 @@ $(document).ready(function () {
             "hasClass": hasClass
           },
           success: function (result) {
+            HoldOn.close();
             if (hasClass) {
               btn.removeClass("bg-rgba-success").addClass("bg-rgba-danger");
               btn.find('span').removeClass('text-success').addClass("text-danger").text("Disable");
@@ -373,6 +380,7 @@ $(document).ready(function () {
             toastFire(Swal, "Changed Status.");
           },
           error: function (error) {
+            HoldOn.close();
             swalFire(Swal, "Something went wrong!", "Oops...", "error");
           }
         })

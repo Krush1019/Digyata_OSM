@@ -174,7 +174,6 @@ class ClientProfileController extends Controller {
             "client_email" => $clientData["sClEmail"],
             "client_gender" => $clientData["sClGender"],
             "client_phone" => $clientData["sClMobile"],
-            "client_address" => $clientData["sClAddress"],
             "client_img" => $clientData["sClPhotoURL"],
             "status" => $clientData["sClientStatus"],
             "services" => $services

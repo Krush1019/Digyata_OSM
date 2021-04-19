@@ -103,7 +103,7 @@
         <a class="nav-link dropdown-toggle mr-lg-2 logo-a" id="clientDropdown" href="#" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <span class="logo-figure"><img class="logo-img" src="{{Auth::guard('client')->user()->sClPhotoURL}}"
-              alt=""></span>{{Auth::guard('client')->user()->sClientID}}
+              alt=""></span><span class="font-large-17 font-weight-bold"># {{Auth::guard('client')->user()->sClientID}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min" aria-labelledby="clientDropdown">
           <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">

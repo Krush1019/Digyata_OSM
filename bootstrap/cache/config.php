@@ -197,7 +197,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'E:\\GitHub Project\\Digyata\\storage\\framework/cache/data',
+        'path' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -375,7 +375,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'digyata',
+        'database' => 'db_digyata',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -385,7 +385,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'digyata',
+        'database' => 'db_digyata',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -405,7 +405,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'digyata',
+        'database' => 'db_digyata',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -420,7 +420,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'digyata',
+        'database' => 'db_digyata',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -464,19 +464,19 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\GitHub Project\\Digyata\\storage\\app/public',
+        'root' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\app/public',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\GitHub Project\\Digyata\\storage\\app/public',
+        'root' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       'links' => 
       array (
-        'E:\\GitHub Project\\Digyata\\public\\storage' => 'E:\\GitHub Project\\Digyata\\storage\\app/public',
-        'E:\\GitHub Project\\Digyata\\public\\images' => 'E:\\GitHub Project\\Digyata\\storage\\app/images',
+        'B:\\Documents\\WebProjects\\Git\\Digyata\\public\\storage' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\app/public',
+        'B:\\Documents\\WebProjects\\Git\\Digyata\\public\\images' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\app/images',
       ),
       's3' => 
       array (
@@ -520,13 +520,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'E:\\GitHub Project\\Digyata\\storage\\logs/laravel.log',
+        'path' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'E:\\GitHub Project\\Digyata\\storage\\logs/laravel.log',
+        'path' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -590,7 +590,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'E:\\GitHub Project\\Digyata\\resources\\views/vendor/mail',
+        0 => 'B:\\Documents\\WebProjects\\Git\\Digyata\\resources\\views/vendor/mail',
       ),
     ),
     'log_channel' => NULL,
@@ -731,7 +731,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'E:\\GitHub Project\\Digyata\\storage\\framework/sessions',
+    'files' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -751,9 +751,9 @@
   array (
     'paths' => 
     array (
-      0 => 'E:\\GitHub Project\\Digyata\\resources\\views',
+      0 => 'B:\\Documents\\WebProjects\\Git\\Digyata\\resources\\views',
     ),
-    'compiled' => 'E:\\GitHub Project\\Digyata\\storage\\framework\\views',
+    'compiled' => 'B:\\Documents\\WebProjects\\Git\\Digyata\\storage\\framework\\views',
   ),
   'debug-server' => 
   array (

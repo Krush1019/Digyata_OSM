@@ -5,12 +5,7 @@ $(document).ready(function () {
     //  Rendering badge in status column
     var customBadgeHTML = function (params) {
         switch (params.value['val']) {
-            case 'Pending':
-                return '<div class="badge-pill bg-rgba-warning status-set-text" data-id="' + params.value['id'] + '" ><span class="text-warning font-weight-bold" >Pending</span></div>'
-
-            case 'Rejected':
-                return '<div class="badge-pill bg-rgba-secondary status-set-text" data-id="' + params.value['id'] + '" ><span class="text-secondary font-weight-bold" >Rejected</span></div>'
-
+            
             case 'Active':
                 return '<div class="badge-pill bg-rgba-success status-set-text status_btn" data-id="' + params.value['id'] + '" data-action="Active" ><span class="text-success font-weight-bold" >Active</span></div>'
 
@@ -28,54 +23,6 @@ $(document).ready(function () {
         return usersIcons
     }
 
-    // Renering Approval Icons in Actions column
-    var customApproveIconsHTML = function (params) {
-        var id = document.createAttribute("data-id");
-        id.value = params.value['id'];
-
-        var usersIcons = document.createElement("span");
-        var acceptIconHTML = '<i class="users-accept-icon feather icon-user-check status_btn" data-action="Approve" data-id="'+id.value+'"></i>';
-        var rejectIconHTML = document.createElement('i');
-
-        var attr = document.createAttribute("class");
-        attr.value = " ml-2 users-delete-icon feather icon-user-x status_btn";
-        rejectIconHTML.setAttributeNode(attr);
-        rejectIconHTML.setAttributeNode(id);
-        var attr2 = document.createAttribute("data-action");
-        attr2.value = "Rejected";
-        rejectIconHTML.setAttributeNode(attr2);
-
-        var passIconHTML = document.createElement('i');
-        attr = document.createAttribute("class");
-        attr.value = "users-accept-icon feather icon-check"
-        passIconHTML.setAttributeNode(attr);
-
-        var failIconHTML = document.createElement('i');
-        attr = document.createAttribute("class");
-        attr.value = "users-delete-icon feather icon-slash"
-        failIconHTML.setAttributeNode(attr);
-
-        switch (params.value['val']) {
-            case 'Pending':
-                usersIcons.appendChild($.parseHTML(acceptIconHTML)[0]);
-                usersIcons.appendChild(rejectIconHTML);
-                break;
-
-            case 'Rejected':
-                usersIcons.appendChild($.parseHTML(acceptIconHTML)[0]);
-                break;
-
-            case 'Active':
-                usersIcons.appendChild(passIconHTML);
-                break;
-
-            case 'Blocked':
-                usersIcons.appendChild(failIconHTML);
-                break;
-        }
-        return usersIcons
-    }
-
     //  Rendering avatar in username column
     var customAvatarHTML = function (params) {
         return "<span class='avatar'><img src='" + params.data.avatar + "' height='32' width='32'></span>" + params.value
@@ -89,13 +36,13 @@ $(document).ready(function () {
         return "<a href='tel:"+params.value+"'>"+params.value+"</a>"
     }
 
-    // Renering Links in Government Id Column
-    var customLinkHTML = function (params) {
-        var usersIcons = document.createElement("span");
-        var linkHTML = '<a href="' + params.value['url'] + '" target="_blank" title="' + params.value['name'] + '">' + params.value['name'] + '</a>';
-        usersIcons.appendChild($.parseHTML(linkHTML)[0]);
-        return usersIcons
-    }
+    // // Renering Links in Government Id Column
+    // var customLinkHTML = function (params) {
+    //     var usersIcons = document.createElement("span");
+    //     var linkHTML = '<a href="' + params.value['url'] + '" target="_blank" title="' + params.value['name'] + '">' + params.value['name'] + '</a>';
+    //     usersIcons.appendChild($.parseHTML(linkHTML)[0]);
+    //     return usersIcons
+    // }
 // ag-grid
     /*** COLUMN DEFINE ***/
 
@@ -142,15 +89,6 @@ $(document).ready(function () {
             filter: true,
             width: 125,
             cellRenderer: customBadgeHTML,
-            cellStyle: {
-                "text-align": "center"
-            }
-        },
-        {
-            headerName: 'Approval',
-            field: 'approval',
-            width: 125,
-            cellRenderer: customApproveIconsHTML,
             cellStyle: {
                 "text-align": "center"
             }
