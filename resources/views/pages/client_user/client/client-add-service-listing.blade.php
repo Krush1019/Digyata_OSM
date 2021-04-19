@@ -122,7 +122,7 @@
 
 				<div class="col-md-4">
 					<div class="form-group">
-						<label><i class="fa fa-fw fa-linkedin"></i> Linkedin + (Optional)</label>
+						<label><i class="fa fa-fw fa-instagram"></i> Instagram link (Optional)</label>
 						<input type="text" class="form-control" name="ser_ldlink" value="@isset($serviceData){{$serviceData['linkedin']}}@endisset">
 					</div>
 				</div>
@@ -150,7 +150,7 @@
 		<!-- /box_general-->
 		<div class="box_general padding_bottom">
 			<div class="header_box version_2">
-				<h2><i class="fa fa-map-marker"></i>Document</h2>
+				<h2><i class="fa fa-id-card"></i>Document</h2>
 			</div>
 
 			<div class="row">
