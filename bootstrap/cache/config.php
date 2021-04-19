@@ -197,7 +197,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'E:\\GitHub Project\\Digyata\\storage\\framework/cache/data',
+        'path' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -464,19 +464,19 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\GitHub Project\\Digyata\\storage\\app/public',
+        'root' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\app/public',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\GitHub Project\\Digyata\\storage\\app/public',
+        'root' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       'links' => 
       array (
-        'E:\\GitHub Project\\Digyata\\public\\storage' => 'E:\\GitHub Project\\Digyata\\storage\\app/public',
-        'E:\\GitHub Project\\Digyata\\public\\images' => 'E:\\GitHub Project\\Digyata\\storage\\app/images',
+        'E:\\Xampp\\htdocs\\github\\Digyata\\public\\storage' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\app/public',
+        'E:\\Xampp\\htdocs\\github\\Digyata\\public\\images' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\app/images',
       ),
       's3' => 
       array (
@@ -520,13 +520,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'E:\\GitHub Project\\Digyata\\storage\\logs/laravel.log',
+        'path' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'E:\\GitHub Project\\Digyata\\storage\\logs/laravel.log',
+        'path' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -590,7 +590,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'E:\\GitHub Project\\Digyata\\resources\\views/vendor/mail',
+        0 => 'E:\\Xampp\\htdocs\\github\\Digyata\\resources\\views/vendor/mail',
       ),
     ),
     'log_channel' => NULL,
@@ -731,7 +731,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'E:\\GitHub Project\\Digyata\\storage\\framework/sessions',
+    'files' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -751,9 +751,9 @@
   array (
     'paths' => 
     array (
-      0 => 'E:\\GitHub Project\\Digyata\\resources\\views',
+      0 => 'E:\\Xampp\\htdocs\\github\\Digyata\\resources\\views',
     ),
-    'compiled' => 'E:\\GitHub Project\\Digyata\\storage\\framework\\views',
+    'compiled' => 'E:\\Xampp\\htdocs\\github\\Digyata\\storage\\framework\\views',
   ),
   'debug-server' => 
   array (
