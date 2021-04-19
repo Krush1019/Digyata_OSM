@@ -8,9 +8,9 @@
 @endsection
 
 @section('content')
-  <div class="box_general bg-light">
+  <div class="box_general">
     <div class="header_box">
-      <h2 class="d-inline-block font-weight-bold">My Orders</h2>
+      <h2 class="d-inline-block">My Orders</h2>
       <!-- <div class="filter">
         <select name="orderby" class="selectbox">
           <option value="Any status">Any status</option>

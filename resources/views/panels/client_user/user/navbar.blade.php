@@ -10,8 +10,8 @@
 
       <span class="nav-item dropdown d-lg-none d-md-block">
         <a class="nav-link dropdown-toggle mr-lg-2 link-color logo-a" id="userDropdown1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="logo-figure"><img class="logo-img" src="{{Auth::guard('customer')->user()->sUserImgURL}}" alt=""></span>
-          <span class="d-none d-sm-inline-block-">{{Auth::guard('customer')->user()->sUserName}}</span>
+          <span class="logo-figure"><img class="logo-img" src="{{ asset('images/default-img/user.png') }}" alt=""></span>
+          <span class="d-none d-sm-inline-block-">{{Auth::guard('customer')->user()->sUserID}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min-auto" aria-labelledby="userDropdown1">
           <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">
@@ -82,18 +82,13 @@
 
           <li class="nav-item dropdown d-lg-block d-none">
             <a class="nav-link dropdown-toggle mr-lg-2 logo-a" id="userDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="logo-figure"><img class="logo-img" src="{{Auth::guard('customer')->user()->sUserImgURL}}" alt=""></span>{{Auth::guard('customer')->user()->sUserName}}
+              <span class="logo-figure"><img class="logo-img" src="{{ asset('images/default-img/user.png') }}" alt=""></span>{{Auth::guard('customer')->user()->sUserID}}
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min" aria-labelledby="userDropdown">
               <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">
                 <i class="fa fa-fw fa-sign-out"></i>Logout</a>
             </div>
-          </li>
-
-          <li class="nav-item d-lg-none d-md-block">
-            <a class="nav-link" href="#exampleModal" data-toggle="modal">
-              <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-          </li>
+          </li> 
         </ul>
       </div>
     </nav>
