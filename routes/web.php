@@ -135,6 +135,9 @@ use App\Http\Controllers\LanguageController;
       return view('pages\client_user\user\confirm-msg',['orderId'=>decrypt($id)]);
     })->name('confirm.msg');
 
+    /** Order -- Invoice */
+    Route::view('/order/invoice', '/pages/client_user/user/invoice');
+
     /** user -- review */
 
     Route::get('/user-review/{id}', 'client_user\user\UserReviewController@index')->name('user-review');
