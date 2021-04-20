@@ -42,7 +42,7 @@
                         <div class="main_info clearfix">
                             <div class="user_thumb">
                                 <figure><img src="{{asset($service->sClPhotoURL)}}" alt=""></figure>
-                                <em class="online"><span></span>Available</em>
+                                <em class="{{$service->ser_status == "Active"?"online":"offline"}}"><span></span>{{$service->ser_status == "Active"?"Available":"Not Available"}}</em>
                             </div>
                             <div class="user_desc">
                                 <h3>{{$service->ser_pro_name}}</h3>

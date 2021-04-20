@@ -140,7 +140,7 @@
             <span>@if ($catalog->serCount>100)
               100+
             @else{{$catalog->serCount}}@endif</span>
-            {{-- <img src="{{asset('storage/'.$service->serviceImage)}}" data-src="{{asset('storage/'.$service->serviceImage)}}" alt="" class="owl-lazy"> --}}
+            <img src="{{asset('storage/'.$catalog->serviceImage)}}" data-src="{{asset('storage/'.$catalog->serviceImage)}}" alt="" class="owl-lazy">
             <div class="info">
               <h3>{{$catalog->serviceName}}</h3>
             </div>
