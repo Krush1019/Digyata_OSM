@@ -96,7 +96,7 @@
             </figure>
             <ul>
               <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->user_ser_exp}} experiance"><i class="icon_datareport_alt"></i></a></li>
-              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->ser_address}}"><i class="icon_pin"></i></a></li>
+              <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom" title="{{$service->ser_address}}"><i class="text-black-50 font-size-medium">{{$service->ser_city}}</i></a></li>
               <li>
                 @php
                 $avg = round((round($service->Res_R1,1)+round($service->Ser_R2,1)+round($service->Com_R3,1)+round($service->Price_R4,1))/4,1);
