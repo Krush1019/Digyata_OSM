@@ -17,7 +17,9 @@
 
                 @if(isset($submenu->badge))
                     @if ($submenu->url[0] == "client-manage")
-                        <span class="{{ isset($submenu->badgeClass) ? $submenu->badgeClass.' test' : $badgeClasses.' notTest' }} ">{{$countClient}}</span>
+                        @isset($countClient)
+                            <span class="{{ isset($submenu->badgeClass) ? $submenu->badgeClass.' test' : $badgeClasses.' notTest' }} ">{{$countClient}}</span>
+                        @endisset
                     @else
                         <span class="{{ isset($submenu->badgeClass) ? $submenu->badgeClass.' test' : $badgeClasses.' notTest' }} ">{{$submenu->badge}}</span>
                     @endif

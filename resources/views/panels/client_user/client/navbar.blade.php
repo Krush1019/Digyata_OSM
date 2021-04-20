@@ -44,7 +44,7 @@
         <a class="nav-link" href="{{route('service-listing')}}">
           <i class="fa fa-fw fa-list"></i>
           <span class="nav-link-text">Service Listings</span>
-          <span class="badge badge-pill badge-warning text-secondary">6</span>
+          {{-- <span class="badge badge-pill badge-warning text-secondary">6</span> --}}
         </a>
       </li>
 
@@ -52,7 +52,10 @@
         data-original-title="Order Manage">
         <a class="nav-link" href="{{route('order-manage.index')}}">
           <i class="fa fa-fw fa-calendar-check-o"></i>
-          <span class="nav-link-text">Order Manage <span class="badge badge-pill badge-primary">6 New</span></span>
+          <span class="nav-link-text">Order Manage</span>
+          @isset($countOrderManage)
+            <span class="badge badge-pill badge-primary">{{$countOrderManage}}</span>
+            @endisset
         </a>
       </li>
 

@@ -5,12 +5,9 @@ namespace App\Http\Controllers\client_user;
 use App\client_user\OrderManage;
 use App\Http\Controllers\Controller;
 use App\ServiceList;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Cookie;
 use App\client_user\UserManage;
 
@@ -28,24 +25,7 @@ class OrderManageController extends Controller {
      */
     public function index() {
 
-        // $sql = DB::table('tbl_order_manages')
-        //     ->join('tbl_service_catalogs', 'tbl_order_manages.ser_id', '=', 'tbl_service_catalogs.id')
-        //     ->join('tbl_client_manage', 'tbl_order_manages.cl_ID', '=', 'tbl_client_manage.id')
-        //     ->join('tbl_user_manage', 'tbl_order_manages.uID', '=', 'tbl_user_manage.id')
-        //     ->get();
-
-        // $sql2 = DB::table('tbl_order_manages')
-        //     ->join('tbl_user_ser_item_price', 'tbl_order_manages.i_id', '=', 'tbl_user_ser_item_price.ser_id')
-        //     ->get();
-
-        // // $total = DB::table('tbl_user_ser_item_price')->where('ser_id' '=' '{{ $sql2-> }}')->sum('balance');
-
-        // $order = OrderManage::all();
-
         $orderList = $this->getOrderList(Auth::id());
-
-        // echo "<pre>";
-        // print_r($orderList);
 
         $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"], ['name' => "Order Manage"]];
 
@@ -64,64 +44,64 @@ class OrderManageController extends Controller {
     public function create(Request $request) {
 
         $request->validate([
-          'state' => 'required',
-          'city' => 'required',
-          'address1' => 'required',
-          'address2' => 'required',
-          'pincode' => 'required|digits:6|integer'
-      ]);
+			'state' => 'required',
+			'city' => 'required',
+			'address1' => 'required',
+			'address2' => 'required',
+			'pincode' => 'required|digits:6|integer'
+      	]);
         $address = $request->address1 .', '. $request->address2 .', '. $request->city .', '. $request->state .' - '. $request->pincode;
         $date = date_create_from_format('d-m-Y', $request->cookie('date'));
         $selected_time = $request->cookie('selected_time');
         $services = json_decode($request->cookie('services'));
         $itm = "";
         $amount = 0;
-          foreach ($services as $key => $value) {
-            $services[$key] = decrypt($value);
-            if (!$itm) {
-              $itm = decrypt($value);
-            }else {
-              $itm = $itm .", ". decrypt($value);
-            }
-          }
-          $item = DB::table('tbl_ser_item_price')
-                ->whereIn('item_id', $services)
-                ->get();
-                foreach ($item as $raw) {
-                  if (!$amount) {
-                    $amount = (int)$raw->item_price;
-                  }else {
-                    $amount = (int)$amount + (int)$raw->item_price;
-                  }
-                }
-          $cl_id =  DB::table('tbl_ser_list')
-                        ->select('client_id')
-                        ->where('ser_id', '=', decrypt($request->id))
-                        ->first();
-        $data = array(
-          "sOrderId" => $this->getGenerateID('sOrderId'),
-          "client_id" => $cl_id->client_id,
-          "user_id" => Auth::guard('customer')->user()->id,
-          "ser_list_id" => decrypt($request->id),
-          "ser_item_id" => $itm,
-          "sbDate" => $date,
-          "sAddress" => $address,
-          "sTimeSlot" => $selected_time,
-          "sAmount" => $amount
-      );
-      $usr_address = array(
-        'sUserHouseNo' => $request->address1,
-        'sUserArea' => $request->address2,
-        'sUserCity' => $request->city,
-        'sUserState' => $request->state,
-        'sUserPincode' => $request->pincode,
-      );
-      UserManage::where('id', Auth::guard('customer')->user()->id)->update($usr_address);
-      $raw = OrderManage::create($data);
-      Cookie::queue(Cookie::forget('date'));
-      Cookie::queue(Cookie::forget('selected_time'));
-      Cookie::queue(Cookie::forget('services'));
-      return redirect(route('confirm.msg',['id'=>encrypt($raw->sOrderId)]));
+		foreach ($services as $key => $value) {
+			$services[$key] = decrypt($value);
+			if (!$itm) {
+				$itm = decrypt($value);
+			}else {
+				$itm = $itm .", ". decrypt($value);
+			}
+		}
+		$item = DB::table('tbl_ser_item_price')
+				->whereIn('item_id', $services)
+				->get();
+		foreach ($item as $raw) {
+			if (!$amount) {
+				$amount = (int)$raw->item_price;
+			}else {
+				$amount = (int)$amount + (int)$raw->item_price;
+			}
+		}
+		$cl_id =  DB::table('tbl_ser_list')
+					->select('client_id')
+					->where('ser_id', '=', decrypt($request->id))
+					->first();
+		$data = array(
+			"sOrderId" => $this->getGenerateID('sOrderId'),
+			"client_id" => $cl_id->client_id,
+			"user_id" => Auth::guard('customer')->user()->id,
+			"ser_list_id" => decrypt($request->id),
+			"ser_item_id" => $itm,
+			"sbDate" => $date,
+			"sAddress" => $address,
+			"sTimeSlot" => $selected_time,
+			"sAmount" => $amount
+		);
+		$usr_address = array(
+			'sUserHouseNo' => $request->address1,
+			'sUserArea' => $request->address2,
+			'sUserCity' => $request->city,
+			'sUserState' => $request->state,
+			'sUserPincode' => $request->pincode,
+		);
+		UserManage::where('id', Auth::guard('customer')->user()->id)->update($usr_address);
+		$raw = OrderManage::create($data);
+		Cookie::queue(Cookie::forget('date'));
+		Cookie::queue(Cookie::forget('selected_time'));
+		Cookie::queue(Cookie::forget('services'));
+		return redirect(route('confirm.msg',['id'=>encrypt($raw->sOrderId)]));
     }
 
     /**
@@ -132,15 +112,15 @@ class OrderManageController extends Controller {
      */
     public function store(Request $request) {
 
-        $request->validate([
-          'date' => 'required',
-          'selected_time' => 'required',
-          'services' => 'required'
-      ]);
-      $cookie1 = cookie('date', $request->date);
-      $cookie2 = cookie('selected_time', $request->selected_time);
-      $cookie3 = cookie('services', json_encode($request->services));
-      return redirect(route('confirm-order',['id'=>$request->id]))->cookie($cookie1)->cookie($cookie2)->cookie($cookie3);
+		$request->validate([
+			'date' => 'required',
+			'selected_time' => 'required',
+			'services' => 'required'
+		]);
+		$cookie1 = cookie('date', $request->date);
+		$cookie2 = cookie('selected_time', $request->selected_time);
+		$cookie3 = cookie('services', json_encode($request->services));
+		return redirect(route('confirm-order',['id'=>$request->id]))->cookie($cookie1)->cookie($cookie2)->cookie($cookie3);
     }
 
     /**
@@ -150,11 +130,12 @@ class OrderManageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(OrderManage $orderManage, Request $request) {
+		// $data = $this->getClientOrderDetali(3);
         $id = $request->get('id');
         $action = $request->get('action');
         switch ($action){
             case 'Detail' :
-                $data = $this->getClientOrderDetali(Auth::id(), decrypt($id));
+                $data = $this->getClientOrderDetali(decrypt($id));
                 return $data;
                 break;
         }
@@ -192,15 +173,13 @@ class OrderManageController extends Controller {
     }
 
     /** Get Order Detail */
-    private function getClientOrderDetali($client_id, $order_id) {
-
+    private function getClientOrderDetali( $order_id ) {
         $tbl_order_manage = "tbl_order_manages";
-        $tbl_ser_list = "tbl_user_ser_list";
+        $tbl_ser_list = "tbl_ser_list";
         $tbl_user = "tbl_user_manage";
         $tbl_client = "tbl_client_manage";
 
         $where = [
-            ['client_id', $client_id,],
             ['order_id', $order_id]
         ];
 
@@ -221,6 +200,7 @@ class OrderManageController extends Controller {
             "booking_date" => $data["sbDate"],
             "booking_time" => $data["sTimeSlot"],
             "city" => "Mahesana - Gujarata",
+            "city" => $data["ser_city"] . " - " . $data["ser_state"],
             "address" => $data["sAddress"],
 
             //User Info
@@ -236,11 +216,29 @@ class OrderManageController extends Controller {
 
             //Item
             "payment_status" => $data["bPayStatus"],
-            "items" =>$data["ser_item_id"],
+            "items" => $this->getItems($data["ser_item_id"]),
             "oAmount" => $data["sAmount"]
         );
+
         return $newData;
     }
+
+	/** Get Items */
+	private function getItems($items) {
+		$item = explode( ",", $items); $arr = array();
+		$tbl_item = "tbl_ser_item_price";
+		foreach ($item as $value) {
+			if( !empty(trim($value)) ) {
+				$data = DB::table($tbl_item)->where( "item_id", $value )->first();
+				array_push( $arr, array(
+					"item_id" => encrypt($data->item_id),
+					"item_name" => $data->item_name,
+					"item_price" => $data->item_price,
+				));
+			}
+		}
+		return $arr;
+	}
 
     /** Get Order List */
     private function getOrderList($id) {
@@ -256,6 +254,7 @@ class OrderManageController extends Controller {
                 "booking_date" => $value['sbDate'],
                 "booking_time" => $value['sTimeSlot'],
                 "amount" => $value['sAmount'],
+				"city" => $serviceData['ser_city'] . " - " . $serviceData['ser_state'],
                 "address" => $value['sAddress'],
                 "payment_status" => $value['bPayStatus'],
                 "ser_status" => $value['bSerStatus'],
@@ -273,12 +272,12 @@ class OrderManageController extends Controller {
     // Generate ID
     private function getGenerateID($col_name){
 
-      newGenerateID:
-      $id = date('ym').rand(100000, 999999);
-      $count = OrderManage::where($col_name, $id)->count();
-      if($count == 0)
-          return $id;
-      else
-          goto newGenerateID;
-  }
+		newGenerateID:
+		$id = date('ymd').rand(1000, 9999);
+		$count = OrderManage::where($col_name, $id)->count();
+		if($count == 0)
+			return $id;
+		else
+			goto newGenerateID;
+	}
 }

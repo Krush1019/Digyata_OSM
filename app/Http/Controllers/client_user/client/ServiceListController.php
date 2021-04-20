@@ -189,6 +189,7 @@ class ServiceListController extends Controller {
                 else if ( $status == "Inactive" ) { $arr['ser_status'] = "Active"; }
                 else { break; }
                 ServiceList::where("ser_id", decrypt($id))->update($arr);
+                return encrypt($arr['ser_status']);
                 break;
         }
         return true;        
@@ -377,7 +378,7 @@ class ServiceListController extends Controller {
                 'client_id' => $user_id,
                 'item_name' => $value['pli_name'],
                 'item_des' => $value['pli_desc'],
-                'item_price' => $value['pli_price'],
+                'item_price' => (int) $value['pli_price'],
             );
             if(isset($value['item_id'])) {
                 $id = decrypt($value['item_id']);
@@ -403,7 +404,6 @@ class ServiceListController extends Controller {
         }
         return $path;
     }
-
 
     private function saveImgToStorage($imgFile, $saveImgPath) {
         $ext = $imgFile->getClientOriginalExtension();

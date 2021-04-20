@@ -54,6 +54,7 @@ use App\Http\Controllers\LanguageController;
     Route::get('/service-manage-show', 'ServiceManageController@show');
     Route::post('/show-service-list', 'ServiceManageController@showServiceList');
     Route::post('/service-manage-update', 'ServiceManageController@update')->name("service-manage.update");
+    // Route::get("/service-list-count", 'ServiceManageController@countServiceList');
 
     /** Admin -- Booking Schedule */
     Route::get('/booking-schedule', 'BookingScheduleController@index');

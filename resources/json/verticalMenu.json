@@ -49,8 +49,8 @@
     {
       "url": "service-manage",
       "name": "Service Manage",
-      "badge": "2",
-      "badgeClass": "badge badge-warning badge-pill float-right mr-1",
+      "badge": "",
+      "badgeClass": "badge badge-warning badge-pill float-right mr-1 bg_ser_list",
       "icon": "fa fa-gg"
     },
     {

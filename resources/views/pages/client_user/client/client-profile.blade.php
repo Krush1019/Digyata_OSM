@@ -55,31 +55,10 @@
 						<div class="font-large-17 font-weight-bold">Rejected :)</div> 
 						your application has been rejected by  <b>the Digyata Team</b>.
 					</div>
-{{-- 
-				@elseif( $clientData['status'] == "Pending" )
-					<div class="alert alert-warning alert-dismissible fade show" role="alert">
-						<div class="font-large-17 font-weight-bold">Watting !!!</div> 
-						Your application has been successfully submitted and awaiting for verification by <b>the Digyata Team</b>.
-					</div> --}}
 				@endif
 				  
         		<form id="updateClientDetail" method="POST" action="{{ route('client-profile.update', 'detail')}}">
 					@csrf
-					{{-- <div class="row">
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>First Name</label>
-								<input type="text" class="form-control"	 name="client_fname" value="@isset($clientData['first_name']) {{$clientData['first_name']}} @endisset" placeholder="First Name">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>Last name</label>
-								<input type="text" class="form-control" name="client_lname" value="@isset($clientData['last_name']) {{$clientData['last_name']}} @endisset" placeholder="Last Name">
-							</div>
-						</div>
-					</div> --}}
-
 					<div class="row">
 						<div class="col-md-8">
 							<div class="form-group">

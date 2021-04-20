@@ -13,6 +13,7 @@ $(document).ready(function () {
 	});
 
 	$(document).on('click', '.btnViewModal', function (e) {
+		HoldOn.open(options);
 		var id = $(this).attr("data-id");
 		var modal = $("#viewOrderModal").find(".modal-content");
 
@@ -58,17 +59,22 @@ $(document).ready(function () {
 				modal.find(".payment_status").html('<i class="pending">Pending</i>');
 			}
 
-			// modal.find(".item_list").empty();
-			// $.each( $result['items'], function( key, value ) {
-			// 	alert( key + ": " + value );
-			// });
-
-
+			modal.find(".item_list").empty();
+			var total = 0;
+			$.each( result['items'], function( key, value ) {
+				total = total + parseInt(value['item_price'])
+				var html = '<div class="row "><div class="col-md-10"><label>' + (key + 1) + '.  </label><label>' + value['item_name'] + '</label></div><div class="col-md-2 text-right font-weight-bold">₹ ' + parseInt(value['item_price']) + '/-</div></div>';
+				modal.find(".item_list").append(html);
+			});
+			modal.find(".grand_total").html("₹ "+ total +"/-");
 			$('#viewOrderModal').modal('show');
 
 		})
 			.fail(function () {
 				swalError();
+			})
+			.always(function () {
+				HoldOn.close();
 			});
 
 		
