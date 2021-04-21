@@ -13,15 +13,15 @@ $(document).ready(function () {
     }
 
     // Renering Icons in Actions column
-  var customIconsHTML = function (params) {
-    var usersIcons = document.createElement("span");
-    var editIconHTML = '<a href="/user-view"><i class="users-edit-icon feather icon-eye mr-50 upd_btn"></i></a>';
-    usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
-    return usersIcons
-  }
+    var customIconsHTML = function (params) {
+        var usersIcons = document.createElement("span");
+        var editIconHTML = '<a href="#viewUserModal" class="modal_btn" data-toggle="modal"><i class="users-edit-icon feather icon-eye mr-50"></i></a>';
+        usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
+        return usersIcons
+    }
 
 
-// ag-grid
+    // ag-grid
     /*** COLUMN DEFINE ***/
 
     var columnDefs = [{
@@ -36,61 +36,59 @@ $(document).ready(function () {
             "text-align": "center"
         }
     },
-        {
-            headerName: 'User Name',
-            field: 'user-name',
-            filter: true,
-            width: 180,
-            cellStyle: {
-                "text-align": "left"
-            }
-        },
-        {
-            headerName: 'Mobile No.',
-            field: 'mobileNo',
-            filter: true,
-            width: 150,
-            cellStyle: {
-                "text-align": "left"
-            }
-        },
-        {
-            headerName: 'Email',
-            field: 'email',
-            filter: true,
-            width: 260,
-            cellStyle: {
-                "text-align": "left"
-            }
-        },
-        {
-            headerName: 'Status',
-            field: 'user-status',
-            filter: true,
-            width: 125,
-            cellRenderer: customBadgeHTML,
-            cellStyle: {
-                "text-align": "center"
-            }
-        },
-        {
-            headerName: 'Location',
-            field: 'user-location',
-            filter: true,
-            width: 140,
-            cellStyle: {
-                "text-align": "left"
-            }
-        },
-      {
+
+    {
+        headerName: 'User Id',
+        field: 'user-id',
+        filter: true,
+        width: 150,
+    },
+    {
+        headerName: 'User Name',
+        field: 'user-name',
+        filter: true,
+        width: 180,
+        cellStyle: {
+            "text-align": "left"
+        }
+    },
+    {
+        headerName: 'Mobile No.',
+        field: 'mobileNo',
+        filter: true,
+        width: 150,
+        cellStyle: {
+            "text-align": "left"
+        }
+    },
+    {
+        headerName: 'Email',
+        field: 'email',
+        filter: true,
+        width: 260,
+        cellStyle: {
+            "text-align": "left"
+        }
+    },
+    {
+        headerName: 'Status',
+        field: 'user-status',
+        filter: true,
+        width: 125,
+        cellRenderer: customBadgeHTML,
+        cellStyle: {
+            "text-align": "center"
+        }
+    },
+    {
         headerName: 'Actions',
         field: 'transactions',
         width: 125,
         cellRenderer: customIconsHTML,
         cellStyle: {
-          "text-align": "center"
+            "text-align": "center"
         }
-      }
+    }
     ];
 
     /*** GRID OPTIONS ***/
@@ -111,7 +109,7 @@ $(document).ready(function () {
         animateRows: true,
         domLayout: 'autoHeight',
         overlayNoRowsTemplate:
-        '<span class="pt-5">No Data To Show</span>'
+            '<span class="pt-5">No Data To Show</span>'
     };
     if (document.getElementById("myGrid-userManage")) {
         /*** DEFINED TABLE VARIABLE ***/
@@ -151,9 +149,9 @@ $(document).ready(function () {
         });
 
         /*** EXPORT AS CSV BTN ***/
-        $(".ag-grid-export-btn").on("click", function (params) {
+        /* $(".ag-grid-export-btn").on("click", function (params) {
             gridOptions.api.exportDataAsCsv();
-        });
+        }); */
 
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);
@@ -170,9 +168,9 @@ $(document).ready(function () {
         var btn = $(this); var text = "";
         var id = btn.attr('data-id');
         var hasClass = btn.hasClass('bg-rgba-success');
-        if(hasClass){
+        if (hasClass) {
             text = 'This will Disable services on website';
-        }else {
+        } else {
             text = 'This will Enable services on website';
         }
         Swal.fire({
@@ -185,25 +183,25 @@ $(document).ready(function () {
             showLoaderOnConfirm: true,
             preConfirm: () => {
                 $.ajax({
-                    url : '/user-manage-update',
-                    type : 'GET',
-                    data : {
+                    url: '/user-manage-update',
+                    type: 'GET',
+                    data: {
                         "action": "status",
-                        "hasClass" : hasClass,
+                        "hasClass": hasClass,
                         'id': id
                     },
-                    success : function (result){
-                        if(hasClass){
+                    success: function (result) {
+                        if (hasClass) {
                             btn.removeClass("bg-rgba-success").addClass("bg-rgba-danger");
                             btn.find('span').removeClass('text-success').addClass("text-danger").text("Inactive");
-                        }else {
+                        } else {
                             btn.removeClass("bg-rgba-danger").addClass("bg-rgba-success");
                             btn.find('span').addClass('text-success').removeClass("text-danger").text("Active");
                         }
 
-                        toastFire(Swal,"Changed Status.");
+                        toastFire(Swal, "Changed Status.");
                     },
-                    error : function (error) {
+                    error: function (error) {
                         swalFire(Swal, "Something went wrong!", "Oops...", "error");
                     }
                 })
@@ -211,4 +209,5 @@ $(document).ready(function () {
         });
     });
     // END: Change status
+
 });

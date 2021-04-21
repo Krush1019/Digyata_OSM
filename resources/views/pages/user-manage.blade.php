@@ -40,9 +40,9 @@
                     </div>
                   </div>
                   <div class="ag-btns d-flex flex-wrap">
-                    <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0"
+                    <input type="text" class="ag-grid-filter form-control mr-1 mb-1 mb-sm-0"
                            id="filter-text-box" placeholder="Search...."/>
-                    <div class="action-btns">
+                    {{-- <div class="action-btns">
                       <div class="btn-dropdown ">
                         <div class="btn-group dropdown actions-dropodown">
                           <button type="button"
@@ -63,7 +63,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> --}}
                   </div>
                 </div>
               </div>
@@ -75,9 +75,188 @@
       </div>
     </div>
     <!-- Ag Grid users list section end -->
-
   </section>
   <!-- users list ends -->
+
+  {{-- START: View Modal --}}
+	<div class="modal fade" id="viewUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title">View User</h4>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				</div>
+
+				<div class="modal-body container-fluid">
+					<div class="row">
+
+						<div class="box_general m-4 w-100 pb-4 viewservicespan">
+							<div class="header_box version_2">
+								<h2><i class="fa fa-file"></i>User info</h2>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="mt-">
+										<div class="col-sm-12 pl-0">User Name :</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name"></div>
+									</div>
+
+									<div class="mt-15">
+										<div class="col-sm-12 pl-0">Expericence :</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_exp"></div>
+									</div>
+
+								</div>
+								<div class="col-md-5">
+									<div class="mt-20">
+										<div class="col-sm-12 pl-0">Service :</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_name"></div>
+									</div>
+
+									<div class="mt-10">
+										<div class="col-sm-12 pl-0">Category :</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_cate">Cleaning </div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="row">
+
+								<div class="col-md-5 mt-20">
+									<div class="">
+										<div class="user-info">
+											<div>
+												<span class="col-sm-12 pl-0">Phone : </span>
+												<span class="col-sm-12 font-weight-bold pl-0 ser_phone"></span>
+											</div>
+											<div>
+												<span class="col-sm-12 pl-0">E-mail : </span>
+												<span class="col-sm-12 font-weight-bold pl-0 "><a href="mailto:" class="ser_email" target="_blank"></a></span>
+											</div>
+										</div>
+									</div>
+									<div class="mt-15">
+										<div class="col-sm-12 pl-0">Social Media :</div>
+										<div class="social mt-15">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7">
+									<div class="mt-20">
+										<div class="col-sm-12 pl-0">Description :</div>
+										<div class="col-sm-12 pl-0 ser_des"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="header_box version_2 mt-4">
+								<h2><i class="fa fa-paperclip"></i>Document</h2>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<span class="mb-10">
+										<a href="#" type="button" target="_blank" class="btn btn-flat-dark mr-1 mb-1 waves-effect waves-light .round view_doc">
+											<i class="fa fa-file"></i>&nbsp;View Document
+										</a>
+									</span>
+								</div>
+								<div class="col-md-6">
+									<span>Aadhar No.: </span>
+									<span class="doc_num"></span>
+								</div>
+							</div>
+
+							<div class="header_box version_2 mt-4">
+								<h2><i class="fa fa-map-marker"></i>Location</h2>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<span>
+										<label>City: </label>
+										<label class="city"></label>
+									</span>
+								</div>
+								<div class="col-md-6">
+									<span>
+										<label>State: </label>
+										<label class="state"></label>
+									</span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<span>
+										<label>Address: </label>
+										<label class="address"></label>
+									</span>
+								</div>
+								<div class="col-md-6">
+									<span>
+										<label>Pincode: </label>
+										<label class="pin_code">	</label>
+									</span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4 col-lg-4 col-sm-12">
+									<div class="header_box version_2 mt-4">
+										<h2><i class="fa fa-clock-o"></i>Availability</h2>
+									</div>
+
+									<div class="table-responsive-sm ">
+										<table class="table table-borderless day_time">
+											<caption>List of Working Days in Week</caption>
+											<thead>
+											<tr>
+												<th scope="col">Days</th>
+												<th scope="col">Time</th>
+											</tr>
+											</thead>
+											<tbody>
+												{{-- Code Here --}}
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="col-md-1 col-lg-1"></div>
+								<div class="col-md-7 col-lg-7 col-sm-12">
+									<div class="header_box version_2 mt-4">
+										<h2><i class="fa fa-dollar"></i>Pricing</h2>
+									</div>
+
+									<div class="table-responsive-sm ">
+										<table class="table table-borderless list_item">
+											<caption>List of Item</caption>
+											<thead>
+											<tr class="d-flex">
+												<th class="col-md-3">Item</th>
+												<th class="col-md-2">Price</th>
+												<th class="col-md-7">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												{{-- Code Here  --}}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{-- END: View Modal --}}
+
 @endsection
 
 @section('vendor-script')

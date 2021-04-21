@@ -45,7 +45,7 @@
                                                 <p>We will reply shortly to confirm the order.</p>
                                           </div>
                                           <div class="footer-btn text-center">
-                                                <a href="#0" class="underline" target="blank">Print receipt</a>
+                                                <a href="/order/invoice" class="underline" target="blank">Print receipt</a>
                                                 <div>
                                                       <a href="{{ route('home')}}" class="btn_1 mt-4">Back To Home</a>
                                                 </div>

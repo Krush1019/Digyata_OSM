@@ -14,6 +14,7 @@ class indexController extends Controller
                 ->join('tbl_service_catalogs', 'tbl_ser_list.ser_cat_id', '=', 'tbl_service_catalogs.id')
                 ->leftJoin('tbl_review_orders', 'tbl_ser_list.ser_id', '=', 'tbl_review_orders.ser_id')
                 ->select(DB::raw('COUNT(RoID) as revCount, tbl_ser_list.*, tbl_service_catalogs.*'),DB::raw('AVG(Res_R1) as Res_R1, AVG(Ser_R2) as Ser_R2, AVG(Com_R3) as Com_R3, AVG(Price_R4) as Price_R4'))
+                ->where('ser_status','=','Active')
                 ->inRandomOrder()
                 ->limit(6)
                 ->groupBy('tbl_ser_list.ser_id')
@@ -21,7 +22,8 @@ class indexController extends Controller
       $catalogs = DB::table('tbl_service_catalogs')
                   ->leftJoin('tbl_ser_list', 'tbl_ser_list.ser_cat_id', '=', 'tbl_service_catalogs.id')
                   ->select(DB::raw('COUNT(ser_id) as serCount, tbl_service_catalogs.*'))
-                  ->inRandomOrder()
+                  ->where('ser_status','=','Active')
+                  ->orderBy('serCount','DESC')
                   ->limit(6)
                   ->groupBy('tbl_service_catalogs.id')
                   ->get();

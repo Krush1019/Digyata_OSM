@@ -82,9 +82,15 @@ class MyOrdersController extends Controller
      * @param  \App\client_user\user\MyOrders  $myOrders
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MyOrders $myOrders)
+    public function update(Request $request)
     {
-        //
+     $tmp = MyOrders::where('id', $request->id)->update([['bSerStatus' => "complete"],['bPayStatus'=> true]]);
+
+      if ($tmp) {
+        return true;
+      }else{
+        return false;
+      }
     }
 
     /**

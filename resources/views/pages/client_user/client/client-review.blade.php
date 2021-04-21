@@ -43,8 +43,8 @@
       <li>
         <div class="row">
           <div class="col-sm-9">
-            <div class="font-weight-bold font-large-20">RM Cleaners</div><label class="mb-0"><small>Cleaning</small></label>
-            
+            <div class="font-weight-bold font-large-20">{{$review->ser_pro_name}}</div><label class="mb-0"><small>{{$review->serviceName}}</small></label>
+
           </div>
           <div class="col-sm-3">
             <span class="mt-1 mt-sm-0 float-sm-right">on {{date_format(date_create($review->created_at),"M d Y")}}</span>
@@ -63,22 +63,22 @@
                     <div class="row">
                       <div class="col-xl-10 col-lg-9 col-9">
                         <div class="progress">
-                          <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90"
+                          <div class="progress-bar" role="progressbar" style="width: {{(round($review->Res_R1,2)/5)*100}}%" aria-valuenow="{{(round($review->Res_R1,2)/5)*100}}"
                             aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
-                      <div class="col-xl-2 col-lg-3 col-3"><strong>9.0</strong></div>
+                      <div class="col-xl-2 col-lg-3 col-3"><strong>{{$review->Res_R1}}</strong></div>
                     </div>
                     <!-- /row -->
                     <label>Service</label>
                     <div class="row">
                       <div class="col-xl-10 col-lg-9 col-9">
                         <div class="progress">
-                          <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95"
+                          <div class="progress-bar" role="progressbar" style="width: {{(round($review->Ser_R2,2)/5)*100}}%" aria-valuenow="{{(round($review->Ser_R2,2)/5)*100}}"
                             aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
-                      <div class="col-xl-2 col-lg-3 col-3"><strong>9.5</strong></div>
+                      <div class="col-xl-2 col-lg-3 col-3"><strong>{{$review->Ser_R2}}</strong></div>
                     </div>
                     <!-- /row -->
                   </div>
@@ -87,22 +87,22 @@
                     <div class="row">
                       <div class="col-xl-10 col-lg-9 col-9">
                         <div class="progress">
-                          <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
+                          <div class="progress-bar" role="progressbar" style="width: {{(round($review->Com_R3,2)/5)*100}}%" aria-valuenow="{{(round($review->Com_R3,2)/5)*100}}"
                             aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
-                      <div class="col-xl-2 col-lg-3 col-3"><strong>6.0</strong></div>
+                      <div class="col-xl-2 col-lg-3 col-3"><strong>{{$review->Com_R3}}</strong></div>
                     </div>
                     <!-- /row -->
                     <label>Price</label>
                     <div class="row">
                       <div class="col-xl-10 col-lg-9 col-9">
                         <div class="progress">
-                          <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
+                          <div class="progress-bar" role="progressbar" style="width: {{(round($review->Price_R4,2)/5)*100}}%" aria-valuenow="{{(round($review->Price_R4,2)/5)*100}}"
                             aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
-                      <div class="col-xl-2 col-lg-3 col-3"><strong>6.0</strong></div>
+                      <div class="col-xl-2 col-lg-3 col-3"><strong>{{$review->Price_R4}}</strong></div>
                     </div>
                     <!-- /row -->
                   </div>
@@ -111,9 +111,20 @@
               </div>
               <div class="col-sm-3 align-self-center">
                 <div id="review_summary">
-                  <strong>8.5</strong>
-                  <em>Superb</em>
-                  <small>Based on 4 reviews</small>
+                  @php
+                  $revSum =
+                  round((round($review->Res_R1,1)+round($review->Ser_R2,1)+round($review->Com_R3,1)+round($review->Price_R4,1))/4,1);
+                  @endphp
+                  <strong>{{$revSum}}</strong>
+                  <em>@if ($revSum>=4)
+                    superb
+                    @elseif ($revSum>=3)
+                    Very Good
+                    @elseif ($revSum>=2)
+                    Good
+                    @elseif ($revSum>=1)
+                    Pleasant
+                    @elseif ($revSum<1) Noob @endif</em>
                 </div>
               </div>
             </div>
@@ -123,7 +134,7 @@
           <div class="col-md-9">
             <p class="font-weight-bold font-large-17 mb-1">{{$review->Title}}</p>
             <div class="mt-0 text-justify">{{$review->Feedback}}</div>
-          </div>  
+          </div>
           @if($review->Image)
           <div class="col-md-3 mt-sm-0 mt-15 text-center">
             <img class="img-fluid img-thumbnail float-md-right mb-10 w-auto" src="{{asset('storage/'.$review->Image)}}"
@@ -134,10 +145,11 @@
       </li>
       @endforeach
       @endif
-
     </ul>
   </div>
 </div>
+{{$reviews->links()}}
+
 <!-- /box_general-->
 {{-- <nav aria-label="...">
     <ul class="pagination pagination-sm add_bottom_30">

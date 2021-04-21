@@ -19,64 +19,6 @@
 @section('content')
 <!-- users list start -->
 <section class="users-list-wrapper">
-  <!-- users filter start -->
-  <div class="card">
-    <div class="card-header">
-      <h4 class="card-title">Filters</h4>
-    </div>
-    <div class="card-content">
-      <div class="card-body">
-        <div class="users-list-filter">
-          <form>
-            <div class="row">
-              <div class="col-12 col-sm-6 col-lg-3">
-                <label for="filter-state">State</label>
-                <fieldset class="form-group">
-                  <select class="form-control" id="filter-state">
-                    <option value="">All</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                  </select>
-                </fieldset>
-              </div>
-              <div class="col-12 col-sm-6 col-lg-3">
-                <label for="filter-city">City</label>
-                <fieldset class="form-group">
-                  <select class="form-control" id="filter-city">
-                    <option value="">All</option>
-                    <option value="user">User</option>
-                    <option value="staff">Staff</option>
-                  </select>
-                </fieldset>
-              </div>
-              <div class="col-12 col-sm-6 col-lg-3">
-                <label for="filter-services">Services</label>
-                <fieldset class="form-group">
-                  <select class="form-control" id="filter-services">
-                    <option value="">All</option>
-                    <option value="Sales">Sales</option>
-                    <option value="Devlopment">Devlopment</option>
-                    <option value="Management">Management</option>
-                  </select>
-                </fieldset>
-              </div>
-              <div class="col-12 col-sm-6 col-lg-3">
-                <label for="filter-status">Status</label>
-                <fieldset class="form-group">
-                  <select class="form-control" id="filter-status">
-                    <option value="">All</option>
-                    <option value="Enable">Enable</option>
-                    <option value="Disable">Disable</option>
-                  </select>
-                </fieldset>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- users filter end -->
   <!-- Ag Grid users list section start -->
   <div id="basic-examples">
     <div class="card">
@@ -93,13 +35,13 @@
                     <a class="dropdown-item" href="#">20</a>
                     <a class="dropdown-item" href="#">50</a>
                   </div>
-                  <button type="button" data-toggle="modal" data-target="#locationFormDiv" class="btn btn-icon btn-icon rounded-1 ml-1 btn-outline-primary font-medium-1 btn-flat-primary waves-effect waves-light ">
+                  <button type="button" data-toggle="modal" data-target="#locationFormDiv" class="btn btn-icon btn-icon rounded-1 ml-0 ml-sm-1 mt-1 mt-sm-0 btn-outline-primary font-medium-1 btn-flat-primary waves-effect waves-light ">
                     <i class="feather mr-1 icon-plus-square"></i>New Location
                   </button>
                 </div>
                 <div class="ag-btns d-flex flex-wrap">
-                  <input type="text" class="ag-grid-filter form-control w-50 mr-1 mb-1 mb-sm-0" id="filter-text-box" placeholder="Search...." />
-                  <div class="action-btns">
+                  <input type="text" class="ag-grid-filter form-control mr-1 mb-1 mb-sm-0" id="filter-text-box" placeholder="Search...." />
+                  {{-- <div class="action-btns">
                     <div class="btn-dropdown ">
                       <div class="btn-group dropdown actions-dropodown">
                         <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,7 +55,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>

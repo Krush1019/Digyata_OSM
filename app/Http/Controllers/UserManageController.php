@@ -38,15 +38,7 @@ class UserManageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $tbl = new UserManage();
-        $tbl->sUserID = $this->getUserID();
-        $tbl->sUserName = "Meet";
-        $tbl->sUserImgURL = "images/portrait/small/avatar-s-1.jpg";
-        $tbl->sUserPhone = "8200707338";
-        $tbl->sUserEmail = "sp@gmail.com";
-        $tbl->sUserLoc = "Patan";
-        $tbl->save();
-
+        //
     }
 
     /**
@@ -62,6 +54,7 @@ class UserManageController extends Controller {
             $id = encrypt($row['id']);
             $temp = array(
                 '#' => $i + 1,
+                'user-id' => '#'. $row['sUserID'],
                 'user-name' =>$row['sUserName'],
                 'mobileNo' =>$row['sUserMobile'],
                 'email' =>$row['sUserEmail'],

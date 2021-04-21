@@ -162,9 +162,9 @@ $(document).ready(function () {
         });
 
         /*** EXPORT AS CSV BTN ***/
-        $(".ag-grid-export-btn").on("click", function (params) {
+        /* $(".ag-grid-export-btn").on("click", function (params) {
             gridOptions.api.exportDataAsCsv();
-        });
+        }); */
 
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);
