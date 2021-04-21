@@ -54,7 +54,7 @@
 								<li><strong>Order ID</strong>{{$value['order_id']}}</li>
 								<li><strong>Booking Date</strong>{{$value['booking_date']}}</li>
 								<li><strong>Booking Time</strong>{{$value['booking_time']}}</li>
-								<li><strong>City</strong>Mahesana</li>
+								<li><strong>City</strong>{{$value['city']}}</li>
 								<li><strong>Address</strong>{{$value['address']}}</li>
 							</ul>
 							<ul class="buttons">
@@ -64,23 +64,6 @@
 					@endforeach
 				</ul>
 			@endif
-
-        		{{-- <li>
-          			<figure><img src="{{asset('client_user/client/img/avatar.jpg')}}" alt=""></figure>
-          			<h4>Dusting <i class="pending">Pending</i></h4>
-					<ul class="booking_list">
-						<li><strong>Order ID</strong> 784569853215</li>
-						<li><strong>Booking date</strong> 8 May 2020</li>
-						<li><strong>Booking time</strong> 09.30am</li>
-						<li><strong>City</strong> Mahesana</li>
-						<li><strong>Address</strong> 20, Madhuvan Complex, Radhanpur Cross road, Mahesana-2</li>
-          			</ul>
-          			<p><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a></p>
-					<ul class="buttons">
-						<li><a href="#0" class="btn_1 gray"><i class="fa fa-fw fa-envelope mr-1"></i>Send Email</a></li>
-						<li><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a></li>
-					</ul>
-        		</li> --}}
 
 		</div>
 	</div>
@@ -118,13 +101,13 @@
 
 							<div class="mt-5">
 								<div class="col-sm-12 small pl-0 mb-5">Provider Name :</div>
-								<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name">Car Washer PVT LTD</div>
+								<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name"></div>
 							</div>
 							
 							<div class="row">
 								<div class="col-md-6  mt-5">
 									<div class="col-sm-12 small pl-0 mb-5">Order ID :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 order_id">OI-20032021</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 order_id"></div>
 								</div>
 								<div class="col-md-6 mt-5">
 									<div class="col-sm-12 small pl-0 mb-5">Status :</div>
@@ -135,33 +118,33 @@
 							<div class="row">
 								<div class="col-md-6 mt-5">
 									<div class="col-sm-12 small pl-0 mb-5">Service :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  service_name">Car Washing</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  service_name"></div>
 								</div>
 								<div class="col-md-6 mt-5">
 									<div class="col-sm-12 small pl-0 mb-5">Category :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  service_cat">Cleaning</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  service_cat"></div>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-6 mt-5">
 									<div class="col-sm-12 small pl-0 mb-5">Booking Date :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  booking_date">May 8, 2020 (Sunday)</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  booking_date"></div>
 								</div>
 								<div class="col-md-6 mt-5">
 									<div class="col-sm-12 small pl-0 mb-5">Time :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  booking_time">9:00 AM</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  booking_time"></div>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-5 mt-5">
 									<div class="col-sm-12 small pl-0 mb-5">City :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  city">Mahesana - Gujarat</div>
+									<div class="col-sm-12 font-large-17 font-weight-bold pl-0  city"></div>
 								</div>
 								<div class="col-md-7 mt-5">
 									<div class="col-sm-12 small pl-0 mb-5">Address :</div>
-									<div class="col-sm-12 pl-0  font-weight-bold address">20, Madhuvan Complex, Radhanpur Cross road, Mahesana-2.</div>
+									<div class="col-sm-12 pl-0  font-weight-bold address"></div>
 								</div>
 							</div>
 
@@ -173,19 +156,19 @@
 									
 									<div class="mt-5">
 										<div class="col-sm-12 small pl-0 mb-5">User ID :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 user_id">UI-20122015</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 user_id"></div>
 									</div>
 									<div class="mt-5">
 										<div class="col-sm-12 small pl-0 mb-5">Name :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 user_name">Rashmin Prajapati</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 user_name"></div>
 									</div>
 									<div class="mt-5">
 										<div class="col-sm-12 small pl-0 mb-5">E-mail :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 user_email"><a href="mailto:rp@gmail.com">rp@gmail.com</a></div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 user_email"><a href="mailto:"></a></div>
 									</div>
 									<div class="mt-5">
 										<div class="col-sm-12 small pl-0 mb-5">Contact :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 user_phone"><a href="tel:8200707338">8200707338</a></div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 user_phone"><a href="tel:"></a></div>
 									</div>
 
 
@@ -198,15 +181,15 @@
 									
 									<div class="mt-5">
 										<div class="col-sm-12 small pl-0 mb-5">User ID :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 client_id">CI-20122015</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 client_id"></div>
 									</div>
 									<div class="mt-5">
 										<div class="col-sm-12 small pl-0 mb-5">Name :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 client_name">Parth Patel</div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 client_name"></div>
 									</div>
 									<div class="mt-5">
 										<div class="col-sm-12 small pl-0 mb-5">E-mail :</div>
-										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 client_email"><a href="mailto:parth@gmail.com">parth@gmail.com</a></div>
+										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 client_email"><a href="mailto:parth@gmail.com"></a></div>
 									</div>
 								</div>
 							</div>
@@ -225,42 +208,14 @@
 								</div>
 							</div>
 
-							{{-- <div class="row">
-								<div class="col-md-6">
-									<span>
-										<label>1: </label>
-										<label> 1 BHK home</label>
-									</span>
-								</div>
-								<div class="col-md-6 text-md-right">
-									<span>
-										<label>Price: </label>
-										<label> 100 ₹</label>
-									</span>
-								</div>
-							</div> --}}
-
 							<div class="item_list">
-								<div class="row ">
-									<div class="col-md-10">
-										<label>1.  </label>
-										<label> 1 BHK home</label>
-									</div>
-									<div class="col-md-2 text-right font-weight-bold">₹ 100/-</div> 
-								</div>
-								<div class="row">
-									<div class="col-md-10">
-										<label>2.  </label>
-										<label> 10 sq feet Garden</label>
-									</div>
-									<div class="col-md-2 text-right font-weight-bold">₹ 150/-</div>
-								</div>
+								
 							</div>
 							<div class="row">
 								<div class="col text-right border-top">
 									<span>
 										<label class="font-weight-bold">Grand Total: </label>
-										<label class="font-weight-bold font-large-17">₹ 250/-</label>
+										<label class="font-weight-bold font-large-17 grand_total"></label>
 									</span>
 								</div>
 							</div>
@@ -269,8 +224,8 @@
           			</div>
 				</div>
 
-        		<div class="modal-footer justify-content-center">
-          			<button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        		<div class="modal-footer float-right">
+          			<button class="btn btn-primary" type="button" data-dismiss="modal">Close</button>
         		</div>
       		</div>
 		</div>  

@@ -342,7 +342,7 @@ header.header.sticky .logo {
 
 .required {
   color: #e3464c !important;
-  margin: 1px;
+  margin-right: 2.5px;
   font-size: medium;
   font-weight: bold;
 }

@@ -57,9 +57,9 @@ $(document).ready(function () {
                         title: 'Status Changed'
                     });
                     if (status == 'Inactive') {
-                        btn.removeClass('approve').addClass('delete').text('Inactive').attr("data-action", "Inactive").prepend('<i class="fa fa-fw fa-ban mr-1"></i>');
+                        btn.removeClass('approve').addClass('delete').text('Inactive').attr("data-action", "Inactive").attr("data-status", result).prepend('<i class="fa fa-fw fa-ban mr-1"></i>');
                     } else {
-                        btn.removeClass('delete').addClass('approve').text('Active').attr("data-action", "Active").prepend('<i class="fa fa-fw fa-check mr-1"></i>');
+                        btn.removeClass('delete').addClass('approve').text('Active').attr("data-action", "Active").attr("data-status", result).prepend('<i class="fa fa-fw fa-check mr-1"></i>');
                     }
                 })
                     .fail(function () {

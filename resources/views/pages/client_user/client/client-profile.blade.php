@@ -55,36 +55,15 @@
 						<div class="font-large-17 font-weight-bold">Rejected :)</div> 
 						your application has been rejected by  <b>the Digyata Team</b>.
 					</div>
-
-				@elseif( $clientData['status'] == "Pending" )
-					<div class="alert alert-warning alert-dismissible fade show" role="alert">
-						<div class="font-large-17 font-weight-bold">Watting !!!</div> 
-						Your application has been successfully submitted and awaiting for verification by <b>the Digyata Team</b>.
-					</div>
 				@endif
 				  
         		<form id="updateClientDetail" method="POST" action="{{ route('client-profile.update', 'detail')}}">
 					@csrf
-					{{-- <div class="row">
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>First Name</label>
-								<input type="text" class="form-control"	 name="client_fname" value="@isset($clientData['first_name']) {{$clientData['first_name']}} @endisset" placeholder="First Name">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>Last name</label>
-								<input type="text" class="form-control" name="client_lname" value="@isset($clientData['last_name']) {{$clientData['last_name']}} @endisset" placeholder="Last Name">
-							</div>
-						</div>
-					</div> --}}
-
 					<div class="row">
 						<div class="col-md-8">
 							<div class="form-group">
 								<label class="required">*</label><label>Full Name</label>
-								<input type="text" class="form-control"	 name="client_name" value="@isset($clientData['name']) {{$clientData['name']}} @endisset" placeholder="Full Name" >
+								<input type="text" class="form-control"	 name="client_name" @isset($clientData['name']) value="{{$clientData['name']}}" @endisset placeholder="Full Name" >
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -94,12 +73,8 @@
 							<span class="mt-5 ml-2">
 								@if ($clientData['status'] == "Blocked" )
 									<i class="cancel">Blocked</i>
-								@elseif( $clientData['status'] == "Active" )
-									<i class="approved">Active</i>
-								@elseif( $clientData['status'] == "Rejected" )
-									<i class="cancel">Rejected</i>
 								@else
-									<i class="pending">Pending</i>
+									<i class="approved">Active</i>
 								@endif
 							</span>
 						</div>
@@ -127,7 +102,7 @@
 						<div class="col-md-5">
 							<div class="form-group">
 								<label class="required">*</label><label>Mobile No.</label> 
-								<input type="text" class="form-control numberValidation" name="client_mo" value="@isset($clientData['client_phone']) {{$clientData['client_phone']}} @endisset" placeholder="Your Mobile No.">
+								<input type="text" class="form-control numberValidation" name="client_mo" @isset($clientData['client_phone']) value="{{$clientData['client_phone']}}" @endisset placeholder="Your Mobile No.">
 							</div>							
 						</div>
 					</div>
@@ -136,12 +111,12 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="required">*</label><label>Email</label> 
-								<input type="email" class="form-control" id="cl_email"  name="client_email" value="@isset($clientData['client_email']) {{$clientData['client_email']}} @endisset" placeholder="Your email">
+								<input type="email" class="form-control" id="cl_email"  name="client_email" @isset($clientData['client_email']) value="{{$clientData['client_email']}}" @endisset placeholder="Your email">
 							</div>
 						</div>
 					</div>
 
-					<input type="text" name="client_img" value="@isset($clientData['client_img']) {{$clientData['client_img']}} @endisset" id="profile_img" hidden>
+					<input type="text" name="client_img" @isset($clientData['client_img'])  value="{{$clientData['client_img']}}" @endisset id="profile_img" hidden>
 
 					<div class="row">
 						<div class="col">

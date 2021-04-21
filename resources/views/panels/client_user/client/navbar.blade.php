@@ -44,7 +44,7 @@
         <a class="nav-link" href="{{route('service-listing')}}">
           <i class="fa fa-fw fa-list"></i>
           <span class="nav-link-text">Service Listings</span>
-          <span class="badge badge-pill badge-warning text-secondary">6</span>
+          {{-- <span class="badge badge-pill badge-warning text-secondary">6</span> --}}
         </a>
       </li>
 
@@ -52,7 +52,10 @@
         data-original-title="Order Manage">
         <a class="nav-link" href="{{route('order-manage.index')}}">
           <i class="fa fa-fw fa-calendar-check-o"></i>
-          <span class="nav-link-text">Order Manage <span class="badge badge-pill badge-primary">6 New</span></span>
+          <span class="nav-link-text">Order Manage</span>
+          @isset($countOrderManage)
+            <span class="badge badge-pill badge-primary">{{$countOrderManage}}</span>
+            @endisset
         </a>
       </li>
 
@@ -103,7 +106,7 @@
         <a class="nav-link dropdown-toggle mr-lg-2 logo-a" id="clientDropdown" href="#" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <span class="logo-figure"><img class="logo-img" src="{{Auth::guard('client')->user()->sClPhotoURL}}"
-              alt=""></span>{{Auth::guard('client')->user()->sClientID}}
+              alt=""></span><span class="font-large-17 font-weight-bold"># {{Auth::guard('client')->user()->sClientID}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-min" aria-labelledby="clientDropdown">
           <a class="nav-link text-black-50" href="#exampleModal" data-toggle="modal">

@@ -247,8 +247,7 @@ $(document).ready(function () {
         /*** DEFINED TABLE VARIABLE ***/
         var gridTable = document.getElementById("myGrid-serviceManage");
 
-        function getTableData() {
-            
+        function getTableData() {            
             agGrid
                 .simpleHttpRequest({
                     url: "/service-manage-show",
@@ -256,6 +255,12 @@ $(document).ready(function () {
                 .then(function (data) {
                     gridOptions.api.setRowData(data);
                 });
+            
+            // let url = "/service-list-count";
+            // var data = {};
+            // $.get( url, data, function (result) {
+            //     console.log(result);
+            // });
         }
 
         getTableData();
@@ -303,7 +308,8 @@ $(document).ready(function () {
         }
 
         Swal.fire({
-            title: 'Do you want to save the changes?',
+            icon : 'warning',
+            title: 'Do you want to approve service?',
             showDenyButton: false,
             showCancelButton: true,
             confirmButtonText: btn_text,
@@ -320,9 +326,10 @@ $(document).ready(function () {
                     "_token" :  $("meta[name='csrf-token']").attr("content"),
                 };
                 $.post( url, data, function (result) {
+                    $(".bg_ser_list").text(result);
                     getTableData();
                 })
-                    .always(function () {   
+                    .always( function () {   
                         HoldOn.close();
                     });
             }

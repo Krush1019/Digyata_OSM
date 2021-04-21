@@ -5,12 +5,7 @@ $(document).ready(function () {
     //  Rendering badge in status column
     var customBadgeHTML = function (params) {
         switch (params.value['val']) {
-            case 'Pending':
-                return '<div class="badge-pill bg-rgba-warning status-set-text" data-id="' + params.value['id'] + '" ><span class="text-warning font-weight-bold" >Pending</span></div>'
-
-            case 'Rejected':
-                return '<div class="badge-pill bg-rgba-secondary status-set-text" data-id="' + params.value['id'] + '" ><span class="text-secondary font-weight-bold" >Rejected</span></div>'
-
+            
             case 'Active':
                 return '<div class="badge-pill bg-rgba-success status-set-text status_btn" data-id="' + params.value['id'] + '" data-action="Active" ><span class="text-success font-weight-bold" >Active</span></div>'
 
@@ -41,13 +36,13 @@ $(document).ready(function () {
         return "<a href='tel:"+params.value+"'>"+params.value+"</a>"
     }
 
-    // Renering Links in Government Id Column
-    var customLinkHTML = function (params) {
-        var usersIcons = document.createElement("span");
-        var linkHTML = '<a href="' + params.value['url'] + '" target="_blank" title="' + params.value['name'] + '">' + params.value['name'] + '</a>';
-        usersIcons.appendChild($.parseHTML(linkHTML)[0]);
-        return usersIcons
-    }
+    // // Renering Links in Government Id Column
+    // var customLinkHTML = function (params) {
+    //     var usersIcons = document.createElement("span");
+    //     var linkHTML = '<a href="' + params.value['url'] + '" target="_blank" title="' + params.value['name'] + '">' + params.value['name'] + '</a>';
+    //     usersIcons.appendChild($.parseHTML(linkHTML)[0]);
+    //     return usersIcons
+    // }
 // ag-grid
     /*** COLUMN DEFINE ***/
 

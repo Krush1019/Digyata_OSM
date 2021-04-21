@@ -128,7 +128,7 @@ class ServiceManageController extends Controller {
                     "ser_status" => $status,
                 );
                 ServiceList::where("ser_id", decrypt($request->get("main_id")))->update($data);
-                return $status;
+                return $this->countServiceList();
                 break;
 
             default:
@@ -233,6 +233,12 @@ class ServiceManageController extends Controller {
 
         }
         return $data;
+    }
+
+    /** Count Pendding Service List */
+    private function countServiceList() {
+        $count = ServiceList::where( "ser_status", "Pending" )->count();
+        return ( $count > 0 ) ? $count : "" ;
     }
 
 }
