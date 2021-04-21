@@ -15,21 +15,22 @@ class MyOrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware("auth:customer");
     }
 
     public function index(Request $request)
     {
         $data = MyOrders::where('user_id', Auth::guard('customer')->user()->id)
-                          ->join('tbl_ser_list', 'tbl_ser_list.ser_id', '=', 'tbl_order_manages.ser_list_id')
-                          ->get();
-        $breadcrumbs = [['link' => route('home') , 'name' => "Dashboard"], ['name' => "My Order"]];
-      return view('/pages/client_user/user/my-order', [
-        'breadcrumbs' => $breadcrumbs,
-        'data' => $data
-
-      ]);
+            ->join('tbl_ser_list', 'tbl_ser_list.ser_id', '=', 'tbl_order_manages.ser_list_id')
+            ->get();
+    
+        $breadcrumbs = [['link' => route('home'), 'name' => "Dashboard"], ['name' => "My Order"]];
+        return view('/pages/client_user/user/my-order', [
+            'breadcrumbs' => $breadcrumbs,
+            'data' => $data
+        ]);
     }
 
     /**
@@ -84,13 +85,17 @@ class MyOrdersController extends Controller
      */
     public function update(Request $request)
     {
-     $tmp = MyOrders::where('id', $request->id)->update([['bSerStatus' => "complete"],['bPayStatus'=> true]]);
+        $array = array(
+            'bSerStatus' => "complete",
+            'bPayStatus' => true
+        );
+        $tmp = MyOrders::where('order_id', $request->id)->update($array);
 
-      if ($tmp) {
-        return true;
-      }else{
-        return false;
-      }
+        if ($tmp) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

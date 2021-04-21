@@ -35,11 +35,11 @@
           </div>
         </div>
       @else
-        <ul>
+        <ul class="od_div">
           @foreach ($data as $dt)
           <li>
             <figure><img src="{{asset('client_user/client/img/avatar.jpg')}}" alt=""></figure>
-            <h4>{{$dt->ser_pro_name}} <i class="{{(($dt->bSerStatus)?(($dt->bSerStatus==1)?"approved":"pending"):"cancel")}} od_status">Pending</i></h4>
+            <h4>{{$dt->ser_pro_name}} <i class="{{(($dt->bSerStatus)?(($dt->bSerStatus=='pending')?"pending":"approved"):"cancel")}} od_status">{{$dt->bSerStatus}}</i></h4>
             <ul class="booking_list">
               <li><strong>Order ID</strong> {{$dt->sOrderId}}</li>
               <li><strong>Booking date</strong> {{date_format(date_create($dt->sbDate),"d/m/Y")}}</li>
@@ -49,9 +49,11 @@
             </ul>
             <!-- <p><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a>
             </p> -->
+            @if($dt->bSerStatus == 'pending')
             <ul class="buttons">
-              <li><a href="#" class="od_approve btn_1 gray approve"><i class="fa fa-fw fa-check-square-o font-large-15 mr-1"></i>Mark as Completed</a></li>
+              <li><a href="#" class="od_approve btn_1 gray approve" data-id="{{$dt->order_id}}"><i class="fa fa-fw fa-check-square-o font-large-15 mr-1"></i>Mark as Completed</a></li>
             </ul>
+            @endif
           </li>
           @endforeach
         </ul>

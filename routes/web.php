@@ -115,6 +115,7 @@ use App\Http\Controllers\LanguageController;
 
     /** user -- My orders */
     Route::get('/user/my-orders', 'client_user\user\MyOrdersController@index')->name('user.myorders');
+    Route::post('/user/my-orders-update', 'client_user\user\MyOrdersController@update');
 
     /** client -- detail */
     Route::get('/client-detail/{id}', 'client_user\user\ClientDetailController@index')->name('client-detail');
