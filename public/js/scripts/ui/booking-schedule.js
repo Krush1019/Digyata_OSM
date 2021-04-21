@@ -157,11 +157,6 @@ $(document).ready(function () {
             $(".filter-btn").text("1 - " + $this.text() + " of 50");
         });
 
-        /*** EXPORT AS CSV BTN ***/
-        /* $(".ag-grid-export-btn").on("click", function () {
-            gridOptions.api.exportDataAsCsv();
-        }); */
-
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);
     }

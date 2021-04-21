@@ -7,30 +7,10 @@ $(document).ready(function () {
   var isRtl;
   isRtl = $('html').attr('data-textdirection') === 'rtl';
 
-  //  Rendering badge in status column
-  var customBadgeHTML = function (params) {
-    if (params.value === "Good") {
-      return '<div class="badge-pill bg-rgba-success status-set-text width-100 status_btn" data-id="'+params.value+'" ><span class="text-success font-weight-bold" > ' + params.value + '</span></div>'
-    } else if (params.value === "Bad") {
-      return '<div class="badge-pill bg-rgba-danger status-set-text width-100 status_btn" data-id="'+params.value+'" ><span class="text-warning font-weight-bold" > ' + params.value + '</span></div>'
-    }
-  }
-
-  //  Rendering avatar in username column
-  var customUserAvatarHTML = function (params) {
-    return '<a href=' + "user-view" + '>' + params.value['userName'] + '</a>';
-  }
-
-  //  Rendering avatar in client-name column
-  var customClientAvatarHTML = function (params) {
-    return '<a href=' + "client-view" + '><span class="avatar"><img src="' + params.value['clientImg'] + '" height="32" width="32" alt=" "></span>' + params.value['clientName'] + '</a>';
-  }
-
-
   //  Rendering rating in Rating column
   var customRatingHTML = function ({value}) {
     var ratingicons = document.createElement("span");
-    ratingicons.setAttribute("class", "pl-1 font-medium-3");
+    ratingicons.setAttribute("class", "font-medium-3");
     ratingicons.setAttribute("data-value", value);
     var rateicon = '<i class="fa fa-star text-warning"></i>';
     var ratehalficon = '<i class="fa fa-star-half-o text-warning"></i>';
@@ -60,15 +40,7 @@ $(document).ready(function () {
   /*** COLUMN DEFINE ***/
 
   var columnDefs = [{
-    headerName: 'Order Id',
-    field: 'order-id',
-    width: 200,
-    filter: true,
-    checkboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true,
-    headerCheckboxSelection: true
-  },
-    {
+    
       headerName: 'Service Name',
       field: 'service-name',
       filter: true,
@@ -78,45 +50,26 @@ $(document).ready(function () {
       headerName: 'Rating',
       field: 'rating',
       filter: true,
-      width: 150,
+      width: 130,
       cellRenderer: customRatingHTML
     },
     {
-      headerName: 'Service Provider',
-      field: 'service-provider',
+      headerName: 'ClientId',
+      field: 'clientId',
       filter: true,
-      width: 200,
-      cellRenderer: customClientAvatarHTML
+      width: 150,
     },
     {
-      headerName: 'User',
-      field: 'user-name',
+      headerName: 'UserId',
+      field: 'userId',
       filter: true,
-      width: 200,
-      cellRenderer: customUserAvatarHTML
+      width: 150,
     },
     {
       headerName: 'Feedback',
       field: 'feedback',
       filter: true,
-      width: 200,
-    },
-    {
-      headerName: 'Avarage Rating',
-      field: 'avarage-rating',
-      filter: true,
-      width: 150,
-      cellRenderer: customRatingHTML
-    },
-    {
-      headerName: 'Review Status',
-      field: 'review-status',
-      filter: true,
-      width: 175,
-      cellRenderer: customBadgeHTML,
-      cellStyle: {
-        "text-align": "center"
-      }
+      width: 300,
     }
   ];
 
@@ -180,24 +133,7 @@ $(document).ready(function () {
       $(".filter-btn").text("1 - " + $this.text() + " of 50");
     });
 
-    /*** Dropdown btn-Download CSV BTN ***/
-    /* $("#Aggrid-export-btn").on("click", function (params) {
-      gridOptions.api.exportDataAsCsv();
-    }); */
-
     /*** INIT TABLE ***/
     new agGrid.Grid(gridTable, gridOptions);
   }
-
-  //start: Search Data
-  $(document).on('click', '#search_btn', function (e) {
-
-    var text = $("#search-text").val();
-    if(text !== ""){
-      $(this).attr('type', 'button');
-      getTableData("search?text="+text);
-    }
-  })
-  //end: Search Data
-
 });
