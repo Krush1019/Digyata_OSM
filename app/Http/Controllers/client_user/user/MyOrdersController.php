@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\client_user\user;
 
+use Auth;
+use Illuminate\Http\Request;
 use App\client_user\user\MyOrders;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class MyOrdersController extends Controller
 {
@@ -85,11 +86,17 @@ class MyOrdersController extends Controller
      */
     public function update(Request $request)
     {
+        try {
+            $decrypted = decrypt($request->id);
+        } catch (DecryptException $e) {
+          return view('/pages/error-404');
+        }
+        
         $array = array(
             'bSerStatus' => "complete",
             'bPayStatus' => true
         );
-        $tmp = MyOrders::where('order_id', $request->id)->update($array);
+        $tmp = MyOrders::where('order_id', $decrypted)->update($array);
 
         if ($tmp) {
             return true;

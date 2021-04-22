@@ -462,15 +462,10 @@ $(document).ready(function () {
           success: function (data) {
             resolve(data)
           },
-          error: function (error) {
-            HoldOn.close();
-            Toast.fire({
-              icon: 'warning',
-              title: JSON.stringify(error.responseJSON),
-              timer: false
-            })
-            reject(error)
-          },
+          error: function (xhr, error) {
+            errorView(xhr);
+            reject(error);
+          }
         });
       } else {
         resolve();
