@@ -45,7 +45,7 @@ $(document).ready(function () {
           data: { id },
           success: function (data) {
             HoldOn.close();
-            th.parentsUntil('.od_div').find('.od_status').text('Completed').addClass('approved').removeClass('pending');
+            th.parentsUntil('.od_div').find('.od_status').text('Complete').addClass('approved').removeClass('pending');
             th.remove();
             Toast.fire({
               icon: 'success',
