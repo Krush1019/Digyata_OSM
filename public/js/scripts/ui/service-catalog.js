@@ -463,8 +463,13 @@ $(document).ready(function () {
             resolve(data)
           },
           error: function (xhr, error) {
-            errorView(xhr);
-            reject(error);
+            Toast.fire({
+              icon: 'error',
+              position: 'top-left',
+              title: xhr.responseText,
+              timer: false,
+            })
+            reject();
           }
         });
       } else {
