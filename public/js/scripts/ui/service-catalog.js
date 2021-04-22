@@ -463,12 +463,7 @@ $(document).ready(function () {
             resolve(data)
           },
           error: function (xhr, error) {
-            Toast.fire({
-              icon: 'error',
-              position: 'top-left',
-              title: xhr.responseText,
-              timer: false,
-            })
+            errorView(xhr);
             reject();
           }
         });
