@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/osmdigyata/public_html/
+    - export DEPLOYPATH=/home/digyata/public_html/
     - /bin/cp -r resources $DEPLOYPATH
     - /bin/cp -r routes $DEPLOYPATH
     - /bin/cp -r app $DEPLOYPATH
