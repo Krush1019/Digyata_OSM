@@ -5,4 +5,5 @@ deployment:
     - /bin/cp -r resources $DEPLOYPATH
     - /bin/cp -r routes $DEPLOYPATH
     - /bin/cp -r app $DEPLOYPATH
+    - /bin/cp -r public $DEPLOYPATH
     
