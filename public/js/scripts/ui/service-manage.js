@@ -217,9 +217,7 @@ $(document).ready(function () {
         cellStyle: {
             "text-align": "center"
         }
-    },
-
-
+    }
     ];
 
     /*** GRID OPTIONS ***/
@@ -255,12 +253,6 @@ $(document).ready(function () {
                 .then(function (data) {
                     gridOptions.api.setRowData(data);
                 });
-            
-            // let url = "/service-list-count";
-            // var data = {};
-            // $.get( url, data, function (result) {
-            //     console.log(result);
-            // });
         }
 
         getTableData();
@@ -284,11 +276,6 @@ $(document).ready(function () {
             changePageSize($this.text());
             $(".filter-btn").text("1 - " + $this.text() + " of 50");
         });
-
-        /*** EXPORT AS CSV BTN ***/
-        /* $(".ag-grid-export-btn").on("click", function (params) {
-            gridOptions.api.exportDataAsCsv();
-        }); */
 
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);

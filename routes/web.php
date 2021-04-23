@@ -37,16 +37,16 @@ use App\Http\Controllers\LanguageController;
 
         /** Admin -- Pepole -- client-manage */
         Route::get('/client-manage', 'ClientManageController@index');
-        //      Route::get('/client-view', 'ClientManageController@client_view');
         Route::get('/client-manage-show', 'ClientManageController@show');
+        Route::post('/show-client-data', 'ClientManageController@showClientData');        
         Route::get('/client-manage-store', 'ClientManageController@store');
         Route::get('/client-manage-update', 'ClientManageController@update');
 
         /** Admin -- Pepole -- user-manage */
         Route::get('/user-manage', 'UserManageController@index');
         Route::get('/user-manage-store', 'UserManageController@store');
-        //    Route::get('/user-view', 'UserManageController@user_view');
         Route::get('/user-manage-show', 'UserManageController@show');
+        Route::post('/show-user-data', 'UserManageController@showUserData');        
         Route::get('/user-manage-update', 'UserManageController@update');
 
     /** Admin -- service-manage */

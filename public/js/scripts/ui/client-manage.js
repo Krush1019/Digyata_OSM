@@ -18,7 +18,7 @@ $(document).ready(function () {
     // Renering Icons in Actions column
     var customIconsHTML = function (params) {
         var usersIcons = document.createElement("span");
-        var editIconHTML = '<a href="/client-view"><i class="feather icon-eye mr-50"></i></a>';
+        var editIconHTML = '<a href="#" class="modal_btn" data-id="' + params.value['id'] + '"><i class="feather icon-eye mr-50 "></i></a>';
         usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
         return usersIcons
     }
@@ -36,13 +36,6 @@ $(document).ready(function () {
         return "<a href='tel:"+params.value+"'>"+params.value+"</a>"
     }
 
-    // // Renering Links in Government Id Column
-    // var customLinkHTML = function (params) {
-    //     var usersIcons = document.createElement("span");
-    //     var linkHTML = '<a href="' + params.value['url'] + '" target="_blank" title="' + params.value['name'] + '">' + params.value['name'] + '</a>';
-    //     usersIcons.appendChild($.parseHTML(linkHTML)[0]);
-    //     return usersIcons
-    // }
 // ag-grid
     /*** COLUMN DEFINE ***/
 
@@ -161,11 +154,6 @@ $(document).ready(function () {
             $(".filter-btn").text("1 - " + $this.text() + " of 50");
         });
 
-        /*** EXPORT AS CSV BTN ***/
-        /* $(".ag-grid-export-btn").on("click", function (params) {
-            gridOptions.api.exportDataAsCsv();
-        }); */
-
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);
     }
@@ -238,4 +226,56 @@ $(document).ready(function () {
             }
         });
     }
+
+    //show modal woth data
+    $(document).on('click', ".modal_btn", function (e) {
+        HoldOn.open(options);
+        var id = $(this).attr("data-id");
+        var url = "/show-client-data";
+        var form = $("#viewClientModal");
+        var html = "";
+        var data = {
+            "id": id,
+            "_token" :  $("meta[name='csrf-token']").attr("content"),
+        }
+        $.post(url, data, function (result) {
+              var data = JSON.parse(result);
+            form.find('.clientId').text('#'+ data[0]['sClientID']);
+            form.find('.client_img').attr('src' , data[0]['sClPhotoURL'] );
+            form.find('.client_name').text(data[0]['sClName']);
+            form.find('.client_gender').text(data[0]['sClGender']);
+            form.find('.client_email').attr("href", "mailto:" + data[0]['sClEmail']).text(data[0]['sClEmail']);
+            form.find('.client_moblie').attr("href", "tel:" + data[0]['sClMobile']).text(data[0]['sClMobile']);
+            if(data[0]['sClientStatus'] == 'Active'){
+                form.find('.client_status').addClass('badge-success').text('Active');
+            } else {
+                form.find('.client_status').addClass('badge-danger').text('Blocked');
+            }
+            form.find(".service_list tbody").empty();
+            if(data[0]['ser_pro_name']){
+                $.each(data, function (key, value) {
+                    html += '<tr><th scope="row">' + (key + 1) + '</th><td>' + value['ser_pro_name'] + '</td><td>' + value['serviceName'] + '</td><td>' + value['serviceCategory'] + '</td></tr>';
+                })
+            } else {
+                    html =  '<tr class="text-center"><td colspan="3">Services not Added.</td></tr>';
+            }
+            form.find(".service_list tbody").append(html);
+            HoldOn.close();
+            form.modal("show");
+        })
+            .fail(function (error) {
+                swalError();
+            })
+            .always(function () {   
+                HoldOn.close();
+            });
+    });
 });
+
+function  swalError() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+    });
+}

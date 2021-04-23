@@ -73,6 +73,7 @@ class ClientManageController extends Controller
                     "email" => $row->sClEmail,
                     "client-status" => array('val' => $row->sClientStatus, "id" => $id),
                     "approval" => array('val' => $row->sClientStatus, "id" => $id),
+                    "transactions" => array("id" => $id),
                 );
                 $newData[$i] = $tempArr;
                 $i++;
@@ -137,6 +138,20 @@ class ClientManageController extends Controller
     public function destroy(ClientManage $clientManage)
     {
         //
+    }
+
+    public function showClientData(Request $request) {
+        $id = decrypt( $request->get('id') );
+        $tbl_serlist = 'tbl_ser_list';
+        $tbl_client = 'tbl_client_manage';
+        $tbl_ser_cat = 'tbl_service_catalogs'; 
+        $data = ClientManage::where('id', $id)->get();
+
+        $service = DB::table($tbl_serlist)
+        ->join($tbl_ser_cat, $tbl_ser_cat . ".id", "=", $tbl_serlist . ".ser_cat_id")
+        ->rightjoin( $tbl_client, $tbl_serlist . ".client_id", "=", $tbl_client . ".id")        
+        ->where($tbl_client. '.id', $id)->get();
+        return json_encode($service );
     }
 
     private function getClientID($col_name)
