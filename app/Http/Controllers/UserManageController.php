@@ -60,6 +60,7 @@ class UserManageController extends Controller {
                 'email' =>$row['sUserEmail'],
                 'user-location' =>$row['sUserLoc'],
                 'user-status' => array('text'=>($row['bUserStatus'] == 1) ? 'Active' : 'Inactive', 'id'=>$id),
+                "transactions" => array("id" => $id),
             );
             $newData[$i] = $temp; $i++;
         }
@@ -104,6 +105,12 @@ class UserManageController extends Controller {
      */
     public function destroy(UserManage $userManage) {
         //
+    }
+
+    public function showUserData(Request $request) {
+        $id = decrypt( $request->get('id') ); 
+        $data = UserManage::where('id', $id)->get();
+        return json_encode($data);
     }
 
     private function getUserID(){

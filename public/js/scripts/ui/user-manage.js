@@ -2,6 +2,8 @@ $(document).ready(function () {
 
     var isRtl;
     isRtl = $('html').attr('data-textdirection') === 'rtl';
+    
+    // $('#viewUserModal').modal('show');
 
     //  Rendering badge in status column
     var customBadgeHTML = function (params) {
@@ -15,7 +17,7 @@ $(document).ready(function () {
     // Renering Icons in Actions column
     var customIconsHTML = function (params) {
         var usersIcons = document.createElement("span");
-        var editIconHTML = '<a href="#viewUserModal" class="modal_btn" data-toggle="modal"><i class="users-edit-icon feather icon-eye mr-50"></i></a>';
+        var editIconHTML = '<a href="#" class="modal_btn" data-id="' + params.value['id'] + '"><i class="feather icon-eye mr-50 "></i></a>';
         usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
         return usersIcons
     }
@@ -148,11 +150,6 @@ $(document).ready(function () {
             $(".filter-btn").text("1 - " + $this.text() + " of 50");
         });
 
-        /*** EXPORT AS CSV BTN ***/
-        /* $(".ag-grid-export-btn").on("click", function (params) {
-            gridOptions.api.exportDataAsCsv();
-        }); */
-
         /*** INIT TABLE ***/
         new agGrid.Grid(gridTable, gridOptions);
     }
@@ -210,4 +207,48 @@ $(document).ready(function () {
     });
     // END: Change status
 
+    //show modal woth data
+    $(document).on('click', ".modal_btn", function (e) {
+        HoldOn.open(options);
+        var id = $(this).attr("data-id");
+        var url = "/show-user-data";
+        var form = $("#viewUserModal");
+        var data = {
+            "id": id,
+            "_token" :  $("meta[name='csrf-token']").attr("content"),
+        }
+        $.post(url, data, function (result) {
+              var data = JSON.parse(result);
+            form.find('.userId').text('#'+ data[0]['sUserID']);
+            form.find('.user_name').text(data[0]['sUserName']);
+            form.find('.user_gender').text(data[0]['sUserGender']);
+            form.find('.user_email').attr("href", "mailto:" + data[0]['sUserEmail']).text(data[0]['sUserEmail']);
+            form.find('.user_moblie').attr("href", "tel:" + data[0]['sUserMobile']).text(data[0]['sUserMobile']);
+            form.find('.user_address').text(data[0]['sUserHouseNo'] + ", " + data[0]['sUserArea'] + ", " +
+             data[0]['sUserCity'] + ", " + data[0]['sUserState']);
+            form.find('.user_pincode').text(data[0]['sUserPincode']);
+            if(data[0]['bUserStatus']){
+                form.find('.user_status').addClass('badge-success').text('Active');
+            } else {
+                form.find('.user_status').addClass('badge-danger').text('Blocked');
+            }
+            HoldOn.close();
+            form.modal("show");
+        })
+            .fail(function (error) {
+                swalError();
+            })
+            .always(function () {   
+                HoldOn.close();
+            });
+    });
+
 });
+
+function  swalError() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+    });
+}

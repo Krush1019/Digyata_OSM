@@ -83,15 +83,12 @@
 	<div class="modal fade" id="viewServiceModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
 			<div class="modal-content">
-
 				<div class="modal-header">
 					<h4 class="modal-title">View Service</h4>
 					<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 				</div>
-
 				<div class="modal-body container-fluid">
 					<div class="row">
-
 						<div class="box_general m-4 w-100 pb-4 viewservicespan">
 							<div class="header_box version_2">
 								<h2><i class="fa fa-file"></i>Service info</h2>
@@ -123,11 +120,8 @@
 										<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_cate">Cleaning </div>
 									</div>
 								</div>
-
 							</div>
-
 							<div class="row">
-
 								<div class="col-md-5 mt-20">
 									<div class="">
 										<div class="user-info">
