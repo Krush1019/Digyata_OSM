@@ -21,11 +21,11 @@
             <div class="row justify-content-center justify-content-md-start">
               <div class="col-lg-12 static">
                 <div class="slide-text text-center white">
-                  <h2 class="owl-slide-animated owl-slide-title">Find a Professional !!!</h2>
+                  <h2 class="owl-slide-animated owl-slide-title">Find a Professional</h2>
                   <p class="owl-slide-animated owl-slide-subtitle">
                     Book a Consultation
                   </p>
-                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client-listing')}}" role="button">Read more</a></div>
+                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client-listing')}}" role="button">Find Now</a></div>
                 </div>
               </div>
             </div>
