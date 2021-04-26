@@ -175,7 +175,10 @@ use App\Http\Controllers\LanguageController;
     Route::get('/modern-admin', 'AccessController@home')->middleware('permissions:approve-post');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
+    Route::prefix('admin')->group(function () {
     Auth::routes(['register' => false]);
+    });
+
 
 /******************
 *   LOGIN
