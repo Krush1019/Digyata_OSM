@@ -56,15 +56,10 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-
-        $path = '/login';
-        if (Auth::guard('client')->check()) {
-            $path = route('home');
+        $path = route('home');
+        if (Auth::guard('web')->check()) {
+            $path = route('login');
         }
-        if (Auth::guard('customer')->check()) {
-            $path = route('home');
-        }
-
         $this->guard()->logout();
 
         $request->session()->invalidate();

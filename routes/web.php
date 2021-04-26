@@ -173,7 +173,7 @@ use App\Http\Controllers\LanguageController;
     Route::get('/access-control', 'AccessController@index');
     Route::get('/access-control/{roles}', 'AccessController@roles');
     Route::get('/modern-admin', 'AccessController@home')->middleware('permissions:approve-post');
-    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('admin/logout', 'Auth\LoginController@logout')->name('logout');
 
     Route::prefix('admin')->group(function () {
     Auth::routes(['register' => false]);
@@ -197,6 +197,9 @@ use App\Http\Controllers\LanguageController;
     Route::get('/register/customer', 'Auth\RegisterController@showCustomerRegisterForm')->name('customer.register');
     Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
 
+    /** Reset Password */
+    Route::get('/login/forgot', 'client_user\resetpw\ForgotPasswordController@index')->name('login.forgot');
+    Route::get('/login/reset', 'client_user\resetpw\ResetPasswordController@index')->name('login.reset');
 
 /** locale Route */
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);

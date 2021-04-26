@@ -348,3 +348,8 @@ label.error {
   overflow: hidden; 
   text-overflow: ellipsis !important;
 }
+
+.card.dashboard {
+  min-height: 140px;
+  margin: 0 5px;
+}

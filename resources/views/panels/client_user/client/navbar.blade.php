@@ -76,32 +76,6 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-fw fa-envelope"></i>
-          <span class="d-lg-none">Messages</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-          <h6 class="dropdown-header">Messages:</h6>
-          <div class="dropdown-divider"></div>
-          <span class="small text-center text-muted ml-4">No messages.</span>
-        </div>
-      </li>
-
-      <li class="nav-item">
-        <form class="form-inline my-2 my-lg-0 w-75">
-          <div class="input-group">
-            <input class="form-control search-top" type="text" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="button">
-                <i class="fa fa-search"></i>
-              </button>
-            </span>
-          </div>
-        </form>
-      </li>
-
       <li class="nav-item dropdown d-lg-block d-none">
         <a class="nav-link dropdown-toggle mr-lg-2 logo-a" id="clientDropdown" href="#" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
