@@ -22,7 +22,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-      @endif
+   @endif
+  
     <div class="container margin_60_40">
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-5 col-sm-8">
@@ -68,6 +69,11 @@
                                     <div>
                                         <button id="BO_btn2" type="button" class="btn_1 full-width mb_5">Confirm
                                             Order</button>
+                                        @if(session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
                                     </div>
                                 </section>
                                 <section id="switch_inner3" hidden>
@@ -112,14 +118,18 @@
                                         </ul>
                                     </div>
                                     <div>
-                                        <button id="BO_btn3" type="submit" class="btn_1 full-width mb_5">Book
-                                            Now</button>
+                                        <button id="BO_btn3" type="submit" class="btn_1 full-width mb_5">Cash On Delievary</button>
+                                    </div>
+                                    <div>
+                                        <a id="" href="{{ route('payment',encrypt($service->ser_id)) }}" class="btn btn_1 full-width mb_5">Make Payment</a>
+                                      
                                     </div>
                                 </section>
 
                                 <a href="{{ url()->previous()}}" class="btn_1 full-width outline mb_25">Change
                                     Booking</a>
                         </form>
+                   
                     </div>
                 </div>
             </div>

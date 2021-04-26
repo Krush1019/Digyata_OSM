@@ -137,6 +137,10 @@ use App\Http\Controllers\LanguageController;
       return view('pages/client_user/user/confirm-msg',['orderId'=>decrypt($id)]);
     })->name('confirm.msg');
 
+     /** Payment */
+     Route::get('payment/{id}','PaymentsController@submit')->name('payment');
+     Route::get('success/{id}','PaymentsController@success');
+
     /** Order -- Invoice */
     Route::view('/order/invoice', '/pages/client_user/user/invoice');
 

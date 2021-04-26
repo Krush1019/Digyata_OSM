@@ -14,6 +14,7 @@
 
 
 @section('content')
+
 <main class="bg_gray pattern">
       <div class="container margin_60_40">
             <div class="row justify-content-center">
