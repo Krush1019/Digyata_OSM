@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers\client_user\client;
 
-use App\client_user\client\ClientDashboard;
-use App\Http\Controllers\Controller;
+use Auth;
+
+use App\ServiceList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\client_user\OrderManage;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\client_user\client\ClientDashboard;
 
 class ClientDashboardController extends Controller
 {
@@ -19,9 +25,21 @@ class ClientDashboardController extends Controller
      
     public function index()
     {
+        $id = Auth::guard('client')->user()->id;
+        $countService = ServiceList::where('client_id', $id)->count();
+        $countOrder = OrderManage::where('client_id', $id)->count();
+        $countReview = DB::table('tbl_ser_list') 
+        ->join('tbl_review_orders', "tbl_review_orders.ser_id" , '=', 'tbl_ser_list.ser_id')
+        ->where('client_id', $id)
+        ->whereDate('tbl_review_orders.created_at', '>=' , Carbon::now()->subDays(5))
+        ->count();
+        
       $breadcrumbs = [['link' => "/client-dashboard", 'name' => "Dashboard"],['name' => "My Dashboard"]];
       return view('/pages/client_user/client/client-dashboard', [
-        'breadcrumbs' => $breadcrumbs
+        'breadcrumbs' => $breadcrumbs,
+        'countService' => $countService,
+        'countOrder' => $countOrder,
+        'countReview' => $countReview,
       ]);
 
 //      return view('/pages/client_user/client/client-dashboard');

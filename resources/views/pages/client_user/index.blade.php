@@ -21,7 +21,7 @@
             <div class="row justify-content-center justify-content-md-start">
               <div class="col-lg-12 static">
                 <div class="slide-text text-center white">
-                  <h2 class="owl-slide-animated owl-slide-title">Find a Professional?</h2>
+                  <h2 class="owl-slide-animated owl-slide-title">Find a Professional</h2>
                   <p class="owl-slide-animated owl-slide-subtitle">
                     Book a Consultation
                   </p>
@@ -43,7 +43,7 @@
                   <p class="owl-slide-animated owl-slide-subtitle">
                     More than +1,000 trusted professionals listed
                   </p>
-                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client-listing')}}" role="button">Read more</a></div>
+                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client-listing')}}" role="button">view More</a></div>
                 </div>
               </div>
             </div>
@@ -61,7 +61,7 @@
                   <p class="owl-slide-animated owl-slide-subtitle">
                     Join to Digyata for Free and get more visibility
                   </p>
-                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client.register')}}" role="button">Read more</a></div>
+                  <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="{{route('client.register')}}" role="button">Join Now</a></div>
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@
             </li>
             <li>
               <h3><span>#03.</span> Enjoy the Consultation</h3>
-              <p>Connect with your professional booking an appointment via chat!</p>
+              <p>Connect with your professional booking an appointment.</p>
             </li>
           </ul>
           <p class="add_top_30"><a href="{{route('client-listing')}}" class="btn_1">Start Searching</a></p>
@@ -198,7 +198,7 @@
           <div class="ribbon_promo"><span>Free</span></div>
           <h3>Are you a Professional?</h3>
           <p>Join Us to increase your online visibility. You'll have access to even more customers who are looking to professional service or consultation.</p>
-          <a href="{{route('client.register')}}" class="btn_1">Read more</a>
+          <a href="{{route('client.register')}}" class="btn_1">Join Now</a>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-
 .card-content > .card {
   margin: 1%;
   background: #1a92b7;
@@ -9,14 +8,13 @@
   padding: 10px 0;
   float: left;
   color: #fff;
-  transition: .5s;
-  -webkit-transition: .5s;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
   cursor: pointer;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.11);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.11);
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.11);
 }
-
 
 .card-header-title {
   background: #f4f4f4;
@@ -30,7 +28,6 @@
 }
 
 li button.btn_logi {
-
   border: 1px solid #999;
   color: black;
   background-color: white;
@@ -41,13 +38,13 @@ li button.btn_logi {
 }
 
 @media (max-width: 767px) {
-li button.btn_logi {
+  li button.btn_logi {
     padding: 7px 10px;
   }
 }
 li button.btn_logi:hover {
-  background-color: #FF3A65;
-  border-color: #FF3A65;
+  background-color: #ff3a65;
+  border-color: #ff3a65;
   color: white;
 }
 
@@ -76,23 +73,23 @@ li button.btn_logi:hover {
   outline: none;
 }
 
-#select-login-modal .modal-body{
+#select-login-modal .modal-body {
   padding-left: 30px;
   padding-right: 30px;
 }
 
-#select-login-modal{
+#select-login-modal {
   margin-top: 40px;
 }
 
 #select-login-modal .card:hover {
-  background-color: #887ef2;opacity: 90%;
+  background-color: #887ef2;
+  opacity: 90%;
 }
 
 #user-login-modal {
   margin-top: 40px;
 }
-
 
 #user-login-modal .form-group input.form-control {
   padding-left: 40px;
@@ -123,7 +120,8 @@ li button.btn_logi:hover {
   border-width: 10px;
 }
 
-a#forgot:hover, a#forgot:focus {
+a#forgot:hover,
+a#forgot:focus {
   color: #111;
   text-decoration: none;
   outline: none;
@@ -134,7 +132,7 @@ a#forgot:hover, a#forgot:focus {
 }
 
 .text-pink {
-  color: #FF3A65 !important;
+  color: #ff3a65 !important;
 }
 
 .running {
@@ -162,7 +160,6 @@ invoice page
   padding: 2.2rem;
 }
 /*-------*/
-
 
 .rate-mr-3_75 {
   margin-right: 1.25rem;
@@ -204,7 +201,7 @@ invoice page
 
 .selected {
   border: 1px solid transparent !important;
-  background-color: #FF3A65 !important;
+  background-color: #ff3a65 !important;
   color: #fff !important;
 }
 
@@ -233,44 +230,43 @@ header.header.sticky .logo {
     width: 100%;
     height: 100%;
   }
-} 
+}
 
 .activelink {
-  color: #FF3A65 !important;
+  color: #ff3a65 !important;
   font-weight: bold !important;
 }
 
 @media only screen and (max-width: 991px) {
   .activelink {
     display: block;
-    color: #FF3A65 !important;
+    color: #ff3a65 !important;
     font-weight: bold !important;
   }
 }
 
 .field-icon {
-	float: right;
-	margin-left: -30px;
-	margin-right: 7px;
-	margin-top: -25px;
-	position: relative;
-	z-index: 2;
+  float: right;
+  margin-left: -30px;
+  margin-right: 7px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
 }
 
 .image-set-auto {
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 400px; 
-
-  }
+  height: 400px;
+}
 
 .font-size-large {
   font-size: large !important;
 }
 
 /* Pagination */
- .pagination_div {
+.pagination_div {
   text-align: center;
   margin-top: 15px;
 }
@@ -282,20 +278,24 @@ header.header.sticky .logo {
 
 .pagination .page-item.active {
   /* border-radius: 5rem !important; */
-  background-color: #F0F0F0;
-} 
+  background-color: #f0f0f0;
+}
 
 .pagination .page-item .page-link {
   border: none !important;
   margin: 0;
   color: rgba(0, 0, 0, 0.6);
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   margin-left: 0;
   font-size: 1rem;
   font-weight: 700;
 }
 
-.pagination .page-item:not(.prev-item) .page-link, .pagination .page-item:not(.next-item) .page-link, .pagination .page-item:not(.first) .page-link, .pagination .page-item:not(.last) .page-link, .pagination .page-item:not(.active) .page-link {
+.pagination .page-item:not(.prev-item) .page-link,
+.pagination .page-item:not(.next-item) .page-link,
+.pagination .page-item:not(.first) .page-link,
+.pagination .page-item:not(.last) .page-link,
+.pagination .page-item:not(.active) .page-link {
   line-height: 1.3;
 }
 
@@ -306,8 +306,8 @@ header.header.sticky .logo {
   margin-left: -1px;
   line-height: 1.25;
   color: #333;
-  background-color: #FFFFFF;
-  border: 1px solid #DAE1E7;
+  background-color: #ffffff;
+  border: 1px solid #dae1e7;
   box-shadow: none !important;
 }
 
@@ -319,7 +319,7 @@ header.header.sticky .logo {
   z-index: 3;
   border-radius: 5rem;
   background-color: #333;
-  color: #FFFFFF;
+  color: #ffffff;
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -337,7 +337,7 @@ header.header.sticky .logo {
 
 .font-size-18 {
   font-size: 18px !important;
-  font-weight: 700!important;
+  font-weight: 700 !important;
 }
 
 .required {
@@ -349,4 +349,21 @@ header.header.sticky .logo {
 
 .font-size-medium {
   font-size: medium !important;
+}
+
+.min-height-100 {
+  min-height: auto !important;
+  padding-top: 60px !important;
+  padding-bottom: 39px !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .my-55 {
+    margin-top: 55px !important;
+    margin-bottom: 55px !important;
+  }
+
+  .min-height-100 {
+  min-height: 565px !important;
+}
 }
