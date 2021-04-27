@@ -8,9 +8,9 @@ $(document).ready(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'bottom-left',
-        showConfirmButton: true,
+        showConfirmButton: false,
         showCancelLink: true,
-        timer: 5000,
+        timer: 4000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -182,6 +182,14 @@ $(document).ready(function () {
         
     });
 
+    $(".btn_pending").on( "click", function () {
+        var msg = "Your service is successfully submitted. \nWait for verified by the team.";
+        Toast.fire({
+            icon: 'info',
+            title: msg
+        });
+    });
+    
 });
 
 function swalError(msg = "Something went wrong!", title = "Oops...") {
