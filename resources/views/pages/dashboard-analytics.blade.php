@@ -78,6 +78,7 @@
       </div>
     </div>
   </div>
+  @if ($countOrder > 0)
   <div class="row match-height">
     <div class="offset-lg-2 col-lg-8 col-12">
       <div class="card">
@@ -109,13 +110,14 @@
                     <span class="od_pending"></span>
                   </div>
                 </div>
-              </div> 
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  @endif
 </section>
 <!-- Dashboard Analytics end -->
 @endsection
