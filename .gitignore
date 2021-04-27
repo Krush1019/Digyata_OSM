@@ -11,6 +11,5 @@ public/storage
 public/images/client
 public/images/services
 composer.lock
-routes/web.php
 storage/*.key
 .rnd

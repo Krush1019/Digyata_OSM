@@ -71,3 +71,11 @@
 .top-30 {
   top: 30px !important;
 }
+
+#product-order-chart {
+  min-height: 0px !important;
+}
+
+.apexcharts-canvas {
+  height: 300px !important;
+}
