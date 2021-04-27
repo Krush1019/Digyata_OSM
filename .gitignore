@@ -6,6 +6,8 @@ yarn-error.log
 # Laravel 5 & Lumen specific
 public/storage
 .env
+/storage/*.key
+.rnd
 
 #Images
 public/images/client
