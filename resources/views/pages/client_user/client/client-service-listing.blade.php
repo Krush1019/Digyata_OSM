@@ -145,7 +145,7 @@
 
 						<div class="row">
 							<div class="col-md-5 mt-20">
-								<div class="">
+								<div>
 									<div class="user-info">
 										<div>
 											<span class="col-sm-12 small pl-0">Phone : </span>
