@@ -8,9 +8,9 @@ $(document).ready(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'bottom-left',
-        showConfirmButton: true,
+        showConfirmButton: false,
         showCancelLink: true,
-        timer: 5000,
+        timer: 4000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -152,11 +152,9 @@ $(document).ready(function () {
                 } else if (days[0] == "6D") {
                     time = time[0].split("-");
                     form.find(".day_time tbody").append("<tr><td>6 Days (Mon-Sat)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-                    console.log(time);
                 } else if (days[0] == "ALL") {
                     time = time[0].split("-");
                     form.find(".day_time tbody").append("<tr><td>All Days</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-                    console.log(time);
                 }
             }
 
@@ -182,6 +180,14 @@ $(document).ready(function () {
         
     });
 
+    $(".btn_pending").on( "click", function () {
+        var msg = "Your service is successfully submitted. \nWait for verified by the team.";
+        Toast.fire({
+            icon: 'info',
+            title: msg
+        });
+    });
+    
 });
 
 function swalError(msg = "Something went wrong!", title = "Oops...") {

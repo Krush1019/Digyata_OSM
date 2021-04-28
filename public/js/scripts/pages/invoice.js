@@ -8,8 +8,8 @@
 // ==========================================================================================
 
 $(document).ready(function () {
-  // print invoice with button
-  $(".btn-print").click(function () {
-    window.print();
-  });
+    // print invoice with button
+    $(".btn-print").on( "click", function () {
+        window.print();
+    });
 });

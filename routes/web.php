@@ -10,6 +10,7 @@ use App\Http\Controllers\LanguageController;
  ******************/
 
     Route::get('/admin-dashboard', 'DashboardController@dashboardAnalytics')->name('admin-dashboard');
+    Route::post('/admin-dashboard/orderdetails', 'DashboardController@OrderDetails')->name('admin-dashboard.OrderDetails');
 
     /** Admin -- service-catalog */
     Route::get('/service-catalog', 'ServiceCatalogController@index')->name('service-catalog');

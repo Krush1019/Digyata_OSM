@@ -378,7 +378,7 @@ $(document).ready(function () {
                 form.find(".social").append(html);
             }
             if (result['insta'] != "" && result['insta'] != null) {
-                var html = "<a href='" + result['insta'] + "'  target='_blank' class='social-icon instagram'><i class='fa fa-instagram fa-2x'></i></a>";
+                var html = "<a href='" + result['insta'] + "'  target='_blank' class='social-icon instagram'><i class='fa fa-instagram fa-2x mr-0'></i></a>";
                 form.find(".social").append(html);
             }
 

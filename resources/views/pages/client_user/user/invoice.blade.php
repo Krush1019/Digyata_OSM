@@ -22,10 +22,9 @@
             <section class="invoice-print mb-1">
                 <div class="row">
                     <div class="col-12">
-                        <button class="btn_1 btn-print float-right mb-1 mb-md-0 ml-1"> <i class="fa fa-print"></i>
-                            Print</button>
-                        <button class="btn btn-outline-secondary float-right ml-1 ml-md-1"> <i class="fa fa-download"></i>
-                            Download</button>
+                        <button class="btn btn-outline-secondary float-right ml-1 ml-md-1"> <i class="fa fa-download mr-1"></i>Download</button>
+                        <button class="btn_1 btn-print float-right mb-1 mb-md-0 ml-1"> <i class="fa fa-print mr-1"></i>Print</button>
+                        
                     </div>
                 </div>
             </section>
