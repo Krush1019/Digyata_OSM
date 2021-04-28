@@ -32,10 +32,10 @@
             <input type="hidden" name="token" value="{{ $token }}">
 						<p>Please enter your new password.</p>
 						<div class="form-group">
-							<input type="email" class="form-control @error('sClEmail') is-invalid @enderror" value="{{$email}}" name="sClEmail" id="email" required
+							<input type="email" class="form-control @error('email') is-invalid @enderror" value="{{$email}}" name="sClEmail" id="email" required
 								placeholder="Email">
 							<i class="icon_mail_alt"></i>
-              @error('sClEmail')
+              @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

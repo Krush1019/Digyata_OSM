@@ -117,13 +117,12 @@ return [
         'client' => [
             'provider' => 'client',
             'table' => 'client_password_resets',
-            'expire' => 60
+            'expire' => 10
         ],
-
         'customer' => [
             'provider' => 'customer',
             'table' => 'customer_password_resets',
-            'expire' => 60
+            'expire' => 10
         ],
     ],
 

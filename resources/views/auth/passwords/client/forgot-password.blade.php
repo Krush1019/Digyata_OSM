@@ -19,7 +19,7 @@
 @endsection
 
 @section('content')
-{{-- {{dd(session()->all())}} --}}
+{{-- {{dd($errors)}} --}}
 <div class="bg_gray pattern_mail">
       <div id="login" class="container position-relative w-100 bg-transparent min-height-100">
             <div class="row justify-content-center">
@@ -32,8 +32,8 @@
                                     </div>
                                     <p>Please enter your email address and we'll send you instructions on how to reset your password.</p>
                                     <div class="form-group">
-                                          <input type="email" class="form-control @error('sClEmail') is-invalid @enderror"
-                                                name="sClEmail" id="email" value="{{ old('sClEmail') }}" required
+                                          <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                                name="sClEmail" id="email" value="{{ old('email') }}" required
                                                 placeholder="Email">
                                           <i class="icon_mail_alt"></i>
                                           @if (session('status'))
@@ -41,7 +41,7 @@
                                             {{ session('status') }}
                                           </div>
                                           @endif
-                                          @error('sClEmail')
+                                          @error('email')
                                           <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                           </span>

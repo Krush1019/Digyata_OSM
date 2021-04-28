@@ -19,6 +19,7 @@
 @endsection
 
 @section('content')
+{{-- {{dd($errors)}} --}}
 <div class="bg_gray pattern_mail">
 	<div id="login" class="container position-relative w-100 bg-transparent min-h-none">
 		<div class="row justify-content-center">
@@ -32,10 +33,10 @@
             <input type="hidden" name="token" value="{{ $token }}">
 						<p>Please enter your new password.</p>
 						<div class="form-group">
-							<input type="email" class="form-control @error('sUserEmail') is-invalid @enderror" value="{{$email}}" name="sUserEmail" id="email" required
+							<input type="email" class="form-control @error('email') is-invalid @enderror" value="{{$email}}" name="sUserEmail" id="email" required
 								placeholder="Email">
 							<i class="icon_mail_alt"></i>
-              @error('sUserEmail')
+              @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

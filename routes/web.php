@@ -210,6 +210,5 @@ use App\Http\Controllers\LanguageController;
     Route::get('client/password/reset/{token}', 'client_user\resetpw\client\ResetPasswordController@showResetForm')->name('client.reset');
     Route::post('client/password/reset', 'client_user\resetpw\client\ResetPasswordController@reset')->name('client.pwdreset');
 
-
 /** locale Route */
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);

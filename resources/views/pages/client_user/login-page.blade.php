@@ -79,7 +79,7 @@
                                                       <span class="checkmark"></span>
                                                 </label>
                                           </div>
-                                          <div class="float-right"><a id="forgot" href="{{ route('login.forgot.client') }}">Forgot
+                                          <div class="float-right"><a id="forgot" href="{{ route('login.forgot.customer') }}">Forgot
                                                       Password?</a></div>
                                     </div>
                                     <button type="submit" class="btn_1 full-width">Login to Digyata</button>
