@@ -24,15 +24,22 @@
 		<div class="row justify-content-center">
 			<div class="col-xl-4 col-md-5 col-sm-7">
 				<div class="box_general padding my-4 my-sm-5">
-					<form id="reset-passwod-form" method="POST" class="mt-3 mt-sm-2" action="">
+					<form id="reset-passwod-form" action="{{route('client.pwdreset')}}" method="POST" class="mt-3 mt-sm-2" action="">
 						<div class="main_title center">
 							<p>Reset Password</p>
 						</div>
+            @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
 						<p>Please enter your new password.</p>
 						<div class="form-group">
-							<input type="email" class="form-control" name="email" id="email" disabled required
+							<input type="email" class="form-control @error('sClEmail') is-invalid @enderror" value="{{$email}}" name="sClEmail" id="email" required
 								placeholder="Email">
 							<i class="icon_mail_alt"></i>
+              @error('sClEmail')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control @error('password') is-invalid @enderror"
@@ -46,7 +53,7 @@
 							@enderror
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" name="Confirmpassword" id="cnf-password"
+							<input type="password" class="form-control" name="password_confirmation" id="cnf-password"
 								required placeholder="Confirm Password">
 							<i class="icon_lock_alt"></i>
 						</div>

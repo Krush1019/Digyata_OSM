@@ -19,22 +19,29 @@
 @endsection
 
 @section('content')
+{{-- {{dd(session()->all())}} --}}
 <div class="bg_gray pattern_mail">
       <div id="login" class="container position-relative w-100 bg-transparent min-height-100">
             <div class="row justify-content-center">
                   <div class="col-xl-4 col-md-5 col-sm-7">
                         <div class="box_general padding my-55">
-                              <form id="forgot-passwd-form" method="POST" class="mt-3" action="">
+                              <form id="forgot-passwd-form" action="{{route('customer.forgot')}}" method="POST" class="mt-3" action="">
+                                @csrf
                                     <div class="main_title center">
                                           <p>Recover your password</p>
                                     </div>
                                     <p>Please enter your email address and we'll send you instructions on how to reset your password.</p>
                                     <div class="form-group">
-                                          <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                                name="email" id="email" value="{{ old('email') }}" required
+                                          <input type="email" class="form-control @error('sUserEmail') is-invalid @enderror"
+                                                name="sUserEmail" id="email" value="{{ old('sUserEmail') }}" required
                                                 placeholder="Email">
                                           <i class="icon_mail_alt"></i>
-                                          @error('email')
+                                          @if (session('status'))
+                                          <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                          </div>
+                                          @endif
+                                          @error('sUserEmail')
                                           <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                           </span>

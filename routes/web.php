@@ -198,8 +198,17 @@ use App\Http\Controllers\LanguageController;
     Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
 
     /** Reset Password */
-    Route::get('/login/forgot', 'client_user\resetpw\ForgotPasswordController@index')->name('login.forgot');
-    Route::get('/login/reset', 'client_user\resetpw\ResetPasswordController@index')->name('login.reset');
+    // customer
+    Route::get('/login/forgot/customer', 'client_user\resetpw\customer\ForgotPasswordController@showLinkRequestForm')->name('login.forgot.customer');
+    Route::post('/customer/email', 'client_user\resetpw\customer\ForgotPasswordController@sendResetLinkEmail')->name('customer.forgot');
+    Route::get('customer/password/reset/{token}', 'client_user\resetpw\customer\ResetPasswordController@showResetForm')->name('customer.reset');
+    Route::post('customer/password/reset', 'client_user\resetpw\customer\ResetPasswordController@reset')->name('customer.pwdreset');
+    // client
+    Route::get('/login/forgot/client', 'client_user\resetpw\client\ForgotPasswordController@showLinkRequestForm')->name('login.forgot.client');
+    Route::post('/client/email', 'client_user\resetpw\client\ForgotPasswordController@sendResetLinkEmail')->name('client.forgot');
+    Route::get('client/password/reset/{token}', 'client_user\resetpw\client\ResetPasswordController@showResetForm')->name('client.reset');
+    Route::post('client/password/reset', 'client_user\resetpw\client\ResetPasswordController@reset')->name('client.pwdreset');
+
 
 /** locale Route */
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
