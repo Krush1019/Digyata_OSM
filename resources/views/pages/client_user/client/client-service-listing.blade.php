@@ -16,10 +16,12 @@
 		<div class="col-sm-12 my-auto">
 			<div class="mx-auto">
 				<div class="align-middle">
-					<span class="font-weight-bolder text-dark font-large-30 ">You haven't add any service yet!!</span>
+					<span class="font-weight-bolder text-dark font-large-30 ">You haven't add any service
+						yet!!</span>
 				</div>
 				<div class="text-center ">
-					<a href="{{route('add-service-listing','insert')}}" class="btn_1 mt-2 font-weight-bolder">Add New
+					<a href="{{route('add-service-listing','insert')}}"
+						class="btn_1 mt-2 font-weight-bolder">Add New
 						Service</a>
 				</div>
 			</div>
@@ -34,14 +36,6 @@
 		<a class="font-large-20 btn btn-success mr-3" href="{{route('add-service-listing',"insert")}}"><i
 				class="fa fa-plus"></i></a>
 		<h2 class="d-inline-block ">Service Listings</h2>
-		{{-- <div class="filter">
-			<select name="orderby" class="selectbox">
-				<option value="All">All</option>
-				<option value="Panding">Panding</option>
-				<option value="Active">Active</option>
-				<option value="Reject">Reject</option>
-			</select>
-		</div> --}}
 	</div>
 
 	<div class="list_general">
@@ -51,7 +45,8 @@
 				<figure><img src="{{asset($value['img'])}}" alt="Service Image"></figure>
 				<small>{{$value['service_cat']}}</small>
 				<h4>{{$value['name']}}</h4>
-				<div class="service_description">{!! $value['dec'] !!} </div>
+				<div>{{$value['service_name']}} </div>
+				<div class="my-1">Address: {{$value['address']}} </div>
 				<p>
 					<button type="button" class="btn_1 gray modal_btn" data-id="{{$value['main_id']}}">
 						<i class="fa fa-fw fa-eye"></i> View Service
@@ -62,15 +57,22 @@
 				<ul class="buttons">
 					<li class="">
 						@if( $value['status'] == "Active")
-							<a href="#" class="btn_1 gray s_status approve" data-id="{{$value['main_id']}}" data-action="Active" data-status="{{$value['status_id']}}"><i class="fa fa-fw fa-check"></i> Active</a>
+						<a href="#" class="btn_1 gray s_status approve" data-id="{{$value['main_id']}}"
+							data-action="Active" data-status="{{$value['status_id']}}"><i
+								class="fa fa-fw fa-check"></i> Active</a>
 						@elseif( $value['status'] == "Inactive" )
-							<a href="#" class="btn_1 gray s_status delete" data-id="{{$value['main_id']}}" data-action="Inactive" data-status="{{$value['status_id']}}"><i class="fa fa-fw fa-ban mr-1"></i> Inactive</a>
+						<a href="#" class="btn_1 gray s_status delete" data-id="{{$value['main_id']}}"
+							data-action="Inactive" data-status="{{$value['status_id']}}"><i
+								class="fa fa-fw fa-ban mr-1"></i> Inactive</a>
 						@elseif( $value['status'] == "Pending" )
-							<button class="btn_1 gray btn_pending" data-action="Pending"><i class="fa fa-clock-o mr-1"></i> Pending</button>
+						<button class="btn_1 gray btn_pending" data-action="Pending"><i
+								class="fa fa-clock-o mr-1"></i> Pending</button>
 						@elseif( $value['status'] == "Rejected" )
-							<button class="btn_1 " data-action="Rejected"><i class="fa fa-fw fa-ban mr-1"></i>Rejected</button>
+						<button class="btn_1 " data-action="Rejected"><i
+								class="fa fa-fw fa-ban mr-1"></i>Rejected</button>
 						@elseif( $value['status'] == "Blocked" )
-							<button class="btn_1 " data-action="Blocked"><i class="fa fa-fw fa-ban mr-1"></i>Blocked</button>
+						<button class="btn_1 " data-action="Blocked"><i
+								class="fa fa-fw fa-ban mr-1"></i>Blocked</button>
 						@endif
 					</li>
 
@@ -81,21 +83,6 @@
 	</div>
 </div>
 <!-- /box_general-->
-
-{{-- <nav aria-label="...">
-		<ul class="pagination pagination-sm add_bottom_30">
-			<li class="page-item disabled">
-				<a class="page-link" href="#" tabindex="-1">Previous</a>
-			</li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item">
-				<a class="page-link" href="#">Next</a>
-			</li>
-		</ul>
-	</nav> --}}
-<!-- /pagination-->
 @endif
 
 
@@ -126,24 +113,32 @@
 							<div class="col-md-4">
 								<div class="mt-20">
 									<div class="col-sm-12 small pl-0">Provider Name :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name"> </div>
+									<div
+										class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_name">
+									</div>
 								</div>
 
 								<div class="mt-15">
 									<div class="col-sm-12 small pl-0">Expericence :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_exp"> </div>
+									<div
+										class="col-sm-12 font-large-17 font-weight-bold pl-0 provider_exp">
+									</div>
 								</div>
 
 							</div>
 							<div class="col-md-5">
 								<div class="mt-20">
 									<div class="col-sm-12 small pl-0">Service :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_name"> </div>
+									<div
+										class="col-sm-12 font-large-17 font-weight-bold pl-0 service_name">
+									</div>
 								</div>
 
 								<div class="mt-10">
 									<div class="col-sm-12 small pl-0">Category :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 service_cate"> </div>
+									<div
+										class="col-sm-12 font-large-17 font-weight-bold pl-0 service_cate">
+									</div>
 								</div>
 							</div>
 						</div>
@@ -154,12 +149,15 @@
 									<div class="user-info">
 										<div>
 											<span class="col-sm-12 small pl-0">Phone : </span>
-											<span class="col-sm-12 font-weight-bold pl-0 ser_phone"> </span>
+											<span
+												class="col-sm-12 font-weight-bold pl-0 ser_phone">
+											</span>
 										</div>
 										<div>
 											<span class="col-sm-12 small pl-0">E-mail : </span>
-											<span class="col-sm-12 font-weight-bold pl-0"><a href="mailto:"
-													class="ser_email" target="_blank"> </a></span>
+											<span class="col-sm-12 font-weight-bold pl-0"><a
+													href="mailto:" class="ser_email"
+													target="_blank"> </a></span>
 										</div>
 									</div>
 								</div>
@@ -168,7 +166,7 @@
 								<div class="mt-20">
 									<div class="col-sm-12 small pl-0">Social Media :</div>
 									<div class="social mt-15"></div>
-								</div>	
+								</div>
 							</div>
 							<div class="col-md-10">
 								<div class="mt-20">
@@ -185,7 +183,8 @@
 						<div class="row">
 							<div class="col-md-6">
 								<span class="mb-10">
-									<a href="#" type="button" target="_blank" class="btn_1 gray view_doc">
+									<a href="#" type="button" target="_blank"
+										class="btn_1 gray view_doc">
 										<i class="fa fa-file"></i>&nbsp;View Document
 									</a>
 								</span>
@@ -193,7 +192,9 @@
 							<div class="col-md-6">
 								<div class="col-md-6 mt-10">
 									<div class="col-sm-12 small pl-0">Aadhar No.:</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 doc_num"></div>
+									<div
+										class="col-sm-12 font-large-17 font-weight-bold pl-0 doc_num">
+									</div>
 								</div>
 
 							</div>
@@ -206,11 +207,13 @@
 						<div class="row">
 							<div class="col-md-6 mt-10">
 								<div class="col-sm-12 small pl-0">City :</div>
-								<div class="col-sm-12 font-large-17 font-weight-bold pl-0 city">Mahesana</div>
+								<div class="col-sm-12 font-large-17 font-weight-bold pl-0 city">Mahesana
+								</div>
 							</div>
 							<div class="col-md-6 mt-10">
 								<div class="col-sm-12 small pl-0">State :</div>
-								<div class="col-sm-12 font-large-17 font-weight-bold pl-0 state">Gujarat</div>
+								<div class="col-sm-12 font-large-17 font-weight-bold pl-0 state">Gujarat
+								</div>
 							</div>
 
 						</div>
@@ -219,13 +222,16 @@
 							<div class="col-md-8">
 								<div class="mt-10">
 									<div class="col-sm-12 small pl-0">Address :</div>
-									<div class="col-sm-12 font-large-17 font-weight-bold pl-0 address">20, Madhuvan
+									<div
+										class="col-sm-12 font-large-17 font-weight-bold pl-0 address">
+										20, Madhuvan
 										Complex, Radhanpur Cross road, Mahesana-2</div>
 								</div>
 							</div>
 							<div class="col-md-4 mt-10">
 								<div class="col-sm-12 small pl-0">Pin Code :</div>
-								<div class="col-sm-12 font-large-17 font-weight-bold pl-0 pin_code">384340</div>
+								<div class="col-sm-12 font-large-17 font-weight-bold pl-0 pin_code">
+									384340</div>
 							</div>
 						</div>
 
@@ -280,7 +286,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<a class="btn btn-primary edit_btn" href="{{route('add-service-listing',"0")}}">Edit Service</a>
+					<a class="btn btn-primary edit_btn" href="{{route('add-service-listing',"0")}}">Edit
+						Service</a>
 					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 				</div>
 
