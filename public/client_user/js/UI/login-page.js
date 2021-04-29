@@ -6,7 +6,7 @@
 
 $(document).ready(function () {
 
-      if ($('#login-form').prop('action') == 'http://127.0.0.1:8000/login/client') {
+      if ($('#login-form').prop('action') == '/login/client') {
             link();
       };
 
@@ -17,7 +17,7 @@ $(document).ready(function () {
             $('#login-form').attr('action', "/login/customer")
                   .find('p').text('Login as a Customer');
             $('#login-form strong a').attr('href', "/register/customer");
-            $('#forgot').attr('href', "http://127.0.0.1:8000/login/forgot/customer");
+            $('#forgot').attr('href', "/login/forgot/customer");
       });
 
 
@@ -31,5 +31,5 @@ function link() {
       $('#login-form').attr('action', "/login/client")
             .find('p').text('Login as a Client');
       $('#login-form strong a').attr('href', "/register/client");
-      $('#forgot').attr('href', "http://127.0.0.1:8000/login/forgot/client");
+      $('#forgot').attr('href', "/login/forgot/client");
 }
