@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Lang;
 
 
-class ClientPasswordResetNotification extends Notification
+class ClientPasswordResetNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
