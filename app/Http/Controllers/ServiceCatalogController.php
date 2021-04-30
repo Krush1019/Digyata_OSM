@@ -59,13 +59,14 @@ class ServiceCatalogController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request) {
-  
+    public function store(Request $request)
+    {
+
         $tbl = new ServiceCatalog();
         $request->validate([
             'serviceName' => 'required',
             'serviceCategory' => 'required',
-            'serviceImage' => 'required'           
+            'serviceImage' => 'required'
         ]);
         $tbl->serviceName = $request->get('serviceName');
         $tbl->serviceCategory = $request->get('serviceCategory');
@@ -112,7 +113,7 @@ class ServiceCatalogController extends Controller
             case "service":
                 $rules = array(
                     'serviceName' => 'required',
-                    'serviceCategory' => 'required',                    
+                    'serviceCategory' => 'required',
                 );
                 $id = $request->id;
                 $tmp = $request->all();
@@ -161,7 +162,8 @@ class ServiceCatalogController extends Controller
     }
 
     /** Insert Localization */
-    private function addLocatization ($ser_id) {
+    private function addLocatization($ser_id)
+    {
         $tbl_name = "tbl_service_localization";
         $locData = Localization::all();
         foreach ($locData as $row) {
@@ -172,7 +174,8 @@ class ServiceCatalogController extends Controller
         }
     }
 
-    private function savePriceRule($id) {
+    private function savePriceRule($id)
+    {
         $tbl = new PriceRule();
         $tbl->ser_id = $id;
         $tbl->save();
@@ -180,12 +183,13 @@ class ServiceCatalogController extends Controller
     }
 
     /** Image Save */
-    public function saveImg(Request $request) {
+    public function saveImg(Request $request)
+    {
         $request->validate([
-            'serviceImage' => 'required|image'           
+            'serviceImage' => 'required|mimes:svg'
         ]);
         $path = "";
-        if($request->hasFile('serviceImage')) {
+        if ($request->hasFile('serviceImage')) {
             $path = $request->serviceImage->store('images/services');
         }
         return $path;

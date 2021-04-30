@@ -23,7 +23,7 @@
         </div>
         <div class="row  how_2">
           <div class="col-lg-7">
-            <div class="rich-text m-4 ">
+            <div class="rich-text m-4 text-justify">
               <p>
                 Strong customer relationships are more important than ever, but the scale and nature of online business means it's harder than ever to create personal connections with customers.
               </p>
@@ -34,7 +34,7 @@
           </div>
           <div class="col-lg-5 m-auto">
             <div class="text-center">
-              <figure><img class="width-img-auto" src="{{asset('client_user/img/about-us.jpg')}}"></figure>
+              <figure><img class="width-img-auto img-fluid" src="{{asset('client_user/img/about-us.jpg')}}"></figure>
             </div>
           </div>
           <!-- /row -->
