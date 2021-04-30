@@ -13,7 +13,7 @@ class ClientPasswordResetNotification extends Notification implements ShouldQueu
 {
     use Queueable;
 
-     public $token;
+    public $token;
 
 
     /**
@@ -58,7 +58,7 @@ class ClientPasswordResetNotification extends Notification implements ShouldQueu
      */
     public function toMail($notifiable)
     {
-      $notifiable->email = $notifiable->sClEmail;
+        $notifiable->email = $notifiable->sClEmail;
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable, $this->token);
         }
@@ -71,7 +71,6 @@ class ClientPasswordResetNotification extends Notification implements ShouldQueu
                 'email' => $notifiable->getEmailForPasswordReset(),
             ], false));
         }
-
         return (new MailMessage)
             ->subject(Lang::get('Reset Password Notification'))
             ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
