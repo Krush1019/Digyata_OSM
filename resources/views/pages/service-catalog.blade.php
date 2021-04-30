@@ -49,7 +49,7 @@
         @foreach ($services as $service)
         <tr>
           <td></td>
-          <td class="product-img"><img src="{{asset('storage/'.$service->serviceImage)}}" height="110px" width="110px" ></td>
+          <td class="product-img"><img src="{{asset('storage/'.$service->serviceImage)}}" height="110px" width="110px"></td>
           <td class="product-name">{{$service->serviceName}}</td>
           <td class="product-category">{{$service->serviceCategory}}</td>
           <td>
@@ -118,10 +118,10 @@
                 </div>
               </div>           
               <div class="col-sm-12 data-field-col form-group">
-                  <label for="service-img">Service Image</label>
+                  <label for="service-img">Service Icon</label>
                   <div class="controls ">
                       <input type="file" class="form-control" id="service-img" name="serviceImage"
-                      accept=".jpg,.png,.jpeg,.gif">
+                      accept=".svg">
                       {{-- <label class="custom-file-label" for="service-img">Choose file</label> --}}
                   </div> 
                   <div id="prevw_div" class="text-center mt-1 display-hidden">
