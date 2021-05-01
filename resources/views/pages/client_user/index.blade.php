@@ -79,30 +79,32 @@
         <div id="icon_drag_mobile"></div>
     </div>
     <!--/carousel-->
-    <div class="container bg_gray margin_60_40">
-        <div class="main_title center">
-            <span><em></em></span>
-            <h2>Popular Services</h2>
-            <p>Quality Home Services</p>
-        </div>
-        <div class="owl-carousel owl-theme categories_carousel add_bottom_45">
-            @foreach ($catalogs as $catalog)
-            <div class="item">
-                <a href="{{route('service.filter',['id'=>encrypt($catalog->id)])}}">
-                    <span>@if ($catalog->serCount>100)
-                        100+
-                        @else{{$catalog->serCount}}@endif</span>
-                    <img src="{{asset('storage/'.$catalog->serviceImage)}}"
-                        data-src="{{asset('storage/'.$catalog->serviceImage)}}" alt="" class="owl-lazy">
-                    <div class="info">
-                        <h3>{{$catalog->serviceName}}</h3>
-                        <small>{{$catalog->serviceCategory}}</small>
-                    </div>
-                </a>
+    <div class="bg_gray">
+        <div class="container margin_60_40">
+            <div class="main_title center">
+                <span><em></em></span>
+                <h2>Popular Services</h2>
+                <p>Quality Home Services</p>
             </div>
-            @endforeach
-        </div>
+            <div id="service-carousel" class="owl-carousel owl-theme categories_carousel add_bottom_45">
+                @foreach ($catalogs as $catalog)
+                <div class="item">
+                    <a href="{{route('service.filter',['id'=>encrypt($catalog->id)])}}">
+                        <span>@if ($catalog->serCount>100)
+                            100+
+                            @else{{$catalog->serCount}}@endif</span>
+                        <img src="{{asset('storage/'.$catalog->serviceImage)}}"
+                            data-src="{{asset('storage/'.$catalog->serviceImage)}}" alt="" class="owl-lazy">
+                        <div class="info">
+                            <h3>{{$catalog->serviceName}}</h3>
+                            <small>{{$catalog->serviceCategory}}</small>
+                        </div>
+                    </a>
+                </div>
+                @endforeach
+            </div>
 
+        </div>
     </div>
     <!-- /container -->
     <div>
@@ -128,7 +130,8 @@
                         </figure>
                         <ul>
                             <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom"
-                                    title="{{$service->user_ser_exp}} experiance"><i class="icon_datareport_alt"></i></a>
+                                    title="{{$service->user_ser_exp}} experiance"><i
+                                        class="icon_datareport_alt"></i></a>
                             </li>
                             <li><a class="tooltip-1" data-toggle="tooltip" data-placement="bottom"
                                     title="{{$service->ser_address}}"><i
@@ -220,5 +223,6 @@
 @endsection
 
 @section('page-script')
+<script src="{{asset('client_user/js/slider.js')}}"></script>
 <script src="{{asset('client_user/js/UI/index.js')}}"></script>
 @endsection
