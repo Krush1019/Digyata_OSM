@@ -134,11 +134,12 @@ use App\Http\Controllers\LanguageController;
     /** confirm -- order */
     Route::get('/confirm-order/{id}', 'client_user\user\ConfirmOrderController@index')->name('confirm-order');
     Route::get('/order/confirm/{id}', function ($id) {
-      return view('pages/client_user/user/confirm-msg',['orderId'=>decrypt($id)]);
+      return view('pages/client_user/user/confirm-msg', ['orderId'=>decrypt($id)]);
     })->name('confirm.msg');
 
     /** Order -- Invoice */
-    Route::view('/order/invoice', '/pages/client_user/user/invoice');
+    Route::get("/order/invoice/{order_id}", "client_user\user\ConfirmOrderController@getInvoice")->name("invoice");
+    // Route::view('/order/invoice/{order_id}', '/pages/client_user/user/invoice')->name("invoice");
 
     /** user -- review */
 

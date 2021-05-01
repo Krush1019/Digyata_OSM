@@ -112,10 +112,6 @@ $(document).ready(function () {
                 var html = "<a href='" + result['linkedin'] + "'  target='_blank' class='social-icon  linkedin'><i class='fa fa-linkedin fa-2x'></i></a>";
                 form.find(".social").append(html);
             }
-            if (result['insta'] != "" && result['insta'] != null) {
-                var html = "<a href='" + result['insta'] + "'  target='_blank' class='social-icon instagram'><i class='fa fa-instagram fa-2x'></i></a>";
-                form.find(".social").append(html);
-            }
 
             if (form.find(".social").html() == "") {
                 form.find(".social").text("No Data Available !!!");
@@ -182,10 +178,29 @@ $(document).ready(function () {
         
     });
 
-    $(".btn_pending").on( "click", function () {
-        var msg = "Your service is successfully submitted. \nWait for verified by the team.";
+    $(".btn_status").on( "click", function () {
+
+        var action = $(this).attr("data-action");
+        var msg = ""; var icon = "";
+        switch(action) {
+            case "Blocked" : 
+                icon = "error";
+                msg = "Your service blocked by the team."
+                break;
+            
+            case "Rejected":
+                icon = "error";
+                msg = "Your service rejected by the team.";
+                break;
+
+            case "Pending":
+                var icon = "info";
+                var msg = "Your service is successfully submitted. \nWait for verified by the team.";
+                break;
+
+        }
         Toast.fire({
-            icon: 'info',
+            icon: icon,
             title: msg
         });
     });
