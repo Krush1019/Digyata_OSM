@@ -122,6 +122,7 @@ class ServiceManageController extends Controller {
                     case "Approve": $status = "Active"; break;
                     case "Active": $status = "Blocked"; break;
                     case "Blocked": $status = "Active"; break;
+                    case "Inactive": $status = "Blocked"; break;
                     default: $status = "Rejected"; break;
                 }
                 $data = array(
@@ -188,7 +189,6 @@ class ServiceManageController extends Controller {
                     "fb" => $row['ser_fb'],
                     "tw" => $row['ser_tw'],
                     "linkedin" => $row['ser_linkedin'],
-                    "insta" => "instagram.com",
     
                     "img" => $row['ser_photo'],
                     "doc_num" => $row['doc_no'],

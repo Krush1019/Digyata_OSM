@@ -103,7 +103,7 @@ class ServiceListController extends Controller {
             "ser_email" => trim($request->get('ser_email')),
             "ser_web" => trim($request->get('ser_website')),
             "ser_fb" => trim($request->get('ser_fblink')),
-            "ser_tw" => $request->get('ser_twlink'),
+            "ser_tw" => trim($request->get('ser_twlink')),
             "ser_linkedin" => trim($request->get('ser_ldlink')),
 
             "ser_photo" => $request->get('ser_img'),
@@ -161,7 +161,7 @@ class ServiceListController extends Controller {
                     "ser_email" => trim($request->get('ser_email')),
                     "ser_web" => trim($request->get('ser_website')),
                     "ser_fb" => trim($request->get('ser_fblink')),
-                    "ser_tw" => $request->get('ser_twlink'),
+                    "ser_tw" => trim($request->get('ser_twlink')),
                     "ser_linkedin" => trim($request->get('ser_ldlink')),
 
                     "ser_photo" => $request->get('ser_img'),
@@ -178,8 +178,6 @@ class ServiceListController extends Controller {
                     "ser_item_id" => $items
                 );
                 ServiceList::where("ser_id", decrypt($id))->update($arr);
-                
-
                 break;
 
             case "status":

@@ -21,6 +21,9 @@ $(document).ready(function () {
 
             case 'Blocked':
                 return '<div class="badge-pill bg-rgba-danger status-set-text status_btn" data-id="' + params.value['id'] + '" data-action="Blocked" ><span class="text-danger font-weight-bold" >Blocked</span></div>'
+            
+            case 'Inactive':
+                return '<div class="badge-pill bg-rgba-danger status-set-text status_btn" data-id="' + params.value['id'] + '" data-action="Inactive" ><span class="text-danger font-weight-bold" >Inactive</span></div>'
 
         }
     }
@@ -75,6 +78,10 @@ $(document).ready(function () {
                 break;
 
             case 'Blocked':
+                usersIcons.appendChild(failIconHTML);
+                break;
+
+            case 'Inactive':
                 usersIcons.appendChild(failIconHTML);
                 break;
         }
@@ -286,9 +293,9 @@ $(document).ready(function () {
     $(document).on( "click", ".status_btn, .btn_approve, .btn_reject" ,function (e) {
         var status = $(this).attr("data-action");
         var btn_color = ""; var btn_text = "";
-        if(status == "Active" || status == "Rejected") {
+        if(status == "Active" || status == "Rejected" || status == "Inactive") {
             btn_color = "#df4759";
-            btn_text = (status == "Active") ? "Block" : "Rejecte";
+            btn_text = (status == "Active" || status == "Inactive") ? "Block" : "Rejecte";
         } else if (status == "Blocked" || status == "Approve" ) {
             btn_color = "#28a745";
             btn_text = (status == "Blocked") ? "Active" : "Approve";
@@ -377,10 +384,10 @@ $(document).ready(function () {
                 var html = "<a href='" + result['linkedin'] + "'  target='_blank' class='social-icon  linkedin'><i class='fa fa-linkedin fa-2x'></i></a>";
                 form.find(".social").append(html);
             }
-            if (result['insta'] != "" && result['insta'] != null) {
-                var html = "<a href='" + result['insta'] + "'  target='_blank' class='social-icon instagram'><i class='fa fa-instagram fa-2x mr-0'></i></a>";
-                form.find(".social").append(html);
-            }
+            // if (result['insta'] != "" && result['insta'] != null) {
+            //     var html = "<a href='" + result['insta'] + "'  target='_blank' class='social-icon instagram'><i class='fa fa-instagram fa-2x'></i></a>";
+            //     form.find(".social").append(html);
+            // }
 
             if (form.find(".social").html() == "") {
                 form.find(".social").text("No Data Available !!!");

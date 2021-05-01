@@ -49,11 +49,12 @@
             </ul>
             <!-- <p><a href="#viewordermodal" data-toggle="modal" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Order</a>
             </p> -->
-            @if($dt->bSerStatus == 'pending')
             <ul class="buttons">
+            @if($dt->bSerStatus == 'pending')
               <li><a href="#" class="od_approve btn_1 gray approve" data-id="{{encrypt($dt->order_id)}}"><i class="fa fa-fw fa-check-square-o font-large-15 mr-1"></i>Mark as Completed</a></li>
-            </ul>
             @endif
+              <li><a href="{{ route( "invoice",  $dt->sOrderId)}}" target="_black" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View Recipe</a></li>
+          </ul>
           </li>
           @endforeach
         </ul>
