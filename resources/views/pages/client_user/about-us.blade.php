@@ -28,7 +28,7 @@
                 Strong customer relationships are more important than ever, but the scale and nature of online business means it's harder than ever to create personal connections with customers.
               </p>
               <p>
-                That's why we created the world's first Conversational Relationship Platform — to help businesses build better customer relationships through personalized, messenger-based experiences.
+                That's why we created the world's first Conversational Relationship Platform - to help businesses build better customer relationships through personalized, messenger-based experiences.
               </p>
             </div>
           </div>
@@ -56,7 +56,7 @@
             <figure><img src="{{asset('client_user/img/why_1.svg')}}" alt="" width="200" height="200" class="img-fluid">
             </figure>
             <h3>Boost your Visibility</h3>
-            <p class="lead"> Illum suavitate ad has, inani salutatus sit et, error reprehendunt id eam.</p>
+            <p class="lead">Increase your business by using Digyata and get more benifits.</p>
             </div>
         </div>
         <div class="col-lg-4">
@@ -64,7 +64,7 @@
             <figure><img src="{{asset('client_user/img/why_2.svg')}}" alt="" width="200" height="200" class="img-fluid">
             </figure>
             <h3>Manage Easily</h3>
-            <p class="lead">Est falli invenire interpretaris id, magna libris sensibus mel id.</p>
+            <p class="lead">Easy to manage your business by online website platform and connect to customers very easily.</p>
           </div>
         </div>
         <div class="col-lg-4">
@@ -72,9 +72,9 @@
             <figure><img src="{{asset('client_user/img/why_3.svg')}}" alt="" width="200" height="200" class="img-fluid">
             </figure>
             <h3>Reach New Customers</h3>
-            <p class="lead">Laoreet inimicus vulputate est. Sea in voluptatibus comprehensam vituperatoribus.</p>
+            <p class="lead">Connect to more customers and expand your business by online platform.</p>
           </div>
-        </div>
+        </div>  
       </div>
       <!-- /row -->
     </div>
