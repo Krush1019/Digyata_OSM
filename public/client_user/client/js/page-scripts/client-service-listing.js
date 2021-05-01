@@ -148,11 +148,9 @@ $(document).ready(function () {
                 } else if (days[0] == "6D") {
                     time = time[0].split("-");
                     form.find(".day_time tbody").append("<tr><td>6 Days (Mon-Sat)</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-                    console.log(time);
                 } else if (days[0] == "ALL") {
                     time = time[0].split("-");
                     form.find(".day_time tbody").append("<tr><td>All Days</td><td>" + time[0] + ":00 To " + time[1] + ":00</td></tr>");
-                    console.log(time);
                 }
             }
 

@@ -42,7 +42,7 @@
                                     </ul>
                               </div>
 
-                              <form id="login-form" method="POST" class="mt-3" action="@if ($errors->all() && session()->has('passlink')) 
+                              <form id="login-form" method="POST" class="mt-3" action="@if ($errors->all() && session()->has('passlink'))
                                     {{session()->get('passlink')}}
                                     @else
                                     {{route('login.customer')}}
@@ -79,7 +79,7 @@
                                                       <span class="checkmark"></span>
                                                 </label>
                                           </div>
-                                          <div class="float-right"><a id="forgot" href="{{ route('login.forgot') }}">Forgot
+                                          <div class="float-right"><a id="forgot" href="{{ route('login.forgot.customer') }}">Forgot
                                                       Password?</a></div>
                                     </div>
                                     <button type="submit" class="btn_1 full-width">Login to Digyata</button>

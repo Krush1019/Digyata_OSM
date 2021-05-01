@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -49,7 +48,7 @@ return [
             'driver' => 'session',
             'provider' => 'client',
         ],
-        
+
         'customer' => [
             'driver' => 'session',
             'provider' => 'customer',
@@ -114,6 +113,16 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+        'client' => [
+            'provider' => 'client',
+            'table' => 'client_password_resets',
+            'expire' => 10
+        ],
+        'customer' => [
+            'provider' => 'customer',
+            'table' => 'customer_password_resets',
+            'expire' => 10
         ],
     ],
 

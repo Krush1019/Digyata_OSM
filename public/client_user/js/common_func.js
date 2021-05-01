@@ -10,12 +10,15 @@
 	// Carousel categories home page
 	$('.categories_carousel').owlCarousel({
 		center: false,
-		items: 2,
-		loop: false,
+		items: 1,
+		loop: true,
 		margin: 20,
 		dots: false,
 		nav: true,
 		lazyLoad: true,
+		autoplay: true,
+		autoplayTimeout: 3000,
+		autoplayHoverPause: true,
 		navText: ["<i class='arrow_carrot-left'></i>", "<i class='arrow_carrot-right'></i>"],
 		responsive: {
 			0: {
@@ -180,20 +183,6 @@
 	$('.tooltip-1').tooltip({
 		html: true
 	});
-
-	// Modal Sign In
-	/*$('#sign-in').magnificPopup({
-		type: 'inline',
-		fixedContentPos: true,
-		fixedBgPos: true,
-		overflowY: 'auto',
-		closeBtnInside: true,
-		preloader: false,
-		midClick: true,
-		removalDelay: 300,
-		closeMarkup: '<button title="%title%" type="button" class="mfp-close"></button>',
-		mainClass: 'my-mfp-zoom-in'
-	});*/
 
 	// Show hide password
 	$('.password').hidePassword('focus', {
