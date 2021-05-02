@@ -6,6 +6,7 @@ use App\User;
 use App\client_user\ClientManage;
 use App\client_user\UserManage;
 use App\Http\Controllers\Controller;
+use App\Jobs\WelcomeMailJob;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -109,7 +110,8 @@ class RegisterController extends Controller {
             'password' => Hash::make($request->password),
         ]);
         if (Auth::guard('client')->attempt(['sClEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended(route('client-dashboard'));
+          dispatch(new WelcomeMailJob($request->all()));
+          return redirect()->intended(route('client-dashboard'));
         }
         return redirect()->intended(route('login-page'));
     }
@@ -143,7 +145,7 @@ class RegisterController extends Controller {
         ]);
 
         if (Auth::guard('customer')->attempt(['sUserEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended(route('home'));
+          return redirect()->intended(route('home'));
         }
         return redirect()->intended(route('login-page'));
     }
