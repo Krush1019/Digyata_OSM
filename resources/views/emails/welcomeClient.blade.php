@@ -193,7 +193,7 @@
 			<table border="0" cellpadding="0" cellspacing="0" class="responsive-table" style="max-width: 500px;" width="100%">
 
 					<tr>
-						<td align="center" class="logo" valign="top"><a href="{{route('home')}}" name="digyata" target="_blank" ><img alt="digyata" border="0"  height="45"   src='{{asset('client_user/img/logo.svg')}}' style="display: block; font-family: 'proxima_nova_bold', Proxima Nova, Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;" title="digyata" width="150"  /> </a></td>
+						<td align="center" class="logo" valign="top"><a href="{{route('home')}}" name="digyata" target="_blank" ><img alt="digyata" border="0"  height="45"   src='{{asset('client_user/img/digyatafencylogo.png')}}' style="display: block; font-family: 'proxima_nova_bold', Proxima Nova, Helvetica, Arial, sans-serif; color: #ffffff; font-size: 16px;" title="digyata" width="150"  /> </a></td>
 					</tr>
 
 			</table>
