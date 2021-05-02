@@ -11,7 +11,7 @@
 	$('.categories_carousel').owlCarousel({
 		center: false,
 		items: 1,
-		loop: true,
+		loop: false,
 		margin: 20,
 		dots: false,
 		nav: true,
@@ -34,18 +34,13 @@
 			768: {
 				nav: false,
 				dots: true,
-				items: 3
+				items: 4
 			},
 			1025: {
 				nav: false,
 				dots: true,
-				items: 4
-			},
-			1340: {
-				nav: true,
-				dots: false,
 				items: 5
-			}
+			},
 		}
 	});
 
