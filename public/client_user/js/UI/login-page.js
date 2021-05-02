@@ -6,7 +6,7 @@
 
 $(document).ready(function () {
 
-      if ($('#login-form').prop('action') == '/login/client') {
+      if ($('#login-form').prop('action') == window.location.origin + '/login/client') {
             link();
       };
 

@@ -219,14 +219,17 @@ $(document).ready(function () {
         }
         $.post(url, data, function (result) {
               var data = JSON.parse(result);
+            var text = (data[0]['sUserHouseNo']) ? data[0]['sUserHouseNo'] + ' ': "";
+            text += (data[0]['sUserArea']) ? data[0]['sUserArea'] + ' ' : "";
+            text += (data[0]['sUserCity']) ? data[0]['sUserCity'] + ' ' : "";
+            text += (data[0]['sUserState']) ? data[0]['sUserState'] : "";
             form.find('.userId').text('#'+ data[0]['sUserID']);
             form.find('.user_name').text(data[0]['sUserName']);
             form.find('.user_gender').text(data[0]['sUserGender']);
             form.find('.user_email').attr("href", "mailto:" + data[0]['sUserEmail']).text(data[0]['sUserEmail']);
             form.find('.user_moblie').attr("href", "tel:" + data[0]['sUserMobile']).text(data[0]['sUserMobile']);
-            form.find('.user_address').text(data[0]['sUserHouseNo'] + ", " + data[0]['sUserArea'] + ", " +
-             data[0]['sUserCity'] + ", " + data[0]['sUserState']);
-            form.find('.user_pincode').text(data[0]['sUserPincode']);
+            form.find('.user_address').text(text ? text : "NA");
+            form.find('.user_pincode').text((data[0]['sUserPincode']) ? data[0]['sUserPincode'] : "NA");
             if(data[0]['bUserStatus']){
                 form.find('.user_status').addClass('badge-success').text('Active');
             } else {

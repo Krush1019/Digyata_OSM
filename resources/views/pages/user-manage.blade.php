@@ -42,28 +42,6 @@
 								<div class="ag-btns d-flex flex-wrap">
 									<input type="text" class="ag-grid-filter form-control mr-1 mb-1 mb-sm-0"
 										id="filter-text-box" placeholder="Search...." />
-									{{-- <div class="action-btns">
-                      <div class="btn-dropdown ">
-                        <div class="btn-group dropdown actions-dropodown">
-                          <button type="button"
-                                  class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light"
-                                  data-toggle="dropdown" aria-haspopup="true"
-                                  aria-expanded="false">
-                            Actions
-                          </button>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#"><i
-                                class="feather icon-trash-2"></i> Delete</a>
-                            <a class="dropdown-item" href="#"><i
-                                class="feather icon-clipboard"></i> Archive</a>
-                            <a class="dropdown-item" href="#"><i
-                                class="feather icon-printer"></i> Print</a>
-                            <a class="dropdown-item" href="#"><i
-                                class="feather icon-download"></i> CSV</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div> --}}
 								</div>
 							</div>
 						</div>
@@ -111,31 +89,31 @@
 						</div>
 
 						<div class="row">
-							<div class="col-12 mt-1">
+							<div class="col-12">
 								<div>
-									<div>
+									<div class="mt-1">
 										<span class="pl-0">Name :</span>
 										<span class="font-large-17 font-weight-bold ml-1 pl-0 user_name"></span>
 									</div>
-									<div>
+									<div class="mt-1">
 										<span class="pl-0">Gender : </span>
 										<span class="font-weight-bold pl-0 ml-1 user_gender"></span>
 									</div>
-									<div>
+									<div class="mt-1">
 										<span class="pl-0">E-mail : </span>
 										<span class="font-weight-bold pl-0 ml-1 "><a href="mailto:"
 												class="user_email text-break" target="_blank"></a></span>
 									</div>
-									<div>
+									<div class="mt-1">
 										<span class="pl-0">Mobile No. : </span>
 										<span class="font-weight-bold pl-0 ml-1 "><a href="tel:"
 												class="user_moblie" target="_blank"></a></span>
 									</div>
-									<div>
+									<div class="mt-1">
 										<span class="pl-0">Address : </span>
 										<span class="font-weight-bold pl-0 ml-1 user_address"></span>
 									</div>
-									<div>
+									<div class="mt-1">
 										<span class="pl-0">Pincode : </span>
 										<span class="font-weight-bold pl-0 ml-1 user_pincode"></span>
 									</div>
