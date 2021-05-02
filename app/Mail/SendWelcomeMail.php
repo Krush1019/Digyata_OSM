@@ -31,6 +31,6 @@ class SendWelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.welcomeClient')->with('clnt',$this->clnt);
+        return $this->view('emails.welcomeClient')->subject('Welcome To Digyata')->with('clnt',$this->clnt);
     }
 }

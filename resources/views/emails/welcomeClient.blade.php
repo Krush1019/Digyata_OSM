@@ -24,25 +24,6 @@
 		line-height: inherit !important;
 	}
 
-	/* FONTS */
-	@media screen {
-	@font-face {
-		font-family: 'proxima_nova_reg';
-		src: url('https://www.tripit.com/css/fonts/ProximaNova-Regular.woff') format('woff'),
-			 url('https://www.tripit.com/css/fonts/ProximaNova-Regular.ttf') format('truetype');
-		font-weight: normal;
-		font-style: normal;
-	}
-
-	@font-face {
-		font-family: 'proxima_nova_bold';
-		src: url('https://www.tripit.com/css/fonts/ProximaNova-Bold.woff') format('woff'),
-			 url('https://www.tripit.com/css/fonts/ProximaNova-Bold.ttf') format('truetype');
-		font-weight: normal;
-		font-style: normal;
-	}
-	}
-
 	/* MOBILE STYLES */
 	@media screen and (max-width: 525px) {
 
@@ -161,10 +142,6 @@
 <table border="0" cellpadding="0" cellspacing="0" height="1" width="1">
 
 </table>
-<!-- PREHEADER -->
-
-<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">We are looking forward to provide your Valuable Service to our Customers! Here are a few helpful Steps so you can get started using Digyata.</div>
-<!-- /PREHEADER -->
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><!-- VIEW IN BROWSER -->
 
@@ -263,7 +240,7 @@
 						<table style="margin:0;padding:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif;border-spacing:0;line-height:150%;width:100%">
 
 								<tr class="padding" style="margin:0;padding:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif"><!--- ICON --->
-									<td class="padding-right" style="margin:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif;padding:0;vertical-align:top;text-align:center;width:60px;padding-top:5px;padding-left:20px;padding-right:40px" valign="top"><img border="0"  height="150"   src='http://contentz.mkt7817.com/ra/2016/27808/10/9652917/ico-download-app3.png' style="margin:0; padding:0; max-height:90px; max-width:90px;margin:0;" width="150"  /></td>
+									<td class="padding-right" style="margin:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif;padding:0;vertical-align:top;text-align:center;width:60px;padding-top:5px;padding-left:20px;padding-right:40px" valign="top"><img border="0"  height="150"   src='{{asset('client_user/img/email/ico-download-app3.png')}}' style="margin:0; padding:0; max-height:90px; max-width:90px;margin:0;" width="150"  /></td>
 									<!--- /ICON ---><!--- CONTENT --->
 									<td class="padding-right" style="margin:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif;padding:0;vertical-align:top">
 									<div class="h2" style="margin:0; padding:0; color: #333333; font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif; font-weight: normal; text-rendering:optimizelegibility; font-size:24px; line-height:28px; padding-bottom:10px">Step 1: Login to your Client Account</div>
@@ -287,7 +264,7 @@
 						<table style="margin:0;padding:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif;border-spacing:0;line-height:150%;width:100%"><!--- ICON --->
 
 								<tr style="margin:0;padding:0;">
-									<td class="padding-right" style="margin:0;padding:0;vertical-align:top;text-align:center;width:60px;padding-top:5px;padding-left:20px;padding-right:40px" valign="top"><img border="0"  height="150"   src='http://contentz.mkt7817.com/ra/2016/27808/10/9652917/ico-itinerary2.png' style="margin:0; padding:0; font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif; max-height:90px; max-width:90px;margin:0;" width="150"  /></td>
+									<td class="padding-right" style="margin:0;padding:0;vertical-align:top;text-align:center;width:60px;padding-top:5px;padding-left:20px;padding-right:40px" valign="top"><img border="0"  height="150"   src='{{asset('client_user/img/email/ico-itinerary2.png')}}' style="margin:0; padding:0; font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif; max-height:90px; max-width:90px;margin:0;" width="150"  /></td>
 									<!--- /ICON ---><!--- CONTENT --->
 									<td class="padding-right" style="margin:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif;padding:0;vertical-align:top">
 									<div class="h2" style="margin:0; padding:0; color: #333333; font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif; font-weight: normal; text-rendering:optimizelegibility; font-size:24px; line-height:28px; padding-bottom:10px">Step 2: Fill Service Listing Form</div>
@@ -311,7 +288,7 @@
 						<table style="margin:0;padding:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif;border-spacing:0;line-height:150%;width:100%"><!--- ICON --->
 
 								<tr style="margin:0;padding:0;">
-									<td class="padding-right" style="margin:0;padding:0;vertical-align:top;text-align:center;width:60px;padding-left:20px;padding-right:40px" valign="top"><img border="0"  height="150"   src='http://contentz.mkt7817.com/ra/2016/27808/10/9652917/ico-profile2.png' style="margin:0; padding:0; max-height:90px; max-width:90px;margin:0;" width="150"  /></td>
+									<td class="padding-right" style="margin:0;padding:0;vertical-align:top;text-align:center;width:60px;padding-left:20px;padding-right:40px" valign="top"><img border="0"  height="150"   src='{{asset('client_user/img/email/ico-profile2.png')}}' style="margin:0; padding:0; max-height:90px; max-width:90px;margin:0;" width="150"  /></td>
 									<!--- /ICON ---><!--- CONTENT --->
 									<td class="padding-right" style="margin:0;font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif;padding:0;vertical-align:top">
 									<div class="h2" style="margin:0; padding:0; color: #333333; font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif; font-weight: normal; text-rendering:optimizelegibility; font-size:24px; line-height:28px; padding-bottom:10px">Step 3: View Your Order</div>
@@ -354,7 +331,7 @@
 											<!-- /Copy Body --><!-- Copy Body -->
 											<tr>
 												<td align="center" class="padding" style="padding: 15px 0 0 0; font-size: 10px; line-height: 15px; font-family: 'proxima_nova_reg', Proxima Nova, Helvetica, Arial, sans-serif; color: #999999;">You are receiving this email because you are opted into Digyata New updates.<br />
-												&copy; 2021, Digyata Technologies, Inc. All rights reserved. Digyata&reg; is a registered trademark of Digyata Technologies, Inc. Other trademarks held by their respective owners.</td>
+												&copy; {{date("Y")}}, Digyata Technologies, Inc. All rights reserved. Digyata&reg; is a registered trademark of Digyata Technologies, Inc. Other trademarks held by their respective owners.</td>
 											</tr>
 											<!-- /Copy Body --><!-- Copy Body -->
 
