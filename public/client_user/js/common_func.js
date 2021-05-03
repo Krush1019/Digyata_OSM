@@ -221,8 +221,8 @@
 	//password hide/show btn
 	$(".toggle-password").on('click', function (e) {
 		e.preventDefault();
-		$(this).toggleClass("fa-eye fa-eye-slash");
-		var input = $($(this).attr("toggle"));
+		$(e).toggleClass("fa-eye fa-eye-slash");
+		var input = $($(e).attr("toggle"));
 		if (input.attr("type") == "password") {
 			input.attr("type", "text");
 		} else {
