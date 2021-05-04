@@ -368,3 +368,15 @@ header.header.sticky .logo {
   min-height: 565px !important;
 }
 }
+
+#sign-in{
+  color: black !important;
+}
+
+#sign-in:hover{
+  color: white !important;
+}
+
+#poster{
+  background:rgba(255, 255, 255, 0.8)
+}

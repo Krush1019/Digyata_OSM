@@ -13,72 +13,35 @@
 @section('header-class', 'header clearfix element_to_stick')
 @section('content')
 <main>
-    <div id="carousel-home">
-        <div class="owl-carousel owl-theme">
-            <div class="owl-slide cover"
-                style="background-image: url({{asset('client_user/img/slides/slide_home_1.jpg')}})">
-                <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.2)">
-                    <div class="container">
-                        <div class="row justify-content-center justify-content-md-start">
-                            <div class="col-lg-12 static">
-                                <div class="slide-text text-center white">
-                                    <h2 class="owl-slide-animated owl-slide-title">Find a Professional</h2>
-                                    <p class="owl-slide-animated owl-slide-subtitle">
-                                        Book a Consultation
-                                    </p>
-                                    <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                            href="{{route('client-listing')}}" role="button">Find Now</a></div>
-                                </div>
+    <div id="poster" class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-5 order-lg-1 order-12 slide-text pl-lg-5 my-2 my-lg-0 text-center text-lg-left">
+                <h1>Find a Professional</h1>
+                <p>Book a Consultation</p>
+                <form id="search-service" method="get" action="{{route('client-listing')}}" class="mb-5 mb-lg-0">
+                    <div class="row no-gutters custom-search-input w-75 align-content-center">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <input class="form-control" list="services" placeholder="Find a professional...">
+                                <datalist id="services">
+                                    @foreach ($catalogs as $catalog)
+                                    <option value="{{$catalog->serviceName}}"
+                                        data-link="{{route('service.filter',['id'=>encrypt($catalog->id)])}}"></option>
+                                    @endforeach
+                                </datalist>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <input type="submit" value="Find">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
-            <!--/owl-slide-->
-            <div class="owl-slide cover"
-                style="background-image: url({{asset('client_user/img/slides/slide_home_2.jpg')}})">
-                <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.2)">
-                    <div class="container">
-                        <div class="row justify-content-center justify-content-md-start">
-                            <div class="col-lg-7 static">
-                                <div class="slide-text white">
-                                    <h2 class="owl-slide-animated owl-slide-title">Only Verified Professionals</h2>
-                                    <p class="owl-slide-animated owl-slide-subtitle">
-                                        More than +1,000 trusted professionals listed
-                                    </p>
-                                    <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                            href="{{route('client-listing')}}" role="button">view More</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/owl-slide-->
-            <div class="owl-slide cover"
-                style="background-image: url({{asset('client_user/img/slides/slide_home_3.jpg')}})">
-                <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.2)">
-                    <div class="container">
-                        <div class="row justify-content-center justify-content-md-end">
-                            <div class="col-lg-6 static">
-                                <div class="slide-text text-right white">
-                                    <h2 class="owl-slide-animated owl-slide-title">Are you a Professional?</h2>
-                                    <p class="owl-slide-animated owl-slide-subtitle">
-                                        Join to Digyata for Free and get more visibility
-                                    </p>
-                                    <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                            href="{{route('client.register')}}" role="button">Join Now</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/owl-slide-->
+            <div class="col-lg-7 order-lg-12 order-1 hero_single version_2">
             </div>
         </div>
-        <div id="icon_drag_mobile"></div>
     </div>
-    <!--/carousel-->
+
     <div class="bg_gray">
         <div class="container margin_60_40">
             <div class="main_title center">
@@ -223,6 +186,5 @@
 @endsection
 
 @section('page-script')
-<script src="{{asset('client_user/js/slider.js')}}"></script>
 <script src="{{asset('client_user/js/UI/index.js')}}"></script>
 @endsection
