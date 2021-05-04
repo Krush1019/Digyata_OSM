@@ -1865,7 +1865,7 @@ header.sticky a.open_close, .header_in a.open_close {
 
 /*First level styles */
 .main-menu > ul > li > a {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.410);
   padding: 0 8px 10px  8px;
   font-size: 14px;
   font-size: 0.875rem;
@@ -2291,15 +2291,29 @@ ul#top_menu > li a.btn_access.green:hover {
 .hero_single.version_2 {
   text-align: left;
   height: 650px;
-  background: #ededed url(../img/home_section_1.jpg) center center no-repeat;
+  background: url(../img/slide-img-1.png) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  filter: drop-shadow( 3px 3px 3px rgba(0, 0, 0, 0.5));
 }
 @media (max-width: 991px) {
   .hero_single.version_2 {
     height: 560px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero_single.version_2 {
+    height: 460px;
+    text-align: center;
+  }
+}
+@media (max-width: 575px) {
+  .hero_single.version_2 {
+    height: 250px;
     text-align: center;
   }
 }
@@ -2373,7 +2387,7 @@ ul#top_menu > li a.btn_access.green:hover {
 }
 @media (max-width: 767px) {
   .custom-search-input input {
-    border: none;
+    border: 2px solid #d2d8dd;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;

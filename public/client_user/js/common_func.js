@@ -39,8 +39,13 @@
 			1025: {
 				nav: false,
 				dots: true,
-				items: 5
+				items: 4
 			},
+			1340: {
+				nav: true,
+				dots: false,
+				items: 5
+			}
 		}
 	});
 
