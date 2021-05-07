@@ -370,7 +370,7 @@ header.header.sticky .logo {
 }
 
 #sign-in{
-  color: black !important;
+  color: #444 !important;
 }
 
 #sign-in:hover{
@@ -379,4 +379,54 @@ header.header.sticky .logo {
 
 #poster{
   background:rgba(255, 255, 255, 0.8)
+}
+
+#login {
+  position: initial;
+  width: 470px !important;
+  min-height: initial !important;
+  -webkit-box-shadow: 0px 0 0px rgb(0 0 0 / 0%);
+  box-shadow: 0px 0 0px rgb(0 0 0 / 0%);
+}
+
+#login-modal{
+  height: 91vh;
+}
+
+@media (max-width: 992px) {
+  #login-modal{
+  height: 93vh;
+}
+}
+
+@media (max-width: 575px) {
+  #login-modal{
+  height: 91.4vh;
+  }
+
+  #login {
+    width: auto !important;
+    padding: 10px;
+  }
+
+  #login-modal #login .box_general {
+    margin-bottom: 0px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown.user > a figure {
+    display: block;
+    float: right;
+  }
+}
+
+header.header ul#top_menu li a {
+  color: rgba(0, 0, 0, 0.410);
+}
+header.header.sticky ul#top_menu li a:hover {
+  color: #fff;
+}
+header.header ul#top_menu li a.green {
+  color: #fff;
 }

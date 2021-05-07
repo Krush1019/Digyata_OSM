@@ -12,8 +12,8 @@
     <ul id="top_menu" class="drop_user">
       <li>
         <div class="dropdown user clearfix min-width-100px">
-          <a href="#" data-toggle="dropdown">
-            <figure><img src="{{Auth::guard('customer')->user()->sUserImgURL}}" alt=""></figure>{{Auth::guard('customer')->user()->sUserID}}
+          <a href="#" data-toggle="dropdown" class="float-right">
+            <figure><img src="{{ asset('images/default-img/user.png') }}" alt=""></figure><span class="d-md-inline-block d-none">{{Auth::guard('customer')->user()->sUserID}}</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-menu-end width-max-content">
             <div class="dropdown-menu-content">

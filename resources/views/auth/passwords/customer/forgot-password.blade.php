@@ -19,12 +19,11 @@
 @endsection
 
 @section('content')
-{{-- {{dd(session()->all())}} --}}
-<div class="bg_gray pattern_mail">
-      <div id="login" class="container position-relative w-100 bg-transparent min-height-100">
-            <div class="row justify-content-center">
-                  <div class="col-xl-4 col-md-5 col-sm-7">
-                        <div class="box_general padding my-55">
+<div id="login-modal" class="bg_gray pattern_mail">
+      <div class="container-fluid d-flex h-100 align-items-center justify-content-center">
+            <div>
+                  <div id="login" class="align-content-center bg-transparent">
+                        <div class="box_general padding">
                               <form id="forgot-passwd-form" action="{{route('customer.forgot')}}" method="POST"
                                     class="mt-3" action="">
                                     @csrf
@@ -63,6 +62,5 @@
                   </div>
             </div>
       </div>
-      <!-- /container -->
 </div>
 @endsection

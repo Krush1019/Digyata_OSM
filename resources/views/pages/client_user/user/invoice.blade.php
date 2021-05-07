@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div id="editor"></div>
-                        {{-- <button id="download" class="btn btn-outline-secondary float-right ml-1 ml-md-1"> <i class="fa fa-download mr-1"></i>Download</button> --}}
+                        <button id="download" class="btn btn-outline-secondary float-right ml-1 ml-md-1"> <i class="fa fa-download mr-1"></i>Download</button>
                         <button class="btn_1 btn-print float-right mb-1 mb-md-0 ml-1"> <i class="fa fa-print mr-1"></i>Print</button>
                         
                     </div>
@@ -36,7 +36,7 @@
                     <div id="invoice-company-details" class="row">
                         <div class="col-md-6 col-sm-12 text-left pt-1">
                             <div class="media pt-1">
-                                <img src="{{asset('client_user/img/logo.svg')}}" width="150" height="35" />
+                                <img src="{{asset('client_user/img/digyatafencylogo.png')}}" width="150" height="35" />
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12 text-right">
@@ -61,10 +61,10 @@
                             </div>
                             <div class="recipient-contact pb-2">
                                 <p>
-                                    <a href="mailto:{{$data["user_email"]}}"><i class="fa fa-envelope"></i>{{$data["user_email"]}}</a>
+                                    <a href="mailto:{{$data["user_email"]}}"><i class="fa fa-envelope mr-1"></i>{{$data["user_email"]}}</a>
                                 </p>
                                 <p>
-                                    <a href="tel:+91{{$data["user_phone"]}}"><i class="fa fa-phone-square"></i> +91 {{$data["user_phone"]}}</a>
+                                    <a href="tel:+91{{$data["user_phone"]}}"><i class="fa fa-phone-square mr-1"></i>+91-{{$data["user_phone"]}}</a>
                                 </p>
                             </div>
                         </div>
@@ -75,10 +75,10 @@
                             </div>
                             <div class="company-contact">
                                 <p>
-                                    <a href="mailto:{{$data["client_email"]}}"><i class="fa fa-envelope"></i>{{$data["client_email"]}}</a>
+                                    <a href="mailto:{{$data["client_email"]}}"><i class="fa fa-envelope mr-1"></i>{{$data["client_email"]}}</a>
                                 </p>
                                 <p>
-                                    <a href="tel:+91{{$data["client_phone"]}}"><i class="fa fa-phone-square"></i> +91 {{$data["client_phone"]}}</a>
+                                    <a href="tel:+91{{$data["client_phone"]}}"><i class="fa fa-phone-square mr-1"></i>+91-{{$data["client_phone"]}}</a>
                                 </p>
                             </div>
                         </div>
@@ -124,17 +124,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Invoice Footer -->
-                    {{-- <div id="invoice-footer" class="text-right pt-3">
-                        <p>Transfer the amounts to the business amount below. Please include invoice number
-                            on your check.
-                            <p class="bank-details mb-0">
-                                <span class="mr-4">BANK: <strong>FTSBUS33</strong></span>
-                                <span>IBAN: <strong>G882-1111-2222-3333</strong></span>
-                            </p>
-                    </div> --}}
-                    <!--/ Invoice Footer -->
                 </div>
             </section>
         </div>
@@ -145,6 +134,6 @@
 @endsection
 
 @section('page-script')
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script> --}}
+    <script src="{{asset("client_user/js/UI/html2pdf.js")}}"></script>
     <script src="{{ asset(mix('js/scripts/pages/invoice.js')) }}"></script>
 @endsection

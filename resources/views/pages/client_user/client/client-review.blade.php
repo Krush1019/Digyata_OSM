@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-<div class="box_general">
+<div class="box_general padding_bottom">
   <div class="header_box">
     <h2 class="d-inline-block">Reviews List</h2>
     {{-- <div class="filter">
@@ -149,30 +149,6 @@
   </div>
 </div>
 {{$reviews->links()}}
-
-<!-- /box_general-->
-{{-- <nav aria-label="...">
-    <ul class="pagination pagination-sm add_bottom_30">
-      <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-  </nav> --}}
-<!-- /pagination-->
-<!-- Reply to review popup -->
-{{-- <div id="modal-reply" class="white-popup mfp-with-anim mfp-hide">
-  <div class="small-dialog-header">
-    <h3>Reply to review</h3>
-  </div>
-  <div class="message-reply margin-top-0">
-    <div class="form-group">
-      <textarea cols="40" rows="3" class="form-control"></textarea>
-    </div>
-    <button class="btn_1">Reply</button>
-  </div>
-</div> --}}
 @endsection
 
 @section('page-script')
