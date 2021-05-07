@@ -7,39 +7,33 @@
 @endsection
 
 @section('content')
-
-@if (empty($serviceList))
-
-
-<div class="box_general box padding_bottom text-center">
-	<div class="row h-100">
-		<div class="col-sm-12 my-auto">
-			<div class="mx-auto">
-				<div class="align-middle">
-					<span class="font-weight-bolder text-dark font-large-30 ">You haven't add any service
-						yet!!</span>
-				</div>
-				<div class="text-center ">
-					<a href="{{route('add-service-listing','insert')}}"
-						class="btn_1 mt-2 font-weight-bolder">Add New
-						Service</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-@else
-
-<div class="box_general">
+<div class="box_general padding_bottom">
 	<div class="header_box">
 		<a class="font-large-20 btn btn-success mr-3" href="{{route('add-service-listing',"insert")}}"><i
 				class="fa fa-plus"></i></a>
 		<h2 class="d-inline-block ">Service Listings</h2>
 	</div>
-
 	<div class="list_general">
 		<ul>
+			@if (empty($serviceList))
+			<div class="box_general box padding_bottom text-center">
+				<div class="row h-100">
+					<div class="col-12 my-auto">
+						<div class="mx-auto">
+							<div class="align-middle">
+								<span class="font-weight-bolder float-none text-dark font-large-30 ">You haven't add any service
+									yet!!</span>
+							</div>
+							<div class="text-center ">
+								<a href="{{route('add-service-listing','insert')}}"
+									class="btn_1 mt-2 font-weight-bolder">Add New
+									Service</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			@else
 			@foreach ($serviceList as $value)
 			<li>
 				<figure><img src="{{asset($value['img'])}}" alt="Service Image"></figure>
@@ -72,16 +66,14 @@
 							<button class="btn_1 gray btn_status" data-action="Blocked"><i class="fa fa-fw fa-ban mr-1"></i>Blocked</button>
 						@endif
 					</li>
-
 				</ul>
 			</li>
 			@endforeach
+			@endif
 		</ul>
 	</div>
 </div>
 <!-- /box_general-->
-@endif
-
 
 
 {{-- START: View Modal --}}

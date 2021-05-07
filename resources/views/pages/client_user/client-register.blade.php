@@ -11,26 +11,10 @@
 <link href="{{asset('client_user/css/custom.css')}}" rel="stylesheet">
 @endsection
 
-@section('header-class', 'header clearfix element_to_stick')
+@section('header-class', 'header header_in clearfix shadow')
 
 @section('content')
 <main>
-  <div class="hero_single inner_pages background-image"
-    data-background="url({{asset('client_user/img/register.jpg')}})">
-    <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.4)">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xl-9 col-lg-10 col-md-8">
-            <h1>Next Generation Consulting</h1>
-            <p>Join to Digyata to get more customers & clients</p>
-          </div>
-        </div>
-        <!-- /row -->
-      </div>
-    </div>
-  </div>
-  <!-- /hero_single -->
-
   {{-- 
     <div class="container margin_60_40">
       <div class="main_title center">
@@ -146,7 +130,6 @@
                   <span class="mr-3">
                     <label for="gender_register" class="">Gender:</label>
                   </span>
-
                   <span class="mr-2">
                     <input type="radio" name="gender" value="male" checked>
                     <label> Male</label>
@@ -193,7 +176,6 @@
                     </span>
                     @enderror
                   </div>
-
                 </div>
                 <div class="captcha col-lg-6">
                   <span>{!! captcha_img() !!}</span>
@@ -210,7 +192,6 @@
     <!-- /container -->
   </div>
   <!-- /bg_gray -->
-
 </main>
 <!-- /main -->
 @endsection

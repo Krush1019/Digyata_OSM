@@ -19,12 +19,11 @@
 @endsection
 
 @section('content')
-<div class="bg_gray pattern_mail">
-      <div id="login" class="container position-relative w-100 bg-transparent min-h-none">
-            <div class="row justify-content-center">
-                  <div class="col-xl-4 col-md-5 col-sm-7">
-                        <div class="box_general pt-5 mb-0 padding">
-
+<div id="login-modal" class="bg_gray pattern_mail">
+      <div class="container-fluid d-flex h-100 align-items-center justify-content-center">
+            <div>
+                  <div id="login" class="align-content-center bg-transparent">
+                        <div class="box_general padding">
                               <div class="radio_select type">
                                     <ul>
                                           <li class="w-49">
@@ -43,10 +42,10 @@
                               </div>
 
                               <form id="login-form" method="POST" class="mt-3" action="@if ($errors->all() && session()->has('passlink'))
-                                    {{session()->get('passlink')}}
-                                    @else
-                                    {{route('login.customer')}}
-                                    @endif">
+                                                            {{session()->get('passlink')}}
+                                                            @else
+                                                            {{route('login.customer')}}
+                                                            @endif">
                                     @csrf
                                     <div class="main_title center">
                                           <p>Login as a Customer</p>
@@ -63,8 +62,11 @@
                                           @enderror
                                     </div>
                                     <div class="form-group">
-                                          <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required placeholder="Password">
-                                          <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                          <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                name="password" id="password" required placeholder="Password">
+                                          <span toggle="#password"
+                                                class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                           <i class="icon_lock_alt"></i>
                                           @error('password')
                                           <span class="invalid-feedback" role="alert">
@@ -79,7 +81,8 @@
                                                       <span class="checkmark"></span>
                                                 </label>
                                           </div>
-                                          <div class="float-right"><a id="forgot" href="{{ route('login.forgot.customer') }}">Forgot
+                                          <div class="float-right"><a id="forgot"
+                                                      href="{{ route('login.forgot.customer') }}">Forgot
                                                       Password?</a></div>
                                     </div>
                                     <button type="submit" class="btn_1 full-width">Login to Digyata</button>
@@ -90,8 +93,8 @@
                   </div>
             </div>
       </div>
-      <!-- /container -->
 </div>
+<!-- /container -->
 @endsection
 
 @section('page-script')
