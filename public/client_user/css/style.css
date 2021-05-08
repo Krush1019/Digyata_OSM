@@ -2297,7 +2297,7 @@ ul#top_menu > li a.btn_access.green:hover {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  filter: drop-shadow( 0px 0px 30px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow( 0px 0px 30px rgba(0, 0, 0, 0.1));
 }
 @media (max-width: 991px) {
   .hero_single.version_2 {

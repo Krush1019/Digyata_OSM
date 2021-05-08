@@ -13,7 +13,7 @@
 @section('header-class', 'header clearfix element_to_stick')
 @section('content')
 <main>
-    <div id="poster" class="container-fluid">
+    <div class="container-fluid poster-bgcolor">
         <div class="row align-items-center">
             <div class="col-lg-5 order-lg-1 order-12 slide-text pl-lg-5 my-2 my-lg-0 text-center text-lg-left">
                 <h1>Find a Professional</h1>
@@ -166,8 +166,10 @@
     </div>
     <!-- /bg_gray -->
 
-    <div class="call_section version_2 lazy" data-bg="url({{asset('client_user/img/index-register.jpg')}})">
-        <div class="container clearfix">
+    <div class="container-fluid clearfix poster-bgcolor py-4">
+        <div class="row align-items-center">
+            <div id="index-thinkbox" class="col d-none d-md-block">
+            </div>
             <div class="col-lg-5 col-md-6 float-right wow">
                 <div class="box_1">
                     <div class="ribbon_promo"><span>Free</span></div>
@@ -181,7 +183,6 @@
         </div>
     </div>
     <!--/call_section-->
-
 </main>
 @endsection
 
