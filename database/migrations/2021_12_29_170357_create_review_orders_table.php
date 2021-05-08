@@ -17,13 +17,13 @@ class CreateReviewOrdersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
           $table->id("RoID");
           $table->unsignedBigInteger("ser_id");
-          $table->foreign("ser_id")->references("id")->on("tbl_service_catalogs");
+          $table->foreign("ser_id")->references("ser_id")->on("tbl_ser_list");
           $table->unsignedBigInteger("uID");
           $table->foreign("uID")->references("id")->on("tbl_user_manage");
 
           $table->integer("Res_R1");
           $table->integer("Ser_R2");
-          
+
           $table->integer("Com_R3");
           $table->integer("Price_R4");
 
