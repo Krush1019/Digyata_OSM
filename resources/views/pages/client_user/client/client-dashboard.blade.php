@@ -66,7 +66,7 @@
       </div>
 </div>
 @else
-<div class="box_general box padding_bottom text-center">
+<div id="clientdashboard" class="box_general box padding_bottom text-center">
       <div class="row h-100">
             <div class="col-sm-12 my-auto">
                   <div class="mx-auto">
