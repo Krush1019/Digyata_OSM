@@ -31,10 +31,10 @@
                                                 <div class="icon icon--order-success svg add_bottom_15">
                                                       <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72">
                                                             <g fill="none" stroke="#8EC343" stroke-width="2">
-                                                                  <circle cx="36" cy="36" r="35" 
+                                                                  <circle cx="36" cy="36" r="35"
                                                                         style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;">
                                                                   </circle>
-                                                                  <path d="M17.417,37.778l9.93,9.909l25.444-25.393" 
+                                                                  <path d="M17.417,37.778l9.93,9.909l25.444-25.393"
                                                                         style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px;">
                                                                   </path>
                                                             </g>
@@ -42,12 +42,12 @@
                                                 </div>
                                                 <h3>Booking Confirmed!</h3>
                                                 <p>Your Order ID is <label class="font-weight-bolder font-size-large">{{$orderId}}</label>.</p>
-                                                <p>We will reply shortly to confirm the order.</p>
+                                                <p>Our Client reply shortly to confirm the order.</p>
                                           </div>
                                           <div class="footer-btn text-center">
                                                 <a href="{{ route('invoice', $orderId) }}" class="underline" target="blank">Print receipt</a>
                                                 <div>
-                                                      <a href="{{ route('home')}}" class="btn_1 mt-4">Back To Home</a>
+                                                      <a href="{{ route('user.myorders')}}" class="btn_1 mt-4">View Orders</a>
                                                 </div>
                                           </div>
                                     </div>
