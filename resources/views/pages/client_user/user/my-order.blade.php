@@ -54,7 +54,7 @@
 					<a href="{{ route( "invoice",  $dt->sOrderId)}}" target="_black" class="btn_1 gray"><i
 							class="fa fa-fw fa-eye"></i> View Receipt</a>
 					<a href="{{route('user-review',['id'=>encrypt($dt->ser_id)])}}" class="btn_1 gray">
-						@if ($usrReview)
+						@if ($dt->usrReview)
 						Edit Your review
 						@else
 						Leave a review
