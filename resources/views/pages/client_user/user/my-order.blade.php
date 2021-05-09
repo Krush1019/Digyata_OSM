@@ -52,8 +52,9 @@
 				</ul>
 				<p>
 					<a href="{{ route( "invoice",  $dt->sOrderId)}}" target="_black" class="btn_1 gray"><i
-							class="fa fa-fw fa-eye"></i> View Receipt</a>
-					<a href="{{route('user-review',['id'=>encrypt($dt->ser_id)])}}" class="btn_1 gray">
+							class="fa fa-fw fa-eye font-large-15 mr-1"></i>View Receipt</a>
+					<a href="{{route('user-review',['id'=>encrypt($dt->ser_id)])}}" class="btn_1 gray ml-sm-2 mt-2 mt-sm-0"><i
+							class="fa fa-fw fa-stack-exchange font-large-15 mr-1"></i>
 						@if ($dt->usrReview)
 						Edit Your review
 						@else
