@@ -162,6 +162,7 @@ use App\Http\Controllers\LanguageController;
 
     /** contacts */
     Route::get('/contacts', 'client_user\ContactsController@index')->name('contacts');
+    Route::post('/contacts-store', 'client_user\ContactsController@store')->name('contacts.store');
 
     /** captcha */
     Route::get('/contact-form', 'client_user\CaptchaController@index');
