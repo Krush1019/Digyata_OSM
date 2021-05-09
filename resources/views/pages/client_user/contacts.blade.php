@@ -36,7 +36,7 @@
 						<div class="box_contacts">
 							<i class="icon_lifesaver"></i>
 							<h2>Help Center</h2>
-							<a href="mailto:help@digyata.com">help@digyata.com</a>
+							<a href="mailto:digyata125@gmail.com">digyata125@gmail.com</a>
 							<small>MON to SAT 9am-6pm</small>
 						</div>
 					</div>
