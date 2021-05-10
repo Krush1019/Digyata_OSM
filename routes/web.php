@@ -167,6 +167,9 @@ use App\Http\Controllers\LanguageController;
     Route::get('/contact-form', 'client_user\CaptchaController@index');
     Route::get('/reload-captcha', 'client_user\CaptchaController@reloadCaptcha');
 
+//google
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 /*********************
  * ACESSS CONTROLLER
