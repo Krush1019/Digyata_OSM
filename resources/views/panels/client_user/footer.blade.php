@@ -27,15 +27,6 @@
       <div class="col-lg-3 offset-lg-3 col-md-6">
         <h3 data-target="#collapse_4">Keep in touch</h3>
         <div class="collapse dont-collapse-sm" id="collapse_4">
-          <div id="newsletter">
-            <div id="message-newsletter"></div>
-            <form method="post" action="{{asset('client_user/assets/newsletter.php')}}" name="newsletter_form" id="newsletter_form">
-              <div class="form-group">
-                <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
-                <button type="submit" id="submit-newsletter"><i class="arrow_carrot-right"></i></button>
-              </div>
-            </form>
-          </div>
           <div class="follow_us">
             <ul>
               <li><a href="#0"><img src="{{asset('client_user/img/twitter_icon.svg')}}" data-src="{{asset('client_user/img/twitter_icon.svg')}}" alt="" class="lazy"></a></li>
@@ -54,7 +45,7 @@
         <ul class="additional_links float-none">
           <li><a href="#0">Terms and conditions</a></li>
           <li><a href="#0">Privacy</a></li>
-          <li><span>© 2021 Digyata</span></li>
+          <li><span>© {{date('Y')}} Digyata</span></li>
         </ul>
       </div>
     </div>
