@@ -59,7 +59,7 @@ $(document).ready(function () {
             headerName: 'Name',
             field: 'client-name',
             filter: true,
-            width: 200,
+            width: 245,
             cellRenderer: customAvatarHTML,
         },
         {
@@ -67,7 +67,7 @@ $(document).ready(function () {
             field: 'email',
             filter: true,
             cellRenderer: customEmailHTML,
-            width: 200
+            width: 250
         },
         {
             headerName: 'Mobile No.',

@@ -129,13 +129,13 @@ $(document).ready(function () {
       headerName: 'Area-Agent',
       field: 'area-agent',
       filter: true,
-      width: 225,
+      width: 230,
     },
     {
       headerName: 'Services',
       field: 'services',
       filter: true,
-      width: 175,
+      width: 200,
     },
     {
       headerName: 'Status',
