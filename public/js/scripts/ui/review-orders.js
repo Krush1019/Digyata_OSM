@@ -44,32 +44,32 @@ $(document).ready(function () {
       headerName: 'Service Name',
       field: 'service-name',
       filter: true,
-      width: 200
+      width: 310
     },
     {
       headerName: 'Rating',
       field: 'rating',
       filter: true,
-      width: 130,
+      width: 150,
       cellRenderer: customRatingHTML
     },
     {
       headerName: 'ClientId',
       field: 'clientId',
       filter: true,
-      width: 150,
+      width: 170,
     },
     {
       headerName: 'UserId',
       field: 'userId',
       filter: true,
-      width: 150,
+      width: 170,
     },
     {
       headerName: 'Feedback',
       field: 'feedback',
       filter: true,
-      width: 300,
+      width: 350,
     }
   ];
 
