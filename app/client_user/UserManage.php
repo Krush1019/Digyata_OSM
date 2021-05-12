@@ -2,9 +2,9 @@
 
 namespace App\client_user;
 
-    use Illuminate\Notifications\Notifiable;
-    use Illuminate\Foundation\Auth\User as Authenticatable;
-    use App\Notifications\CustomerPasswordResetNotification;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\CustomerPasswordResetNotification;
 
 class UserManage extends Authenticatable
 {
@@ -18,15 +18,17 @@ class UserManage extends Authenticatable
         $this->notify(new CustomerPasswordResetNotification($token));
     }
 
-         protected $table = 'tbl_user_manage';
+    protected $table = 'tbl_user_manage';
 
-        protected $guard = 'customer';
+    protected $guard = 'customer';
 
-        protected $fillable = [
-            'sUserID', 'sUserName', 'sUserEmail', 'password', 'sUserMobile','sUserGender', 'sUserAddress'
-        ];
+    protected $fillable = [
+        'sUserID', 'sUserName', 'sUserEmail', 'password', 'sUserMobile', 'sUserGender', 'sUserAddress',
+        'google_id'
+    ];
 
-        protected $hidden = [
-            'password',
-        ];
+    protected $hidden = [
+        'password',
+        'google_id',
+    ];
 }

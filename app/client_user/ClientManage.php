@@ -19,15 +19,16 @@ class ClientManage extends Authenticatable
         $this->notify(new ClientPasswordResetNotification($token));
     }
 
-        protected $table = 'tbl_client_manage';
+    protected $table = 'tbl_client_manage';
 
-        protected $guard = 'client';
+    protected $guard = 'client';
 
-        protected $fillable = [
-            'sClientID', 'sClName', 'sClEmail', 'password','sClMobile','sClGender','sClAddress'
-        ];
+    protected $fillable = [
+        'sClientID', 'sClName', 'sClEmail', 'password', 'sClMobile', 'sClGender', 'sClAddress', 'google_id'
+    ];
 
-        protected $hidden = [
-            'password',
-        ];
+    protected $hidden = [
+        'password',
+        'google_id'
+    ];
 }

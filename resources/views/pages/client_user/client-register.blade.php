@@ -85,6 +85,11 @@
               @csrf
               <div class="row">
                 <div class="col-md-12">
+                  <div class="access_social mt-2">
+                    <a href="#0" class="social_bt facebook">Login with Facebook</a>
+                    <a href="{{route('login.google.client')}}" class="social_bt google">Login with Google</a>
+                  </div>
+                  <div class="divider mb-4"><span>Or</span></div>
                   <div class="form-group">
                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                       placeholder="*Full Name" value="{{ old('name') }}" name="name" id="name_register">

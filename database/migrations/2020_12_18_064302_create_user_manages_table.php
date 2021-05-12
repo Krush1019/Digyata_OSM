@@ -17,8 +17,8 @@ class CreateUserManagesTable extends Migration {
             $table->string('sUserID')->nullable();
             $table->string('sUserName');
             $table->string('sUserEmail')->unique();
-            $table->string('sUserMobile');
-            $table->string('sUserGender');
+            $table->string('sUserMobile')->nullable();
+            $table->string('sUserGender')->nullable();
             $table->string('password');
             $table->string('sUserImgURL')->nullable();
             $table->string('sUserState')->nullable();
@@ -27,6 +27,7 @@ class CreateUserManagesTable extends Migration {
             $table->string('sUserArea')->nullable();
             $table->integer('sUserPincode')->nullable();
             $table->boolean('bUserStatus')->default(1);
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -23,7 +23,7 @@
       <div class="container-fluid d-flex h-100 align-items-center justify-content-center">
             <div>
                   <div id="login" class="align-content-center bg-transparent">
-                        <div class="box_general padding">
+                        <div class="box_general padding mb-0">
                               <div class="radio_select type">
                                     <ul>
                                           <li class="w-49">
@@ -40,7 +40,6 @@
                                           </li>
                                     </ul>
                               </div>
-
                               <form id="login-form" method="POST" class="mt-3" action="@if ($errors->all() && session()->has('passlink'))
                                                             {{session()->get('passlink')}}
                                                             @else
@@ -50,6 +49,11 @@
                                     <div class="main_title center">
                                           <p>Login as a Customer</p>
                                     </div>
+                                    <div class="access_social">
+                                          <a href="#0" class="social_bt facebook">Login with Facebook</a>
+                                          <a href="{{ route('login.google.customer') }}" class="social_bt google">Login with Google</a>
+                                    </div>
+                                    <div class="divider mb-4"><span>Or</span></div>
                                     <div class="form-group">
                                           <input type="email" class="form-control @error('email') is-invalid @enderror"
                                                 name="email" id="email" value="{{ old('email') }}" required
