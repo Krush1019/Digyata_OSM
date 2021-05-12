@@ -200,13 +200,13 @@ Route::get('/register/customer', 'Auth\RegisterController@showCustomerRegisterFo
 Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->name('register.customer');
 
 /** Auth -- Login With Google*/
-Route::get('login/google', 'Auth\RegisterController@redirectToProvider');
+Route::get('login/google/{role}', 'Auth\RegisterController@redirectToProvider')->name('login.google');
 
 /** Auth -- Client */
-Route::get('login/google/callback', 'Auth\RegisterController@handleProviderCallbackClient')->name('login.google.client');
+Route::get('login/google/{role}/callback', 'Auth\RegisterController@handleProviderCallbackClient')->name('login.google.client');
 
 /** Auth -- Customer */
-Route::get('login/google/callback', 'Auth\RegisterController@handleProviderCallbackCustomer')->name('login.google.customer');
+Route::get('login/google/{role}/callback', 'Auth\RegisterController@handleProviderCallbackCustomer')->name('login.google.customer');
 
 
 /** Reset Password */

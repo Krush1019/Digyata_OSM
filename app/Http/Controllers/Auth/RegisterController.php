@@ -176,39 +176,6 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // GOOGLE -- CUSTOMER
-    public function handleProviderCallbackCustomer()
-    {
-        try {
-            $user = Socialite::driver('google')->user();
-            $findUser = UserManage::where('google_id', $user->id)->first();
-            if ($findUser) {
-                Auth::guard('customer')->login($findUser);
-                return redirect()->intended(route('home'));
-            } else {
-                $checkuser = UserManage::where('sUserEmail', $user->email)->first();
-                if ($checkuser) {
-                    UserManage::where('id', $checkuser->id)->update([
-                        "google_id" => $user->id
-                    ]);
-                    Auth::guard('customer')->login($checkuser);
-                } else {
-                    $newUser = UserManage::create([
-                        'sUserID' => $this->getGenerateID("sUserID"),
-                        'sUserName' => $user->name,
-                        'sUserEmail' => $user->email,
-                        'google_id' => $user->id,
-                        'password' => Hash::make('digit@l$@h@y@t@'),
-                    ]);
-                    Auth::guard('customer')->login($newUser);
-                }
-                return redirect()->intended(route('home'));
-            }
-        } catch (Exception $e) {
-            return redirect(route('login-page'));
-        }
-    }
-
     // GOOGLE -- CLIENT
     public function handleProviderCallbackClient()
     {
@@ -243,6 +210,43 @@ class RegisterController extends Controller
         }
     }
 
+
+
+    // GOOGLE -- CUSTOMER
+    public function handleProviderCallbackCustomer()
+    {
+        try {
+            $user = Socialite::driver('google')->user();
+            $findUser = UserManage::where('google_id', $user->id)->first();
+            if ($findUser) {
+                Auth::guard('customer')->login($findUser);
+                return redirect()->intended(route('home'));
+            } else {
+                $checkuser = UserManage::where('sUserEmail', $user->email)->first();
+                if ($checkuser) {
+                    UserManage::where('id', $checkuser->id)->update([
+                        "google_id" => $user->id
+                    ]);
+                    Auth::guard('customer')->login($checkuser);
+                } else {
+                    $newUser = UserManage::create([
+                        'sUserID' => $this->getGenerateID("sUserID"),
+                        'sUserName' => $user->name,
+                        'sUserEmail' => $user->email,
+                        'google_id' => $user->id,
+                        'password' => Hash::make('digit@l$@h@y@t@'),
+                    ]);
+                    Auth::guard('customer')->login($newUser);
+                }
+                return redirect()->intended(route('home'));
+            }
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            return redirect(route('login-page'));
+        }
+    }
+
+    
     // Generate ID
     private function getGenerateID($col_name)
     {
