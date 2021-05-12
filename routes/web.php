@@ -160,8 +160,9 @@ Route::get('/home', 'client_user\indexController@index')->name('home');
 /** about-us */
 Route::get('/about-us', 'client_user\AboutUsController@index')->name('about-us');
 
-/** contacts */
-Route::get('/contacts', 'client_user\ContactsController@index')->name('contacts');
+    /** contacts */
+    Route::get('/contacts', 'client_user\ContactsController@index')->name('contacts');
+    Route::post('/contacts-store', 'client_user\ContactsController@store')->name('contacts.store');
 
 /** captcha */
 Route::get('/contact-form', 'client_user\CaptchaController@index');

@@ -143,7 +143,7 @@
         </div>
         <div class="col-lg-3">
           <div class="box_contacts font-weight-bolder hovering-zoom">
-            <div class="mb-3 team-img background-image" data-background="url({{asset('client_user/img/about_1.svg')}})">
+            <div class="mb-3 team-img background-image" data-background="url({{asset('client_user/img/rashmin.jpeg')}})">
             </div>
             <h2 class="font-weight-bold">Rashmin Prajapati </h2>
             <a href="mailto:meetprajapati847@gmail.com" target="_blank">meetprajapati847@gmail.com</a>

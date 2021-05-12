@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendWelcomeMail extends Mailable
+class SendOrderBookedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,11 +17,10 @@ class SendWelcomeMail extends Mailable
      * @return void
      */
 
-    public $clnt;
-
-    public function __construct($usr)
+      public $orderDetail;
+    public function __construct($orderDetail)
     {
-        $this->clnt = $usr;
+        $this->orderDetail = $orderDetail;
     }
 
     /**
@@ -31,6 +30,6 @@ class SendWelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.welcomeClient')->subject('Welcome To Digyata')->with('clnt', $this->clnt);
+        return $this->view('emails.orderBooked')->subject("Order Booking Completed")->with('orderDetail',$this->orderDetail);
     }
 }

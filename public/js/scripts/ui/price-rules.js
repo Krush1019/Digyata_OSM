@@ -108,7 +108,7 @@ $(document).ready(function () {
   var columnDefs = [{
     headerName: '#',
     field: '#',
-    width: 150,
+    width: 160,
     filter: true,
     checkboxSelection: true,
     headerCheckboxSelectionFilteredOnly: true,
@@ -121,16 +121,13 @@ $(document).ready(function () {
       headerName: 'Service Name',
       field: 'service-name',
       filter: true,
-      width: 200,
-      cellStyle: {
-        "text-align": "center"
-      }
+      width: 300,
     },
     {
       headerName: 'Visit (%)',
       field: 'visit-charge-brokrage',
       filter: true,
-      width: 150,
+      width: 180,
       cellStyle: {
         "text-align": "center"
       }
@@ -139,7 +136,7 @@ $(document).ready(function () {
       headerName: 'Service (%)',
       field: 'service-charge-brokrage',
       filter: true,
-      width: 150,
+      width: 180,
       cellStyle: {
         "text-align": "center"
       }
@@ -148,7 +145,7 @@ $(document).ready(function () {
       headerName: 'Status',
       field: 'status',
       filter: true,
-      width: 150,
+      width: 190,
       cellRenderer: customBadgeHTML,
       cellStyle: {
         "text-align": "center"
@@ -157,8 +154,11 @@ $(document).ready(function () {
     {
       headerName: 'Actions',
       field: 'transactions',
-      width: 150,
+      width: 160,
       cellRenderer: customIconsHTML,
+      cellStyle: {
+        "text-align": "center"
+      }
     }
   ];
 

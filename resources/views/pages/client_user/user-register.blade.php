@@ -15,7 +15,7 @@
 @section('content')
 <nav id="menu" class="fake_menu"></nav>
 
-<div id="login">
+<div id="login" class="full_height">
   <aside>
     <figure class="px-0">
       <a href="{{route('home')}}"><img src="{{asset('client_user/img/logo.svg')}}" width="150" height="35" alt="" class="logo_sticky"></a>
@@ -100,11 +100,11 @@
         </div>
       </div>
 
-      <button type="submit" id="us_sub_btn" class="btn_1 rounded full-width">Register Now!</button>
+      <button type="submit" id="us_sub_btn" class="btn_1 rounded full-width mt-3">Register Now!</button>
       <div class="text-center add_top_10">Already have an acccount? <strong><a id="URGLink" href="{{route('login-page')}}">Sign In</a></strong>
       </div>
     </form>
-    <div class="copy">© 2021 Digyata</div>
+    <div class="copy position-inherit mt-100">© {{date('Y')}} Digyata</div>
   </aside>
 </div>
 <!-- /login -->

@@ -43,13 +43,13 @@ $(document).ready(function () {
         headerName: 'User Id',
         field: 'user-id',
         filter: true,
-        width: 150,
+        width: 160,
     },
     {
         headerName: 'User Name',
         field: 'user-name',
         filter: true,
-        width: 180,
+        width: 210,
         cellStyle: {
             "text-align": "left"
         }
@@ -67,7 +67,7 @@ $(document).ready(function () {
         headerName: 'Email',
         field: 'email',
         filter: true,
-        width: 260,
+        width: 280,
         cellStyle: {
             "text-align": "left"
         }

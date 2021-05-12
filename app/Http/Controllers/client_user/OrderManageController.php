@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\client_user;
 
-use App\client_user\OrderManage;
-use App\Http\Controllers\Controller;
 use App\ServiceList;
 use Illuminate\Http\Request;
+use App\client_user\UserManage;
+use App\client_user\OrderManage;
+use App\Jobs\SendOrderBookedJob;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
-use App\client_user\UserManage;
 
 
 class OrderManageController extends Controller {
@@ -89,6 +90,7 @@ class OrderManageController extends Controller {
 			"sTimeSlot" => $selected_time,
 			"sAmount" => $amount
 		);
+
 		$usr_address = array(
 			'sUserHouseNo' => $request->address1,
 			'sUserArea' => $request->address2,
@@ -98,6 +100,9 @@ class OrderManageController extends Controller {
 		);
 		UserManage::where('id', Auth::guard('customer')->user()->id)->update($usr_address);
 		$raw = OrderManage::create($data);
+    $data['email'] = Auth::guard('customer')->user()->sUserEmail;
+    $data['name'] = Auth::guard('customer')->user()->sUserName;
+    dispatch(new SendOrderBookedJob($data));
 		Cookie::queue(Cookie::forget('date'));
 		Cookie::queue(Cookie::forget('selected_time'));
 		Cookie::queue(Cookie::forget('services'));
