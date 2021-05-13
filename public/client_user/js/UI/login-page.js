@@ -30,8 +30,8 @@ $(document).ready(function () {
                   .find('p').text('Login as a Customer');
             $('#login-form strong a').attr('href', "/register/customer");
             $('#forgot').attr('href', "/login/forgot/customer");
+            $('.social_bt.google').attr('href', "login/google/customer");
       });
-
 
       //on client radio click
       $(document).on('click', '#radio_client', link);
@@ -45,4 +45,5 @@ function link() {
             .find('p').text('Login as a Client');
       $('#login-form strong a').attr('href', "/register/client");
       $('#forgot').attr('href', "/login/forgot/client");
+      $('.social_bt.google').attr('href', "login/google/client");
 }

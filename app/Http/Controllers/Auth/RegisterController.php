@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Auth;
 use App\User;
 use Exception;
+use Illuminate\Support\Str;
 use App\Jobs\WelcomeMailJob;
 use Illuminate\Http\Request;
 use App\client_user\UserManage;
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
 
 class RegisterController extends Controller
 {
@@ -165,8 +165,9 @@ class RegisterController extends Controller
      *  LOGIN & REGISTER WITH GOOGLE
      */
 
-    public function redirectToProvider()
+    public function redirectToProvider($role)
     {
+        session(['role' => $role]);
         return Socialite::driver('google')->redirect();
     }
 
@@ -181,64 +182,10 @@ class RegisterController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
-            $findUser = ClientManage::where('google_id', $user->id)->first();
-            if ($findUser) {
-                Auth::guard('client')->login($findUser);
-                return redirect()->intended(route('home'));
+            if (session()->get('role') == "client") {
+                return $this->findOrCreateRole($user, ClientManage::class, 'client');
             } else {
-                $checkuser = ClientManage::where('sClEmail', $user->email)->first();
-                if ($checkuser) {
-                    ClientManage::where('id', $checkuser->id)->update([
-                        "google_id" => $user->id
-                    ]);
-                    Auth::guard('customer')->login($checkuser);
-                } else {
-                    $newUser = ClientManage::create([
-                        'sClientID' => $this->getGenerateID("sClientID"),
-                        'sClName' => $user->name,
-                        'sClEmail' => $user->email,
-                        'google_id' => $user->id,
-                        'password' => Hash::make('digit@l$@h@y@t@'),
-                    ]);
-                    Auth::guard('client')->login($newUser);
-                    dispatch(new WelcomeMailJob($request->all()));
-                }
-                return redirect()->intended(route('home'));
-            }
-        } catch (Exception $e) {
-            return redirect(route('login-page'));
-        }
-    }
-
-
-
-    // GOOGLE -- CUSTOMER
-    public function handleProviderCallbackCustomer()
-    {
-        try {
-            $user = Socialite::driver('google')->user();
-            $findUser = UserManage::where('google_id', $user->id)->first();
-            if ($findUser) {
-                Auth::guard('customer')->login($findUser);
-                return redirect()->intended(route('home'));
-            } else {
-                $checkuser = UserManage::where('sUserEmail', $user->email)->first();
-                if ($checkuser) {
-                    UserManage::where('id', $checkuser->id)->update([
-                        "google_id" => $user->id
-                    ]);
-                    Auth::guard('customer')->login($checkuser);
-                } else {
-                    $newUser = UserManage::create([
-                        'sUserID' => $this->getGenerateID("sUserID"),
-                        'sUserName' => $user->name,
-                        'sUserEmail' => $user->email,
-                        'google_id' => $user->id,
-                        'password' => Hash::make('digit@l$@h@y@t@'),
-                    ]);
-                    Auth::guard('customer')->login($newUser);
-                }
-                return redirect()->intended(route('home'));
+                return $this->findOrCreateRole($user, UserManage::class, 'customer');
             }
         } catch (Exception $e) {
             dd($e->getMessage());
@@ -246,7 +193,6 @@ class RegisterController extends Controller
         }
     }
 
-    
     // Generate ID
     private function getGenerateID($col_name)
     {
@@ -255,10 +201,9 @@ class RegisterController extends Controller
             $tbl = new ClientManage();
             $temp = "CI-";
         } else if ($col_name == "sUserID") {
-            $tbl = new ClientManage();
+            $tbl = new UserManage();
             $temp = "UI-";
         }
-
         newGenerateID:
         $id = $temp . date('ym') . rand(100, 999);
         $count = $tbl->where($col_name, $id)->count();
@@ -266,5 +211,45 @@ class RegisterController extends Controller
             return $id;
         else
             goto newGenerateID;
+    }
+
+    private function findOrCreateRole($user, $RoleManage, $guard)
+    {
+        $findUser = $RoleManage::where('google_id', $user->id)->first();
+        if (!$findUser) {
+            $findUser = $RoleManage::where((($guard == 'client') ? 'sClEmail' : 'sUserEmail'), $user->email)->first();
+            if ($findUser) {
+                $RoleManage::where('id', $findUser->id)->update([
+                    "google_id" => $user->id
+                ]);
+            } else {
+                if ($guard == "client") {
+                    $array = [
+                        'sClientID' => $this->getGenerateID("sClientID"),
+                        'sClName' => $user->name,
+                        'sClEmail' => $user->email,
+                        'google_id' => $user->id,
+                        'password' => Hash::make(Str::random(24)),
+                    ];
+                } else {
+                    $array = [
+                        'sUserID' => $this->getGenerateID("sUserID"),
+                        'sUserName' => $user->name,
+                        'sUserEmail' => $user->email,
+                        'google_id' => $user->id,
+                        'password' => Hash::make(Str::random(24)),
+                    ];
+                }
+                $findUser = $RoleManage::create($array);
+                Auth::guard($guard)->login($findUser);
+            }
+            return redirect()->intended(route('home'));
+        }
+        Auth::guard($guard)->login($findUser);
+        if ($guard == 'client') {
+            return redirect()->intended(route('client-dashboard'));
+        } else {
+            return redirect()->intended(route('home'));
+        }
     }
 }

@@ -59,12 +59,10 @@ Route::post('/service-manage-update', 'ServiceManageController@update')->name("s
 
 /** Admin -- Booking Schedule */
 Route::get('/booking-schedule', 'BookingScheduleController@index');
-//    Route::get('/booking-schedule-store', 'BookingScheduleController@store');
 Route::get('/booking-schedule-show/{action}', 'BookingScheduleController@show');
 
 /** Admin -- Review Order */
 Route::get('/review-order', 'ReviewOrdersController@index');
-//    Route::get('/review-order-store', 'ReviewOrdersController@store');
 Route::get('/review-order-show/{action}', 'ReviewOrdersController@show');
 Route::get('/review-order-search', 'ReviewOrdersController@search');
 
@@ -140,7 +138,6 @@ Route::get('/order/confirm/{id}', function ($id) {
 
 /** Order -- Invoice */
 Route::get("/order/invoice/{order_id}", "client_user\user\ConfirmOrderController@getInvoice")->name("invoice");
-// Route::view('/order/invoice/{order_id}', '/pages/client_user/user/invoice')->name("invoice");
 
 /** user -- review */
 
@@ -160,9 +157,9 @@ Route::get('/home', 'client_user\indexController@index')->name('home');
 /** about-us */
 Route::get('/about-us', 'client_user\AboutUsController@index')->name('about-us');
 
-    /** contacts */
-    Route::get('/contacts', 'client_user\ContactsController@index')->name('contacts');
-    Route::post('/contacts-store', 'client_user\ContactsController@store')->name('contacts.store');
+/** contacts */
+Route::get('/contacts', 'client_user\ContactsController@index')->name('contacts');
+Route::post('/contacts-store', 'client_user\ContactsController@store')->name('contacts.store');
 
 /** captcha */
 Route::get('/contact-form', 'client_user\CaptchaController@index');
@@ -202,13 +199,7 @@ Route::post('/register/customer', 'Auth\RegisterController@createCustomer')->nam
 
 /** Auth -- Login With Google*/
 Route::get('login/google/{role}', 'Auth\RegisterController@redirectToProvider')->name('login.google');
-
-/** Auth -- Client */
-Route::get('login/google/{role}/callback', 'Auth\RegisterController@handleProviderCallbackClient')->name('login.google.client');
-
-/** Auth -- Customer */
-Route::get('login/google/{role}/callback', 'Auth\RegisterController@handleProviderCallbackCustomer')->name('login.google.customer');
-
+Route::get('login/google/user/callback', 'Auth\RegisterController@handleProviderCallbackClient');
 
 /** Reset Password */
 // customer
