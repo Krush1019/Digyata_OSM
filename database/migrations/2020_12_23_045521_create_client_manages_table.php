@@ -19,11 +19,12 @@ class CreateClientManagesTable extends Migration {
             $table->string("sClientID");
             $table->string('sClName');
             $table->string('sClEmail')->unique();
-            $table->string('sClMobile');
+            $table->string('sClMobile')->nullable();
             $table->string('password');
-            $table->string('sClGender');
+            $table->string('sClGender')->nullable();
             $table->string('sClPhotoURL')->default("images/default-img/user.png");
             $table->string('sClientStatus')->default('Active');
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

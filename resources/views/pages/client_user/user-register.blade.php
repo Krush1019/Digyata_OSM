@@ -20,9 +20,12 @@
     <figure class="px-0">
       <a href="{{route('home')}}"><img src="{{asset('client_user/img/logo.svg')}}" width="150" height="35" alt="" class="logo_sticky"></a>
     </figure>
-
     <form method="POST" id="User-register" action="{{ route('register.customer')}}" autocomplete="off">
       @csrf
+      <div class="access_social">
+        <a href="{{ route('login.google', ['role'=>'user']) }}" class="social_bt google">Login with Google</a>
+      </div>
+      <div class="divider mb-4"><span>Or</span></div>
       <div class="form-group">
         <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="*Full Name" value="{{ old('name') }}" name="name" id="User_name">
         @error('name')

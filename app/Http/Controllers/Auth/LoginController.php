@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
 use Auth;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -86,12 +83,6 @@ class LoginController extends Controller
                 ->withErrors($validator)
                 ->withInput($request->only('email', 'remember'));
         }
-
-        /* $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]); */
-
         if (Auth::guard('client')->attempt(['sClEmail' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended(route('client-dashboard'));
         }

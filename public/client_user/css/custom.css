@@ -401,7 +401,7 @@ header.header.sticky .logo {
 
 @media (max-width: 575px) {
   #login-modal {
-    height: 91.4vh;
+    height: 116vh;
   }
 
   #login {
