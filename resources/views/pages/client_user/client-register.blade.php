@@ -86,7 +86,6 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="access_social mt-2">
-                    <a href="#0" class="social_bt facebook">Login with Facebook</a>
                     <a href="{{ route('login.google', ['role'=>'client']) }}" class="social_bt google">Login with Google</a>
                   </div>
                   <div class="divider mb-4"><span>Or</span></div>

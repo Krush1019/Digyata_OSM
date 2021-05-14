@@ -50,7 +50,6 @@
                                           <p>Login as a Customer</p>
                                     </div>
                                     <div class="access_social">
-                                          <a href="#0" class="social_bt facebook">Login with Facebook</a>
                                           <a href="{{ route('login.google', ['role'=>'customer'])}}"
                                                 class="social_bt google">Login with Google</a>
                                     </div>
